@@ -76,11 +76,6 @@ task cppSourceZip(type: Zip) {
     }
 }
 
-    from('src/main/driver/include') {
-        into '/'
-    }
-}
-
 build.dependsOn cppHeadersZip
 addTaskToCopyAllOutputs(cppHeadersZip)
 build.dependsOn cppSourceZip
