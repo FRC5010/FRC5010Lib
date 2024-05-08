@@ -7,7 +7,7 @@
     "mavenUrls": [
         "https://frc5010.github.io/FRC5010Lib/frc5010Lib/repos"
     ],
-    "jsonUrl": "https://frc5010.github.io/FRC5010Lib/frc5010Lib.json",
+    "jsonUrl": "https://frc5010.github.io/FRC5010Lib/frc5010Lib/frc5010Lib.json",
     "javaDependencies": [
         {
             "groupId": "org.frc5010",
