@@ -1,3 +1,5 @@
+https://raw.githubusercontent.com/FRC5010/FRC5010Lib/2024/frc5010lib/frc5010Lib.json
+
 # WPILib Vendor Template
 
 This is the base WPILib vendor template for 2023.
