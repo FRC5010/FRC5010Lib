@@ -11,7 +11,7 @@
     "javaDependencies": [
         {
             "groupId": "org.frc5010",
-            "artifactId": "frc5010-java",
+            "artifactId": "frc5010lib-java",
             "version": "0.0.1"
         }
     ],
