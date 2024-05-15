@@ -13,7 +13,7 @@ import edu.wpi.first.math.numbers.N3;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.Timer;
 import java.util.function.DoubleSupplier;
-import org.frc5010.common.robots.GenericRobot;
+import org.frc5010.common.arch.GenericRobot;
 import org.frc5010.common.vision.LimelightHelpers.LimelightResults;
 
 /** Add your docs here. */

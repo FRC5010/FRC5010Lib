@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.PowerDistribution.ModuleType;
 import java.util.HashMap;
 import java.util.Map;
+import org.frc5010.common.arch.GenericRobot;
+import org.frc5010.common.arch.GenericRobot.LogLevel;
 import org.frc5010.common.arch.GenericSubsystem;
-import org.frc5010.common.robots.GenericRobot;
-import org.frc5010.common.robots.GenericRobot.LogLevel;
 
 public class PowerDistribution5010 extends GenericSubsystem {
   private PowerDistribution powerDistribution;

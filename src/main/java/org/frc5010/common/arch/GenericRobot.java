@@ -1,4 +1,4 @@
-package org.frc5010.common.robots;
+package org.frc5010.common.arch;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -11,8 +11,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import java.util.Optional;
-import org.frc5010.common.arch.GenericMechanism;
-import org.frc5010.common.arch.PersistedEnums;
 import org.frc5010.common.constants.RobotConstantsDef;
 import org.frc5010.common.sensors.Controller;
 import org.frc5010.common.subsystems.Color;
