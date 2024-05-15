@@ -1,7 +1,6 @@
 package org.frc5010.common.robots;
 
 import com.pathplanner.lib.auto.AutoBuilder;
-import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.GenericHID;
@@ -14,7 +13,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 import java.util.Optional;
 import org.frc5010.common.arch.GenericMechanism;
 import org.frc5010.common.arch.PersistedEnums;
-import org.frc5010.common.arch.WpiNetworkTableValuesHelper;
 import org.frc5010.common.constants.RobotConstantsDef;
 import org.frc5010.common.sensors.Controller;
 import org.frc5010.common.subsystems.Color;
@@ -25,9 +23,6 @@ public abstract class GenericRobot extends GenericMechanism {
   private Controller driver;
   private Controller operator;
   private static Alliance alliance;
-  private GenericMechanism robot;
-  private static String MAC_Address = "MAC ADDRESS";
-  private DigitalInput startupBypass;
 
   public enum LogLevel {
     DEBUG,
@@ -36,9 +31,8 @@ public abstract class GenericRobot extends GenericMechanism {
 
   public static LogLevel logLevel = LogLevel.DEBUG;
 
-  public GenericRobot(String tabName) {
-    super(tabName);
-    values.declare(MAC_Address, "");
+  public GenericRobot() {
+    super(Class.class.getName());
 
     // Setup controllers
     driver = new Controller(Controller.JoystickPorts.ZERO.ordinal());
@@ -56,14 +50,7 @@ public abstract class GenericRobot extends GenericMechanism {
 
     DriverStation.silenceJoystickConnectionWarning(true);
     alliance = determineAllianceColor();
-    SmartDashboard.putString("Alliance", alliance.toString());
-
-    initRealOrSim();
-
-    // Configure the button bindings
-    configureButtonBindings(driver, operator);
-    initAutoCommands();
-    WpiNetworkTableValuesHelper.loadRegisteredToNetworkTables();
+    values.declare("Alliance", alliance.toString());
   }
 
   public static LogLevel getLoggingLevel() {
@@ -96,8 +83,8 @@ public abstract class GenericRobot extends GenericMechanism {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  public void configureButtonBindings(Controller driver, Controller operator) {
-    robot.configureButtonBindings(driver, operator);
+  public void configureButtonBindings() {
+    configureButtonBindings(driver, operator);
     if (driver.isSingleControllerMode()) {
       // TODO: Add code to handle single driver mode
     } else {
@@ -105,18 +92,16 @@ public abstract class GenericRobot extends GenericMechanism {
     }
   }
 
-  @Override
-  public void setupDefaultCommands(Controller driver, Controller operator) {
+  public void setupDefaultCommands() {
     if (DriverStation.isTeleop() || DriverStation.isAutonomous()) {
-      robot.setupDefaultCommands(driver, operator);
+      setupDefaultCommands(driver, operator);
     } else if (DriverStation.isTest()) {
-      robot.setupTestDefaultCommmands(driver, operator);
+      setupTestDefaultCommmands(driver, operator);
     }
   }
 
-  @Override
-  public void initAutoCommands() {
-    robot.initAutoCommands();
+  public void buildAutoCommands() {
+    initAutoCommands();
 
     // TODO: Figure out Pathplanner Warmup Command
 
@@ -126,29 +111,20 @@ public abstract class GenericRobot extends GenericMechanism {
     }
   }
 
-  @Override
-  public Command generateAutoCommand(Command autoCommand) {
-    return robot.generateAutoCommand(autoCommand);
-  }
-
   public Alliance determineAllianceColor() {
     Optional<Alliance> color = DriverStation.getAlliance();
     return color.orElse(Alliance.Blue);
   }
 
   public static Color chooseAllianceColor() {
-    Optional<Alliance> alllianceColor = DriverStation.getAlliance();
-    if (alllianceColor.isPresent()) {
-      return alllianceColor.get() == Alliance.Red ? Color.RED : Color.BLUE;
+    Optional<Alliance> allianceColor = DriverStation.getAlliance();
+    if (allianceColor.isPresent()) {
+      return allianceColor.get() == Alliance.Red ? Color.RED : Color.BLUE;
     }
     return Color.ORANGE;
   }
 
   public static Alliance getAlliance() {
     return alliance;
-  }
-
-  public void disabledBehavior() {
-    robot.disabledBehavior();
   }
 }
