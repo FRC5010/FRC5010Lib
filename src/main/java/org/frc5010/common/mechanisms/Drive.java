@@ -32,11 +32,11 @@ import org.frc5010.common.motors.MotorController5010;
 import org.frc5010.common.motors.MotorFactory;
 import org.frc5010.common.sensors.Controller;
 import org.frc5010.common.sensors.gyro.GenericGyro;
-import org.frc5010.common.vision.VisionSystem;
+import org.frc5010.common.subsystems.AprilTagPoseSystem;
 
 /** Add your docs here. */
 public class Drive extends GenericMechanism {
-  private VisionSystem vision;
+  private AprilTagPoseSystem vision;
   private GenericDrivetrain drivetrain;
   private GenericGyro gyro;
   private Command defaultDriveCommand;
@@ -63,7 +63,7 @@ public class Drive extends GenericMechanism {
   private String driveTrainFolder;
 
   public Drive(
-      VisionSystem visionSystem,
+      AprilTagPoseSystem visionSystem,
       GenericGyro gyro,
       String type,
       List<? extends DrivePorts> drivePorts,
@@ -132,19 +132,37 @@ public class Drive extends GenericMechanism {
   private void initializeYAGSLSwerveDrive(String driveTrainFolder) {
     drivetrain =
         new YAGSLSwerveDrivetrain(
-            mechVisual, gyro, (SwerveConstants) driveConstants, driveTrainFolder, vision);
+            mechVisual,
+            driveConstants,
+            ((SwerveConstants) driveConstants)
+                .getSwerveModuleConstants()
+                .getkTurningMotorGearRatio(),
+            driveTrainFolder,
+            vision);
   }
 
   private void initializeYAGSLMK4SwerveDrive() {
     drivetrain =
         new YAGSLSwerveDrivetrain(
-            mechVisual, gyro, (SwerveConstants) driveConstants, "swervemk4", vision);
+            mechVisual,
+            driveConstants,
+            ((SwerveConstants) driveConstants)
+                .getSwerveModuleConstants()
+                .getkTurningMotorGearRatio(),
+            "swervemk4",
+            vision);
   }
 
   private void initializeYAGSLThriftySwerveDrive() {
     drivetrain =
         new YAGSLSwerveDrivetrain(
-            mechVisual, gyro, (SwerveConstants) driveConstants, "swervethrifty", vision);
+            mechVisual,
+            driveConstants,
+            ((SwerveConstants) driveConstants)
+                .getSwerveModuleConstants()
+                .getkTurningMotorGearRatio(),
+            "swervethrifty",
+            vision);
   }
 
   public Command getDefaultCommand() {

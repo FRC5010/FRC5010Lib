@@ -46,8 +46,5 @@ public class WpiEncoder implements GenericEncoder {
   }
 
   @Override
-  public void setInverted(boolean inverted) {
-    // TODO Auto-generated method stub
-
-  }
+  public void setInverted(boolean inverted) {}
 }

@@ -1,6 +1,7 @@
 package org.frc5010.common.arch;
 
 import com.pathplanner.lib.auto.AutoBuilder;
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.GenericHID;
@@ -10,7 +11,12 @@ import edu.wpi.first.wpilibj.smartdashboard.Mechanism2d;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
+import java.util.function.Supplier;
+import org.frc5010.common.config.RobotParser;
+import org.frc5010.common.constants.GenericDrivetrainConstants;
 import org.frc5010.common.constants.RobotConstantsDef;
 import org.frc5010.common.sensors.Controller;
 import org.frc5010.common.subsystems.Color;
@@ -21,6 +27,11 @@ public abstract class GenericRobot extends GenericMechanism {
   private Controller driver;
   private Controller operator;
   private static Alliance alliance;
+  private Map<String, GenericSubsystem> subsystems = new HashMap<>();
+  private Map<String, Controller> controllers = new HashMap<>();
+  private RobotParser parser;
+  private GenericDrivetrainConstants drivetrainConstants = new GenericDrivetrainConstants();
+  Supplier<Pose2d> poseSupplier = () -> new Pose2d();
 
   public enum LogLevel {
     DEBUG,
@@ -29,12 +40,35 @@ public abstract class GenericRobot extends GenericMechanism {
 
   public static LogLevel logLevel = LogLevel.DEBUG;
 
+  public GenericRobot(String directory) {
+    super(Class.class.getName());
+    try {
+      parser = new RobotParser(directory, this);
+      parser.createRobot(this);
+
+      driver = controllers.get("driver");
+      operator = controllers.get("operator");
+      if (!operator.isPluggedIn()) {
+        operator = driver;
+        driver.setSingleControllerMode(true);
+      }
+      DriverStation.silenceJoystickConnectionWarning(true);
+      alliance = determineAllianceColor();
+      values.declare("Alliance", alliance.toString());
+    } catch (Exception e) {
+      e.printStackTrace();
+      return;
+    }
+  }
+
   public GenericRobot() {
     super(Class.class.getName());
 
     // Setup controllers
     driver = new Controller(Controller.JoystickPorts.ZERO.ordinal());
+    controllers.put("driver", driver);
     operator = new Controller(Controller.JoystickPorts.ONE.ordinal());
+    controllers.put("operator", operator);
     if (!operator.isPluggedIn()) {
       operator = driver;
       driver.setSingleControllerMode(true);
@@ -51,12 +85,20 @@ public abstract class GenericRobot extends GenericMechanism {
     values.declare("Alliance", alliance.toString());
   }
 
+  public GenericSubsystem getSubsystem(String name) {
+    return subsystems.get(name);
+  }
+
   public static LogLevel getLoggingLevel() {
     return logLevel;
   }
 
   public static void setLoggingLevel(LogLevel level) {
     logLevel = level;
+  }
+
+  public Mechanism2d getMechVisual() {
+    return mechVisual;
   }
 
   @Override
@@ -83,11 +125,6 @@ public abstract class GenericRobot extends GenericMechanism {
    */
   public void configureButtonBindings() {
     configureButtonBindings(driver, operator);
-    if (driver.isSingleControllerMode()) {
-      // TODO: Add code to handle single driver mode
-    } else {
-      if (RobotBase.isReal()) {}
-    }
   }
 
   public void setupDefaultCommands() {
@@ -109,12 +146,16 @@ public abstract class GenericRobot extends GenericMechanism {
     }
   }
 
+  public Command getAutonomousCommand() {
+    return generateAutoCommand(command.getSelected());
+  }
+
   public Alliance determineAllianceColor() {
     Optional<Alliance> color = DriverStation.getAlliance();
     return color.orElse(Alliance.Blue);
   }
 
-  public static Color chooseAllianceColor() {
+  public static Color chooseAllianceDisplayColor() {
     Optional<Alliance> allianceColor = DriverStation.getAlliance();
     if (allianceColor.isPresent()) {
       return allianceColor.get() == Alliance.Red ? Color.RED : Color.BLUE;
@@ -124,5 +165,33 @@ public abstract class GenericRobot extends GenericMechanism {
 
   public static Alliance getAlliance() {
     return alliance;
+  }
+
+  public void addController(String name, Controller controller) {
+    controllers.put(name, controller);
+  }
+
+  public Controller getController(String name) {
+    return controllers.get(name);
+  }
+
+  public void addSubsystem(String name, GenericSubsystem subsystem) {
+    subsystems.put(name, subsystem);
+  }
+
+  public void setPoseSupplier(Supplier<Pose2d> poseSupplier) {
+    this.poseSupplier = poseSupplier;
+  }
+
+  public Supplier<Pose2d> getPoseSupplier() {
+    return poseSupplier;
+  }
+
+  public GenericDrivetrainConstants getDrivetrainConstants() {
+    return drivetrainConstants;
+  }
+
+  public void setDrivetrainConstants(GenericDrivetrainConstants constants) {
+    this.drivetrainConstants = constants;
   }
 }

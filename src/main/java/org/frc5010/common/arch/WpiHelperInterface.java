@@ -11,7 +11,7 @@ public interface WpiHelperInterface {
   /**
    * Logs a message to WPI logger
    *
-   * @param logMessage
+   * @param logMessage - message to log
    */
   default void log_wpi(String logMessage) {
     WpiDataLogging.log(this.getClass().getSimpleName() + ": " + logMessage);
@@ -20,7 +20,7 @@ public interface WpiHelperInterface {
   /**
    * Logs a message to the RIO Log
    *
-   * @param logMessage
+   * @param logMessage - message to log
    */
   default void log_rio(String logMessage) {
     System.out.println(this.getClass().getSimpleName() + ": " + logMessage);
@@ -29,7 +29,7 @@ public interface WpiHelperInterface {
   /**
    * Logs to the WPI logger and the Rio log
    *
-   * @param logMessage
+   * @param logMessage - message to log
    */
   default void log(String logMessage) {
     log_wpi(logMessage);

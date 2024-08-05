@@ -10,6 +10,8 @@ import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.POVButton;
+import java.util.HashMap;
+import java.util.Map;
 
 /** Add your docs here. */
 public class Controller {
@@ -28,6 +30,7 @@ public class Controller {
       RIGHT_STICK_BUTT;
   private POVButton UP, RIGHT, DOWN, LEFT;
   private Axis LEFT_X, LEFT_Y, L_TRIGGER, R_TRIGGER, RIGHT_X, RIGHT_Y;
+  private Map<Integer, Axis> axisMap = new HashMap<>();
 
   public static class Axis {
     protected int port;
@@ -49,8 +52,16 @@ public class Controller {
       return new Negate(this);
     }
 
+    public Axis negate(boolean invert) {
+      return new Negate(this, invert);
+    }
+
     public Axis cubed() {
-      return new Cubed(this);
+      return new CurvePower(this);
+    }
+
+    public Axis curvePower(double power) {
+      return new CurvePower(this, power);
     }
 
     public Axis deadzone(double deadzone) {
@@ -58,31 +69,62 @@ public class Controller {
     }
 
     public Axis limit(double limit) {
-      return new Limit(this, limit);
+      return new HardLimit(this, limit);
     }
 
     public Axis rate(double limit) {
-      return new Rate(this, limit);
+      return new ChangeRate(this, limit);
+    }
+
+    public Axis scale(double scale) {
+      return new Scale(this, scale);
     }
   }
 
   private static class Negate extends Axis {
+    boolean invert = true;
+
     public Negate(Axis axis) {
       instance = axis;
     }
 
+    public Negate(Axis axis, boolean invert) {
+      instance = axis;
+      this.invert = invert;
+    }
+
     public double get() {
-      return -instance.get();
+      return invert ? -instance.get() : instance.get();
     }
   }
 
-  private static class Cubed extends Axis {
-    public Cubed(Axis axis) {
+  private static class CurvePower extends Axis {
+    double power = 3.0;
+
+    public CurvePower(Axis axis) {
       instance = axis;
     }
 
+    public CurvePower(Axis axis, double power) {
+      instance = axis;
+      this.power = power;
+    }
+
     public double get() {
-      return Math.pow(instance.get(), 3);
+      return Math.pow(instance.get(), power);
+    }
+  }
+
+  private static class Scale extends Axis {
+    double scale;
+
+    public Scale(Axis axis, double scale) {
+      instance = axis;
+      this.scale = scale;
+    }
+
+    public double get() {
+      return scale * instance.get();
     }
   }
 
@@ -103,10 +145,10 @@ public class Controller {
     }
   }
 
-  public static class Limit extends Axis {
+  public static class HardLimit extends Axis {
     double limit;
 
-    public Limit(Axis axis, double limit) {
+    public HardLimit(Axis axis, double limit) {
       instance = axis;
       this.limit = limit;
     }
@@ -124,10 +166,10 @@ public class Controller {
     }
   }
 
-  public static class Rate extends Axis {
+  public static class ChangeRate extends Axis {
     SlewRateLimiter rateLimiter;
 
-    public Rate(Axis axis, double limit) {
+    public ChangeRate(Axis axis, double limit) {
       instance = axis;
       this.rateLimiter = new SlewRateLimiter(limit);
     }
@@ -253,6 +295,24 @@ public class Controller {
   public Axis createRightTrigger() {
     R_TRIGGER = new Axis(AxisNums.R_TRIGGER.ordinal(), joystick);
     return R_TRIGGER;
+  }
+
+  public Axis createAxis(int channel) {
+    Axis axis = new Axis(channel, joystick);
+    axisMap.put(channel, axis);
+    return axis;
+  }
+
+  public void setAxis(int channel, Axis axis) {
+    axisMap.put(channel, axis);
+  }
+
+  public Axis getAxis(int channel) {
+    return axisMap.get(channel);
+  }
+
+  public double getAxisValue(int channel) {
+    return axisMap.get(channel).get();
   }
 
   public double getLeftYAxis() {

@@ -154,6 +154,11 @@ public abstract class VisionSystem extends SubsystemBase {
     driverLayout.addBoolean("Limelight On", this::isLightOn);
   }
 
+  /**
+   * Retrieves the name of the camera.
+   *
+   * @return the name of the camera
+   */
   public String getCameraName() {
     return name;
   }
@@ -170,6 +175,11 @@ public abstract class VisionSystem extends SubsystemBase {
 
   public abstract void update();
 
+  /**
+   * Retrieves the raw values of the VisionSystem.
+   *
+   * @return the raw values of the VisionSystem
+   */
   public VisionValues getRawValues() {
     return rawValues;
   }

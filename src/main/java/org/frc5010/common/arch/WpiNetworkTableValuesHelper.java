@@ -78,7 +78,7 @@ public class WpiNetworkTableValuesHelper implements WpiHelperInterface {
    *
    * @param key - String name of the variable being stored. Recommend using a final String constant.
    * @param type - Enumerated type of the values supported by this interface.
-   * @param val - The value being stored. apiNote - If the variable has already been declared, an
+   * @param val - The value being stored. param - If the variable has already been declared, an
    *     error will be printed and the value will not be set.
    */
   public void declare(String key, String type, Object val) {

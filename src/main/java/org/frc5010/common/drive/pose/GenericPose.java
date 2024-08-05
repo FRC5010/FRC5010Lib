@@ -43,17 +43,14 @@ public abstract class GenericPose {
   }
 
   public double getAccelX() {
-    // TODO Auto-generated method stub
     return 0;
   }
 
   public double getAccelY() {
-    // TODO Auto-generated method stub
     return 0;
   }
 
   public double getAccelZ() {
-    // TODO Auto-generated method stub
     return 0;
   }
 
@@ -66,12 +63,10 @@ public abstract class GenericPose {
   }
 
   public double getGyroAngleZ() {
-    // System.out.println(gyro.getAngleZ());
     return gyro.getAngleZ();
   }
 
   public Rotation2d getGyroRotation2d() {
-    // return new Rotation3d(getGyroAngleX(), getGyroAngleY(), getGyroAngleZ()).toRotation2d();
     double angleZ = getGyroAngleZ();
     double radianZ = Math.toRadians(angleZ);
     Rotation2d rotation2d = new Rotation2d(radianZ);

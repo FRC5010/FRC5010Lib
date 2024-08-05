@@ -19,10 +19,10 @@ import edu.wpi.first.wpilibj.util.Color;
 import edu.wpi.first.wpilibj.util.Color8Bit;
 import org.frc5010.common.arch.Persisted;
 import org.frc5010.common.constants.RobotConstantsDef;
-import org.frc5010.common.drive.pose.DrivetrainPoseEstimator;
+import org.frc5010.common.drive.pose.DrivePoseEstimator;
 import org.frc5010.common.drive.pose.SimulatedPose;
 import org.frc5010.common.sensors.gyro.GenericGyro;
-import org.frc5010.common.vision.VisionSystem;
+import org.frc5010.common.subsystems.AprilTagPoseSystem;
 
 /** Add your docs here. */
 public class SimulatedDrivetrain extends GenericDrivetrain {
@@ -32,9 +32,9 @@ public class SimulatedDrivetrain extends GenericDrivetrain {
   private Persisted<Integer> driveVisualV;
   private ChassisSpeeds chassisSpeeds;
 
-  public SimulatedDrivetrain(GenericGyro gyro, VisionSystem vision, Mechanism2d mechVisual) {
+  public SimulatedDrivetrain(GenericGyro gyro, AprilTagPoseSystem vision, Mechanism2d mechVisual) {
     super(mechVisual);
-    setDrivetrainPoseEstimator(new DrivetrainPoseEstimator(new SimulatedPose(gyro), vision));
+    setDrivetrainPoseEstimator(new DrivePoseEstimator(new SimulatedPose(gyro), vision));
 
     driveVisualH = new Persisted<>(RobotConstantsDef.DRIVE_VISUAL_H, Integer.class);
     driveVisualV = new Persisted<>(RobotConstantsDef.DRIVE_VISUAL_V, Integer.class);

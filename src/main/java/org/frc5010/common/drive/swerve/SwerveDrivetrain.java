@@ -23,14 +23,15 @@ import java.util.function.DoubleSupplier;
 import org.frc5010.common.arch.GenericRobot;
 import org.frc5010.common.arch.Persisted;
 import org.frc5010.common.commands.JoystickToSwerve;
+import org.frc5010.common.constants.GenericDrivetrainConstants;
 import org.frc5010.common.constants.SwerveConstants;
 import org.frc5010.common.drive.GenericDrivetrain;
-import org.frc5010.common.drive.pose.DrivetrainPoseEstimator;
+import org.frc5010.common.drive.pose.DrivePoseEstimator;
 import org.frc5010.common.drive.pose.SwervePose;
 import org.frc5010.common.mechanisms.DriveConstantsDef;
 import org.frc5010.common.sensors.Controller;
 import org.frc5010.common.sensors.gyro.GenericGyro;
-import org.frc5010.common.vision.VisionSystem;
+import org.frc5010.common.subsystems.AprilTagPoseSystem;
 
 /** Add your docs here. */
 public class SwerveDrivetrain extends GenericDrivetrain {
@@ -41,7 +42,7 @@ public class SwerveDrivetrain extends GenericDrivetrain {
 
   private GenericGyro gyro;
 
-  private SwerveConstants swerveConstants;
+  private GenericDrivetrainConstants swerveConstants;
 
   private boolean ready = false;
   private Persisted<Double> maxChassisVelocity;
@@ -53,7 +54,7 @@ public class SwerveDrivetrain extends GenericDrivetrain {
       GenericSwerveModule backLeft,
       GenericSwerveModule backRight,
       GenericGyro genericGyro,
-      VisionSystem visonSystem,
+      AprilTagPoseSystem visonSystem,
       SwerveConstants swerveConstants) {
     super(mechVisual);
 
@@ -67,7 +68,7 @@ public class SwerveDrivetrain extends GenericDrivetrain {
     this.gyro = genericGyro;
     this.chassisSpeeds = new ChassisSpeeds(0.0, 0.0, 0.0);
     poseEstimator =
-        new DrivetrainPoseEstimator(
+        new DrivePoseEstimator(
             new SwervePose(gyro, swerveConstants.getKinematics(), this), visonSystem);
     maxChassisVelocity = new Persisted<>(DriveConstantsDef.MAX_CHASSIS_VELOCITY, Double.class);
 
@@ -84,6 +85,11 @@ public class SwerveDrivetrain extends GenericDrivetrain {
     gyro.reset();
   }
 
+  public SwerveDrivetrain(Mechanism2d mechVisual, GenericDrivetrainConstants swerveConstants) {
+    super(mechVisual);
+    this.swerveConstants = swerveConstants;
+  }
+
   @Override
   public void drive(ChassisSpeeds direction) {
     chassisSpeeds = direction; // for driving in simulation
@@ -94,7 +100,7 @@ public class SwerveDrivetrain extends GenericDrivetrain {
     // chassisSpeeds = new ChassisSpeeds(twistVel.dx / 0.02, twistVel.dy / 0.02,
     // twistVel.dtheta / 0.02);
     SwerveModuleState[] states =
-        swerveConstants.getKinematics().toSwerveModuleStates(chassisSpeeds);
+        ((SwerveConstants) swerveConstants).getKinematics().toSwerveModuleStates(chassisSpeeds);
     setModuleStates(states);
   }
 
@@ -151,7 +157,7 @@ public class SwerveDrivetrain extends GenericDrivetrain {
   }
 
   public SwerveConstants getSwerveConstants() {
-    return swerveConstants;
+    return ((SwerveConstants) swerveConstants);
   }
 
   public double getGyroRate() {

@@ -25,51 +25,33 @@ public class CanCoderEncoder implements GenericEncoder {
 
   @Override
   public double getPosition() {
-    // TODO Auto-generated method stub
     return Units.degreesToRadians(canCoder.getAbsolutePosition().getValue());
   }
 
   @Override
   public double getVelocity() {
-    // TODO Auto-generated method stub
     return canCoder.getVelocity().getValue();
   }
 
   @Override
   public void reset() {
     // canCoder.setPositionToAbsolute();
-    // TODO Auto-generated method stub
-
   }
 
   @Override
-  public void setPositionConversion(double conversion) {
-    // TODO Auto-generated method stub
-
-  }
+  public void setPositionConversion(double conversion) {}
 
   @Override
-  public void setVelocityConversion(double conversion) {
-    // TODO Auto-generated method stub
-
-  }
+  public void setVelocityConversion(double conversion) {}
 
   @Override
   public void setPosition(double position) {
     canCoder.setPosition(position);
-    // TODO Auto-generated method stub
-
   }
 
   @Override
-  public void setRate(double rate) {
-    // TODO Auto-generated method stub
-
-  }
+  public void setRate(double rate) {}
 
   @Override
-  public void setInverted(boolean inverted) {
-    // TODO Auto-generated method stub
-
-  }
+  public void setInverted(boolean inverted) {}
 }

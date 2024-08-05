@@ -8,12 +8,17 @@ import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.RobotController;
 import org.frc5010.common.sensors.encoder.GenericEncoder;
 
-/** Add your docs here. */
+/** A class for supporting an analog input on the roboRIO */
 public class AnalogInput5010 implements GenericEncoder {
 
   private AnalogInput analogInput;
   private boolean inverted;
 
+  /**
+   * AnalogInput5010: Creates a new AnalogInput5010
+   *
+   * @param port - The port of the analog input
+   */
   public AnalogInput5010(int port) {
     this.analogInput = new AnalogInput(port);
     this.inverted = false;
@@ -21,7 +26,6 @@ public class AnalogInput5010 implements GenericEncoder {
 
   @Override
   public double getPosition() {
-    // TODO Auto-generated method stub
     return (inverted ? -1.0 : 1.0)
         * ((analogInput.getAverageVoltage() / RobotController.getVoltage5V()) * (Math.PI * 2)
             - Math.PI);
@@ -29,39 +33,23 @@ public class AnalogInput5010 implements GenericEncoder {
 
   @Override
   public double getVelocity() {
-    // TODO Auto-generated method stub
     return 0;
   }
 
   @Override
-  public void reset() {
-    // TODO Auto-generated method stub
-
-  }
+  public void reset() {}
 
   @Override
-  public void setPositionConversion(double conversion) {
-    // TODO Auto-generated method stub
-
-  }
+  public void setPositionConversion(double conversion) {}
 
   @Override
-  public void setVelocityConversion(double conversion) {
-    // TODO Auto-generated method stub
-
-  }
+  public void setVelocityConversion(double conversion) {}
 
   @Override
-  public void setPosition(double position) {
-    // TODO Auto-generated method stub
-
-  }
+  public void setPosition(double position) {}
 
   @Override
-  public void setRate(double rate) {
-    // TODO Auto-generated method stub
-
-  }
+  public void setRate(double rate) {}
 
   @Override
   public void setInverted(boolean inverted) {

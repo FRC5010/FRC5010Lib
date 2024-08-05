@@ -29,6 +29,7 @@ import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.Mechanism2d;
@@ -47,13 +48,13 @@ import java.util.function.DoubleSupplier;
 import org.frc5010.common.arch.GenericRobot;
 import org.frc5010.common.commands.JoystickToSwerve;
 import org.frc5010.common.constants.Constants.AutonConstants;
+import org.frc5010.common.constants.GenericDrivetrainConstants;
 import org.frc5010.common.constants.MotorFeedFwdConstants;
 import org.frc5010.common.constants.SwerveConstants;
-import org.frc5010.common.drive.pose.DrivetrainPoseEstimator;
+import org.frc5010.common.drive.pose.DrivePoseEstimator;
 import org.frc5010.common.drive.pose.YAGSLSwervePose;
 import org.frc5010.common.sensors.Controller;
-import org.frc5010.common.sensors.gyro.GenericGyro;
-import org.frc5010.common.vision.VisionSystem;
+import org.frc5010.common.subsystems.AprilTagPoseSystem;
 import org.photonvision.PhotonCamera;
 import org.photonvision.targeting.PhotonPipelineResult;
 import swervelib.SwerveController;
@@ -78,22 +79,20 @@ public class YAGSLSwerveDrivetrain extends SwerveDrivetrain {
 
   public YAGSLSwerveDrivetrain(
       Mechanism2d mechVisual,
-      GenericGyro gyro,
-      SwerveConstants swerveConstants,
+      GenericDrivetrainConstants constants,
+      double kTurningMotorGearRatio,
       String swerveType,
-      VisionSystem visionSystem) {
-    super(mechVisual, gyro, swerveConstants);
+      AprilTagPoseSystem visionSystem) {
+    super(mechVisual, constants);
 
-    this.maximumSpeed = swerveConstants.getkPhysicalMaxSpeedMetersPerSecond();
+    this.maximumSpeed = constants.getkPhysicalMaxSpeedMetersPerSecond();
 
     // Angle conversion factor is 360 / (GEAR RATIO * ENCODER RESOLUTION)
     // In this case the gear ratio is 12.8 motor revolutions per wheel rotation.
     // The encoder resolution per motor revolution is 1 per motor revolution.
-    double angleGearRatio =
-        1.0 / swerveConstants.getSwerveModuleConstants().getkTurningMotorGearRatio();
-    double wheelDiameter = swerveConstants.getSwerveModuleConstants().getkWheelDiameterMeters();
-    double driveGearRatio =
-        1.0 / swerveConstants.getSwerveModuleConstants().getkDriveMotorGearRatio();
+    double angleGearRatio = 1.0 / kTurningMotorGearRatio;
+    double wheelDiameter = constants.getWheelDiameter();
+    double driveGearRatio = 1.0 / constants.getkDriveMotorGearRatio();
     double angleConversionFactor =
         SwerveMath.calculateDegreesPerSteeringRotation(angleGearRatio, 1);
 
@@ -118,7 +117,7 @@ public class YAGSLSwerveDrivetrain extends SwerveDrivetrain {
       File swerveJsonDirectory = new File(Filesystem.getDeployDirectory(), swerveType);
       swerveDrive =
           new SwerveParser(swerveJsonDirectory)
-              .createSwerveDrive(maximumSpeed, 360, driveConversionFactor); // Use
+              .createSwerveDrive(maximumSpeed, angleConversionFactor, driveConversionFactor); // Use
       // correct
       // angleMotorConversionFactor
       // later
@@ -135,6 +134,7 @@ public class YAGSLSwerveDrivetrain extends SwerveDrivetrain {
     // not seen in real life.
 
     /** 5010 Code */
+    SwerveConstants swerveConstants = (SwerveConstants) constants;
     if (swerveConstants.getSwerveModuleConstants().getDriveFeedForward().size() > 0) {
       Map<String, MotorFeedFwdConstants> motorFFMap =
           swerveConstants.getSwerveModuleConstants().getDriveFeedForward();
@@ -149,10 +149,12 @@ public class YAGSLSwerveDrivetrain extends SwerveDrivetrain {
                 swerveModuleMap.get(module).setFeedforward(new SimpleMotorFeedforward(kS, kV, kA));
               });
     }
-    poseEstimator = new DrivetrainPoseEstimator(new YAGSLSwervePose(gyro, this), visionSystem);
+
+    poseEstimator = new DrivePoseEstimator(new YAGSLSwervePose(null, this), visionSystem);
     setDrivetrainPoseEstimator(poseEstimator);
 
-    SmartDashboard.putString("YAGSL Alliance", GenericRobot.chooseAllianceColor().toString());
+    SmartDashboard.putString(
+        "YAGSL Alliance", GenericRobot.chooseAllianceDisplayColor().toString());
     Shuffleboard.getTab("Drive").addBoolean("Has Issues", () -> hasIssues()).withPosition(9, 1);
     if (RobotBase.isSimulation() || useGlass) {
       initGlassWidget();
@@ -188,7 +190,8 @@ public class YAGSLSwerveDrivetrain extends SwerveDrivetrain {
           // alliance
           // This will flip the path being followed to the red side of the field.
           // THE ORIGIN WILL REMAIN ON THE BLUE SIDE
-          SmartDashboard.putString("YAGSL Alliance", GenericRobot.chooseAllianceColor().toString());
+          SmartDashboard.putString(
+              "YAGSL Alliance", GenericRobot.chooseAllianceDisplayColor().toString());
           var alliance = DriverStation.getAlliance();
           return alliance.isPresent() ? alliance.get() == DriverStation.Alliance.Red : false;
         },
@@ -611,9 +614,9 @@ public class YAGSLSwerveDrivetrain extends SwerveDrivetrain {
 
   public Command createDefaultCommand(Controller driverXbox) {
     // System.out.println("brrrrr");
-    DoubleSupplier leftX = () -> driverXbox.getLeftXAxis();
-    DoubleSupplier leftY = () -> driverXbox.getLeftYAxis();
-    DoubleSupplier rightX = () -> driverXbox.getRightXAxis();
+    DoubleSupplier leftX = () -> driverXbox.getAxisValue(XboxController.Axis.kLeftX.value);
+    DoubleSupplier leftY = () -> driverXbox.getAxisValue(XboxController.Axis.kLeftY.value);
+    DoubleSupplier rightX = () -> driverXbox.getAxisValue(XboxController.Axis.kRightX.value);
     BooleanSupplier isFieldOriented = () -> isFieldOrientedDrive;
 
     return new JoystickToSwerve(
@@ -622,9 +625,9 @@ public class YAGSLSwerveDrivetrain extends SwerveDrivetrain {
   }
 
   public Command createDefaultTestCommand(Controller driverXbox) {
-    DoubleSupplier leftX = () -> driverXbox.getLeftXAxis();
-    DoubleSupplier leftY = () -> driverXbox.getLeftYAxis();
-    DoubleSupplier rightX = () -> driverXbox.getRightXAxis();
+    DoubleSupplier leftX = () -> driverXbox.getAxisValue(XboxController.Axis.kLeftX.value);
+    DoubleSupplier leftY = () -> driverXbox.getAxisValue(XboxController.Axis.kLeftY.value);
+    DoubleSupplier rightX = () -> driverXbox.getAxisValue(XboxController.Axis.kRightX.value);
     BooleanSupplier isFieldOriented = () -> isFieldOrientedDrive;
 
     // driverXbox.createAButton().whileTrue(sysIdDriveMotorCommand());
@@ -643,6 +646,13 @@ public class YAGSLSwerveDrivetrain extends SwerveDrivetrain {
   public void resetEncoders() {
     swerveDrive.resetDriveEncoders();
     swerveDrive.synchronizeModuleEncoders();
+  }
+
+  @Override
+  public double getGyroRate() {
+    // TODO: Restore this when YAGSL updates
+    return 0.0;
+    // return swerveDrive.getGyro().getRate();
   }
 
   public void drive5010(ChassisSpeeds direction) {
