@@ -78,17 +78,7 @@ public class AprilTagPoseSystem extends CameraSystem {
    * @return the pose of the robot as an optional type
    */
   public Optional<Pose3d> getRobotPose3d(String name) {
-    return robotPose3ds.get(name);
-  }
-
-  /**
-   * Get the pose of the target from a camera
-   *
-   * @param name - the name of the camera
-   * @return the pose of the target as an optional type
-   */
-  public Optional<Pose3d> getTargetPose3d(String name) {
-    return targetPose3ds.get(name);
+    return Optional.ofNullable(robotPose3ds.get(name)).orElse(Optional.empty());
   }
 
   /**
@@ -134,9 +124,8 @@ public class AprilTagPoseSystem extends CameraSystem {
    * @return the distance to the target
    */
   public double getDistanceToTarget(String camera) {
-    return targetPose3ds
-        .get(camera)
-        .map(it -> it.getTranslation().getNorm())
+    return Optional.ofNullable(targetPose3ds.get(camera))
+        .map(it -> it.get().getTranslation().getNorm())
         .orElse(Double.MAX_VALUE);
   }
 

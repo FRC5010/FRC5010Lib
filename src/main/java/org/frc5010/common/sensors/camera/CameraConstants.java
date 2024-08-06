@@ -4,7 +4,8 @@
 
 package org.frc5010.common.sensors.camera;
 
-/** Add your docs here. */
+/** Constants for cameras */
 public class CameraConstants {
+  /** Tab name for vision */
   public static String SBTabVisionDisplay = "Vision";
 }

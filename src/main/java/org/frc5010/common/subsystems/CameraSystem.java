@@ -12,8 +12,14 @@ import org.frc5010.common.sensors.camera.GenericCamera;
  * is responsible for updating the camera information.
  */
 public abstract class CameraSystem extends GenericSubsystem {
+  /** The camera object. */
   protected GenericCamera camera;
 
+  /**
+   * Creates a new CameraSystem.
+   *
+   * @param camera the camera object
+   */
   public CameraSystem(GenericCamera camera) {
     super();
     this.camera = camera;
