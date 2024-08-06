@@ -1,4 +1,4 @@
-https://raw.githubusercontent.com/FRC5010/FRC5010Lib/2024/frc5010lib/frc5010Lib.json
+https://frc5010.github.io/FRC5010Lib/frc5010Lib.json
 
 # WPILib Vendor Template
 
