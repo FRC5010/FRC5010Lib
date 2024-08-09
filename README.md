@@ -1,23 +1,28 @@
+# FRC5010Lib
+
+This is the vendor template for FRC 5010 Tiger Dynasty common codebase.
+
+## Json File
+
 https://frc5010.github.io/FRC5010Lib/frc5010Lib.json
-
-# WPILib Vendor Template
-
-This is the base WPILib vendor template for 2023.
 
 ## Layout
 
-The build is split into 3 libraries. A java library is built. This has access to all of wpilib, and also can JNI load the driver library.
-
-A driver library is built. This should contain all low level code you want to access from both C++, Java and any other text based language. This will not work with LabVIEW. This library has access to the WPILib HAL and wpiutil. This library can only export C symbols. It cannot export C++ symbols at all, and all C symbols must be explicitly listed in the symbols.txt file in the driver folder. JNI symbols must be listed in this file as well. This library however can be written in C++. If you attempt to change this library to have access to all of wpilib, you will break JNI access and it will no longer work.
-
-A native C++ library is built. This has access to all of wpilib, and access to the driver library. This should implment the standard wpilib interfaces.
+The code is located under src/main/java/org/frc5010/common and is split into several sub folders
+    arch - contains architectural files that undergird the library
+    commands - common commands
+    config - classes that read json config files to build a robot
+    constants - folder for constants files
+    drive - classes for defining drive systems and pose localization
+    mechanisms - mechanisms can be used to organize commands and subsystems if needed
+    motors - classes for handling motors and motor functions
+    sensors - classes for handling many different types of sensors
+    subsystems - classes for predefined subsystems
+    telemetry - logging classes
+    vision - additional classes for vision, some are deprecated
 
 ## Customizing
-For Java, the library name will be the folder name the build is started from, so rename the folder to the name of your choosing.
-
-For the native impl, you need to change the library name in the exportsConfigs block of build.gradle, the components block of build.gradle, and the taskList input array name in publish.gradle.
-
-For the driver, change the library name in privateExportsConfigs, the driver name in components, and the driverTaskList input array name. In addition, you'll need to change the `lib library` in the native C++ impl component, and the JNI library name in the JNI java class.
+For Java, the library name will be the folder name the build is starts from.
 
 For the maven artifact names, those are all in publish.gradle about 40 lines down.
 
@@ -25,3 +30,13 @@ For the maven artifact names, those are all in publish.gradle about 40 lines dow
 This uses gradle, and uses the same base setup as a standard GradleRIO robot project. This means you build with `./gradlew build`, and can install the native toolchain with `./gradlew installRoboRIOToolchain`. If you open this project in VS Code with the wpilib extension installed, you will get intellisense set up for both C++ and Java.
 
 By default, this template builds against the latest WPILib development build. To build against the last WPILib tagged release, build with `./gradlew build -PreleaseMode`.
+
+## Updating
+Copy the library code under src to FRCLibraryExample - dev branch to ensure the latest code is being used
+Make code changes in FRCLibraryExample - dev branch, test and simulate
+Bring changes back over to this code base
+Update the version in frc5010Lib.json (2 places) and publish.gradle (pubVersion)
+Build the code
+If needed, in a terminal, run > .\gradlew.bat :spotlessApply
+Run > .\update.bat to create the new version files
+Commit and push 
