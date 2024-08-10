@@ -20,7 +20,7 @@ The code is located under src/main/java/org/frc5010/common and is split into sev
     <li>sensors - classes for handling many different types of sensors</li>
     <li>subsystems - classes for predefined subsystems</li>
     <li>telemetry - logging classes</li>
-    <li>vision - additional classes for vision, some are deprecated</li>    
+    <li>vision - additional classes for vision, some are deprecated</li>
 </ul>
 
 ## Customizing
@@ -42,5 +42,5 @@ By default, this template builds against the latest WPILib development build. To
 <li>Build the code</li>
 <li>If needed, in a terminal, run > .\gradlew.bat :spotlessApply</li>
 <li>Run > .\update.bat to create the new version files</li>
-<li>Commit and push</li> 
+<li>Commit and push</li>
 </ul>
