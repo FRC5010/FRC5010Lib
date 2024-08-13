@@ -21,8 +21,18 @@ The code is located under src/main/java/org/frc5010/common and is split into sev
     <li>subsystems - classes for predefined subsystems</li>
     <li>telemetry - logging classes</li>
     <li>vision - additional classes for vision, some are deprecated</li>
+    <li>units - classes that standardize unit conversions and usage</li>
 </ul>
 
+## Motivation
+Why a library?
+<ul>
+<li>A place to retain things learned from year to year that is common to any code we write in the future</li>
+<li>Versioning allows previous robots to stay working as the library is updated</li>
+<li>Shared code across multiple robot projects means updates can be shared easily</li>
+<li>Code in the library can't be touched and broken by untested changes and remains in a known working state.</li>
+</ul>
+  
 ## Customizing
 For Java, the library name will be the folder name the build is starts from.
 
