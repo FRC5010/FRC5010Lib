@@ -3,21 +3,23 @@ plugins {
     id 'java'
     id 'google-test'
     id 'edu.wpi.first.wpilib.repositories.WPILibRepositoriesPlugin' version '2020.2'
-    id 'edu.wpi.first.NativeUtils' version '2024.6.1'
+    id 'edu.wpi.first.NativeUtils' version '2024.7.2'
     id 'edu.wpi.first.GradleJni' version '1.1.0'
     id 'edu.wpi.first.GradleVsCode' version '2.1.0'
     id "edu.wpi.first.GradleRIO" version "2024.3.2"
     id "com.diffplug.spotless" version "6.11.0"
 }
 
+ext.wpilibVersion = "2024.3.2" // and again here, thanks gradle....
+
 repositories {
     mavenCentral()
 }
-if (project.hasProperty('releaseMode')) {
-    wpilibRepositories.addAllReleaseRepositories(project)
-} else {
-    wpilibRepositories.addAllDevelopmentRepositories(project)
-}
+// if (project.hasProperty('releaseMode')) {
+wpilibRepositories.addAllReleaseRepositories(project)
+// } else {
+//     wpilibRepositories.addAllDevelopmentRepositories(project)
+// }
 
 // Apply C++ configuration
 apply from: 'config.gradle'
@@ -27,15 +29,14 @@ dependencies {
     implementation wpi.java.deps.wpilib()
     implementation wpi.java.vendor.java()
 
-    implementation 'edu.wpi.first.cscore:cscore-java:2024.+'
-    implementation 'edu.wpi.first.cameraserver:cameraserver-java:2024.+'
-    implementation 'edu.wpi.first.ntcore:ntcore-java:2024.+'
-    implementation 'edu.wpi.first.wpilibj:wpilibj-java:2024.+'
-    implementation 'edu.wpi.first.wpilibNewCommands:wpilibNewCommands-java:2024.+'
-    implementation 'edu.wpi.first.wpiutil:wpiutil-java:2024.+'
-    implementation 'edu.wpi.first.wpimath:wpimath-java:2024.+'
-    implementation 'edu.wpi.first.wpiunits:wpiunits-java:2024.+'
-    implementation 'edu.wpi.first.hal:hal-java:2024.+'
+    implementation "edu.wpi.first.cscore:cscore-java:$wpilibVersion"
+    implementation "edu.wpi.first.cameraserver:cameraserver-java:$wpilibVersion"
+    implementation "edu.wpi.first.ntcore:ntcore-java:$wpilibVersion"
+    implementation "edu.wpi.first.wpilibj:wpilibj-java:$wpilibVersion"
+    implementation "edu.wpi.first.wpiutil:wpiutil-java:$wpilibVersion"
+    implementation "edu.wpi.first.wpimath:wpimath-java:$wpilibVersion"
+    implementation "edu.wpi.first.wpiunits:wpiunits-java:$wpilibVersion"
+    implementation "edu.wpi.first.hal:hal-java:$wpilibVersion"
     implementation "org.ejml:ejml-simple:0.43.1"
     implementation "com.fasterxml.jackson.core:jackson-annotations:2.12.4"
     implementation "com.fasterxml.jackson.core:jackson-core:2.12.4"

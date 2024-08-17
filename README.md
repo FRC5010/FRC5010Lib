@@ -32,7 +32,7 @@ Why a library?
 <li>Shared code across multiple robot projects means updates can be shared easily</li>
 <li>Code in the library can't be touched and broken by untested changes and remains in a known working state.</li>
 </ul>
-  
+
 ## Customizing
 For Java, the library name will be the folder name the build is starts from.
 
