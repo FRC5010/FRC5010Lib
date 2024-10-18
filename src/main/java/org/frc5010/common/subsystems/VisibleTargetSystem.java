@@ -46,4 +46,22 @@ public class VisibleTargetSystem extends CameraSystem {
   public boolean hasValidTarget() {
     return hasTargets;
   }
+
+  /**
+   * Get the yaw of the target
+   *
+   * @return the yaw of the target
+   */
+  public double getTargetYaw() {
+    return targetYaw;
+  }
+
+  /**
+   * Get the pitch of the target
+   *
+   * @return the pitch of the target
+   */
+  public double getTargetPitch() {
+    return targetPitch;
+  }
 }
