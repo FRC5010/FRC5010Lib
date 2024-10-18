@@ -36,4 +36,14 @@ public class VisibleTargetSystem extends CameraSystem {
             + camera2Robot.getTranslation().getNorm()
         : Double.MAX_VALUE;
   }
+
+  /**
+   * Does the camera have a valid target?
+   *
+   * @return true if the camera has a valid target
+   */
+  @Override
+  public boolean hasValidTarget() {
+    return hasTargets;
+  }
 }
