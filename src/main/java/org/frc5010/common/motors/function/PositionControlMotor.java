@@ -7,7 +7,7 @@ package org.frc5010.common.motors.function;
 import org.frc5010.common.motors.MotorController5010;
 
 /** Add your docs here. */
-public class PositionControlMotor extends GenericFunctionalMotor {
+public class PositionControlMotor extends GenericControlledMotor {
   public PositionControlMotor(MotorController5010 motor) {
     super(motor);
   }
