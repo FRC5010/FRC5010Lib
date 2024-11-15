@@ -3,11 +3,11 @@
   <groupId>org.frc5010</groupId>
   <artifactId>frc5010lib-cpp</artifactId>
   <versioning>
-    <latest>0.0.18</latest>
-    <release>0.0.18</release>
+    <latest>0.0.19</latest>
+    <release>0.0.19</release>
     <versions>
-      <version>0.0.18</version>
+      <version>0.0.19</version>
     </versions>
-    <lastUpdated>20241114011347</lastUpdated>
+    <lastUpdated>20241115023241</lastUpdated>
   </versioning>
 </metadata>
