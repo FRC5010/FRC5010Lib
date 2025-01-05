@@ -5,7 +5,8 @@
 package org.frc5010.common.drive;
 
 import com.pathplanner.lib.auto.AutoBuilder;
-import com.pathplanner.lib.util.ReplanningConfig;
+import com.pathplanner.lib.controllers.PPLTVController;
+import com.pathplanner.lib.util.DriveFeedforwards;
 import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
@@ -89,7 +90,9 @@ public class DifferentialDrivetrain extends GenericDrivetrain {
     setDrivetrainPoseEstimator(
         new DrivePoseEstimator(
             new DifferentialPose(diffKinematics, gyro, leftEncoder, rightEncoder), vision));
-    diffDrive = new DifferentialDrive(left.getMotor(), right.getMotor());
+    diffDrive =
+        new DifferentialDrive(
+            (double speed) -> left.set(speed), (double speed) -> right.set(speed));
   }
 
   /**
@@ -108,7 +111,7 @@ public class DifferentialDrivetrain extends GenericDrivetrain {
       new Persisted<>(DriveConstantsDef.MAX_CHASSIS_ROTATION, Double.class);
 
   @Override
-  public void drive(ChassisSpeeds direction) {
+  public void drive(ChassisSpeeds direction, DriveFeedforwards feedforwards) {
     chassisSpeeds = direction;
     // WARNING: TODO: this may not be the 'best' way to convert chassis speeds to
     // throttles
@@ -198,14 +201,19 @@ public class DifferentialDrivetrain extends GenericDrivetrain {
 
   @Override
   public void setAutoBuilder() {
-    AutoBuilder.configureRamsete(
+    // Configure AutoBuilder last
+    AutoBuilder.configure(
         () -> getPoseEstimator().getCurrentPose(), // Pose2d supplier
-        (Pose2d pose) -> getPoseEstimator().resetToPose(pose),
-        this::getChassisSpeeds, // Current ChassisSpeeds supplier
-        this::drive, // Method that will drive the robot given ChassisSpeeds
-        new ReplanningConfig(), // Default path replanning config. See the API for the options here
+        (Pose2d pose) ->
+            getPoseEstimator().resetToPose(pose), // Pose2d consumer, used to reset odometry at the
+        this::getChassisSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
+        this::drive,
+        new PPLTVController(0.02),
+        // PPLTVController is the built in path following controller for differential drive trains
+        config, // The robot configuration
         () -> {
-          // Boolean supplier that controls when the path will be mirrored for the red alliance
+          // Boolean supplier that controls when the path will be mirrored for the red
+          // alliance
           // This will flip the path being followed to the red side of the field.
           // THE ORIGIN WILL REMAIN ON THE BLUE SIDE
 

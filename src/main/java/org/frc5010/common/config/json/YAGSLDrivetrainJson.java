@@ -5,16 +5,17 @@
 package org.frc5010.common.config.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.smartdashboard.Mechanism2d;
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
 import org.frc5010.common.arch.GenericRobot;
 import org.frc5010.common.config.ConfigConstants;
 import org.frc5010.common.constants.MotorFeedFwdConstants;
 import org.frc5010.common.constants.RobotConstantsDef;
 import org.frc5010.common.constants.SwerveConstants;
 import org.frc5010.common.drive.swerve.YAGSLSwerveDrivetrain;
-import org.frc5010.common.subsystems.AprilTagPoseSystem;
 
 /** Parameters for a YAGSLSwerveDrivetrain */
 public class YAGSLDrivetrainJson implements DrivetrainPropertiesJson {
@@ -24,6 +25,7 @@ public class YAGSLDrivetrainJson implements DrivetrainPropertiesJson {
   /** The gear ratio of the turning motor */
   public double turningMotorGearRatio = 1.0;
 
+  private Optional<GamePiecesJson> gamePiecesJson = Optional.empty();
   /**
    * The file names of the drive module's feed forward constants. These should match what are used
    * in the YAGSL config
@@ -44,21 +46,33 @@ public class YAGSLDrivetrainJson implements DrivetrainPropertiesJson {
       swerveConstants.getSwerveModuleConstants().addDriveMotorFF(moduleName, feedFwdConstants);
     }
     robot.setDrivetrainConstants(swerveConstants);
+
+    if (RobotBase.isSimulation()) {
+      File fieldDirectory = new File(baseDirectory, "/field/");
+      if (fieldDirectory.exists()) {
+        File gamePiecesFile = new File(fieldDirectory, "game_pieces.json");
+        if (gamePiecesFile.exists()) {
+          gamePiecesJson =
+              Optional.ofNullable(
+                  new ObjectMapper().readValue(gamePiecesFile, GamePiecesJson.class));
+        }
+      }
+    }
     return;
   }
   ;
 
   @Override
   public void createDriveTrain(GenericRobot robot) {
-    AprilTagPoseSystem atSystem =
-        (AprilTagPoseSystem) robot.getSubsystem(CameraConfigurationJson.APRIL_TAG);
-    robot.addSubsystem(
-        ConfigConstants.DRIVETRAIN,
+    YAGSLSwerveDrivetrain drivetrain =
         new YAGSLSwerveDrivetrain(
             new Mechanism2d(RobotConstantsDef.robotVisualH, RobotConstantsDef.robotVisualV),
             robot.getDrivetrainConstants(),
             turningMotorGearRatio,
-            directory,
-            atSystem));
+            directory);
+    robot.addSubsystem(ConfigConstants.DRIVETRAIN, drivetrain);
+    robot.setPoseSupplier(() -> drivetrain.getPoseEstimator().getCurrentPose());
+    robot.setSimulatedPoseSupplier(() -> drivetrain.getMapleSimPose());
+    gamePiecesJson.ifPresent(it -> it.createGamePieces(drivetrain));
   }
 }

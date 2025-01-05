@@ -202,14 +202,13 @@ public class DriveToPosition extends GenericCommand {
     SmartDashboard.putNumber("X Speed", chassisSpeeds.vxMetersPerSecond);
     SmartDashboard.putNumber("Y Speed", chassisSpeeds.vyMetersPerSecond);
     SmartDashboard.putNumber("Theta Speed", chassisSpeeds.omegaRadiansPerSecond);
-    swerveSubsystem.drive(chassisSpeeds);
+    swerveSubsystem.drive(chassisSpeeds, null);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void stop(boolean interrupted) {
-    swerveSubsystem.drive(
-        ChassisSpeeds.fromFieldRelativeSpeeds(0, 0, 0, swerveSubsystem.getHeading()));
+    swerveSubsystem.drive(new ChassisSpeeds(0, 0, 0), null);
   }
 
   // Returns true when the command should end.

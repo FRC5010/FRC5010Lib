@@ -4,10 +4,14 @@
 
 package org.frc5010.common.motors.hardware;
 
+import static edu.wpi.first.units.Units.Minute;
+import static edu.wpi.first.units.Units.Rotations;
+
 import edu.wpi.first.math.system.plant.DCMotor;
+import edu.wpi.first.units.measure.AngularVelocity;
 import org.frc5010.common.motors.MotorConstants;
 
-/** NEO550 extends CANSparkMax and applies code specific to a NEO550 */
+/** NEO550 extends SparkMax and applies code specific to a NEO550 */
 public class NEO550 extends GenericRevBrushlessMotor {
   public static final double MAXRPM = 11000;
 
@@ -25,7 +29,7 @@ public class NEO550 extends GenericRevBrushlessMotor {
   }
 
   @Override
-  public double getMaxRPM() {
-    return MAXRPM;
+  public AngularVelocity getMaxRPM() {
+    return Rotations.per(Minute).of(MAXRPM);
   }
 }

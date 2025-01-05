@@ -30,12 +30,12 @@ public class CanCoderEncoder implements GenericEncoder {
 
   @Override
   public double getPosition() {
-    return Units.degreesToRadians(canCoder.getAbsolutePosition().getValue());
+    return Units.degreesToRadians(canCoder.getAbsolutePosition().getValue().magnitude());
   }
 
   @Override
   public double getVelocity() {
-    return canCoder.getVelocity().getValue();
+    return canCoder.getVelocity().getValue().magnitude();
   }
 
   @Override

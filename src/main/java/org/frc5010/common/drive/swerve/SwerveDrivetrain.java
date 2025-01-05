@@ -5,9 +5,9 @@
 package org.frc5010.common.drive.swerve;
 
 import com.pathplanner.lib.auto.AutoBuilder;
-import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
-import com.pathplanner.lib.util.PIDConstants;
-import com.pathplanner.lib.util.ReplanningConfig;
+import com.pathplanner.lib.config.PIDConstants;
+import com.pathplanner.lib.controllers.PPHolonomicDriveController;
+import com.pathplanner.lib.util.DriveFeedforwards;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Transform2d;
@@ -60,7 +60,6 @@ public class SwerveDrivetrain extends GenericDrivetrain {
       AprilTagPoseSystem visonSystem,
       SwerveConstants swerveConstants) {
     super(mechVisual);
-
     this.frontLeft = frontLeft;
     this.frontRight = frontRight;
     this.backLeft = backLeft;
@@ -162,7 +161,7 @@ public class SwerveDrivetrain extends GenericDrivetrain {
   }
 
   @Override
-  public void drive(ChassisSpeeds direction) {
+  public void drive(ChassisSpeeds direction, DriveFeedforwards feedforwards) {
     chassisSpeeds = direction; // for driving in simulation
     // Pose2d robotPoseVel = new Pose2d(direction.vxMetersPerSecond * 0.02,
     // direction.vyMetersPerSecond * 0.02,
@@ -252,23 +251,19 @@ public class SwerveDrivetrain extends GenericDrivetrain {
   }
 
   public void setAutoBuilder() {
-
-    AutoBuilder.configureHolonomic(
+    AutoBuilder.configure(
         () -> getPoseEstimator().getCurrentPose(), // Pose2d supplier
         (Pose2d pose) ->
             getPoseEstimator().resetToPose(pose), // Pose2d consumer, used to reset odometry at the
         this::getChassisSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
-        this::drive, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
-        new HolonomicPathFollowerConfig( // HolonomicPathFollowerConfig, this should likely live in
-            // your
-            // Constants class
+        this::drive,
+        new PPHolonomicDriveController( // PPHolonomicController is the built in path following
+            // controller for holonomic
+            // drive trains
             new PIDConstants(5.0, 0.0, 0.0), // Translation PID constants
-            new PIDConstants(5.0, 0.0, 0.0), // Rotation PID constants
-            4.5, // Max module speed, in m/s
-            0.4, // Drive base radius in meters. Distance from robot center to furthest module.
-            new ReplanningConfig() // Default path replanning config. See the API for the options
-            // here
+            new PIDConstants(5.0, 0.0, 0.0) // Rotation PID constants
             ),
+        config, // The robot configuration
         () -> {
           // Boolean supplier that controls when the path will be mirrored for the red
           // alliance
@@ -281,8 +276,7 @@ public class SwerveDrivetrain extends GenericDrivetrain {
           }
           return false;
         },
-        this // Reference to this subsystem to set requirements
-        );
+        this);
   }
 
   public Command createDefaultCommand(Controller driverXbox, DoubleSupplier rotationSupplier) {
@@ -295,7 +289,7 @@ public class SwerveDrivetrain extends GenericDrivetrain {
         leftY,
         leftX,
         rotationSupplier,
-        () -> isFieldOrientedDrive,
+        () -> isFieldOrientedDrive.getValue(),
         () -> GenericRobot.getAlliance());
     // return new TeleopDrive(this, leftX, leftY, rightX, isFieldOriented);
   }

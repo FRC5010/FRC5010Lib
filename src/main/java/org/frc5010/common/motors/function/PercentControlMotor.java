@@ -4,7 +4,10 @@
 
 package org.frc5010.common.motors.function;
 
+import static edu.wpi.first.units.Units.Meters;
+
 import edu.wpi.first.math.geometry.Pose3d;
+import edu.wpi.first.math.system.plant.LinearSystemId;
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.simulation.BatterySim;
 import edu.wpi.first.wpilibj.simulation.FlywheelSim;
@@ -16,7 +19,6 @@ import edu.wpi.first.wpilibj.util.Color8Bit;
 import org.frc5010.common.motors.MotorController5010;
 import org.frc5010.common.motors.MotorFactory;
 import org.frc5010.common.sensors.encoder.SimulatedEncoder;
-import org.frc5010.common.units.Length;
 
 /** Add your docs here. */
 public class PercentControlMotor extends GenericFunctionalMotor {
@@ -34,7 +36,11 @@ public class PercentControlMotor extends GenericFunctionalMotor {
   }
 
   public PercentControlMotor setupSimulatedMotor(double gearing, double momentOfInertiaKgMetersSq) {
-    simMotor = new FlywheelSim(_motor.getMotorSimulationType(), gearing, momentOfInertiaKgMetersSq);
+    simMotor =
+        new FlywheelSim(
+            LinearSystemId.createFlywheelSystem(
+                _motor.getMotorSimulationType(), momentOfInertiaKgMetersSq, gearing),
+            _motor.getMotorSimulationType());
     simEncoder =
         new SimulatedEncoder(
             MotorFactory.getNextSimEncoderPort(), MotorFactory.getNextSimEncoderPort());
@@ -48,8 +54,8 @@ public class PercentControlMotor extends GenericFunctionalMotor {
     root =
         visualizer.getRoot(
             _visualName,
-            getSimX(Length.Meter(robotToMotor.getX())),
-            getSimY(Length.Meter(robotToMotor.getZ())));
+            getSimX(Meters.of(robotToMotor.getX())),
+            getSimY(Meters.of(robotToMotor.getZ())));
     speedometer =
         new MechanismLigament2d(
             _visualName + "-speed", 0.1, 0, 5, new Color8Bit(MotorFactory.getNextVisualColor()));

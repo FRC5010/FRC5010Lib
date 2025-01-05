@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import org.frc5010.common.sensors.camera.GenericCamera;
+import org.frc5010.common.telemetry.DisplayDouble;
 
 /**
  * AprilTagPoseSystem
@@ -33,6 +34,10 @@ public class AprilTagPoseSystem extends CameraSystem {
   protected List<GenericCamera> cameras = new ArrayList<>();
   /** The field layout */
   protected AprilTagFieldLayout fieldLayout;
+  /** Std vector calibration constant */
+  protected DisplayDouble stdVectorFactor;
+  /** Std vector radian constant */
+  protected DisplayDouble stdVectorRadianFactor;
 
   /**
    * Constructor
@@ -42,6 +47,10 @@ public class AprilTagPoseSystem extends CameraSystem {
   public AprilTagPoseSystem(AprilTagFieldLayout fieldLayout) {
     super(null);
     this.fieldLayout = fieldLayout;
+    stdVectorFactor = displayValues.makeConfigDouble("Std Vector Factor");
+    stdVectorFactor.setValue(0.1);
+    stdVectorRadianFactor = displayValues.makeConfigDouble("Std Vector Radian Factor");
+    stdVectorRadianFactor.setValue(5);
   }
 
   /**
@@ -53,6 +62,10 @@ public class AprilTagPoseSystem extends CameraSystem {
   public AprilTagPoseSystem(GenericCamera camera, AprilTagFieldLayout fieldLayout) {
     super(camera);
     this.fieldLayout = fieldLayout;
+    stdVectorFactor = displayValues.makeConfigDouble("Std Vector Factor");
+    stdVectorFactor.setValue(0.1);
+    stdVectorRadianFactor = displayValues.makeConfigDouble("Std Vector Radian Factor");
+    stdVectorRadianFactor.setValue(5);
     addCamera(camera);
   }
 
@@ -154,9 +167,18 @@ public class AprilTagPoseSystem extends CameraSystem {
    * @return the calibrated vector
    */
   public Vector<N3> getStdVector(double distance) {
-    double calib = distance * 0.15;
-    return VecBuilder.fill(calib, calib, Units.degreesToRadians(5 * distance));
+    double calib = distance * stdVectorFactor.getValue();
+    return VecBuilder.fill(
+        calib, calib, Units.degreesToRadians(stdVectorRadianFactor.getValue() * distance));
   }
+
+  public Vector<N3> getStdConfidenceVector(double confidence) {
+    double calib = confidence;
+    return VecBuilder.fill(calib, calib, calib);
+  }
+
+  @Override
+  public void periodic() {}
 
   /**
    * Determines if any cameras have a valida target

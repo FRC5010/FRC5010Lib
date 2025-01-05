@@ -20,10 +20,15 @@ import org.frc5010.common.config.json.YAGSLDrivetrainJson;
 
 /** RobotParser is used to parse JSON configuration files to build a robot. */
 public class RobotParser {
+  /** JSON classes for the Driveteam controllers */
   private static DriveteamControllersJson controllersJson;
+  /** Map of Driveteam controller configurations */
   private static Map<String, DriveteamControllerConfiguration> controllersMap;
+  /** JSON classes for the cameras */
   private static VisionPropertiesJson visionJson;
+  /** Map of camera configurations */
   private static Map<String, CameraConfigurationJson> camerasMap;
+  /** JSON class for the drivetrain */
   private static Optional<DrivetrainPropertiesJson> driveTrainJson = Optional.empty();
 
   /**
@@ -88,7 +93,7 @@ public class RobotParser {
    */
   public void createRobot(GenericRobot robot) {
     controllersJson.createControllers(robot, controllersMap);
-    visionJson.createCameraSystem(robot, camerasMap);
     driveTrainJson.ifPresent(it -> it.createDriveTrain(robot));
+    visionJson.createCameraSystem(robot, camerasMap);
   }
 }

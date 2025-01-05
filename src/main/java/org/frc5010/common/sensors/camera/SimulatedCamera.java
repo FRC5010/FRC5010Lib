@@ -17,9 +17,9 @@ import org.photonvision.simulation.VisionSystemSim;
 /** A simulated camera using the PhotonVision library. */
 public class SimulatedCamera extends PhotonVisionPoseCamera {
   /** The vision simulation system */
-  static VisionSystemSim visionSim = new VisionSystemSim("main");
-  /** Indidates if the field layout has been registered */
-  protected static boolean fieldRegistered = false;
+  public static VisionSystemSim visionSim = new VisionSystemSim("main");
+  /** Whether the tags have been loaded */
+  static boolean tagsLoaded = false;
 
   /** The simulated camera properties */
   protected SimCameraProperties cameraProp = new SimCameraProperties();
@@ -44,7 +44,10 @@ public class SimulatedCamera extends PhotonVisionPoseCamera {
       Transform3d cameraToRobot,
       Supplier<Pose2d> poseSupplier) {
     super(name, colIndex, fieldLayout, strategy, cameraToRobot, poseSupplier);
-    visionSim.addAprilTags(fieldLayout);
+    if (!tagsLoaded) {
+      visionSim.addAprilTags(fieldLayout);
+      tagsLoaded = true;
+    }
 
     // A 640 x 480 camera with a 100 degree diagonal FOV.
     cameraProp.setCalibration(960, 720, Rotation2d.fromDegrees(100));
@@ -61,17 +64,21 @@ public class SimulatedCamera extends PhotonVisionPoseCamera {
     cameraSim = new PhotonCameraSim(camera, cameraProp);
     visionSim.addCamera(cameraSim, cameraToRobot);
 
-    if (!fieldRegistered) {
-      fieldRegistered = true;
-      visionTab.add("Vision Field", visionSim.getDebugField());
-    }
+    // Enable the raw and processed streams. These are enabled by default.
+    cameraSim.enableRawStream(true);
+    cameraSim.enableProcessedStream(true);
+
+    // Enable drawing a wireframe visualization of the field to the camera streams.
+    // This is extremely resource-intensive and is disabled by default.
+    cameraSim.enableDrawWireframe(true);
   }
 
   /** Update the simulated camera */
   @Override
   public void updateCameraInfo() {
     super.updateCameraInfo();
-    visionSim.update(poseSupplier.get());
-    visionSim.resetRobotPose(poseSupplier.get());
+    Pose2d p = poseSupplier.get();
+    visionSim.update(p);
+    visionSim.resetRobotPose(p);
   }
 }

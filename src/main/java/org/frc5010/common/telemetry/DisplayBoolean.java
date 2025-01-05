@@ -6,6 +6,7 @@ import edu.wpi.first.networktables.BooleanTopic;
 import edu.wpi.first.networktables.NetworkTableEvent;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import java.util.EnumSet;
+import org.frc5010.common.arch.GenericRobot.LogLevel;
 
 /** Add a boolean to the dashboard */
 public class DisplayBoolean {
@@ -17,13 +18,15 @@ public class DisplayBoolean {
   /** The table being stored in */
   protected final String table_;
   /** The topic */
-  protected final BooleanTopic topic_;
+  protected BooleanTopic topic_;
   /** The publisher */
-  protected final BooleanPublisher publisher_;
+  protected BooleanPublisher publisher_;
   /** The subscriber */
-  protected final BooleanSubscriber subscriber_;
+  protected BooleanSubscriber subscriber_;
   /** The listener handle */
   protected int listenerHandle_;
+  /** Display mode */
+  protected final boolean isDisplayed_;
 
   // Constructor
   /**
@@ -34,22 +37,39 @@ public class DisplayBoolean {
    * @param table the table being stored in
    */
   public DisplayBoolean(final boolean defaultValue, final String name, final String table) {
+    this(defaultValue, name, table, LogLevel.COMPETITION);
+  }
+
+  /**
+   * Create a new display boolean
+   *
+   * @param defaultValue the default value
+   * @param name the name of the variable being stored
+   * @param table the table being stored in
+   */
+  public DisplayBoolean(
+      final boolean defaultValue, final String name, final String table, final LogLevel logLevel) {
     value_ = defaultValue;
     name_ = name;
     table_ = table;
-    topic_ = NetworkTableInstance.getDefault().getTable(table_).getBooleanTopic(name_);
-    publisher_ = topic_.publish();
-    subscriber_ = topic_.subscribe(value_);
-    listenerHandle_ =
-        NetworkTableInstance.getDefault()
-            .addListener(
-                subscriber_,
-                EnumSet.of(NetworkTableEvent.Kind.kValueAll),
-                event -> {
-                  setValue(event.valueData.value.getBoolean(), false);
-                });
-
-    publisher_.setDefault(value_);
+    isDisplayed_ = DisplayValuesHelper.robotIsAtLogLevel(logLevel);
+    if (isDisplayed_) {
+      topic_ = NetworkTableInstance.getDefault().getTable(table_).getBooleanTopic(name_);
+      publisher_ = topic_.publish();
+      publisher_.setDefault(value_);
+    }
+    if (DisplayValuesHelper.robotIsAtLogLevel(LogLevel.CONFIG)) {
+      topic_.setPersistent(true);
+      subscriber_ = topic_.subscribe(value_);
+      listenerHandle_ =
+          NetworkTableInstance.getDefault()
+              .addListener(
+                  subscriber_,
+                  EnumSet.of(NetworkTableEvent.Kind.kValueAll),
+                  event -> {
+                    setValue(event.valueData.value.getBoolean(), false);
+                  });
+    }
   }
 
   // Getters
@@ -80,7 +100,7 @@ public class DisplayBoolean {
    */
   public synchronized void setValue(final boolean value, final boolean publish) {
     value_ = value;
-    if (publish) {
+    if (publish && isDisplayed_) {
       publisher_.set(value_);
     }
   }

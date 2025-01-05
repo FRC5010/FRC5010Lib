@@ -27,6 +27,14 @@ public abstract class GenericMechanism implements WpiHelperInterface, Sendable {
   /** The log prefix */
   protected String logPrefix = getClass().getSimpleName();
 
+  /** Constructor for GenericMechanism */
+  public GenericMechanism() {
+    this.mechVisual =
+        new Mechanism2d(RobotConstantsDef.robotVisualH, RobotConstantsDef.robotVisualV);
+    shuffleTab = Shuffleboard.getTab(logPrefix);
+    WpiNetworkTableValuesHelper.register(this);
+  }
+
   /**
    * Constructor for GenericMechanism
    *

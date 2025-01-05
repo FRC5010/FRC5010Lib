@@ -4,7 +4,11 @@
 
 package org.frc5010.common.motors.hardware;
 
+import static edu.wpi.first.units.Units.Minute;
+import static edu.wpi.first.units.Units.Rotations;
+
 import edu.wpi.first.math.system.plant.DCMotor;
+import edu.wpi.first.units.measure.AngularVelocity;
 import org.frc5010.common.motors.MotorConstants;
 
 /** Add your docs here. */
@@ -25,7 +29,7 @@ public class NEO extends GenericRevBrushlessMotor {
   }
 
   @Override
-  public double getMaxRPM() {
-    return MAXRPM;
+  public AngularVelocity getMaxRPM() {
+    return Rotations.per(Minute).of(MAXRPM);
   }
 }

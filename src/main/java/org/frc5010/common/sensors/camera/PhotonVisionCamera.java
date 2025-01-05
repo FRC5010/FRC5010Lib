@@ -6,8 +6,10 @@ package org.frc5010.common.sensors.camera;
 
 import edu.wpi.first.apriltag.AprilTagFieldLayout;
 import edu.wpi.first.math.geometry.Pose3d;
+import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Transform3d;
-import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.math.geometry.Translation3d;
+import java.util.List;
 import java.util.Optional;
 import org.photonvision.PhotonCamera;
 import org.photonvision.targeting.PhotonPipelineResult;
@@ -23,6 +25,8 @@ public class PhotonVisionCamera extends GenericCamera {
   protected Optional<PhotonTrackedTarget> target = Optional.empty();
   /** The latest camera result */
   protected PhotonPipelineResult camResult;
+  /** The latest camera results */
+  protected List<PhotonPipelineResult> camResults;
 
   /**
    * Constructor
@@ -40,7 +44,8 @@ public class PhotonVisionCamera extends GenericCamera {
   /** Update the camera and target with the latest result */
   @Override
   public void updateCameraInfo() {
-    camResult = camera.getLatestResult();
+    camResults = camera.getAllUnreadResults();
+    camResult = camResults.stream().findFirst().orElse(new PhotonPipelineResult());
   }
 
   /**
@@ -90,7 +95,7 @@ public class PhotonVisionCamera extends GenericCamera {
    */
   @Override
   public double getLatency() {
-    return Timer.getFPGATimestamp() - (camResult.getLatencyMillis() / 1000.0);
+    return camResult.getTimestampSeconds();
   }
 
   /**
@@ -111,5 +116,56 @@ public class PhotonVisionCamera extends GenericCamera {
   @Override
   public Optional<Pose3d> getRobotToTargetPose() {
     return Optional.empty();
+  }
+
+  /**
+   * Get the confidence of the target detection
+   *
+   * @return the confidence of the target detection
+   */
+  @Override
+  public double getConfidence() {
+    return getRobotToTargetPose()
+        .map(it -> it.getTranslation().getNorm() / 10.0)
+        .orElse(Double.MAX_VALUE);
+  }
+
+  /**
+   * Is the camera active?
+   *
+   * @return true if the camera is active and has a valid target
+   */
+  @Override
+  public boolean isActive() {
+    return hasValidTarget();
+  }
+
+  /**
+   * Get the position of the target relative to the robot.
+   *
+   * @return the position of the target relative to the robot
+   */
+  @Override
+  public Translation3d getPosition() {
+    return getRobotPose().orElse(new Pose3d()).getTranslation();
+  }
+
+  /**
+   * Get the rotation of the target relative to the robot.
+   *
+   * @return the rotation of the target relative to the robot
+   */
+  @Override
+  public Rotation3d getRotation() {
+    return getRobotPose().orElse(new Pose3d()).getRotation();
+  }
+
+  /**
+   * Get the capture time of the camera in seconds.
+   *
+   * @return the capture time in seconds
+   */
+  public double getCaptureTime() {
+    return getLatency();
   }
 }

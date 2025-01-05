@@ -2,15 +2,16 @@ plugins {
     id 'cpp'
     id 'java'
     id 'google-test'
-    id 'edu.wpi.first.wpilib.repositories.WPILibRepositoriesPlugin' version '2020.2'
-    id 'edu.wpi.first.NativeUtils' version '2024.7.2'
+    id 'edu.wpi.first.wpilib.repositories.WPILibRepositoriesPlugin' version '2025.0'
+    id 'edu.wpi.first.NativeUtils' version '2025.9.0'
     id 'edu.wpi.first.GradleJni' version '1.1.0'
     id 'edu.wpi.first.GradleVsCode' version '2.1.0'
-    id "edu.wpi.first.GradleRIO" version "2024.3.2"
+    id "edu.wpi.first.GradleRIO" version "2025.1.1" // Version should be defined here.
     id "com.diffplug.spotless" version "6.11.0"
 }
 
-ext.wpilibVersion = "2024.3.2" // and again here, thanks gradle....
+// WPILib Version
+ext.wpilibVersion = "2025.1.1" // and again here, thanks gradle....
 
 repositories {
     mavenCentral()
@@ -18,8 +19,14 @@ repositories {
 // if (project.hasProperty('releaseMode')) {
 wpilibRepositories.addAllReleaseRepositories(project)
 // } else {
-//     wpilibRepositories.addAllDevelopmentRepositories(project)
+//   wpilibRepositories.addAllDevelopmentRepositories(project)
 // }
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+var javaVersion = "17"
 
 // Apply C++ configuration
 apply from: 'config.gradle'
@@ -38,10 +45,10 @@ dependencies {
     implementation "edu.wpi.first.wpiunits:wpiunits-java:$wpilibVersion"
     implementation "edu.wpi.first.hal:hal-java:$wpilibVersion"
     implementation "org.ejml:ejml-simple:0.43.1"
-    implementation "com.fasterxml.jackson.core:jackson-annotations:2.12.4"
-    implementation "com.fasterxml.jackson.core:jackson-core:2.12.4"
-    implementation "com.fasterxml.jackson.core:jackson-databind:2.12.4"
-    implementation 'edu.wpi.first.thirdparty.frc2024.opencv:opencv-java:4.8.0-2'
+    implementation "com.fasterxml.jackson.core:jackson-annotations:2.15.2"
+    implementation "com.fasterxml.jackson.core:jackson-core:2.15.2"
+    implementation "com.fasterxml.jackson.core:jackson-databind:2.15.2"
+    implementation 'edu.wpi.first.thirdparty.frc2025.opencv:opencv-java:4.10.0-2'
 }
 
 // Set up exports properly
@@ -50,6 +57,20 @@ nativeUtils {
         // Main library is just default empty. This will export everything
         frc5010lib {
         }
+    }
+}
+
+javadoc {
+    destinationDir = file("docs")
+    options {
+        links "https://docs.oracle.com/en/java/javase/$javaVersion/docs/api/",
+                'https://github.wpilib.org/allwpilib/docs/release/java/',
+                'https://codedocs.revrobotics.com/java/',
+                'https://api.ctr-electronics.com/phoenix6/release/java/',
+                'https://api.ctr-electronics.com/phoenix/release/java/',
+                "https://shenzhen-robotics-alliance.github.io/maple-sim/javadocs/",
+                "https://www.kauailabs.com/public_files/navx-mxp/apidocs/java/",
+                "https://apidocs.reduxrobotics.com/current/java/"
     }
 }
 
@@ -124,8 +145,15 @@ spotless {
     }
 }
 
+spotlessCpp.dependsOn javadoc
+spotlessJava.dependsOn javadoc
+spotlessGroovyGradle.dependsOn javadoc
+spotlessMisc.dependsOn javadoc
+
+build.dependsOn spotlessApply
+
 apply from: 'publish.gradle'
 
 wrapper {
-    gradleVersion '8.4'
+    gradleVersion '8.11'
 }

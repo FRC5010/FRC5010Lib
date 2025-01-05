@@ -12,6 +12,7 @@ public class DriveTrainMotor extends GenericFunctionalMotor {
    * Creates a new DriveTrainMotor
    *
    * @param motor The motor to use
+   * @param visualName The visual name
    */
   public DriveTrainMotor(MotorController5010 motor, String visualName) {
     super(motor, visualName);

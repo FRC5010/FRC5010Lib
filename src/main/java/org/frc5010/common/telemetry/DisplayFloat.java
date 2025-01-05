@@ -6,6 +6,7 @@ import edu.wpi.first.networktables.FloatTopic;
 import edu.wpi.first.networktables.NetworkTableEvent;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import java.util.EnumSet;
+import org.frc5010.common.arch.GenericRobot.LogLevel;
 
 /** Add a float to the dashboard */
 public class DisplayFloat {
@@ -17,13 +18,15 @@ public class DisplayFloat {
   /** The table */
   protected final String table_;
   /** The topic */
-  protected final FloatTopic topic_;
+  protected FloatTopic topic_;
   /** The publisher */
-  protected final FloatPublisher publisher_;
+  protected FloatPublisher publisher_;
   /** The subscriber */
-  protected final FloatSubscriber subscriber_;
+  protected FloatSubscriber subscriber_;
   /** The listener handle */
   protected int listenerHandle_;
+  /** Display mode */
+  protected final boolean isDisplayed_;
 
   // Constructor
   /**
@@ -34,22 +37,40 @@ public class DisplayFloat {
    * @param table the name of the table
    */
   public DisplayFloat(final float defaultValue, final String name, final String table) {
+    this(defaultValue, name, table, LogLevel.COMPETITION);
+  }
+
+  /**
+   * Add a float to the dashboard
+   *
+   * @param defaultValue the default value
+   * @param name the name of the variable
+   * @param table the name of the table
+   * @param logLevel the log level
+   */
+  public DisplayFloat(
+      final float defaultValue, final String name, final String table, final LogLevel logLevel) {
     value_ = defaultValue;
     name_ = name;
     table_ = table;
-    topic_ = NetworkTableInstance.getDefault().getTable(table_).getFloatTopic(name_);
-    publisher_ = topic_.publish();
-    subscriber_ = topic_.subscribe(value_);
-    listenerHandle_ =
-        NetworkTableInstance.getDefault()
-            .addListener(
-                subscriber_,
-                EnumSet.of(NetworkTableEvent.Kind.kValueAll),
-                event -> {
-                  setValue(event.valueData.value.getFloat(), false);
-                });
-
-    publisher_.setDefault(value_);
+    isDisplayed_ = DisplayValuesHelper.robotIsAtLogLevel(logLevel);
+    if (isDisplayed_) {
+      topic_ = NetworkTableInstance.getDefault().getTable(table_).getFloatTopic(name_);
+      publisher_ = topic_.publish();
+      publisher_.setDefault(value_);
+    }
+    if (DisplayValuesHelper.robotIsAtLogLevel(LogLevel.CONFIG)) {
+      topic_.setPersistent(true);
+      subscriber_ = topic_.subscribe(value_);
+      listenerHandle_ =
+          NetworkTableInstance.getDefault()
+              .addListener(
+                  subscriber_,
+                  EnumSet.of(NetworkTableEvent.Kind.kValueAll),
+                  event -> {
+                    setValue(event.valueData.value.getFloat(), false);
+                  });
+    }
   }
 
   // Getters
@@ -71,6 +92,7 @@ public class DisplayFloat {
   public synchronized void setValue(final float value) {
     setValue(value, true);
   }
+
   /**
    * Set the value
    *
@@ -79,7 +101,7 @@ public class DisplayFloat {
    */
   public synchronized void setValue(final float value, final boolean publish) {
     value_ = value;
-    if (publish) {
+    if (publish && isDisplayed_) {
       publisher_.set(value_);
     }
   }

@@ -6,7 +6,9 @@ package org.frc5010.common.sensors.camera;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Pose3d;
+import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Transform3d;
+import edu.wpi.first.math.geometry.Translation3d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import java.util.Optional;
 import java.util.function.BooleanSupplier;
@@ -57,6 +59,7 @@ public class LimeLightCamera extends GenericCamera {
       String name, int colIndex, Transform3d cameraToRobot, BooleanSupplier megatagChooser) {
     super("limelight-" + name, colIndex, cameraToRobot);
     this.megatagChooser = megatagChooser;
+    setRobotToCameraOnLL();
   }
 
   /**
@@ -69,6 +72,7 @@ public class LimeLightCamera extends GenericCamera {
   public LimeLightCamera(String name, int colIndex, Transform3d cameraToRobot) {
     super("limelight-" + name, colIndex, cameraToRobot);
     this.megatagChooser = () -> true;
+    setRobotToCameraOnLL();
   }
 
   /**
@@ -179,7 +183,8 @@ public class LimeLightCamera extends GenericCamera {
   /** Get the current pose estimate of the robot */
   @Override
   public Optional<Pose3d> getRobotPose() {
-    return Optional.ofNullable(new Pose3d(poseEstimate.map(it -> it.pose).orElse(null)));
+    return Optional.ofNullable(
+        poseEstimate.map(it -> null != it.pose ? new Pose3d(it.pose) : null).orElse(null));
   }
 
   /** Get the target pose estimate relative to the robot */
@@ -197,5 +202,40 @@ public class LimeLightCamera extends GenericCamera {
   public LimeLightCamera setGyroSupplier(Supplier<GenericGyro> gyroSupplier) {
     this.gyroSupplier = gyroSupplier;
     return this;
+  }
+
+  public void setRobotToCameraOnLL() {
+    LimelightHelpers.setCameraPose_RobotSpace(
+        name,
+        robotToCamera.getX(),
+        -robotToCamera.getY(),
+        robotToCamera.getZ(),
+        robotToCamera.getRotation().getX(),
+        robotToCamera.getRotation().getY(),
+        robotToCamera.getRotation().getZ());
+  }
+
+  @Override
+  public double getConfidence() {
+    return 0.0;
+  }
+
+  @Override
+  public boolean isActive() {
+    return hasValidTarget();
+  }
+
+  @Override
+  public Translation3d getPosition() {
+    return getRobotPose().orElse(new Pose3d()).getTranslation();
+  }
+
+  @Override
+  public Rotation3d getRotation() {
+    return getRobotPose().orElse(new Pose3d()).getRotation();
+  }
+
+  public double getCaptureTime() {
+    return getLatency();
   }
 }

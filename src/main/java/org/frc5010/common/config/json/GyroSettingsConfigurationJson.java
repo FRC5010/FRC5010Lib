@@ -1,22 +1,35 @@
 package org.frc5010.common.config.json;
 
-import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.smartdashboard.Mechanism2d;
+import com.studica.frc.AHRS.NavXComType;
+import org.frc5010.common.arch.GenericDeviceHandler;
 import org.frc5010.common.config.DeviceConfiguration;
 import org.frc5010.common.sensors.gyro.NavXGyro;
 import org.frc5010.common.sensors.gyro.PigeonGyro;
+import org.frc5010.common.sensors.gyro.YagslGyro;
 
+/** Instatiates a Gyro sensor based on the specified type */
 public class GyroSettingsConfigurationJson implements DeviceConfiguration {
+  /** The type of gyro sensor */
   public String type;
+  /** The ID of the gyro sensor, if needed */
   public int id;
 
+  /**
+   * Configures and returns an appropriate gyro sensor based on the specified type.
+   *
+   * @param deviceHandler The GenericDeviceHandler to use for this device
+   * @return An instance of a gyro sensor (NavXGyro, PigeonGyro, or YagslGyro) based on the type, or
+   *     null if the type is unrecognized
+   */
   @Override
-  public Object configure(Mechanism2d mechanismSimulation) {
+  public Object configure(GenericDeviceHandler deviceHandler) {
     switch (type) {
       case "navx":
-        return new NavXGyro(SPI.Port.kMXP);
+        return new NavXGyro(NavXComType.kMXP_SPI);
       case "pigeon2":
         return new PigeonGyro(id);
+      case "yagsl":
+        return new YagslGyro();
       default:
         return null;
     }

@@ -4,6 +4,8 @@
 
 package org.frc5010.common.config.json;
 
+import static edu.wpi.first.units.Units.Degrees;
+
 import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Transform3d;
 import edu.wpi.first.math.geometry.Translation3d;
@@ -12,12 +14,14 @@ import java.util.ArrayList;
 import java.util.List;
 import org.frc5010.common.arch.GenericRobot;
 import org.frc5010.common.config.ConfigConstants;
+import org.frc5010.common.drive.GenericDrivetrain;
 import org.frc5010.common.sensors.camera.GenericCamera;
 import org.frc5010.common.sensors.camera.LimeLightCamera;
 import org.frc5010.common.sensors.camera.PhotonVisionCamera;
 import org.frc5010.common.sensors.camera.PhotonVisionFiducialTargetCamera;
 import org.frc5010.common.sensors.camera.PhotonVisionPoseCamera;
 import org.frc5010.common.sensors.camera.PhotonVisionVisualTargetCamera;
+import org.frc5010.common.sensors.camera.QuestNav;
 import org.frc5010.common.sensors.camera.SimulatedCamera;
 import org.frc5010.common.sensors.camera.SimulatedFiducialTargetCamera;
 import org.frc5010.common.sensors.camera.SimulatedVisualTargetCamera;
@@ -43,17 +47,17 @@ public class CameraConfigurationJson {
   /** Use of the camera */
   public String use;
   /** Type of the camera */
-  public String type;
+  public String type = "none";
   /** Optional strategy of the camera pose */
   public String strategy = "none";
   /** Column in SmartDashboard */
   public int column = 0;
   /** Camera X position from center in meters, in the robot's reference frame */
-  public double x;
+  public double x = 0;
   /** Camera Y position from center in meters, in the robot's reference frame */
   public double y = 0;
   /** Camera Z position from center in meters, in the robot's reference frame */
-  public double z;
+  public double z = 0;
   /** Camera roll angle in degrees, in the robot's reference frame */
   public double roll = 0;
   /** Camera pitch angle in degrees, in the robot's reference frame */
@@ -72,12 +76,16 @@ public class CameraConfigurationJson {
    */
   public void configureCamera(GenericRobot robot) {
     GenericCamera camera = null;
+    GenericDrivetrain drivetrain = (GenericDrivetrain) robot.getSubsystem("drivetrain");
     Transform3d robotToCamera =
-        new Transform3d(new Translation3d(x, y, z), new Rotation3d(roll, pitch, yaw));
-    AprilTagPoseSystem atSystem = (AprilTagPoseSystem) robot.getSubsystem("apriltag");
+        new Transform3d(
+            new Translation3d(x, y, z),
+            new Rotation3d(Degrees.of(roll), Degrees.of(pitch), Degrees.of(yaw)));
+    AprilTagPoseSystem atSystem = (AprilTagPoseSystem) robot.getSubsystem(APRIL_TAG);
     if (atSystem == null) {
       atSystem = new AprilTagPoseSystem(AprilTags.aprilTagFieldLayout);
-      robot.addSubsystem("apriltag", atSystem);
+      robot.addSubsystem(APRIL_TAG, atSystem);
+      drivetrain.getPoseEstimator().addAprilTagPoseSystem(atSystem);
     }
 
     if (RobotBase.isReal()) {
@@ -117,10 +125,10 @@ public class CameraConfigurationJson {
             } else {
               camera = new PhotonVisionCamera(name, column, robotToCamera);
             }
+            break;
           }
-          break;
+        default:
       }
-
     } else {
       if (!"none".equalsIgnoreCase(strategy)) {
         camera =
@@ -130,7 +138,7 @@ public class CameraConfigurationJson {
                 AprilTags.aprilTagFieldLayout,
                 PoseStrategy.valueOf(strategy),
                 robotToCamera,
-                robot.getPoseSupplier());
+                robot.getSimulatedPoseSupplier());
       } else if (targetFiducialIds.length > 0) {
         List<Integer> targetFiducialIdList = new ArrayList<>();
         for (int targetFiducialId : targetFiducialIds) {
@@ -143,7 +151,7 @@ public class CameraConfigurationJson {
                 AprilTags.aprilTagFieldLayout,
                 PoseStrategy.LOWEST_AMBIGUITY,
                 robotToCamera,
-                robot.getPoseSupplier(),
+                robot.getSimulatedPoseSupplier(),
                 targetFiducialIdList);
       } else if (targetHeight > 0) {
         camera =
@@ -153,8 +161,8 @@ public class CameraConfigurationJson {
                 AprilTags.aprilTagFieldLayout,
                 PoseStrategy.LOWEST_AMBIGUITY,
                 robotToCamera,
-                robot.getPoseSupplier());
-      } else {
+                robot.getSimulatedPoseSupplier());
+      } else if (!"quest".equalsIgnoreCase(use)) {
         camera =
             new SimulatedCamera(
                 name,
@@ -162,7 +170,7 @@ public class CameraConfigurationJson {
                 AprilTags.aprilTagFieldLayout,
                 PoseStrategy.LOWEST_AMBIGUITY,
                 robotToCamera,
-                robot.getPoseSupplier());
+                robot.getSimulatedPoseSupplier());
       }
     }
     switch (use) {
@@ -171,7 +179,19 @@ public class CameraConfigurationJson {
         break;
       case "apriltag":
         {
-          atSystem.addCamera(camera);
+          if (drivetrain != null) {
+            drivetrain.getPoseEstimator().registerPoseProvider(camera);
+          }
+          // atSystem.addCamera(camera);
+          break;
+        }
+      case "quest":
+        {
+          QuestNav questNav = new QuestNav(robotToCamera);
+          questNav.resetPose();
+          if (drivetrain != null) {
+            drivetrain.getPoseEstimator().registerPoseProvider(questNav);
+          }
           break;
         }
     }
