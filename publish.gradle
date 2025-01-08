@@ -152,12 +152,12 @@ artifacts {
 addTaskToCopyAllOutputs(outputSourcesJar)
 addTaskToCopyAllOutputs(outputJavadocJar)
 addTaskToCopyAllOutputs(outputJar)
-addTaskToCopyAllOutputs(vendordepJsonZip)
+//addTaskToCopyAllOutputs(vendordepJsonZip)
 
 build.dependsOn outputSourcesJar
 build.dependsOn outputJavadocJar
 build.dependsOn outputJar
-build.dependsOn vendordepJsonZip
+//build.dependsOn vendordepJsonZip
 
 libraryBuild.dependsOn build
 
@@ -205,13 +205,13 @@ model {
                 version pubVersion
             }
 
-            vendordep(MavenPublication) {
-                artifact vendordepJsonZip
+            // vendordep(MavenPublication) {
+            //     artifact vendordepJsonZip
 
-                artifactId = "${baseArtifactId}-vendordep"
-                groupId artifactGroupId
-                version pubVersion
-            }
+            //     artifactId = "${baseArtifactId}-vendordep"
+            //     groupId artifactGroupId
+            //     version pubVersion
+            // }
         }
     }
 }
