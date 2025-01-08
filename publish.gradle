@@ -161,12 +161,11 @@ build.dependsOn outputJar
 
 libraryBuild.dependsOn build
 
-def releasesRepoUrl = "$buildDir/repos/releases"
+def releasesRepoUrl = "$rootDir/frc5010lib/repos"
 
 publishing {
     repositories {
         maven {
-
             url = releasesRepoUrl
         }
     }
