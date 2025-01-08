@@ -48,7 +48,7 @@ ext.addTaskToCopyAllOutputs = { task ->
 }
 
 def artifactGroupId = 'org.frc5010'
-def baseArtifactId = 'FRC5010Lib'
+def baseArtifactId = 'frc5010lib'
 def zipBaseName = "_GROUP_org_frc5010_frc_ID_${baseArtifactId}-cpp_CLS"
 def javaBaseName = "_GROUP_org_frc5010_frc_ID_${baseArtifactId}-java_CLS"
 
@@ -180,7 +180,7 @@ tasks.matching {it != cleanReleaseRepo}.all {it.dependsOn cleanReleaseRepo}
 
 model {
     publishing {
-        def taskList = createComponentZipTasks($.components, ['FRC5010Lib'], zipBaseName, Zip, project, includeStandardZipFormat)
+        def taskList = createComponentZipTasks($.components, ['frc5010lib'], zipBaseName, Zip, project, includeStandardZipFormat)
 
         publications {
             cpp(MavenPublication) {
