@@ -195,7 +195,8 @@ public class GenericRevBrushlessMotor implements MotorController5010 {
   public MotorController5010 invert(boolean inverted) {
     configureSparkMax(
         () -> {
-          motor.setInverted(inverted);
+          cfg.inverted(inverted);
+          cfgUpdated = true;
           return motor.getLastError();
         });
     return this;
@@ -377,7 +378,7 @@ public class GenericRevBrushlessMotor implements MotorController5010 {
    */
   @Override
   public boolean getInverted() {
-    return motor.getInverted();
+    throw new UnsupportedOperationException("Unimplemented method 'getInverted'");
   }
 
   /** Disables the motor by calling the disable method on the underlying motor object. */

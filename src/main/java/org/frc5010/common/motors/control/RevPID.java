@@ -4,6 +4,7 @@
 
 package org.frc5010.common.motors.control;
 
+import com.revrobotics.spark.ClosedLoopSlot;
 import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkClosedLoopController;
 import com.revrobotics.spark.SparkMax;
@@ -99,7 +100,7 @@ public class RevPID extends GenericPIDController {
   public void setReference(double reference, PIDControlType controlType, double feedforward) {
     setControlType(controlType);
     this.reference = reference;
-    controller.setReference(feedforward, sparkControlType, 0, feedforward);
+    controller.setReference(feedforward, sparkControlType, ClosedLoopSlot.kSlot0, feedforward);
   }
 
   @Override
