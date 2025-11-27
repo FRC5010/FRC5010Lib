@@ -44,7 +44,7 @@ loadScripts(document, 'script');</script>
 <div>
 <ul class="sub-nav-list">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested-class-summary">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field-summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor-summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method-summary">Method</a></li>
@@ -90,6 +90,24 @@ loadScripts(document, 'script');</script>
 </section>
 <section class="summary">
 <ul class="summary-list">
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<li>
+<section class="nested-class-summary" id="nested-class-summary">
+<h2>Nested Class Summary</h2>
+<div class="caption"><span>Nested Classes</span></div>
+<div class="summary-table three-column-summary">
+<div class="table-header col-first">Modifier and Type</div>
+<div class="table-header col-second">Class</div>
+<div class="table-header col-last">Description</div>
+<div class="col-first even-row-color"><code>static enum&nbsp;</code></div>
+<div class="col-second even-row-color"><code><a href="DrivePoseEstimator.State.html" class="type-name-link" title="enum class in org.frc5010.common.drive.pose">DrivePoseEstimator.State</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>static interface&nbsp;</code></div>
+<div class="col-second odd-row-color"><code><a href="DrivePoseEstimator.VisionConsumer.html" class="type-name-link" title="interface in org.frc5010.common.drive.pose">DrivePoseEstimator.VisionConsumer</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+</div>
+</section>
+</li>
 <!-- =========== FIELD SUMMARY =========== -->
 <li>
 <section class="field-summary" id="field-summary">
@@ -104,15 +122,10 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color">
 <div class="block">The pose tracker</div>
 </div>
-<div class="col-first odd-row-color"><code>protected <a href="../../subsystems/AprilTagPoseSystem.html" title="class in org.frc5010.common.subsystems">AprilTagPoseSystem</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#vision" class="member-name-link">vision</a></code></div>
-<div class="col-last odd-row-color">
-<div class="block">The vision system used to get the robot pose</div>
-</div>
 </div>
 <div class="inherited-list">
 <h3 id="fields-inherited-from-class-org.frc5010.common.arch.GenericSubsystem">Fields inherited from class&nbsp;org.frc5010.common.arch.<a href="../../arch/GenericSubsystem.html" title="class in org.frc5010.common.arch">GenericSubsystem</a></h3>
-<code><a href="../../arch/GenericSubsystem.html#devices">devices</a>, <a href="../../arch/GenericSubsystem.html#displayValues">displayValues</a>, <a href="../../arch/GenericSubsystem.html#logPrefix">logPrefix</a>, <a href="../../arch/GenericSubsystem.html#mechanismSimulation">mechanismSimulation</a>, <a href="../../arch/GenericSubsystem.html#values">values</a></code></div>
+<code><a href="../../arch/GenericSubsystem.html#DashBoard">DashBoard</a>, <a href="../../arch/GenericSubsystem.html#devices">devices</a>, <a href="../../arch/GenericSubsystem.html#loggingAlert">loggingAlert</a>, <a href="../../arch/GenericSubsystem.html#logPrefix">logPrefix</a>, <a href="../../arch/GenericSubsystem.html#mechanismSimulation">mechanismSimulation</a>, <a href="../../arch/GenericSubsystem.html#networkValues">networkValues</a></code></div>
 </section>
 </li>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
@@ -125,11 +138,6 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(org.frc5010.common.drive.pose.GenericPose)" class="member-name-link">DrivePoseEstimator</a><wbr>(<a href="GenericPose.html" title="class in org.frc5010.common.drive.pose">GenericPose</a>&nbsp;poseTracker)</code></div>
 <div class="col-last even-row-color">
-<div class="block">Build a DrivePoseEstimator</div>
-</div>
-<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(org.frc5010.common.drive.pose.GenericPose,org.frc5010.common.subsystems.AprilTagPoseSystem)" class="member-name-link">DrivePoseEstimator</a><wbr>(<a href="GenericPose.html" title="class in org.frc5010.common.drive.pose">GenericPose</a>&nbsp;poseTracker,
- <a href="../../subsystems/AprilTagPoseSystem.html" title="class in org.frc5010.common.subsystems">AprilTagPoseSystem</a>&nbsp;vision)</code></div>
-<div class="col-last odd-row-color">
 <div class="block">Build a DrivePoseEstimator</div>
 </div>
 </div>
@@ -147,7 +155,15 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addAprilTagPoseSystem(org.frc5010.common.subsystems.AprilTagPoseSystem)" class="member-name-link">addAprilTagPoseSystem</a><wbr>(<a href="../../subsystems/AprilTagPoseSystem.html" title="class in org.frc5010.common.subsystems">AprilTagPoseSystem</a>&nbsp;atSystem)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#displayOnLEDSegment(org.frc5010.common.subsystems.LEDStripSegment,int)" class="member-name-link">displayOnLEDSegment</a><wbr>(<a href="../../subsystems/LEDStripSegment.html" title="class in org.frc5010.common.subsystems">LEDStripSegment</a>&nbsp;ledStrip,
+ int&nbsp;length)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Function.html" title="class or interface in java.util.function" class="external-link">Function</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>,<wbr><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/util/Color8Bit.html" title="class or interface in edu.wpi.first.wpilibj.util" class="external-link">Color8Bit</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#displayProviderStatuses(int)" class="member-name-link">displayProviderStatuses</a><wbr>(int&nbsp;length)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/Command.html" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link">Command</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCalibrationCommand(org.frc5010.common.drive.GenericDrivetrain,int)" class="member-name-link">getCalibrationCommand</a><wbr>(<a href="../GenericDrivetrain.html" title="class in org.frc5010.common.drive">GenericDrivetrain</a>&nbsp;drivetrain,
+ int&nbsp;cameraIndex)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>int</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getClosestTagToRobot()" class="member-name-link">getClosestTagToRobot</a>()</code></div>
@@ -200,27 +216,25 @@ loadScripts(document, 'script');</script>
 <div class="block">Set whether to disable the vision update</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setTargetPoseOnField(edu.wpi.first.math.geometry.Pose2d,java.lang.String)" class="member-name-link">setTargetPoseOnField</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a>&nbsp;targetPose,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setState(org.frc5010.common.drive.pose.DrivePoseEstimator.State)" class="member-name-link">setState</a><wbr>(<a href="DrivePoseEstimator.State.html" title="enum class in org.frc5010.common.drive.pose">DrivePoseEstimator.State</a>&nbsp;type)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setTargetPoseOnField(edu.wpi.first.math.geometry.Pose2d,java.lang.String)" class="member-name-link">setTargetPoseOnField</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a>&nbsp;targetPose,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;targetName)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the target pose on the field</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#update()" class="member-name-link">update</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Update the pose estimator.</div>
-</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updatePoseFromProviders()" class="member-name-link">updatePoseFromProviders</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updatePoseObservationFromProviders()" class="member-name-link">updatePoseObservationFromProviders</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Update the pose estimator using the pose providers.</div>
+<div class="block">Executes the updates of the pose estimator using the pose providers.</div>
 </div>
 </div>
 </div>
 </div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-org.frc5010.common.arch.GenericSubsystem">Methods inherited from class&nbsp;org.frc5010.common.arch.<a href="../../arch/GenericSubsystem.html" title="class in org.frc5010.common.arch">GenericSubsystem</a></h3>
-<code><a href="../../arch/GenericSubsystem.html#addDevice(java.lang.String,java.lang.Object)">addDevice</a>, <a href="../../arch/GenericSubsystem.html#getDevice(java.lang.String)">getDevice</a>, <a href="../../arch/GenericSubsystem.html#getDisplayValuesHelper()">getDisplayValuesHelper</a>, <a href="../../arch/GenericSubsystem.html#getMechVisual()">getMechVisual</a>, <a href="../../arch/GenericSubsystem.html#initSendable(edu.wpi.first.util.sendable.SendableBuilder)">initSendable</a>, <a href="../../arch/GenericSubsystem.html#setDisplay(boolean)">setDisplay</a>, <a href="../../arch/GenericSubsystem.html#setMechSimulation(edu.wpi.first.wpilibj.smartdashboard.Mechanism2d)">setMechSimulation</a>, <a href="../../arch/GenericSubsystem.html#simulationPeriodic()">simulationPeriodic</a></code></div>
+<code><a href="../../arch/GenericSubsystem.html#addDevice(java.lang.String,java.lang.Object)">addDevice</a>, <a href="../../arch/GenericSubsystem.html#getDevice(java.lang.String)">getDevice</a>, <a href="../../arch/GenericSubsystem.html#getDisplayValuesHelper()">getDisplayValuesHelper</a>, <a href="../../arch/GenericSubsystem.html#getMechVisual()">getMechVisual</a>, <a href="../../arch/GenericSubsystem.html#initSendable(edu.wpi.first.util.sendable.SendableBuilder)">initSendable</a>, <a href="../../arch/GenericSubsystem.html#setDisplay(boolean)">setDisplay</a>, <a href="../../arch/GenericSubsystem.html#setLoggingLevel(org.frc5010.common.arch.GenericRobot.LogLevel)">setLoggingLevel</a>, <a href="../../arch/GenericSubsystem.html#setMechSimulation(org.littletonrobotics.junction.mechanism.LoggedMechanism2d)">setMechSimulation</a>, <a href="../../arch/GenericSubsystem.html#simulationPeriodic()">simulationPeriodic</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-edu.wpi.first.wpilibj2.command.SubsystemBase">Methods inherited from class&nbsp;edu.wpi.first.wpilibj2.command.<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/SubsystemBase.html" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link">SubsystemBase</a></h3>
 <code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/SubsystemBase.html#addChild(java.lang.String,edu.wpi.first.util.sendable.Sendable)" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link">addChild</a>, <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/SubsystemBase.html#getName()" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link">getName</a>, <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/SubsystemBase.html#getSubsystem()" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link">getSubsystem</a>, <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/SubsystemBase.html#setName(java.lang.String)" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link">setName</a>, <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/SubsystemBase.html#setSubsystem(java.lang.String)" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link">setSubsystem</a></code></div>
@@ -251,13 +265,6 @@ loadScripts(document, 'script');</script>
 <div class="block">The pose tracker</div>
 </section>
 </li>
-<li>
-<section class="detail" id="vision">
-<h3>vision</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="../../subsystems/AprilTagPoseSystem.html" title="class in org.frc5010.common.subsystems">AprilTagPoseSystem</a></span>&nbsp;<span class="element-name">vision</span></div>
-<div class="block">The vision system used to get the robot pose</div>
-</section>
-</li>
 </ul>
 </section>
 </li>
@@ -266,19 +273,6 @@ loadScripts(document, 'script');</script>
 <section class="constructor-details" id="constructor-detail">
 <h2>Constructor Details</h2>
 <ul class="member-list">
-<li>
-<section class="detail" id="&lt;init&gt;(org.frc5010.common.drive.pose.GenericPose,org.frc5010.common.subsystems.AprilTagPoseSystem)">
-<h3>DrivePoseEstimator</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">DrivePoseEstimator</span><wbr><span class="parameters">(<a href="GenericPose.html" title="class in org.frc5010.common.drive.pose">GenericPose</a>&nbsp;poseTracker,
- <a href="../../subsystems/AprilTagPoseSystem.html" title="class in org.frc5010.common.subsystems">AprilTagPoseSystem</a>&nbsp;vision)</span></div>
-<div class="block">Build a DrivePoseEstimator</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>poseTracker</code> - the pose tracker</dd>
-<dd><code>vision</code> - the vision system</dd>
-</dl>
-</section>
-</li>
 <li>
 <section class="detail" id="&lt;init&gt;(org.frc5010.common.drive.pose.GenericPose)">
 <h3>DrivePoseEstimator</h3>
@@ -299,6 +293,19 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
+<section class="detail" id="displayProviderStatuses(int)">
+<h3>displayProviderStatuses</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Function.html" title="class or interface in java.util.function" class="external-link">Function</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>,<wbr><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/util/Color8Bit.html" title="class or interface in edu.wpi.first.wpilibj.util" class="external-link">Color8Bit</a>&gt;</span>&nbsp;<span class="element-name">displayProviderStatuses</span><wbr><span class="parameters">(int&nbsp;length)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="displayOnLEDSegment(org.frc5010.common.subsystems.LEDStripSegment,int)">
+<h3>displayOnLEDSegment</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">displayOnLEDSegment</span><wbr><span class="parameters">(<a href="../../subsystems/LEDStripSegment.html" title="class in org.frc5010.common.subsystems">LEDStripSegment</a>&nbsp;ledStrip,
+ int&nbsp;length)</span></div>
+</section>
+</li>
+<li>
 <section class="detail" id="registerPoseProvider(org.frc5010.common.drive.pose.PoseProvider)">
 <h3>registerPoseProvider</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">registerPoseProvider</span><wbr><span class="parameters">(<a href="PoseProvider.html" title="interface in org.frc5010.common.drive.pose">PoseProvider</a>&nbsp;provider)</span></div>
@@ -318,6 +325,13 @@ loadScripts(document, 'script');</script>
 <dt>Parameters:</dt>
 <dd><code>disable</code> - whether to disable the vision update</dd>
 </dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getCalibrationCommand(org.frc5010.common.drive.GenericDrivetrain,int)">
+<h3>getCalibrationCommand</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/Command.html" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link">Command</a></span>&nbsp;<span class="element-name">getCalibrationCommand</span><wbr><span class="parameters">(<a href="../GenericDrivetrain.html" title="class in org.frc5010.common.drive">GenericDrivetrain</a>&nbsp;drivetrain,
+ int&nbsp;cameraIndex)</span></div>
 </section>
 </li>
 <li>
@@ -354,23 +368,6 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="update()">
-<h3>update</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">update</span>()</div>
-<div class="block">Update the pose estimator.
-
- <p>This method updates the local measurements of the pose tracker and checks if vision update
- is disabled. If vision update is not disabled, it retrieves the list of camera names from the
- vision object and iterates over each camera. For each camera, it sets a boolean value on the
- SmartDashboard to indicate that the camera is being processed. It then retrieves the robot pose
- and distance to target from the vision object for the current camera. If a robot pose is
- present, it retrieves the image capture time and updates the vision measurements of the pose
- tracker. Finally, it updates a boolean value on the SmartDashboard to indicate if any vision
- updates were made. After updating the vision measurements, it sets the robot pose in the
- field2d object using the current pose.</div>
-</section>
-</li>
-<li>
 <section class="detail" id="periodic()">
 <h3>periodic</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">periodic</span>()</div>
@@ -386,19 +383,23 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="updatePoseFromProviders()">
-<h3>updatePoseFromProviders</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">updatePoseFromProviders</span>()</div>
-<div class="block">Update the pose estimator using the pose providers. This method is used to generate a Command
- that updates the pose estimator with the data from the vision system. The method will only
- update the pose estimator if the vision update is not disabled.
+<section class="detail" id="updatePoseObservationFromProviders()">
+<h3>updatePoseObservationFromProviders</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">updatePoseObservationFromProviders</span>()</div>
+<div class="block">Executes the updates of the pose estimator using the pose providers.
 
- <p>This method updates the pose estimator with local data and then checks if vision update is
- disabled. If vision update is not disabled, it iterates over each pose provider and checks if
- the pose provider is active. If the pose provider is active, it retrieves the robot pose and
- confidence from the pose provider. If the robot pose is present, it updates the vision
- measurements of the pose tracker, sets a boolean value on the SmartDashboard to indicate if any
- vision updates were made, and sets the robot pose in the field2d object using the current pose.</div>
+ <p>DISABLED_FIELD - reads pose from AT camera providers and updates the Env providers with low
+ ambiguity poses from a distance DISABLED_ENV - reads pose from Env providers, expecting a pose
+ reset to be provided ENABLED_FIELD - reads pose from the AT camera providers and updates the
+ Env providers if the pose is high caliber and close ENABLED_ENV - reads the pose from the Env
+ providers and expects given pose to be correct ALL - reads and fuses poses from both Env and
+ Field sources, resetting Env pose based on update</div>
+</section>
+</li>
+<li>
+<section class="detail" id="setState(org.frc5010.common.drive.pose.DrivePoseEstimator.State)">
+<h3>setState</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setState</span><wbr><span class="parameters">(<a href="DrivePoseEstimator.State.html" title="enum class in org.frc5010.common.drive.pose">DrivePoseEstimator.State</a>&nbsp;type)</span></div>
 </section>
 </li>
 <li>
@@ -458,12 +459,6 @@ loadScripts(document, 'script');</script>
 <dt>Returns:</dt>
 <dd>the pose of the closest tag</dd>
 </dl>
-</section>
-</li>
-<li>
-<section class="detail" id="addAprilTagPoseSystem(org.frc5010.common.subsystems.AprilTagPoseSystem)">
-<h3>addAprilTagPoseSystem</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addAprilTagPoseSystem</span><wbr><span class="parameters">(<a href="../../subsystems/AprilTagPoseSystem.html" title="class in org.frc5010.common.subsystems">AprilTagPoseSystem</a>&nbsp;atSystem)</span></div>
 </section>
 </li>
 </ul>

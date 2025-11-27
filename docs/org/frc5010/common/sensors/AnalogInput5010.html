@@ -119,10 +119,16 @@ implements <a href="encoder/GenericEncoder.html" title="interface in org.frc5010
 <div class="block">Get the current position of the encoder</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVelocity()" class="member-name-link">getVelocity</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPositionConversion()" class="member-name-link">getPositionConversion</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVelocity()" class="member-name-link">getVelocity</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get the current velocity of the encoder</div>
 </div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVelocityConversion()" class="member-name-link">getVelocityConversion</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#reset()" class="member-name-link">reset</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -153,6 +159,10 @@ implements <a href="encoder/GenericEncoder.html" title="interface in org.frc5010
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the velocity conversion factor of the encoder</div>
 </div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#simulationUpdate(java.util.Optional,java.lang.Double)" class="member-name-link">simulationUpdate</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&nbsp;position,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&nbsp;velocity)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -296,6 +306,37 @@ implements <a href="encoder/GenericEncoder.html" title="interface in org.frc5010
 <dd><code><a href="encoder/GenericEncoder.html#setInverted(boolean)">setInverted</a></code>&nbsp;in interface&nbsp;<code><a href="encoder/GenericEncoder.html" title="interface in org.frc5010.common.sensors.encoder">GenericEncoder</a></code></dd>
 <dt>Parameters:</dt>
 <dd><code>inverted</code> - - true if encoder should be inverted</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getPositionConversion()">
+<h3>getPositionConversion</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getPositionConversion</span>()</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="encoder/GenericEncoder.html#getPositionConversion()">getPositionConversion</a></code>&nbsp;in interface&nbsp;<code><a href="encoder/GenericEncoder.html" title="interface in org.frc5010.common.sensors.encoder">GenericEncoder</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getVelocityConversion()">
+<h3>getVelocityConversion</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getVelocityConversion</span>()</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="encoder/GenericEncoder.html#getVelocityConversion()">getVelocityConversion</a></code>&nbsp;in interface&nbsp;<code><a href="encoder/GenericEncoder.html" title="interface in org.frc5010.common.sensors.encoder">GenericEncoder</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="simulationUpdate(java.util.Optional,java.lang.Double)">
+<h3>simulationUpdate</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">simulationUpdate</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&nbsp;position,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&nbsp;velocity)</span></div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="encoder/GenericEncoder.html#simulationUpdate(java.util.Optional,java.lang.Double)">simulationUpdate</a></code>&nbsp;in interface&nbsp;<code><a href="encoder/GenericEncoder.html" title="interface in org.frc5010.common.sensors.encoder">GenericEncoder</a></code></dd>
 </dl>
 </section>
 </li>

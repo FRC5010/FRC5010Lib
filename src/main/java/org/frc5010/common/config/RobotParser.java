@@ -11,12 +11,14 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.Optional;
 import org.frc5010.common.arch.GenericRobot;
+import org.frc5010.common.config.json.AKitSwerveDrivetrainJson;
 import org.frc5010.common.config.json.CameraConfigurationJson;
 import org.frc5010.common.config.json.DriveteamControllersJson;
 import org.frc5010.common.config.json.DrivetrainPropertiesJson;
 import org.frc5010.common.config.json.RobotJson;
 import org.frc5010.common.config.json.VisionPropertiesJson;
 import org.frc5010.common.config.json.YAGSLDrivetrainJson;
+import org.frc5010.common.config.json.devices.LEDStripParser;
 
 /** RobotParser is used to parse JSON configuration files to build a robot. */
 public class RobotParser {
@@ -53,14 +55,16 @@ public class RobotParser {
             .readValue(new File(directory, "controllers.json"), DriveteamControllersJson.class);
     controllersMap = controllersJson.readControllers(directory);
 
-    robotJson.readDeviceDefinitions(robot, directory);
-
     // Read in the cameras
     visionJson =
         new ObjectMapper()
             .readValue(new File(directory, "cameras.json"), VisionPropertiesJson.class);
     camerasMap = visionJson.readCameraSystem(directory);
 
+    // Parse LED strips
+    LEDStripParser.parse(robotDirectory);
+
+    // Read in the drivetrain
     switch (robotJson.driveType) {
       case "YAGSL_SWERVE_DRIVE":
         {
@@ -70,6 +74,17 @@ public class RobotParser {
                       new File(directory, "yagsl_drivetrain.json"), YAGSLDrivetrainJson.class);
           yagslDriveTrainJson.readDrivetrainConfiguration(robot, directory);
           driveTrainJson = Optional.of(yagslDriveTrainJson);
+          break;
+        }
+      case "AKIT_SWERVE_DRIVE":
+        {
+          AKitSwerveDrivetrainJson akitDriveTrainJson =
+              new ObjectMapper()
+                  .readValue(
+                      new File(directory, "akit_swerve_drivetrain.json"),
+                      AKitSwerveDrivetrainJson.class);
+          akitDriveTrainJson.readDrivetrainConfiguration(robot, directory);
+          driveTrainJson = Optional.of(akitDriveTrainJson);
           break;
         }
       default:

@@ -78,6 +78,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public static class </span><span class="element-name type-name-label">LimelightHelpers.LimelightTarget_Detector</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Represents a Neural Detector Pipeline Result extracted from JSON Output</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -106,10 +107,16 @@ loadScripts(document, 'script');</script>
 <div class="col-second even-row-color"><code><a href="#tx" class="member-name-link">tx</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><code>double</code></div>
-<div class="col-second odd-row-color"><code><a href="#tx_pixels" class="member-name-link">tx_pixels</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#tx_nocrosshair" class="member-name-link">tx_nocrosshair</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code>double</code></div>
-<div class="col-second even-row-color"><code><a href="#ty" class="member-name-link">ty</a></code></div>
+<div class="col-second even-row-color"><code><a href="#tx_pixels" class="member-name-link">tx_pixels</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>double</code></div>
+<div class="col-second odd-row-color"><code><a href="#ty" class="member-name-link">ty</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>double</code></div>
+<div class="col-second even-row-color"><code><a href="#ty_nocrosshair" class="member-name-link">ty_nocrosshair</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><code>double</code></div>
 <div class="col-second odd-row-color"><code><a href="#ty_pixels" class="member-name-link">ty_pixels</a></code></div>
@@ -179,21 +186,33 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="tx_pixels">
-<h3>tx_pixels</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">tx_pixels</span></div>
-</section>
-</li>
-<li>
 <section class="detail" id="ty">
 <h3>ty</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">ty</span></div>
 </section>
 </li>
 <li>
+<section class="detail" id="tx_pixels">
+<h3>tx_pixels</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">tx_pixels</span></div>
+</section>
+</li>
+<li>
 <section class="detail" id="ty_pixels">
 <h3>ty_pixels</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">ty_pixels</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="tx_nocrosshair">
+<h3>tx_nocrosshair</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">tx_nocrosshair</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="ty_nocrosshair">
+<h3>ty_nocrosshair</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">ty_nocrosshair</span></div>
 </section>
 </li>
 </ul>

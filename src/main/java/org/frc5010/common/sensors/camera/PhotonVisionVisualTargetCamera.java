@@ -4,6 +4,7 @@
 
 package org.frc5010.common.sensors.camera;
 
+import edu.wpi.first.math.geometry.Rotation3d;
 import edu.wpi.first.math.geometry.Transform3d;
 import java.util.Optional;
 
@@ -23,9 +24,17 @@ public class PhotonVisionVisualTargetCamera extends PhotonVisionCamera {
   /** Update the camera and target with the latest result */
   @Override
   public void updateCameraInfo() {
-    super.update();
+    super.updateCameraInfo();
     if (camResult.hasTargets()) {
       target = Optional.ofNullable(camResult.getBestTarget());
+      input.hasTarget = target.isPresent();
+      input.latestTargetRotation =
+          target
+              .map(
+                  it ->
+                      new TargetRotation(
+                          new Rotation3d(0, target.get().getPitch(), target.get().getYaw())))
+              .orElse(new TargetRotation(new Rotation3d()));
     }
   }
 }

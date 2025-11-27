@@ -77,7 +77,7 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>Direct Known Subclasses:</dt>
-<dd><code><a href="DifferentialPose.html" title="class in org.frc5010.common.drive.pose">DifferentialPose</a></code>, <code><a href="SimulatedPose.html" title="class in org.frc5010.common.drive.pose">SimulatedPose</a></code>, <code><a href="SwervePose.html" title="class in org.frc5010.common.drive.pose">SwervePose</a></code>, <code><a href="YAGSLSwervePose.html" title="class in org.frc5010.common.drive.pose">YAGSLSwervePose</a></code></dd>
+<dd><code><a href="AkitSwervePose.html" title="class in org.frc5010.common.drive.pose">AkitSwervePose</a></code>, <code><a href="DifferentialPose.html" title="class in org.frc5010.common.drive.pose">DifferentialPose</a></code>, <code><a href="SimulatedPose.html" title="class in org.frc5010.common.drive.pose">SimulatedPose</a></code>, <code><a href="YAGSLSwervePose.html" title="class in org.frc5010.common.drive.pose">YAGSLSwervePose</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public abstract class </span><span class="element-name type-name-label">GenericPose</span>
@@ -115,9 +115,14 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color">
 <div class="block">State standard deviations</div>
 </div>
-<div class="col-first even-row-color"><code>protected <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/Matrix.html" title="class or interface in edu.wpi.first.math" class="external-link">Matrix</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/numbers/N3.html" title="class or interface in edu.wpi.first.math.numbers" class="external-link">N3</a>,<wbr><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/numbers/N1.html" title="class or interface in edu.wpi.first.math.numbers" class="external-link">N1</a>&gt;</code></div>
-<div class="col-second even-row-color"><code><a href="#visionMeasurementStdDevs" class="member-name-link">visionMeasurementStdDevs</a></code></div>
+<div class="col-first even-row-color"><code>protected <a href="DrivePoseEstimator.VisionConsumer.html" title="interface in org.frc5010.common.drive.pose">DrivePoseEstimator.VisionConsumer</a></code></div>
+<div class="col-second even-row-color"><code><a href="#visionConsumer" class="member-name-link">visionConsumer</a></code></div>
 <div class="col-last even-row-color">
+<div class="block">Vision consumer</div>
+</div>
+<div class="col-first odd-row-color"><code>protected <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/Matrix.html" title="class or interface in edu.wpi.first.math" class="external-link">Matrix</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/numbers/N3.html" title="class or interface in edu.wpi.first.math.numbers" class="external-link">N3</a>,<wbr><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/numbers/N1.html" title="class or interface in edu.wpi.first.math.numbers" class="external-link">N1</a>&gt;</code></div>
+<div class="col-second odd-row-color"><code><a href="#visionMeasurementStdDevs" class="member-name-link">visionMeasurementStdDevs</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">Vision measurement standard deviations</div>
 </div>
 </div>
@@ -194,21 +199,27 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get the current gyro rotation as a <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Rotation2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link"><code>Rotation2d</code></a>.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#resetEncoders()" class="member-name-link">resetEncoders</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DrivePoseEstimator.VisionConsumer.html" title="interface in org.frc5010.common.drive.pose">DrivePoseEstimator.VisionConsumer</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVisionConsumer()" class="member-name-link">getVisionConsumer</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#resetEncoders()" class="member-name-link">resetEncoders</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Reset the encoders.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resetGyro()" class="member-name-link">resetGyro</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resetGyro()" class="member-name-link">resetGyro</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Reset the gyro.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#resetToPose(edu.wpi.first.math.geometry.Pose2d)" class="member-name-link">resetToPose</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a>&nbsp;pose)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#resetToPose(edu.wpi.first.math.geometry.Pose2d)" class="member-name-link">resetToPose</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a>&nbsp;pose)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Reset the pose estimator to a specified pose.</div>
 </div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setVisionConsumer(org.frc5010.common.drive.pose.DrivePoseEstimator.VisionConsumer)" class="member-name-link">setVisionConsumer</a><wbr>(<a href="DrivePoseEstimator.VisionConsumer.html" title="interface in org.frc5010.common.drive.pose">DrivePoseEstimator.VisionConsumer</a>&nbsp;visionConsumer)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#updateLocalMeasurements()" class="member-name-link">updateLocalMeasurements</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
@@ -216,11 +227,13 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateRobotPoseOnField(edu.wpi.first.math.geometry.Pose2d)" class="member-name-link">updateRobotPoseOnField</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a>&nbsp;pose)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Update the robot pose on the field.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#updateVisionMeasurements(edu.wpi.first.math.geometry.Pose2d,double,edu.wpi.first.math.Vector)" class="member-name-link">updateVisionMeasurements</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a>&nbsp;robotPose,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#updateVisionMeasurements(edu.wpi.first.math.geometry.Pose2d,double,edu.wpi.first.math.Matrix)" class="member-name-link">updateVisionMeasurements</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a>&nbsp;robotPose,
  double&nbsp;imageCaptureTime,
- <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/Vector.html" title="class or interface in edu.wpi.first.math" class="external-link">Vector</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/numbers/N3.html" title="class or interface in edu.wpi.first.math.numbers" class="external-link">N3</a>&gt;&nbsp;stdVector)</code></div>
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/Matrix.html" title="class or interface in edu.wpi.first.math" class="external-link">Matrix</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/numbers/N3.html" title="class or interface in edu.wpi.first.math.numbers" class="external-link">N3</a>,<wbr><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/numbers/N1.html" title="class or interface in edu.wpi.first.math.numbers" class="external-link">N1</a>&gt;&nbsp;stdVector)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Update the pose estimator with vision data</div>
 </div>
@@ -246,6 +259,13 @@ loadScripts(document, 'script');</script>
 <h3>field2d</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/smartdashboard/Field2d.html" title="class or interface in edu.wpi.first.wpilibj.smartdashboard" class="external-link">Field2d</a></span>&nbsp;<span class="element-name">field2d</span></div>
 <div class="block">The 2D field</div>
+</section>
+</li>
+<li>
+<section class="detail" id="visionConsumer">
+<h3>visionConsumer</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="DrivePoseEstimator.VisionConsumer.html" title="interface in org.frc5010.common.drive.pose">DrivePoseEstimator.VisionConsumer</a></span>&nbsp;<span class="element-name">visionConsumer</span></div>
+<div class="block">Vision consumer</div>
 </section>
 </li>
 <li>
@@ -322,9 +342,26 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="getVisionConsumer()">
+<h3>getVisionConsumer</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="DrivePoseEstimator.VisionConsumer.html" title="interface in org.frc5010.common.drive.pose">DrivePoseEstimator.VisionConsumer</a></span>&nbsp;<span class="element-name">getVisionConsumer</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="setVisionConsumer(org.frc5010.common.drive.pose.DrivePoseEstimator.VisionConsumer)">
+<h3>setVisionConsumer</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setVisionConsumer</span><wbr><span class="parameters">(<a href="DrivePoseEstimator.VisionConsumer.html" title="interface in org.frc5010.common.drive.pose">DrivePoseEstimator.VisionConsumer</a>&nbsp;visionConsumer)</span></div>
+</section>
+</li>
+<li>
 <section class="detail" id="updateRobotPoseOnField(edu.wpi.first.math.geometry.Pose2d)">
 <h3>updateRobotPoseOnField</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">updateRobotPoseOnField</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a>&nbsp;pose)</span></div>
+<div class="block">Update the robot pose on the field.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>pose</code> - the pose</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -412,11 +449,11 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="updateVisionMeasurements(edu.wpi.first.math.geometry.Pose2d,double,edu.wpi.first.math.Vector)">
+<section class="detail" id="updateVisionMeasurements(edu.wpi.first.math.geometry.Pose2d,double,edu.wpi.first.math.Matrix)">
 <h3>updateVisionMeasurements</h3>
 <div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">updateVisionMeasurements</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a>&nbsp;robotPose,
  double&nbsp;imageCaptureTime,
- <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/Vector.html" title="class or interface in edu.wpi.first.math" class="external-link">Vector</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/numbers/N3.html" title="class or interface in edu.wpi.first.math.numbers" class="external-link">N3</a>&gt;&nbsp;stdVector)</span></div>
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/Matrix.html" title="class or interface in edu.wpi.first.math" class="external-link">Matrix</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/numbers/N3.html" title="class or interface in edu.wpi.first.math.numbers" class="external-link">N3</a>,<wbr><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/numbers/N1.html" title="class or interface in edu.wpi.first.math.numbers" class="external-link">N1</a>&gt;&nbsp;stdVector)</span></div>
 <div class="block">Update the pose estimator with vision data</div>
 <dl class="notes">
 <dt>Parameters:</dt>

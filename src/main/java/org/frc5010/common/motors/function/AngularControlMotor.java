@@ -20,27 +20,27 @@ import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.simulation.BatterySim;
 import edu.wpi.first.wpilibj.simulation.RoboRioSim;
 import edu.wpi.first.wpilibj.simulation.SingleJointedArmSim;
-import edu.wpi.first.wpilibj.smartdashboard.Mechanism2d;
-import edu.wpi.first.wpilibj.smartdashboard.MechanismLigament2d;
-import edu.wpi.first.wpilibj.smartdashboard.MechanismRoot2d;
 import edu.wpi.first.wpilibj.util.Color8Bit;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import org.frc5010.common.motors.MotorController5010;
+import java.util.Optional;
+import org.frc5010.common.arch.GenericRobot.LogLevel;
+import org.frc5010.common.motors.GenericMotorController;
 import org.frc5010.common.motors.MotorFactory;
 import org.frc5010.common.motors.SystemIdentification;
 import org.frc5010.common.sensors.encoder.GenericEncoder;
-import org.frc5010.common.sensors.encoder.SimulatedEncoder;
 import org.frc5010.common.telemetry.DisplayDouble;
 import org.frc5010.common.telemetry.DisplayValuesHelper;
+import org.littletonrobotics.junction.mechanism.LoggedMechanism2d;
+import org.littletonrobotics.junction.mechanism.LoggedMechanismLigament2d;
+import org.littletonrobotics.junction.mechanism.LoggedMechanismRoot2d;
 
 /** Provides PID control for angular motors */
 public class AngularControlMotor extends GenericControlledMotor {
-  protected MechanismLigament2d simulatedArm;
-  protected MechanismLigament2d setpoint;
-  protected MechanismRoot2d root;
-  protected SingleJointedArmSim simMotor;
-  protected SimulatedEncoder simEncoder;
+  protected LoggedMechanismLigament2d simulatedArm;
+  protected LoggedMechanismLigament2d setpoint;
+  protected LoggedMechanismRoot2d root;
+  protected SingleJointedArmSim simMechanism;
   protected GenericEncoder encoder;
   protected Distance armLength = Meters.of(0.0);
   protected Angle minAngle = Degrees.of(0.0);
@@ -48,11 +48,13 @@ public class AngularControlMotor extends GenericControlledMotor {
   protected Angle startingAngle = Degrees.of(0.0);
   protected final String K_G = "kG";
   protected DisplayDouble kG;
+  ArmFeedforward pivotFeedforward;
 
   public AngularControlMotor(
-      MotorController5010 motor, String visualName, DisplayValuesHelper tab) {
+      GenericMotorController motor, String visualName, DisplayValuesHelper tab) {
     super(motor, visualName, tab);
-    kG = new DisplayDouble(0.0, K_G, visualName);
+    kG = _displayValuesHelper.makeConfigDouble(K_G);
+    encoder = motor.getMotorEncoder();
     setControlType(PIDControlType.POSITION);
   }
 
@@ -73,7 +75,7 @@ public class AngularControlMotor extends GenericControlledMotor {
     this.startingAngle = startingAngle;
     this.kG.setValue(kG);
 
-    simMotor =
+    simMechanism =
         new SingleJointedArmSim(
             _motor.getMotorSimulationType(),
             gearing,
@@ -83,18 +85,16 @@ public class AngularControlMotor extends GenericControlledMotor {
             maxAngle.in(Radians),
             simulateGravity,
             startingAngle.in(Radians));
-    simEncoder =
-        new SimulatedEncoder(
-            MotorFactory.getNextSimEncoderPort(), MotorFactory.getNextSimEncoderPort());
-    simEncoder.setInverted(inverted);
-    simEncoder.setPosition(startingAngle.in(Degrees));
-    simEncoder.setPositionConversion(conversion);
+
+    encoder.setInverted(inverted);
+    encoder.setPosition(startingAngle.in(Degrees));
+    encoder.setPositionConversion(conversion / gearing);
     position.setValue(startingAngle.in(Degrees));
     return this;
   }
 
   @Override
-  public AngularControlMotor setVisualizer(Mechanism2d visualizer, Pose3d robotToMotor) {
+  public AngularControlMotor setVisualizer(LoggedMechanism2d visualizer, Pose3d robotToMotor) {
     super.setVisualizer(visualizer, robotToMotor);
 
     root =
@@ -103,14 +103,14 @@ public class AngularControlMotor extends GenericControlledMotor {
             getSimX(Meters.of(robotToMotor.getX())),
             getSimY(Meters.of(robotToMotor.getZ())));
     simulatedArm =
-        new MechanismLigament2d(
+        new LoggedMechanismLigament2d(
             _visualName + "-arm",
             armLength.in(Meters),
             startingAngle.in(Degrees),
             5,
             new Color8Bit(MotorFactory.getNextVisualColor()));
     setpoint =
-        new MechanismLigament2d(
+        new LoggedMechanismLigament2d(
             _visualName + "-setpoint",
             armLength.in(Meters),
             startingAngle.in(Degrees),
@@ -123,12 +123,18 @@ public class AngularControlMotor extends GenericControlledMotor {
 
   @Override
   public void setReference(double reference) {
-    super.setReference(reference);
-    if (!RobotBase.isReal()) {
-      effort.setVoltage(calculateControlEffort(simEncoder.getPosition()), Volts);
-      _motor.set(effort.getVoltage().in(Volts) / RobotController.getBatteryVoltage());
-    } else {
-      pid.setF(getFeedForward().in(Volts) / RobotController.getBatteryVoltage());
+    setReference(
+        reference,
+        controller.getControlType(),
+        getFeedForward(0).in(Volts) / RobotController.getBatteryVoltage());
+  }
+
+  public void updateReference() {
+    if (PIDControlType.NONE != controller.getControlType()) {
+      controller.setReference(
+          reference.getValue(),
+          getControlType(),
+          getFeedForward(0).in(Volts) / RobotController.getBatteryVoltage());
     }
   }
 
@@ -136,18 +142,20 @@ public class AngularControlMotor extends GenericControlledMotor {
     if (RobotBase.isReal()) {
       return encoder.getPosition() > 180 ? encoder.getPosition() - 360 : encoder.getPosition();
     } else {
-      return simEncoder.getPosition();
+      return Units.radiansToDegrees(simMechanism.getAngleRads());
     }
   }
 
   @Override
-  public Voltage getFeedForward() {
-    ArmFeedforward pivotFeedforward =
-        new ArmFeedforward(
-            getMotorFeedFwd().getkS(),
-            kG.getValue(),
-            getMotorFeedFwd().getkV(),
-            getMotorFeedFwd().getkA());
+  public Voltage getFeedForward(double velocity) {
+    if (null == pivotFeedforward || _displayValuesHelper.getLoggingLevel() == LogLevel.CONFIG) {
+      pivotFeedforward =
+          new ArmFeedforward(
+              getMotorFeedFwd().getkS(),
+              kG.getValue(),
+              getMotorFeedFwd().getkV(),
+              getMotorFeedFwd().getkA());
+    }
     Voltage ff =
         Volts.of(pivotFeedforward.calculate(Degrees.of(getPivotPosition()).in(Radians), 0.0));
     feedForward.setValue(ff.in(Volts));
@@ -155,27 +163,25 @@ public class AngularControlMotor extends GenericControlledMotor {
   }
 
   @Override
-  public void draw() {
-    double currentPosition = 0;
-    if (RobotBase.isReal()) {
-      currentPosition = encoder.getPosition();
-    } else {
-      currentPosition = simEncoder.getPosition();
-    }
+  public void periodicUpdate() {
+    updateReference();
+    double currentPosition = getPivotPosition();
     position.setValue(currentPosition);
-    reference.setValue(getReference());
+    velocity.setValue(encoder.getVelocity());
     simulatedArm.setAngle(currentPosition);
     setpoint.setAngle(getReference());
   }
 
   @Override
   public void simulationUpdate() {
-    simMotor.setInput(_motor.get() * RobotController.getBatteryVoltage());
-    simMotor.update(0.020);
-    simEncoder.setPosition(Units.radiansToDegrees(simMotor.getAngleRads()));
+    simMechanism.setInput(_motor.getVoltage());
+    outputEffort.setVoltage(_motor.getVoltage(), Volts);
+    simMechanism.update(0.020);
+    _motor.simulationUpdate(
+        Optional.of(simMechanism.getAngleRads()), simMechanism.getVelocityRadPerSec());
 
     RoboRioSim.setVInVoltage(
-        BatterySim.calculateDefaultBatteryLoadedVoltage(simMotor.getCurrentDrawAmps()));
+        BatterySim.calculateDefaultBatteryLoadedVoltage(simMechanism.getCurrentDrawAmps()));
   }
 
   public boolean isAtMaximum() {
@@ -204,5 +210,10 @@ public class AngularControlMotor extends GenericControlledMotor {
         5,
         3,
         3);
+  }
+
+  @Override
+  public double getEncoderFeedback() {
+    return encoder.getPosition();
   }
 }

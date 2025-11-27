@@ -4,25 +4,18 @@
 
 package org.frc5010.common.config.json;
 
-import com.fasterxml.jackson.core.exc.StreamReadException;
-import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
-import org.frc5010.common.arch.GenericDeviceHandler;
 import org.frc5010.common.arch.GenericRobot;
-import org.frc5010.common.arch.GenericRobot.LogLevel;
 import org.frc5010.common.config.UnitsParser;
+import org.frc5010.common.constants.Constants;
 import org.frc5010.common.constants.GenericDrivetrainConstants;
 
 /** The base JSON class for robot configurations */
 public class RobotJson {
   /* User configuration file for the power mode */
   public String userConfig = "competitionMode.json";
-
-  /** The logging level for the robot */
-  public String logLevel = "COMPETITION";
 
   /** Drivetrain configuration */
   public String driveType = "YAGSL_SWERVE_DRIVE";
@@ -54,8 +47,14 @@ public class RobotJson {
   /** Drivetrain gear ratio between drive motor and wheels */
   public double driveMotorGearRatio = 1.0;
 
-  /** Device definition files */
-  public Map<String, String> devices;
+  /** Whether to load the simulated field */
+  public boolean loadSimulatedField = true;
+
+  /** Game piece definition for first game piece */
+  public String gamePieceA = "GPA";
+
+  /** Game piece definition for second game piece */
+  public String gamePieceB = "GPB";
 
   /**
    * Reads the robot configuration from the given directory
@@ -65,7 +64,6 @@ public class RobotJson {
    * @throws IOException
    */
   public void configureRobot(GenericRobot robot, File directory) throws IOException {
-    GenericRobot.setLoggingLevel(LogLevel.valueOf(logLevel));
     GenericDrivetrainConstants drivetrainConstants = robot.getDrivetrainConstants();
     drivetrainConstants.setTrackWidth(UnitsParser.parseDistance(trackWidth, trackWidthUom));
     drivetrainConstants.setWheelBase(UnitsParser.parseDistance(wheelBase, wheelBaseUom));
@@ -80,22 +78,9 @@ public class RobotJson {
     drivetrainConstants.setkTeleDriveMaxAngularAccelerationUnitsPerSecond(
         userModeJson.maxAngularAccelleration);
     drivetrainConstants.setkDriveMotorGearRatio(driveMotorGearRatio);
-  }
 
-  /**
-   * Reads the mechanism definition files
-   *
-   * @param system the system being configured
-   * @throws IOException
-   * @throws DatabindException
-   * @throws StreamReadException
-   */
-  public void readDeviceDefinitions(GenericDeviceHandler system, File directory)
-      throws StreamReadException, DatabindException, IOException {
-    for (String key : devices.keySet()) {
-      File mechanismDefFile = new File(directory, "devices/" + devices.get(key));
-      assert mechanismDefFile.exists();
-      DeviceConfigReader.readDeviceConfig(system, mechanismDefFile, key);
-    }
+    Constants.Simulation.gamePieceA = gamePieceA;
+    Constants.Simulation.gamePieceB = gamePieceB;
+    Constants.Simulation.loadSimulatedField = loadSimulatedField;
   }
 }

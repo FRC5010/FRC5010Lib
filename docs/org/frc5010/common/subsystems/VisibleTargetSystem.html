@@ -103,17 +103,23 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color"><code>protected boolean</code></div>
 <div class="col-second even-row-color"><code><a href="#hasTargets" class="member-name-link">hasTargets</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#TARGET_PITCH" class="member-name-link">TARGET_PITCH</a></code></div>
+<div class="col-first odd-row-color"><code>protected <a href="../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#TARGET_DISTANCE" class="member-name-link">TARGET_DISTANCE</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="#TARGET_YAW" class="member-name-link">TARGET_YAW</a></code></div>
+<div class="col-first even-row-color"><code>protected <a href="../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></code></div>
+<div class="col-second even-row-color"><code><a href="#TARGET_PITCH" class="member-name-link">TARGET_PITCH</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>protected double</code></div>
-<div class="col-second odd-row-color"><code><a href="#targetHeight" class="member-name-link">targetHeight</a></code></div>
+<div class="col-first odd-row-color"><code>protected <a href="../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#TARGET_YAW" class="member-name-link">TARGET_YAW</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code>protected double</code></div>
-<div class="col-second even-row-color"><code><a href="#targetPitch" class="member-name-link">targetPitch</a></code></div>
+<div class="col-second even-row-color"><code><a href="#targetHeight" class="member-name-link">targetHeight</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>protected double</code></div>
+<div class="col-second odd-row-color"><code><a href="#targetPitch" class="member-name-link">targetPitch</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>protected <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a></code></div>
+<div class="col-second even-row-color"><code><a href="#targetPose" class="member-name-link">targetPose</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><code>protected double</code></div>
 <div class="col-second odd-row-color"><code><a href="#targetYaw" class="member-name-link">targetYaw</a></code></div>
@@ -124,7 +130,7 @@ loadScripts(document, 'script');</script>
 <code><a href="CameraSystem.html#camera">camera</a>, <a href="CameraSystem.html#HAS_VALID_TARGET">HAS_VALID_TARGET</a>, <a href="CameraSystem.html#targetModel">targetModel</a></code></div>
 <div class="inherited-list">
 <h3 id="fields-inherited-from-class-org.frc5010.common.arch.GenericSubsystem">Fields inherited from class&nbsp;org.frc5010.common.arch.<a href="../arch/GenericSubsystem.html" title="class in org.frc5010.common.arch">GenericSubsystem</a></h3>
-<code><a href="../arch/GenericSubsystem.html#devices">devices</a>, <a href="../arch/GenericSubsystem.html#displayValues">displayValues</a>, <a href="../arch/GenericSubsystem.html#logPrefix">logPrefix</a>, <a href="../arch/GenericSubsystem.html#mechanismSimulation">mechanismSimulation</a>, <a href="../arch/GenericSubsystem.html#values">values</a></code></div>
+<code><a href="../arch/GenericSubsystem.html#DashBoard">DashBoard</a>, <a href="../arch/GenericSubsystem.html#devices">devices</a>, <a href="../arch/GenericSubsystem.html#loggingAlert">loggingAlert</a>, <a href="../arch/GenericSubsystem.html#logPrefix">logPrefix</a>, <a href="../arch/GenericSubsystem.html#mechanismSimulation">mechanismSimulation</a>, <a href="../arch/GenericSubsystem.html#networkValues">networkValues</a></code></div>
 </section>
 </li>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
@@ -172,15 +178,20 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Does the camera have a valid target?</div>
 </div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#periodic()" class="member-name-link">periodic</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">This method is called once per scheduler run and it calls the updateCameraInfo() method.</div>
+</div>
 </div>
 </div>
 </div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-org.frc5010.common.subsystems.CameraSystem">Methods inherited from class&nbsp;org.frc5010.common.subsystems.<a href="CameraSystem.html" title="class in org.frc5010.common.subsystems">CameraSystem</a></h3>
-<code><a href="CameraSystem.html#hasAValidTarget()">hasAValidTarget</a>, <a href="CameraSystem.html#periodic()">periodic</a>, <a href="CameraSystem.html#simulationPeriodic()">simulationPeriodic</a>, <a href="CameraSystem.html#updateCameraInfo()">updateCameraInfo</a></code></div>
+<code><a href="CameraSystem.html#hasAValidTarget()">hasAValidTarget</a>, <a href="CameraSystem.html#simulationPeriodic()">simulationPeriodic</a>, <a href="CameraSystem.html#updateCameraInfo()">updateCameraInfo</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-org.frc5010.common.arch.GenericSubsystem">Methods inherited from class&nbsp;org.frc5010.common.arch.<a href="../arch/GenericSubsystem.html" title="class in org.frc5010.common.arch">GenericSubsystem</a></h3>
-<code><a href="../arch/GenericSubsystem.html#addDevice(java.lang.String,java.lang.Object)">addDevice</a>, <a href="../arch/GenericSubsystem.html#getDevice(java.lang.String)">getDevice</a>, <a href="../arch/GenericSubsystem.html#getDisplayValuesHelper()">getDisplayValuesHelper</a>, <a href="../arch/GenericSubsystem.html#getMechVisual()">getMechVisual</a>, <a href="../arch/GenericSubsystem.html#initSendable(edu.wpi.first.util.sendable.SendableBuilder)">initSendable</a>, <a href="../arch/GenericSubsystem.html#setDisplay(boolean)">setDisplay</a>, <a href="../arch/GenericSubsystem.html#setMechSimulation(edu.wpi.first.wpilibj.smartdashboard.Mechanism2d)">setMechSimulation</a></code></div>
+<code><a href="../arch/GenericSubsystem.html#addDevice(java.lang.String,java.lang.Object)">addDevice</a>, <a href="../arch/GenericSubsystem.html#getDevice(java.lang.String)">getDevice</a>, <a href="../arch/GenericSubsystem.html#getDisplayValuesHelper()">getDisplayValuesHelper</a>, <a href="../arch/GenericSubsystem.html#getMechVisual()">getMechVisual</a>, <a href="../arch/GenericSubsystem.html#initSendable(edu.wpi.first.util.sendable.SendableBuilder)">initSendable</a>, <a href="../arch/GenericSubsystem.html#setDisplay(boolean)">setDisplay</a>, <a href="../arch/GenericSubsystem.html#setLoggingLevel(org.frc5010.common.arch.GenericRobot.LogLevel)">setLoggingLevel</a>, <a href="../arch/GenericSubsystem.html#setMechSimulation(org.littletonrobotics.junction.mechanism.LoggedMechanism2d)">setMechSimulation</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-edu.wpi.first.wpilibj2.command.SubsystemBase">Methods inherited from class&nbsp;edu.wpi.first.wpilibj2.command.<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/SubsystemBase.html" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link">SubsystemBase</a></h3>
 <code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/SubsystemBase.html#addChild(java.lang.String,edu.wpi.first.util.sendable.Sendable)" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link">addChild</a>, <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/SubsystemBase.html#getName()" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link">getName</a>, <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/SubsystemBase.html#getSubsystem()" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link">getSubsystem</a>, <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/SubsystemBase.html#setName(java.lang.String)" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link">setName</a>, <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/SubsystemBase.html#setSubsystem(java.lang.String)" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link">setSubsystem</a></code></div>
@@ -231,13 +242,25 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="TARGET_PITCH">
 <h3>TARGET_PITCH</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">TARGET_PITCH</span></div>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></span>&nbsp;<span class="element-name">TARGET_PITCH</span></div>
 </section>
 </li>
 <li>
 <section class="detail" id="TARGET_YAW">
 <h3>TARGET_YAW</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">TARGET_YAW</span></div>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></span>&nbsp;<span class="element-name">TARGET_YAW</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="TARGET_DISTANCE">
+<h3>TARGET_DISTANCE</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></span>&nbsp;<span class="element-name">TARGET_DISTANCE</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="targetPose">
+<h3>targetPose</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a></span>&nbsp;<span class="element-name">targetPose</span></div>
 </section>
 </li>
 </ul>
@@ -308,6 +331,26 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>the pitch of the target</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="periodic()">
+<h3>periodic</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">periodic</span>()</div>
+<div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="CameraSystem.html#periodic()">CameraSystem</a></code></span></div>
+<div class="block">This method is called once per scheduler run and it calls the updateCameraInfo() method.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/Subsystem.html#periodic()" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link">periodic</a></code>&nbsp;in interface&nbsp;<code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/Subsystem.html" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link">Subsystem</a></code></dd>
+<dt>Overrides:</dt>
+<dd><code><a href="CameraSystem.html#periodic()">periodic</a></code>&nbsp;in class&nbsp;<code><a href="CameraSystem.html" title="class in org.frc5010.common.subsystems">CameraSystem</a></code></dd>
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list-long">
+<li><a href="CameraSystem.html#updateCameraInfo()"><code>CameraSystem.updateCameraInfo()</code></a></li>
+</ul>
+</dd>
 </dl>
 </section>
 </li>

@@ -74,7 +74,7 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Known Implementing Classes:</dt>
-<dd><code><a href="../AnalogInput5010.html" title="class in org.frc5010.common.sensors">AnalogInput5010</a></code>, <code><a href="CanCoderEncoder.html" title="class in org.frc5010.common.sensors.encoder">CanCoderEncoder</a></code>, <code><a href="../absolute_encoder/GenericAbsoluteEncoder.html" title="class in org.frc5010.common.sensors.absolute_encoder">GenericAbsoluteEncoder</a></code>, <code><a href="../absolute_encoder/RevAbsoluteEncoder.html" title="class in org.frc5010.common.sensors.absolute_encoder">RevAbsoluteEncoder</a></code>, <code><a href="RevEncoder.html" title="class in org.frc5010.common.sensors.encoder">RevEncoder</a></code>, <code><a href="SimulatedEncoder.html" title="class in org.frc5010.common.sensors.encoder">SimulatedEncoder</a></code>, <code><a href="TalonFXEncoder.html" title="class in org.frc5010.common.sensors.encoder">TalonFXEncoder</a></code>, <code><a href="WpiEncoder.html" title="class in org.frc5010.common.sensors.encoder">WpiEncoder</a></code></dd>
+<dd><code><a href="../AnalogInput5010.html" title="class in org.frc5010.common.sensors">AnalogInput5010</a></code>, <code><a href="CanCoderEncoder.html" title="class in org.frc5010.common.sensors.encoder">CanCoderEncoder</a></code>, <code><a href="../absolute_encoder/GenericAbsoluteEncoder.html" title="class in org.frc5010.common.sensors.absolute_encoder">GenericAbsoluteEncoder</a></code>, <code><a href="../absolute_encoder/RevAbsoluteEncoder.html" title="class in org.frc5010.common.sensors.absolute_encoder">RevAbsoluteEncoder</a></code>, <code><a href="RevEncoder.html" title="class in org.frc5010.common.sensors.encoder">RevEncoder</a></code>, <code><a href="SimulatedEncoder.html" title="class in org.frc5010.common.sensors.encoder">SimulatedEncoder</a></code>, <code><a href="TalonFXEncoder.html" title="class in org.frc5010.common.sensors.encoder">TalonFXEncoder</a></code>, <code><a href="ThriftyNovaEncoder.html" title="class in org.frc5010.common.sensors.encoder">ThriftyNovaEncoder</a></code>, <code><a href="WpiEncoder.html" title="class in org.frc5010.common.sensors.encoder">WpiEncoder</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">GenericEncoder</span></div>
@@ -99,10 +99,16 @@ loadScripts(document, 'script');</script>
 <div class="block">Get the current position of the encoder</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getVelocity()" class="member-name-link">getVelocity</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getPositionConversion()" class="member-name-link">getPositionConversion</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getVelocity()" class="member-name-link">getVelocity</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Get the current velocity of the encoder</div>
 </div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getVelocityConversion()" class="member-name-link">getVelocityConversion</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#reset()" class="member-name-link">reset</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
@@ -133,6 +139,10 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Set the velocity conversion factor of the encoder</div>
 </div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#simulationUpdate(java.util.Optional,java.lang.Double)" class="member-name-link">simulationUpdate</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&nbsp;position,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&nbsp;velocity)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -229,6 +239,25 @@ loadScripts(document, 'script');</script>
 <dt>Parameters:</dt>
 <dd><code>inverted</code> - - true if encoder should be inverted</dd>
 </dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getPositionConversion()">
+<h3>getPositionConversion</h3>
+<div class="member-signature"><span class="return-type">double</span>&nbsp;<span class="element-name">getPositionConversion</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="getVelocityConversion()">
+<h3>getVelocityConversion</h3>
+<div class="member-signature"><span class="return-type">double</span>&nbsp;<span class="element-name">getVelocityConversion</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="simulationUpdate(java.util.Optional,java.lang.Double)">
+<h3>simulationUpdate</h3>
+<div class="member-signature"><span class="return-type">void</span>&nbsp;<span class="element-name">simulationUpdate</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&nbsp;position,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&nbsp;velocity)</span></div>
 </section>
 </li>
 </ul>

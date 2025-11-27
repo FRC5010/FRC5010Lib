@@ -9,33 +9,45 @@ import static edu.wpi.first.units.Units.Meters;
 import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.units.measure.AngularVelocity;
+import edu.wpi.first.units.measure.Current;
 import edu.wpi.first.units.measure.Distance;
-import edu.wpi.first.wpilibj.smartdashboard.Mechanism2d;
+import edu.wpi.first.wpilibj.Alert;
+import edu.wpi.first.wpilibj.Alert.AlertType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
+import java.util.Optional;
+import org.frc5010.common.arch.GenericRobot.LogLevel;
 import org.frc5010.common.arch.WpiHelperInterface;
 import org.frc5010.common.constants.RobotConstantsDef;
-import org.frc5010.common.motors.MotorController5010;
-import org.frc5010.common.motors.PIDController5010;
+import org.frc5010.common.motors.GenericMotorController;
+import org.frc5010.common.motors.GenericPIDController;
+import org.frc5010.common.motors.MotorConstants.Motor;
 import org.frc5010.common.sensors.encoder.GenericEncoder;
 import org.frc5010.common.telemetry.DisplayValuesHelper;
+import org.littletonrobotics.junction.mechanism.LoggedMechanism2d;
+import yams.motorcontrollers.SmartMotorController;
+import yams.motorcontrollers.SmartMotorControllerConfig;
 
 /** A class that wraps a motor controller with functionality */
-public class GenericFunctionalMotor implements MotorController5010, WpiHelperInterface {
+public class GenericFunctionalMotor implements GenericMotorController, WpiHelperInterface {
   /** The motor */
-  protected MotorController5010 _motor;
+  protected GenericMotorController _motor;
 
-  protected Mechanism2d _visualizer;
+  protected LoggedMechanism2d _visualizer;
   protected Pose3d _robotToMotor;
   protected String _visualName;
   protected DisplayValuesHelper _displayValuesHelper;
+  protected Alert loggingAlert =
+      new Alert(
+          this.getClass().getSimpleName() + " Logging Mode is not COMPETITION!",
+          AlertType.kWarning);
 
   /**
    * Constructor for a motor
    *
    * @param motor The motor
    */
-  public GenericFunctionalMotor(MotorController5010 motor, String visualName) {
+  public GenericFunctionalMotor(GenericMotorController motor, String visualName) {
     this._motor = motor;
     _visualName = visualName;
   }
@@ -46,9 +58,35 @@ public class GenericFunctionalMotor implements MotorController5010, WpiHelperInt
    * @param motor The motor
    * @param slewRate The slew rate
    */
-  public GenericFunctionalMotor(MotorController5010 motor, double slewRate) {
+  public GenericFunctionalMotor(GenericMotorController motor, double slewRate) {
     this._motor = motor;
     _motor.setSlewRate(slewRate);
+  }
+
+  /**
+   * Sets the logging level for the motor. Values that are at a higher or equal level to the
+   * specified level will be displayed on the dashboard.
+   *
+   * @param logLevel the level to set the motor to
+   */
+  public GenericFunctionalMotor setLogLevel(LogLevel logLevel) {
+    _displayValuesHelper.setLoggingLevel(logLevel);
+    if (logLevel == LogLevel.COMPETITION) {
+      loggingAlert.set(false);
+    } else {
+      loggingAlert.setText(_visualName + " Logging Level is " + logLevel);
+      loggingAlert.set(true);
+    }
+    return this;
+  }
+
+  /**
+   * Gets the current logging level for the motor.
+   *
+   * @return the current LogLevel
+   */
+  public LogLevel getLogLevel() {
+    return _displayValuesHelper.getLoggingLevel();
   }
 
   /**
@@ -58,8 +96,12 @@ public class GenericFunctionalMotor implements MotorController5010, WpiHelperInt
    * @return a new instance of MotorController5010 with the specified port
    */
   @Override
-  public MotorController5010 duplicate(int port) {
+  public GenericMotorController duplicate(int port) {
     return _motor.duplicate(port);
+  }
+
+  public GenericMotorController getMotorController() {
+    return _motor;
   }
 
   /**
@@ -69,7 +111,7 @@ public class GenericFunctionalMotor implements MotorController5010, WpiHelperInt
    * @return a reference to the current MotorController5010 instance
    */
   @Override
-  public MotorController5010 setCurrentLimit(int limit) {
+  public GenericMotorController setCurrentLimit(Current limit) {
     _motor.setCurrentLimit(limit);
     return this;
   }
@@ -81,7 +123,7 @@ public class GenericFunctionalMotor implements MotorController5010, WpiHelperInt
    * @return a reference to the current MotorController5010 instance
    */
   @Override
-  public MotorController5010 setSlewRate(double rate) {
+  public GenericMotorController setSlewRate(double rate) {
     _motor.setSlewRate(rate);
     return this;
   }
@@ -129,7 +171,7 @@ public class GenericFunctionalMotor implements MotorController5010, WpiHelperInt
   /**
    * Disables the motor by calling the disable method on the underlying motor object.
    *
-   * @see MotorController5010#disable()
+   * @see GenericMotorController#disable()
    */
   @Override
   public void disable() {
@@ -139,7 +181,7 @@ public class GenericFunctionalMotor implements MotorController5010, WpiHelperInt
   /**
    * Stops the motor by calling the stopMotor method on the underlying motor object.
    *
-   * @see MotorController5010#stopMotor()
+   * @see GenericMotorController#stopMotor()
    */
   @Override
   public void stopMotor() {
@@ -153,7 +195,7 @@ public class GenericFunctionalMotor implements MotorController5010, WpiHelperInt
    * @return a reference to the current MotorController5010 instance
    */
   @Override
-  public MotorController5010 setFollow(MotorController5010 motor) {
+  public GenericMotorController setFollow(GenericMotorController motor) {
     _motor.setFollow(motor);
     return this;
   }
@@ -166,7 +208,7 @@ public class GenericFunctionalMotor implements MotorController5010, WpiHelperInt
    * @return a reference to the current MotorController5010 instance
    */
   @Override
-  public MotorController5010 setFollow(MotorController5010 motor, boolean inverted) {
+  public GenericMotorController setFollow(GenericMotorController motor, boolean inverted) {
     _motor.setFollow(motor, inverted);
     return this;
   }
@@ -178,7 +220,7 @@ public class GenericFunctionalMotor implements MotorController5010, WpiHelperInt
    * @return a reference to the current MotorController5010 instance
    */
   @Override
-  public MotorController5010 invert(boolean inverted) {
+  public GenericMotorController invert(boolean inverted) {
     _motor.invert(inverted);
     return this;
   }
@@ -200,8 +242,8 @@ public class GenericFunctionalMotor implements MotorController5010, WpiHelperInt
    * @return the generic encoder for the motor
    */
   @Override
-  public GenericEncoder getMotorEncoder(int countsPerRev) {
-    return _motor.getMotorEncoder(countsPerRev);
+  public GenericEncoder createMotorEncoder(int countsPerRev) {
+    return _motor.createMotorEncoder(countsPerRev);
   }
 
   /**
@@ -211,7 +253,7 @@ public class GenericFunctionalMotor implements MotorController5010, WpiHelperInt
    * @throws UnsupportedOperationException if the motor does not support PIDController5010
    */
   @Override
-  public PIDController5010 getPIDController5010() {
+  public GenericPIDController getPIDController5010() {
     throw new UnsupportedOperationException("Not supported for this motor");
   }
 
@@ -236,18 +278,18 @@ public class GenericFunctionalMotor implements MotorController5010, WpiHelperInt
     return _motor.getMotor();
   }
 
-  public GenericFunctionalMotor setVisualizer(Mechanism2d visualizer, Pose3d robotToMotor) {
+  public GenericFunctionalMotor setVisualizer(LoggedMechanism2d visualizer, Pose3d robotToMotor) {
     _visualizer = visualizer;
     _robotToMotor = robotToMotor;
     return this;
   }
 
-  public Mechanism2d getVisualizer() {
+  public LoggedMechanism2d getVisualizer() {
     return _visualizer;
   }
 
   /** Needs to be overridden by subclasses to draw the motor behavior on the visualizer */
-  public void draw() {}
+  public void periodicUpdate() {}
 
   /**
    * Returns the pose of the motor relative to the robot's origin.
@@ -269,10 +311,10 @@ public class GenericFunctionalMotor implements MotorController5010, WpiHelperInt
 
   /**
    * Converts a given distance in the x-direction to a x-coordinate appropriate for visualizing on a
-   * Mechanism2d.
+   * LoggedMechanism2d.
    *
    * @param x the distance in the x-direction
-   * @return the x-coordinate for visualizing on a Mechanism2d
+   * @return the x-coordinate for visualizing on a LoggedMechanism2d
    */
   public double getSimX(Distance x) {
     return x.in(Meters) * RobotConstantsDef.robotVisualH / 2.0
@@ -281,10 +323,10 @@ public class GenericFunctionalMotor implements MotorController5010, WpiHelperInt
 
   /**
    * Converts a given distance in the y-direction to a y-coordinate appropriate for visualizing on a
-   * Mechanism2d.
+   * LoggedMechanism2d.
    *
    * @param y the distance in the y-direction
-   * @return the y-coordinate for visualizing on a Mechanism2d
+   * @return the y-coordinate for visualizing on a LoggedMechanism2d
    */
   public double getSimY(Distance y) {
     return y.in(Meters);
@@ -297,7 +339,7 @@ public class GenericFunctionalMotor implements MotorController5010, WpiHelperInt
    */
   @Override
   public AngularVelocity getMaxRPM() {
-    throw new UnsupportedOperationException("Unimplemented method 'getMaxRPM'");
+    return _motor.getMaxRPM();
   }
 
   /**
@@ -307,7 +349,7 @@ public class GenericFunctionalMotor implements MotorController5010, WpiHelperInt
    * @return This motor controller.
    */
   @Override
-  public MotorController5010 setVoltageCompensation(double nominalVoltage) {
+  public GenericMotorController setVoltageCompensation(double nominalVoltage) {
     _motor.setVoltageCompensation(nominalVoltage);
     return this;
   }
@@ -325,7 +367,7 @@ public class GenericFunctionalMotor implements MotorController5010, WpiHelperInt
    * @return This motor controller instance.
    */
   @Override
-  public MotorController5010 setMotorBrake(boolean isBrakeMode) {
+  public GenericMotorController setMotorBrake(boolean isBrakeMode) {
     _motor.setMotorBrake(isBrakeMode);
     return this;
   }
@@ -391,5 +433,59 @@ public class GenericFunctionalMotor implements MotorController5010, WpiHelperInt
    */
   protected void initiateDisplayValues() {
     throw new UnsupportedOperationException("Unimplemented method 'initiateDisplayValues'");
+  }
+
+  /**
+   * Sets the simulated instance of the motor for use in simulations. This method passes the motor
+   * simulation type to the motor controller, which should be implemented to use the simulated motor
+   * type in its simulation.
+   *
+   * @param motorSimulationType the simulated instance of the motor
+   */
+  @Override
+  public void setMotorSimulationType(DCMotor motorSimulationType) {
+    _motor.setMotorSimulationType(motorSimulationType);
+  }
+
+  /**
+   * Update the motor simulation model with the current state of the motor.
+   *
+   * @param position The current angle of the motor in radians.
+   * @param velocity The current angular velocity of the motor in radians per second.
+   */
+  @Override
+  public void simulationUpdate(Optional<Double> position, Double velocity) {
+    _motor.simulationUpdate(position, velocity);
+  }
+
+  /**
+   * Sets the maximum angular velocity of the motor in rotations per minute.
+   *
+   * @param rpm The maximum angular velocity of the motor in rotations per minute.
+   */
+  @Override
+  public void setMaxRPM(AngularVelocity rpm) {
+    _motor.setMaxRPM(rpm);
+  }
+
+  /**
+   * Get the motor configuration for this motor controller.
+   *
+   * @return The motor configuration for this motor controller.
+   */
+  @Override
+  public Motor getMotorConfig() {
+    return _motor.getMotorConfig();
+  }
+
+  /**
+   * Get the smart motor controller associated with this motor.
+   *
+   * @param config The configuration for the smart motor controller
+   * @return The smart motor controller associated with this motor
+   */
+  @Override
+  public SmartMotorController getSmartMotorController(SmartMotorControllerConfig config) {
+    return _motor.getSmartMotorController(config);
   }
 }

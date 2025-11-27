@@ -23,6 +23,9 @@ public class SimulatedVisualTargetCamera extends SimulatedCamera {
    * @param strategy - the pose strategy
    * @param cameraToRobot - the camera-to-robot transform
    * @param poseSupplier - the pose supplier
+   * @param width - the camera width
+   * @param height - the camera height
+   * @param fov - the camera field of view
    */
   public SimulatedVisualTargetCamera(
       String name,
@@ -30,8 +33,11 @@ public class SimulatedVisualTargetCamera extends SimulatedCamera {
       AprilTagFieldLayout fieldLayout,
       PoseStrategy strategy,
       Transform3d cameraToRobot,
-      Supplier<Pose2d> poseSupplier) {
-    super(name, colIndex, fieldLayout, strategy, cameraToRobot, poseSupplier);
+      Supplier<Pose2d> poseSupplier,
+      int width,
+      int height,
+      double fov) {
+    super(name, colIndex, fieldLayout, strategy, cameraToRobot, poseSupplier, width, height, fov);
   }
 
   /** Update the simulated camera */

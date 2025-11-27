@@ -40,6 +40,8 @@ jobs:
         run: ./gradlew installRoboRioToolchain
       - name: Build vendordep
         run: ./gradlew build
+      - name: Generate Javadocs
+        run: ./gradlew javadoc   
       - name: Publish vendordep
         run: ./gradlew publish
       - name: Update repository

@@ -107,7 +107,7 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/sysid/SysIdRoutine.html" title="class or interface in edu.wpi.first.wpilibj2.command.sysid" class="external-link">SysIdRoutine</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#angleSysIdRoutine(org.frc5010.common.motors.MotorController5010,org.frc5010.common.sensors.encoder.GenericEncoder,java.lang.String,edu.wpi.first.wpilibj2.command.SubsystemBase)" class="member-name-link">angleSysIdRoutine</a><wbr>(<a href="MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a>&nbsp;motor,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#angleSysIdRoutine(org.frc5010.common.motors.GenericMotorController,org.frc5010.common.sensors.encoder.GenericEncoder,java.lang.String,edu.wpi.first.wpilibj2.command.SubsystemBase)" class="member-name-link">angleSysIdRoutine</a><wbr>(<a href="GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a>&nbsp;motor,
  <a href="../sensors/encoder/GenericEncoder.html" title="interface in org.frc5010.common.sensors.encoder">GenericEncoder</a>&nbsp;encoder,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;motorName,
  <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/SubsystemBase.html" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link">SubsystemBase</a>&nbsp;subsystemBase)</code></div>
@@ -139,11 +139,16 @@ loadScripts(document, 'script');</script>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#getSysIdQuasistaticForward(edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine)" class="member-name-link">getSysIdQuasistaticForward</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/sysid/SysIdRoutine.html" title="class or interface in edu.wpi.first.wpilibj2.command.sysid" class="external-link">SysIdRoutine</a>&nbsp;routine)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/sysid/SysIdRoutine.html" title="class or interface in edu.wpi.first.wpilibj2.command.sysid" class="external-link">SysIdRoutine</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#rpmSysIdRoutine(org.frc5010.common.motors.MotorController5010,org.frc5010.common.sensors.encoder.GenericEncoder,java.lang.String,edu.wpi.first.wpilibj2.command.SubsystemBase)" class="member-name-link">rpmSysIdRoutine</a><wbr>(<a href="MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a>&nbsp;motor,
+<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#rpmSysIdRoutine(org.frc5010.common.motors.GenericMotorController,org.frc5010.common.sensors.encoder.GenericEncoder,java.lang.String,edu.wpi.first.wpilibj2.command.SubsystemBase)" class="member-name-link">rpmSysIdRoutine</a><wbr>(<a href="GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a>&nbsp;motor,
  <a href="../sensors/encoder/GenericEncoder.html" title="interface in org.frc5010.common.sensors.encoder">GenericEncoder</a>&nbsp;encoder,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;motorName,
  <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/SubsystemBase.html" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link">SubsystemBase</a>&nbsp;subsystemBase)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/sysid/SysIdRoutine.html" title="class or interface in edu.wpi.first.wpilibj2.command.sysid" class="external-link">SysIdRoutine</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#rpmSysIdRoutine(yams.motorcontrollers.SmartMotorController,java.lang.String,edu.wpi.first.wpilibj2.command.SubsystemBase)" class="member-name-link">rpmSysIdRoutine</a><wbr>(yams.motorcontrollers.SmartMotorController&nbsp;motor,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;motorName,
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/SubsystemBase.html" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link">SubsystemBase</a>&nbsp;subsystemBase)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -176,18 +181,26 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="rpmSysIdRoutine(org.frc5010.common.motors.MotorController5010,org.frc5010.common.sensors.encoder.GenericEncoder,java.lang.String,edu.wpi.first.wpilibj2.command.SubsystemBase)">
+<section class="detail" id="rpmSysIdRoutine(org.frc5010.common.motors.GenericMotorController,org.frc5010.common.sensors.encoder.GenericEncoder,java.lang.String,edu.wpi.first.wpilibj2.command.SubsystemBase)">
 <h3>rpmSysIdRoutine</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/sysid/SysIdRoutine.html" title="class or interface in edu.wpi.first.wpilibj2.command.sysid" class="external-link">SysIdRoutine</a></span>&nbsp;<span class="element-name">rpmSysIdRoutine</span><wbr><span class="parameters">(<a href="MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a>&nbsp;motor,
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/sysid/SysIdRoutine.html" title="class or interface in edu.wpi.first.wpilibj2.command.sysid" class="external-link">SysIdRoutine</a></span>&nbsp;<span class="element-name">rpmSysIdRoutine</span><wbr><span class="parameters">(<a href="GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a>&nbsp;motor,
  <a href="../sensors/encoder/GenericEncoder.html" title="interface in org.frc5010.common.sensors.encoder">GenericEncoder</a>&nbsp;encoder,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;motorName,
  <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/SubsystemBase.html" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link">SubsystemBase</a>&nbsp;subsystemBase)</span></div>
 </section>
 </li>
 <li>
-<section class="detail" id="angleSysIdRoutine(org.frc5010.common.motors.MotorController5010,org.frc5010.common.sensors.encoder.GenericEncoder,java.lang.String,edu.wpi.first.wpilibj2.command.SubsystemBase)">
+<section class="detail" id="rpmSysIdRoutine(yams.motorcontrollers.SmartMotorController,java.lang.String,edu.wpi.first.wpilibj2.command.SubsystemBase)">
+<h3>rpmSysIdRoutine</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/sysid/SysIdRoutine.html" title="class or interface in edu.wpi.first.wpilibj2.command.sysid" class="external-link">SysIdRoutine</a></span>&nbsp;<span class="element-name">rpmSysIdRoutine</span><wbr><span class="parameters">(yams.motorcontrollers.SmartMotorController&nbsp;motor,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;motorName,
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/SubsystemBase.html" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link">SubsystemBase</a>&nbsp;subsystemBase)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="angleSysIdRoutine(org.frc5010.common.motors.GenericMotorController,org.frc5010.common.sensors.encoder.GenericEncoder,java.lang.String,edu.wpi.first.wpilibj2.command.SubsystemBase)">
 <h3>angleSysIdRoutine</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/sysid/SysIdRoutine.html" title="class or interface in edu.wpi.first.wpilibj2.command.sysid" class="external-link">SysIdRoutine</a></span>&nbsp;<span class="element-name">angleSysIdRoutine</span><wbr><span class="parameters">(<a href="MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a>&nbsp;motor,
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/sysid/SysIdRoutine.html" title="class or interface in edu.wpi.first.wpilibj2.command.sysid" class="external-link">SysIdRoutine</a></span>&nbsp;<span class="element-name">angleSysIdRoutine</span><wbr><span class="parameters">(<a href="GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a>&nbsp;motor,
  <a href="../sensors/encoder/GenericEncoder.html" title="interface in org.frc5010.common.sensors.encoder">GenericEncoder</a>&nbsp;encoder,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;motorName,
  <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/SubsystemBase.html" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link">SubsystemBase</a>&nbsp;subsystemBase)</span></div>

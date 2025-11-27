@@ -79,16 +79,16 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/motorcontrol/MotorController.html" title="class or interface in edu.wpi.first.wpilibj.motorcontrol" class="external-link">MotorController</a></code>, <code><a href="../../arch/WpiHelperInterface.html" title="interface in org.frc5010.common.arch">WpiHelperInterface</a></code>, <code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code>, <code><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></code></dd>
+<dd><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/motorcontrol/MotorController.html" title="class or interface in edu.wpi.first.wpilibj.motorcontrol" class="external-link">MotorController</a></code>, <code><a href="../../arch/WpiHelperInterface.html" title="interface in org.frc5010.common.arch">WpiHelperInterface</a></code>, <code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code>, <code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
 </dl>
 <dl class="notes">
 <dt>Direct Known Subclasses:</dt>
-<dd><code><a href="AngularControlMotor.html" title="class in org.frc5010.common.motors.function">AngularControlMotor</a></code>, <code><a href="PositionControlMotor.html" title="class in org.frc5010.common.motors.function">PositionControlMotor</a></code>, <code><a href="VelocityControlMotor.html" title="class in org.frc5010.common.motors.function">VelocityControlMotor</a></code></dd>
+<dd><code><a href="AngularControlMotor.html" title="class in org.frc5010.common.motors.function">AngularControlMotor</a></code>, <code><a href="PositionControlMotor.html" title="class in org.frc5010.common.motors.function">PositionControlMotor</a></code>, <code><a href="VelocityControlMotor.html" title="class in org.frc5010.common.motors.function">VelocityControlMotor</a></code>, <code><a href="VerticalPositionControlMotor.html" title="class in org.frc5010.common.motors.function">VerticalPositionControlMotor</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public abstract class </span><span class="element-name type-name-label">GenericControlledMotor</span>
 <span class="extends-implements">extends <a href="GenericFunctionalMotor.html" title="class in org.frc5010.common.motors.function">GenericFunctionalMotor</a>
-implements <a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></span></div>
+implements <a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></span></div>
 <div class="block">Add your docs here.</div>
 </section>
 <section class="summary">
@@ -98,8 +98,8 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 <section class="nested-class-summary" id="nested-class-summary">
 <h2>Nested Class Summary</h2>
 <div class="inherited-list">
-<h2 id="nested-classes-inherited-from-class-org.frc5010.common.motors.PIDController5010">Nested classes/interfaces inherited from interface&nbsp;org.frc5010.common.motors.<a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></h2>
-<code><a href="../PIDController5010.PIDControlType.html" title="enum class in org.frc5010.common.motors">PIDController5010.PIDControlType</a></code></div>
+<h2 id="nested-classes-inherited-from-class-org.frc5010.common.motors.GenericPIDController">Nested classes/interfaces inherited from interface&nbsp;org.frc5010.common.motors.<a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></h2>
+<code><a href="../GenericPIDController.PIDControlType.html" title="enum class in org.frc5010.common.motors">GenericPIDController.PIDControlType</a></code></div>
 </section>
 </li>
 <!-- =========== FIELD SUMMARY =========== -->
@@ -111,17 +111,23 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
+<div class="col-first even-row-color"><code>protected <a href="../../telemetry/DisplayVoltage.html" title="class in org.frc5010.common.telemetry">DisplayVoltage</a></code></div>
+<div class="col-second even-row-color"><code><a href="#actualEffort" class="member-name-link">actualEffort</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>protected <a href="../../telemetry/DisplayVoltage.html" title="class in org.frc5010.common.telemetry">DisplayVoltage</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#calculatedEffort" class="member-name-link">calculatedEffort</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color"><code><a href="#CONFIG_MODE" class="member-name-link">CONFIG_MODE</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#CONTROL_TYPE" class="member-name-link">CONTROL_TYPE</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>protected <a href="../../telemetry/DisplayString.html" title="class in org.frc5010.common.telemetry">DisplayString</a></code></div>
-<div class="col-second even-row-color"><code><a href="#controlType" class="member-name-link">controlType</a></code></div>
+<div class="col-first even-row-color"><code>protected <a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></div>
+<div class="col-second even-row-color"><code><a href="#controller" class="member-name-link">controller</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>protected <a href="../../telemetry/DisplayVoltage.html" title="class in org.frc5010.common.telemetry">DisplayVoltage</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#effort" class="member-name-link">effort</a></code></div>
+<div class="col-first odd-row-color"><code>protected <a href="../../telemetry/DisplayString.html" title="class in org.frc5010.common.telemetry">DisplayString</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#controlType" class="member-name-link">controlType</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color"><code><a href="#EFFORT" class="member-name-link">EFFORT</a></code></div>
@@ -130,82 +136,100 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 <div class="col-second odd-row-color"><code><a href="#encoder" class="member-name-link">encoder</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code>protected <a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></code></div>
-<div class="col-second even-row-color"><code><a href="#feedForward" class="member-name-link">feedForward</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#FEEDFORWARD" class="member-name-link">FEEDFORWARD</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>protected <a href="../../constants/MotorFeedFwdConstants.html" title="class in org.frc5010.common.constants">MotorFeedFwdConstants</a></code></div>
-<div class="col-second even-row-color"><code><a href="#feedFwd" class="member-name-link">feedFwd</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#I_ZONE" class="member-name-link">I_ZONE</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>protected <a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></code></div>
-<div class="col-second even-row-color"><code><a href="#iZone" class="member-name-link">iZone</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#K_A" class="member-name-link">K_A</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="#K_D" class="member-name-link">K_D</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#K_F" class="member-name-link">K_F</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="#K_I" class="member-name-link">K_I</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#K_P" class="member-name-link">K_P</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="#K_S" class="member-name-link">K_S</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#K_V" class="member-name-link">K_V</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>protected <a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></code></div>
-<div class="col-second even-row-color"><code><a href="#kA" class="member-name-link">kA</a></code></div>
+<div class="col-second even-row-color"><code><a href="#encoderFeedback" class="member-name-link">encoderFeedback</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><code>protected <a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#kD" class="member-name-link">kD</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#feedForward" class="member-name-link">feedForward</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>protected <a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></code></div>
-<div class="col-second even-row-color"><code><a href="#kF" class="member-name-link">kF</a></code></div>
+<div class="col-first even-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color"><code><a href="#FEEDFORWARD" class="member-name-link">FEEDFORWARD</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>protected <a href="../../constants/MotorFeedFwdConstants.html" title="class in org.frc5010.common.constants">MotorFeedFwdConstants</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#feedFwd" class="member-name-link">feedFwd</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color"><code><a href="#I_ZONE" class="member-name-link">I_ZONE</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><code>protected <a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#kI" class="member-name-link">kI</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#iZone" class="member-name-link">iZone</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>protected <a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></code></div>
-<div class="col-second even-row-color"><code><a href="#kP" class="member-name-link">kP</a></code></div>
+<div class="col-first even-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color"><code><a href="#K_A" class="member-name-link">K_A</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#K_D" class="member-name-link">K_D</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color"><code><a href="#K_F" class="member-name-link">K_F</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#K_I" class="member-name-link">K_I</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color"><code><a href="#K_P" class="member-name-link">K_P</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#K_S" class="member-name-link">K_S</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color"><code><a href="#K_V" class="member-name-link">K_V</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><code>protected <a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#kS" class="member-name-link">kS</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#kA" class="member-name-link">kA</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code>protected <a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></code></div>
-<div class="col-second even-row-color"><code><a href="#kV" class="member-name-link">kV</a></code></div>
+<div class="col-second even-row-color"><code><a href="#kD" class="member-name-link">kD</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#MAX_OUTPUT" class="member-name-link">MAX_OUTPUT</a></code></div>
+<div class="col-first odd-row-color"><code>protected <a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#kF" class="member-name-link">kF</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code>protected <a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></code></div>
-<div class="col-second even-row-color"><code><a href="#maxOutput" class="member-name-link">maxOutput</a></code></div>
+<div class="col-second even-row-color"><code><a href="#kI" class="member-name-link">kI</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#MIN_OUTPUT" class="member-name-link">MIN_OUTPUT</a></code></div>
+<div class="col-first odd-row-color"><code>protected <a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#kP" class="member-name-link">kP</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code>protected <a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></code></div>
-<div class="col-second even-row-color"><code><a href="#minOutput" class="member-name-link">minOutput</a></code></div>
+<div class="col-second even-row-color"><code><a href="#kS" class="member-name-link">kS</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>protected <a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#pid" class="member-name-link">pid</a></code></div>
+<div class="col-first odd-row-color"><code>protected <a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#kV" class="member-name-link">kV</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color"><code><a href="#MAX_OUTPUT" class="member-name-link">MAX_OUTPUT</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>protected <a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#maxOutput" class="member-name-link">maxOutput</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color"><code><a href="#MIN_OUTPUT" class="member-name-link">MIN_OUTPUT</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>protected <a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#minOutput" class="member-name-link">minOutput</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>protected <a href="../../telemetry/DisplayVoltage.html" title="class in org.frc5010.common.telemetry">DisplayVoltage</a></code></div>
+<div class="col-second even-row-color"><code><a href="#outputEffort" class="member-name-link">outputEffort</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>protected <a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#outputFactor" class="member-name-link">outputFactor</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code>protected <a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></code></div>
 <div class="col-second even-row-color"><code><a href="#position" class="member-name-link">position</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#POSITION" class="member-name-link">POSITION</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color"><code><a href="#PROFILED_MAX_ACCEL" class="member-name-link">PROFILED_MAX_ACCEL</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#PROFILED_MAX_VEL" class="member-name-link">PROFILED_MAX_VEL</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>protected <a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></code></div>
+<div class="col-second even-row-color"><code><a href="#profiledMaxAccel" class="member-name-link">profiledMaxAccel</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>protected <a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#profiledMaxVel" class="member-name-link">profiledMaxVel</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code>protected <a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></code></div>
 <div class="col-second even-row-color"><code><a href="#reference" class="member-name-link">reference</a></code></div>
@@ -214,21 +238,24 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 <div class="col-second odd-row-color"><code><a href="#REFERENCE" class="member-name-link">REFERENCE</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
 <div class="col-first even-row-color"><code>protected <a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></code></div>
-<div class="col-second even-row-color"><code><a href="#tolerance" class="member-name-link">tolerance</a></code></div>
+<div class="col-second even-row-color"><code><a href="#referenceVelocity" class="member-name-link">referenceVelocity</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#TOLERANCE" class="member-name-link">TOLERANCE</a></code></div>
+<div class="col-first odd-row-color"><code>protected <a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#tolerance" class="member-name-link">tolerance</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>protected <a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></code></div>
-<div class="col-second even-row-color"><code><a href="#velocity" class="member-name-link">velocity</a></code></div>
+<div class="col-first even-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color"><code><a href="#TOLERANCE" class="member-name-link">TOLERANCE</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#VELOCITY" class="member-name-link">VELOCITY</a></code></div>
+<div class="col-first odd-row-color"><code>protected <a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#velocity" class="member-name-link">velocity</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>protected static final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color"><code><a href="#VELOCITY" class="member-name-link">VELOCITY</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
 </div>
 <div class="inherited-list">
 <h3 id="fields-inherited-from-class-org.frc5010.common.motors.function.GenericFunctionalMotor">Fields inherited from class&nbsp;org.frc5010.common.motors.function.<a href="GenericFunctionalMotor.html" title="class in org.frc5010.common.motors.function">GenericFunctionalMotor</a></h3>
-<code><a href="GenericFunctionalMotor.html#_displayValuesHelper">_displayValuesHelper</a>, <a href="GenericFunctionalMotor.html#_motor">_motor</a>, <a href="GenericFunctionalMotor.html#_robotToMotor">_robotToMotor</a>, <a href="GenericFunctionalMotor.html#_visualizer">_visualizer</a>, <a href="GenericFunctionalMotor.html#_visualName">_visualName</a></code></div>
+<code><a href="GenericFunctionalMotor.html#_displayValuesHelper">_displayValuesHelper</a>, <a href="GenericFunctionalMotor.html#_motor">_motor</a>, <a href="GenericFunctionalMotor.html#_robotToMotor">_robotToMotor</a>, <a href="GenericFunctionalMotor.html#_visualizer">_visualizer</a>, <a href="GenericFunctionalMotor.html#_visualName">_visualName</a>, <a href="GenericFunctionalMotor.html#loggingAlert">loggingAlert</a></code></div>
 </section>
 </li>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
@@ -239,7 +266,7 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(org.frc5010.common.motors.MotorController5010,java.lang.String,org.frc5010.common.telemetry.DisplayValuesHelper)" class="member-name-link">GenericControlledMotor</a><wbr>(<a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a>&nbsp;motor,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(org.frc5010.common.motors.GenericMotorController,java.lang.String,org.frc5010.common.telemetry.DisplayValuesHelper)" class="member-name-link">GenericControlledMotor</a><wbr>(<a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a>&nbsp;motor,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;visualName,
  <a href="../../telemetry/DisplayValuesHelper.html" title="class in org.frc5010.common.telemetry">DisplayValuesHelper</a>&nbsp;tab)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
@@ -266,37 +293,55 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
  double&nbsp;min,
  double&nbsp;max)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../PIDController5010.PIDControlType.html" title="enum class in org.frc5010.common.motors">PIDController5010.PIDControlType</a></code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../GenericPIDController.PIDControlType.html" title="enum class in org.frc5010.common.motors">GenericPIDController.PIDControlType</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getControlType()" class="member-name-link">getControlType</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getD()" class="member-name-link">getD</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets the derivative value of the PID controller from the config values.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getEncoderFeedback()" class="member-name-link">getEncoderFeedback</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getF()" class="member-name-link">getF</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getF()" class="member-name-link">getF</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/Voltage.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">Voltage</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getFeedForward()" class="member-name-link">getFeedForward</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getI()" class="member-name-link">getI</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/Voltage.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">Voltage</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getFeedForward(double)" class="member-name-link">getFeedForward</a><wbr>(double&nbsp;velocity)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getIZone()" class="member-name-link">getIZone</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../constants/MotorFeedFwdConstants.html" title="class in org.frc5010.common.constants">MotorFeedFwdConstants</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMotorFeedFwd()" class="member-name-link">getMotorFeedFwd</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getI()" class="member-name-link">getI</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets the integral value of the PID controller from the config values.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getIZone()" class="member-name-link">getIZone</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getP()" class="member-name-link">getP</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../constants/MotorFeedFwdConstants.html" title="class in org.frc5010.common.constants">MotorFeedFwdConstants</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMotorFeedFwd()" class="member-name-link">getMotorFeedFwd</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPIDController5010()" class="member-name-link">getPIDController5010</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getP()" class="member-name-link">getP</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets the proportional value of the PID controller from the config values.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPIDController5010()" class="member-name-link">getPIDController5010</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Retrieves the PIDController5010 for this motor.</div>
 </div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getProfiledMaxAcceleration()" class="member-name-link">getProfiledMaxAcceleration</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getReference()" class="member-name-link">getReference</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getProfiledMaxVelocity()" class="member-name-link">getProfiledMaxVelocity</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getReference()" class="member-name-link">getReference</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getReferenceVelocity()" class="member-name-link">getReferenceVelocity</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/Command.html" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link">Command</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#getSysIdCommand(edu.wpi.first.wpilibj2.command.SubsystemBase)" class="member-name-link">getSysIdCommand</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/SubsystemBase.html" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link">SubsystemBase</a>&nbsp;subsystemBase)</code></div>
@@ -307,60 +352,83 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../constants/GenericPID.html" title="class in org.frc5010.common.constants">GenericPID</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getValues()" class="member-name-link">getValues</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#initiateDisplayValues()" class="member-name-link">initiateDisplayValues</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVelocity()" class="member-name-link">getVelocity</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#initiateDisplayValues()" class="member-name-link">initiateDisplayValues</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Initializes all the display values for the motor, including PID values, feed forward, and
  control type.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isAtTarget()" class="member-name-link">isAtTarget</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setControlType(org.frc5010.common.motors.PIDController5010.PIDControlType)" class="member-name-link">setControlType</a><wbr>(<a href="../PIDController5010.PIDControlType.html" title="enum class in org.frc5010.common.motors">PIDController5010.PIDControlType</a>&nbsp;controlType)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isAtTarget()" class="member-name-link">isAtTarget</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setD(double)" class="member-name-link">setD</a><wbr>(double&nbsp;d)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#resetController(double,double)" class="member-name-link">resetController</a><wbr>(double&nbsp;position,
+ double&nbsp;velocity)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setF(double)" class="member-name-link">setF</a><wbr>(double&nbsp;f)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#runControllerToSetpoint()" class="member-name-link">runControllerToSetpoint</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setI(double)" class="member-name-link">setI</a><wbr>(double&nbsp;i)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setControlType(org.frc5010.common.motors.GenericPIDController.PIDControlType)" class="member-name-link">setControlType</a><wbr>(<a href="../GenericPIDController.PIDControlType.html" title="enum class in org.frc5010.common.motors">GenericPIDController.PIDControlType</a>&nbsp;controlType)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setIZone(double)" class="member-name-link">setIZone</a><wbr>(double&nbsp;iZone)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setD(double)" class="member-name-link">setD</a><wbr>(double&nbsp;d)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setMotorFeedFwd(org.frc5010.common.constants.MotorFeedFwdConstants)" class="member-name-link">setMotorFeedFwd</a><wbr>(<a href="../../constants/MotorFeedFwdConstants.html" title="class in org.frc5010.common.constants">MotorFeedFwdConstants</a>&nbsp;feedFwd)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setF(double)" class="member-name-link">setF</a><wbr>(double&nbsp;f)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setOutputRange(double,double)" class="member-name-link">setOutputRange</a><wbr>(double&nbsp;min,
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setI(double)" class="member-name-link">setI</a><wbr>(double&nbsp;i)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setIZone(double)" class="member-name-link">setIZone</a><wbr>(double&nbsp;iZone)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setMotorFeedFwd(org.frc5010.common.constants.MotorFeedFwdConstants)" class="member-name-link">setMotorFeedFwd</a><wbr>(<a href="../../constants/MotorFeedFwdConstants.html" title="class in org.frc5010.common.constants">MotorFeedFwdConstants</a>&nbsp;feedFwd)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setOutputRange(double,double)" class="member-name-link">setOutputRange</a><wbr>(double&nbsp;min,
  double&nbsp;max)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setOutputWithFF(double,double)" class="member-name-link">setOutputWithFF</a><wbr>(double&nbsp;power,
+ double&nbsp;ffVelocity)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setP(double)" class="member-name-link">setP</a><wbr>(double&nbsp;p)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setReference(double)" class="member-name-link">setReference</a><wbr>(double&nbsp;reference)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPIDController5010(org.frc5010.common.motors.GenericPIDController)" class="member-name-link">setPIDController5010</a><wbr>(<a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a>&nbsp;controller)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setReference(double,org.frc5010.common.motors.PIDController5010.PIDControlType,double)" class="member-name-link">setReference</a><wbr>(double&nbsp;reference,
- <a href="../PIDController5010.PIDControlType.html" title="enum class in org.frc5010.common.motors">PIDController5010.PIDControlType</a>&nbsp;controlType,
- double&nbsp;feedforward)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setProfiledMaxAcceleration(double)" class="member-name-link">setProfiledMaxAcceleration</a><wbr>(double&nbsp;maxAccel)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setTolerance(double)" class="member-name-link">setTolerance</a><wbr>(double&nbsp;tolerance)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setProfiledMaxVelocity(double)" class="member-name-link">setProfiledMaxVelocity</a><wbr>(double&nbsp;maxVel)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setValues(org.frc5010.common.constants.GenericPID)" class="member-name-link">setValues</a><wbr>(<a href="../../constants/GenericPID.html" title="class in org.frc5010.common.constants">GenericPID</a>&nbsp;pidValues)</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setReference(double)" class="member-name-link">setReference</a><wbr>(double&nbsp;reference)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setReference(double,org.frc5010.common.motors.GenericPIDController.PIDControlType,double)" class="member-name-link">setReference</a><wbr>(double&nbsp;reference,
+ <a href="../GenericPIDController.PIDControlType.html" title="enum class in org.frc5010.common.motors">GenericPIDController.PIDControlType</a>&nbsp;controlType,
+ double&nbsp;feedforward)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setTolerance(double)" class="member-name-link">setTolerance</a><wbr>(double&nbsp;tolerance)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setValues(org.frc5010.common.constants.GenericPID)" class="member-name-link">setValues</a><wbr>(<a href="../../constants/GenericPID.html" title="class in org.frc5010.common.constants">GenericPID</a>&nbsp;pidValues)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-org.frc5010.common.motors.function.GenericFunctionalMotor">Methods inherited from class&nbsp;org.frc5010.common.motors.function.<a href="GenericFunctionalMotor.html" title="class in org.frc5010.common.motors.function">GenericFunctionalMotor</a></h3>
-<code><a href="GenericFunctionalMotor.html#burnFlash()">burnFlash</a>, <a href="GenericFunctionalMotor.html#clearStickyFaults()">clearStickyFaults</a>, <a href="GenericFunctionalMotor.html#disable()">disable</a>, <a href="GenericFunctionalMotor.html#draw()">draw</a>, <a href="GenericFunctionalMotor.html#duplicate(int)">duplicate</a>, <a href="GenericFunctionalMotor.html#factoryDefaults()">factoryDefaults</a>, <a href="GenericFunctionalMotor.html#get()">get</a>, <a href="GenericFunctionalMotor.html#getAppliedOutput()">getAppliedOutput</a>, <a href="GenericFunctionalMotor.html#getDefaultSysId(edu.wpi.first.wpilibj2.command.SubsystemBase)">getDefaultSysId</a>, <a href="GenericFunctionalMotor.html#getInverted()">getInverted</a>, <a href="GenericFunctionalMotor.html#getMaxRPM()">getMaxRPM</a>, <a href="GenericFunctionalMotor.html#getMotor()">getMotor</a>, <a href="GenericFunctionalMotor.html#getMotorEncoder()">getMotorEncoder</a>, <a href="GenericFunctionalMotor.html#getMotorEncoder(int)">getMotorEncoder</a>, <a href="GenericFunctionalMotor.html#getMotorSimulationType()">getMotorSimulationType</a>, <a href="GenericFunctionalMotor.html#getOutputCurrent()">getOutputCurrent</a>, <a href="GenericFunctionalMotor.html#getRobotToMotor()">getRobotToMotor</a>, <a href="GenericFunctionalMotor.html#getSimX(edu.wpi.first.units.measure.Distance)">getSimX</a>, <a href="GenericFunctionalMotor.html#getSimY(edu.wpi.first.units.measure.Distance)">getSimY</a>, <a href="GenericFunctionalMotor.html#getVisualizer()">getVisualizer</a>, <a href="GenericFunctionalMotor.html#getVoltage()">getVoltage</a>, <a href="GenericFunctionalMotor.html#invert(boolean)">invert</a>, <a href="GenericFunctionalMotor.html#set(double)">set</a>, <a href="GenericFunctionalMotor.html#setCurrentLimit(int)">setCurrentLimit</a>, <a href="GenericFunctionalMotor.html#setDisplayValuesHelper(org.frc5010.common.telemetry.DisplayValuesHelper)">setDisplayValuesHelper</a>, <a href="GenericFunctionalMotor.html#setFollow(org.frc5010.common.motors.MotorController5010)">setFollow</a>, <a href="GenericFunctionalMotor.html#setFollow(org.frc5010.common.motors.MotorController5010,boolean)">setFollow</a>, <a href="GenericFunctionalMotor.html#setInverted(boolean)">setInverted</a>, <a href="GenericFunctionalMotor.html#setMotorBrake(boolean)">setMotorBrake</a>, <a href="GenericFunctionalMotor.html#setSlewRate(double)">setSlewRate</a>, <a href="GenericFunctionalMotor.html#setVisualizer(edu.wpi.first.wpilibj.smartdashboard.Mechanism2d,edu.wpi.first.math.geometry.Pose3d)">setVisualizer</a>, <a href="GenericFunctionalMotor.html#setVoltageCompensation(double)">setVoltageCompensation</a>, <a href="GenericFunctionalMotor.html#simulationUpdate()">simulationUpdate</a>, <a href="GenericFunctionalMotor.html#stopMotor()">stopMotor</a></code></div>
+<code><a href="GenericFunctionalMotor.html#burnFlash()">burnFlash</a>, <a href="GenericFunctionalMotor.html#clearStickyFaults()">clearStickyFaults</a>, <a href="GenericFunctionalMotor.html#createMotorEncoder(int)">createMotorEncoder</a>, <a href="GenericFunctionalMotor.html#disable()">disable</a>, <a href="GenericFunctionalMotor.html#duplicate(int)">duplicate</a>, <a href="GenericFunctionalMotor.html#factoryDefaults()">factoryDefaults</a>, <a href="GenericFunctionalMotor.html#get()">get</a>, <a href="GenericFunctionalMotor.html#getAppliedOutput()">getAppliedOutput</a>, <a href="GenericFunctionalMotor.html#getDefaultSysId(edu.wpi.first.wpilibj2.command.SubsystemBase)">getDefaultSysId</a>, <a href="GenericFunctionalMotor.html#getInverted()">getInverted</a>, <a href="GenericFunctionalMotor.html#getLogLevel()">getLogLevel</a>, <a href="GenericFunctionalMotor.html#getMaxRPM()">getMaxRPM</a>, <a href="GenericFunctionalMotor.html#getMotor()">getMotor</a>, <a href="GenericFunctionalMotor.html#getMotorConfig()">getMotorConfig</a>, <a href="GenericFunctionalMotor.html#getMotorController()">getMotorController</a>, <a href="GenericFunctionalMotor.html#getMotorEncoder()">getMotorEncoder</a>, <a href="GenericFunctionalMotor.html#getMotorSimulationType()">getMotorSimulationType</a>, <a href="GenericFunctionalMotor.html#getOutputCurrent()">getOutputCurrent</a>, <a href="GenericFunctionalMotor.html#getRobotToMotor()">getRobotToMotor</a>, <a href="GenericFunctionalMotor.html#getSimX(edu.wpi.first.units.measure.Distance)">getSimX</a>, <a href="GenericFunctionalMotor.html#getSimY(edu.wpi.first.units.measure.Distance)">getSimY</a>, <a href="GenericFunctionalMotor.html#getSmartMotorController(yams.motorcontrollers.SmartMotorControllerConfig)">getSmartMotorController</a>, <a href="GenericFunctionalMotor.html#getVisualizer()">getVisualizer</a>, <a href="GenericFunctionalMotor.html#getVoltage()">getVoltage</a>, <a href="GenericFunctionalMotor.html#invert(boolean)">invert</a>, <a href="GenericFunctionalMotor.html#periodicUpdate()">periodicUpdate</a>, <a href="GenericFunctionalMotor.html#set(double)">set</a>, <a href="GenericFunctionalMotor.html#setCurrentLimit(edu.wpi.first.units.measure.Current)">setCurrentLimit</a>, <a href="GenericFunctionalMotor.html#setDisplayValuesHelper(org.frc5010.common.telemetry.DisplayValuesHelper)">setDisplayValuesHelper</a>, <a href="GenericFunctionalMotor.html#setFollow(org.frc5010.common.motors.GenericMotorController)">setFollow</a>, <a href="GenericFunctionalMotor.html#setFollow(org.frc5010.common.motors.GenericMotorController,boolean)">setFollow</a>, <a href="GenericFunctionalMotor.html#setInverted(boolean)">setInverted</a>, <a href="GenericFunctionalMotor.html#setLogLevel(org.frc5010.common.arch.GenericRobot.LogLevel)">setLogLevel</a>, <a href="GenericFunctionalMotor.html#setMaxRPM(edu.wpi.first.units.measure.AngularVelocity)">setMaxRPM</a>, <a href="GenericFunctionalMotor.html#setMotorBrake(boolean)">setMotorBrake</a>, <a href="GenericFunctionalMotor.html#setMotorSimulationType(edu.wpi.first.math.system.plant.DCMotor)">setMotorSimulationType</a>, <a href="GenericFunctionalMotor.html#setSlewRate(double)">setSlewRate</a>, <a href="GenericFunctionalMotor.html#setVisualizer(org.littletonrobotics.junction.mechanism.LoggedMechanism2d,edu.wpi.first.math.geometry.Pose3d)">setVisualizer</a>, <a href="GenericFunctionalMotor.html#setVoltageCompensation(double)">setVoltageCompensation</a>, <a href="GenericFunctionalMotor.html#simulationUpdate()">simulationUpdate</a>, <a href="GenericFunctionalMotor.html#simulationUpdate(java.util.Optional,java.lang.Double)">simulationUpdate</a>, <a href="GenericFunctionalMotor.html#stopMotor()">stopMotor</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
@@ -634,6 +702,34 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 </section>
 </li>
 <li>
+<section class="detail" id="PROFILED_MAX_VEL">
+<h3>PROFILED_MAX_VEL</h3>
+<div class="member-signature"><span class="modifiers">protected static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">PROFILED_MAX_VEL</span></div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../../../constant-values.html#org.frc5010.common.motors.function.GenericControlledMotor.PROFILED_MAX_VEL">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="PROFILED_MAX_ACCEL">
+<h3>PROFILED_MAX_ACCEL</h3>
+<div class="member-signature"><span class="modifiers">protected static final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">PROFILED_MAX_ACCEL</span></div>
+<dl class="notes">
+<dt>See Also:</dt>
+<dd>
+<ul class="see-list">
+<li><a href="../../../../../constant-values.html#org.frc5010.common.motors.function.GenericControlledMotor.PROFILED_MAX_ACCEL">Constant Field Values</a></li>
+</ul>
+</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="controlType">
 <h3>controlType</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="../../telemetry/DisplayString.html" title="class in org.frc5010.common.telemetry">DisplayString</a></span>&nbsp;<span class="element-name">controlType</span></div>
@@ -658,9 +754,21 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 </section>
 </li>
 <li>
-<section class="detail" id="effort">
-<h3>effort</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="../../telemetry/DisplayVoltage.html" title="class in org.frc5010.common.telemetry">DisplayVoltage</a></span>&nbsp;<span class="element-name">effort</span></div>
+<section class="detail" id="outputEffort">
+<h3>outputEffort</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="../../telemetry/DisplayVoltage.html" title="class in org.frc5010.common.telemetry">DisplayVoltage</a></span>&nbsp;<span class="element-name">outputEffort</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="calculatedEffort">
+<h3>calculatedEffort</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="../../telemetry/DisplayVoltage.html" title="class in org.frc5010.common.telemetry">DisplayVoltage</a></span>&nbsp;<span class="element-name">calculatedEffort</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="actualEffort">
+<h3>actualEffort</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="../../telemetry/DisplayVoltage.html" title="class in org.frc5010.common.telemetry">DisplayVoltage</a></span>&nbsp;<span class="element-name">actualEffort</span></div>
 </section>
 </li>
 <li>
@@ -712,6 +820,12 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 </section>
 </li>
 <li>
+<section class="detail" id="referenceVelocity">
+<h3>referenceVelocity</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></span>&nbsp;<span class="element-name">referenceVelocity</span></div>
+</section>
+</li>
+<li>
 <section class="detail" id="kS">
 <h3>kS</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></span>&nbsp;<span class="element-name">kS</span></div>
@@ -736,9 +850,33 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 </section>
 </li>
 <li>
-<section class="detail" id="pid">
-<h3>pid</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></span>&nbsp;<span class="element-name">pid</span></div>
+<section class="detail" id="profiledMaxVel">
+<h3>profiledMaxVel</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></span>&nbsp;<span class="element-name">profiledMaxVel</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="profiledMaxAccel">
+<h3>profiledMaxAccel</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></span>&nbsp;<span class="element-name">profiledMaxAccel</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="outputFactor">
+<h3>outputFactor</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></span>&nbsp;<span class="element-name">outputFactor</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="encoderFeedback">
+<h3>encoderFeedback</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="../../telemetry/DisplayDouble.html" title="class in org.frc5010.common.telemetry">DisplayDouble</a></span>&nbsp;<span class="element-name">encoderFeedback</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="controller">
+<h3>controller</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></span>&nbsp;<span class="element-name">controller</span></div>
 </section>
 </li>
 <li>
@@ -762,9 +900,9 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(org.frc5010.common.motors.MotorController5010,java.lang.String,org.frc5010.common.telemetry.DisplayValuesHelper)">
+<section class="detail" id="&lt;init&gt;(org.frc5010.common.motors.GenericMotorController,java.lang.String,org.frc5010.common.telemetry.DisplayValuesHelper)">
 <h3>GenericControlledMotor</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">GenericControlledMotor</span><wbr><span class="parameters">(<a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a>&nbsp;motor,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">GenericControlledMotor</span><wbr><span class="parameters">(<a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a>&nbsp;motor,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;visualName,
  <a href="../../telemetry/DisplayValuesHelper.html" title="class in org.frc5010.common.telemetry">DisplayValuesHelper</a>&nbsp;tab)</span></div>
 </section>
@@ -792,12 +930,12 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 <li>
 <section class="detail" id="getPIDController5010()">
 <h3>getPIDController5010</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></span>&nbsp;<span class="element-name">getPIDController5010</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></span>&nbsp;<span class="element-name">getPIDController5010</span>()</div>
 <div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="GenericFunctionalMotor.html#getPIDController5010()">GenericFunctionalMotor</a></code></span></div>
 <div class="block">Retrieves the PIDController5010 for this motor.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../MotorController5010.html#getPIDController5010()">getPIDController5010</a></code>&nbsp;in interface&nbsp;<code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></dd>
+<dd><code><a href="../GenericMotorController.html#getPIDController5010()">getPIDController5010</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></dd>
 <dt>Overrides:</dt>
 <dd><code><a href="GenericFunctionalMotor.html#getPIDController5010()">getPIDController5010</a></code>&nbsp;in class&nbsp;<code><a href="GenericFunctionalMotor.html" title="class in org.frc5010.common.motors.function">GenericFunctionalMotor</a></code></dd>
 <dt>Returns:</dt>
@@ -806,12 +944,18 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 </section>
 </li>
 <li>
+<section class="detail" id="setPIDController5010(org.frc5010.common.motors.GenericPIDController)">
+<h3>setPIDController5010</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setPIDController5010</span><wbr><span class="parameters">(<a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a>&nbsp;controller)</span></div>
+</section>
+</li>
+<li>
 <section class="detail" id="setTolerance(double)">
 <h3>setTolerance</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setTolerance</span><wbr><span class="parameters">(double&nbsp;tolerance)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../PIDController5010.html#setTolerance(double)">setTolerance</a></code>&nbsp;in interface&nbsp;<code><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></code></dd>
+<dd><code><a href="../GenericPIDController.html#setTolerance(double)">setTolerance</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
 </dl>
 </section>
 </li>
@@ -821,7 +965,7 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getTolerance</span>()</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../PIDController5010.html#getTolerance()">getTolerance</a></code>&nbsp;in interface&nbsp;<code><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></code></dd>
+<dd><code><a href="../GenericPIDController.html#getTolerance()">getTolerance</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
 </dl>
 </section>
 </li>
@@ -831,7 +975,7 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setValues</span><wbr><span class="parameters">(<a href="../../constants/GenericPID.html" title="class in org.frc5010.common.constants">GenericPID</a>&nbsp;pidValues)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../PIDController5010.html#setValues(org.frc5010.common.constants.GenericPID)">setValues</a></code>&nbsp;in interface&nbsp;<code><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></code></dd>
+<dd><code><a href="../GenericPIDController.html#setValues(org.frc5010.common.constants.GenericPID)">setValues</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
 </dl>
 </section>
 </li>
@@ -841,7 +985,7 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setP</span><wbr><span class="parameters">(double&nbsp;p)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../PIDController5010.html#setP(double)">setP</a></code>&nbsp;in interface&nbsp;<code><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></code></dd>
+<dd><code><a href="../GenericPIDController.html#setP(double)">setP</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
 </dl>
 </section>
 </li>
@@ -851,7 +995,7 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setI</span><wbr><span class="parameters">(double&nbsp;i)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../PIDController5010.html#setI(double)">setI</a></code>&nbsp;in interface&nbsp;<code><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></code></dd>
+<dd><code><a href="../GenericPIDController.html#setI(double)">setI</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
 </dl>
 </section>
 </li>
@@ -861,7 +1005,7 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setD</span><wbr><span class="parameters">(double&nbsp;d)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../PIDController5010.html#setD(double)">setD</a></code>&nbsp;in interface&nbsp;<code><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></code></dd>
+<dd><code><a href="../GenericPIDController.html#setD(double)">setD</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
 </dl>
 </section>
 </li>
@@ -871,7 +1015,7 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setF</span><wbr><span class="parameters">(double&nbsp;f)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../PIDController5010.html#setF(double)">setF</a></code>&nbsp;in interface&nbsp;<code><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></code></dd>
+<dd><code><a href="../GenericPIDController.html#setF(double)">setF</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
 </dl>
 </section>
 </li>
@@ -881,7 +1025,7 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setIZone</span><wbr><span class="parameters">(double&nbsp;iZone)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../PIDController5010.html#setIZone(double)">setIZone</a></code>&nbsp;in interface&nbsp;<code><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></code></dd>
+<dd><code><a href="../GenericPIDController.html#setIZone(double)">setIZone</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
 </dl>
 </section>
 </li>
@@ -892,7 +1036,7 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
  double&nbsp;max)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../PIDController5010.html#setOutputRange(double,double)">setOutputRange</a></code>&nbsp;in interface&nbsp;<code><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></code></dd>
+<dd><code><a href="../GenericPIDController.html#setOutputRange(double,double)">setOutputRange</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
 </dl>
 </section>
 </li>
@@ -902,30 +1046,62 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setReference</span><wbr><span class="parameters">(double&nbsp;reference)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../PIDController5010.html#setReference(double)">setReference</a></code>&nbsp;in interface&nbsp;<code><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></code></dd>
+<dd><code><a href="../GenericPIDController.html#setReference(double)">setReference</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="setReference(double,org.frc5010.common.motors.PIDController5010.PIDControlType,double)">
+<section class="detail" id="setReference(double,org.frc5010.common.motors.GenericPIDController.PIDControlType,double)">
 <h3>setReference</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setReference</span><wbr><span class="parameters">(double&nbsp;reference,
- <a href="../PIDController5010.PIDControlType.html" title="enum class in org.frc5010.common.motors">PIDController5010.PIDControlType</a>&nbsp;controlType,
+ <a href="../GenericPIDController.PIDControlType.html" title="enum class in org.frc5010.common.motors">GenericPIDController.PIDControlType</a>&nbsp;controlType,
  double&nbsp;feedforward)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../PIDController5010.html#setReference(double,org.frc5010.common.motors.PIDController5010.PIDControlType,double)">setReference</a></code>&nbsp;in interface&nbsp;<code><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></code></dd>
+<dd><code><a href="../GenericPIDController.html#setReference(double,org.frc5010.common.motors.GenericPIDController.PIDControlType,double)">setReference</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="setControlType(org.frc5010.common.motors.PIDController5010.PIDControlType)">
+<section class="detail" id="setControlType(org.frc5010.common.motors.GenericPIDController.PIDControlType)">
 <h3>setControlType</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setControlType</span><wbr><span class="parameters">(<a href="../PIDController5010.PIDControlType.html" title="enum class in org.frc5010.common.motors">PIDController5010.PIDControlType</a>&nbsp;controlType)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setControlType</span><wbr><span class="parameters">(<a href="../GenericPIDController.PIDControlType.html" title="enum class in org.frc5010.common.motors">GenericPIDController.PIDControlType</a>&nbsp;controlType)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../PIDController5010.html#setControlType(org.frc5010.common.motors.PIDController5010.PIDControlType)">setControlType</a></code>&nbsp;in interface&nbsp;<code><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></code></dd>
+<dd><code><a href="../GenericPIDController.html#setControlType(org.frc5010.common.motors.GenericPIDController.PIDControlType)">setControlType</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
 </dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setProfiledMaxVelocity(double)">
+<h3>setProfiledMaxVelocity</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setProfiledMaxVelocity</span><wbr><span class="parameters">(double&nbsp;maxVel)</span></div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../GenericPIDController.html#setProfiledMaxVelocity(double)">setProfiledMaxVelocity</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setProfiledMaxAcceleration(double)">
+<h3>setProfiledMaxAcceleration</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setProfiledMaxAcceleration</span><wbr><span class="parameters">(double&nbsp;maxAccel)</span></div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../GenericPIDController.html#setProfiledMaxAcceleration(double)">setProfiledMaxAcceleration</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getProfiledMaxAcceleration()">
+<h3>getProfiledMaxAcceleration</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getProfiledMaxAcceleration</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="getProfiledMaxVelocity()">
+<h3>getProfiledMaxVelocity</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getProfiledMaxVelocity</span>()</div>
 </section>
 </li>
 <li>
@@ -934,7 +1110,7 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../constants/GenericPID.html" title="class in org.frc5010.common.constants">GenericPID</a></span>&nbsp;<span class="element-name">getValues</span>()</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../PIDController5010.html#getValues()">getValues</a></code>&nbsp;in interface&nbsp;<code><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></code></dd>
+<dd><code><a href="../GenericPIDController.html#getValues()">getValues</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
 </dl>
 </section>
 </li>
@@ -942,9 +1118,12 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 <section class="detail" id="getP()">
 <h3>getP</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getP</span>()</div>
+<div class="block">Gets the proportional value of the PID controller from the config values.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../PIDController5010.html#getP()">getP</a></code>&nbsp;in interface&nbsp;<code><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></code></dd>
+<dd><code><a href="../GenericPIDController.html#getP()">getP</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
+<dt>Returns:</dt>
+<dd>the proportional value.</dd>
 </dl>
 </section>
 </li>
@@ -952,9 +1131,12 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 <section class="detail" id="getI()">
 <h3>getI</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getI</span>()</div>
+<div class="block">Gets the integral value of the PID controller from the config values.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../PIDController5010.html#getI()">getI</a></code>&nbsp;in interface&nbsp;<code><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></code></dd>
+<dd><code><a href="../GenericPIDController.html#getI()">getI</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
+<dt>Returns:</dt>
+<dd>the integral value.</dd>
 </dl>
 </section>
 </li>
@@ -962,9 +1144,12 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 <section class="detail" id="getD()">
 <h3>getD</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getD</span>()</div>
+<div class="block">Gets the derivative value of the PID controller from the config values.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../PIDController5010.html#getD()">getD</a></code>&nbsp;in interface&nbsp;<code><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></code></dd>
+<dd><code><a href="../GenericPIDController.html#getD()">getD</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
+<dt>Returns:</dt>
+<dd>the derivative value.</dd>
 </dl>
 </section>
 </li>
@@ -974,7 +1159,7 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getF</span>()</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../PIDController5010.html#getF()">getF</a></code>&nbsp;in interface&nbsp;<code><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></code></dd>
+<dd><code><a href="../GenericPIDController.html#getF()">getF</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
 </dl>
 </section>
 </li>
@@ -984,7 +1169,7 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getIZone</span>()</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../PIDController5010.html#getIZone()">getIZone</a></code>&nbsp;in interface&nbsp;<code><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></code></dd>
+<dd><code><a href="../GenericPIDController.html#getIZone()">getIZone</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
 </dl>
 </section>
 </li>
@@ -994,17 +1179,17 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getReference</span>()</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../PIDController5010.html#getReference()">getReference</a></code>&nbsp;in interface&nbsp;<code><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></code></dd>
+<dd><code><a href="../GenericPIDController.html#getReference()">getReference</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="getControlType()">
 <h3>getControlType</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../PIDController5010.PIDControlType.html" title="enum class in org.frc5010.common.motors">PIDController5010.PIDControlType</a></span>&nbsp;<span class="element-name">getControlType</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../GenericPIDController.PIDControlType.html" title="enum class in org.frc5010.common.motors">GenericPIDController.PIDControlType</a></span>&nbsp;<span class="element-name">getControlType</span>()</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../PIDController5010.html#getControlType()">getControlType</a></code>&nbsp;in interface&nbsp;<code><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></code></dd>
+<dd><code><a href="../GenericPIDController.html#getControlType()">getControlType</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
 </dl>
 </section>
 </li>
@@ -1014,8 +1199,27 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isAtTarget</span>()</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../PIDController5010.html#isAtTarget()">isAtTarget</a></code>&nbsp;in interface&nbsp;<code><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></code></dd>
+<dd><code><a href="../GenericPIDController.html#isAtTarget()">isAtTarget</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
 </dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getEncoderFeedback()">
+<h3>getEncoderFeedback</h3>
+<div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getEncoderFeedback</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="runControllerToSetpoint()">
+<h3>runControllerToSetpoint</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">runControllerToSetpoint</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="setOutputWithFF(double,double)">
+<h3>setOutputWithFF</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setOutputWithFF</span><wbr><span class="parameters">(double&nbsp;power,
+ double&nbsp;ffVelocity)</span></div>
 </section>
 </li>
 <li>
@@ -1024,7 +1228,34 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">calculateControlEffort</span><wbr><span class="parameters">(double&nbsp;current)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../PIDController5010.html#calculateControlEffort(double)">calculateControlEffort</a></code>&nbsp;in interface&nbsp;<code><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></code></dd>
+<dd><code><a href="../GenericPIDController.html#calculateControlEffort(double)">calculateControlEffort</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getVelocity()">
+<h3>getVelocity</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getVelocity</span>()</div>
+</section>
+</li>
+<li>
+<section class="detail" id="getReferenceVelocity()">
+<h3>getReferenceVelocity</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getReferenceVelocity</span>()</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../GenericPIDController.html#getReferenceVelocity()">getReferenceVelocity</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="resetController(double,double)">
+<h3>resetController</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">resetController</span><wbr><span class="parameters">(double&nbsp;position,
+ double&nbsp;velocity)</span></div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../GenericPIDController.html#resetController(double,double)">resetController</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
 </dl>
 </section>
 </li>
@@ -1032,6 +1263,10 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 <section class="detail" id="setMotorFeedFwd(org.frc5010.common.constants.MotorFeedFwdConstants)">
 <h3>setMotorFeedFwd</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setMotorFeedFwd</span><wbr><span class="parameters">(<a href="../../constants/MotorFeedFwdConstants.html" title="class in org.frc5010.common.constants">MotorFeedFwdConstants</a>&nbsp;feedFwd)</span></div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../GenericPIDController.html#setMotorFeedFwd(org.frc5010.common.constants.MotorFeedFwdConstants)">setMotorFeedFwd</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
+</dl>
 </section>
 </li>
 <li>
@@ -1041,9 +1276,9 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
 </section>
 </li>
 <li>
-<section class="detail" id="getFeedForward()">
+<section class="detail" id="getFeedForward(double)">
 <h3>getFeedForward</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/Voltage.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">Voltage</a></span>&nbsp;<span class="element-name">getFeedForward</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/Voltage.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">Voltage</a></span>&nbsp;<span class="element-name">getFeedForward</span><wbr><span class="parameters">(double&nbsp;velocity)</span></div>
 </section>
 </li>
 <li>
@@ -1055,7 +1290,7 @@ implements <a href="../PIDController5010.html" title="interface in org.frc5010.c
  double&nbsp;max)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../PIDController5010.html#configureAbsoluteControl(double,boolean,double,double)">configureAbsoluteControl</a></code>&nbsp;in interface&nbsp;<code><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></code></dd>
+<dd><code><a href="../GenericPIDController.html#configureAbsoluteControl(double,boolean,double,double)">configureAbsoluteControl</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
 </dl>
 </section>
 </li>

@@ -5,11 +5,12 @@
 package org.frc5010.common.motors;
 
 import edu.wpi.first.wpilibj.util.Color;
+import org.frc5010.common.motors.MotorConstants.Motor;
 import org.frc5010.common.motors.function.DriveTrainMotor;
 import org.frc5010.common.motors.function.FollowerMotor;
-import org.frc5010.common.motors.hardware.KrakenX60;
-import org.frc5010.common.motors.hardware.NEO;
-import org.frc5010.common.motors.hardware.NEO550;
+import org.frc5010.common.motors.hardware.GenericRevBrushlessMotor;
+import org.frc5010.common.motors.hardware.GenericTalonFXMotor;
+import org.frc5010.common.motors.hardware.GenericThriftyNovaMotor;
 
 /** Add your docs here. */
 public class MotorFactory {
@@ -52,32 +53,39 @@ public class MotorFactory {
     return visualColors[visualColorIndex++];
   }
 
-  public static MotorController5010 NEO(int port) {
-    return new NEO(port);
+  public static GenericMotorController Spark(int canId, Motor config) {
+    switch (config) {
+      case KrakenX60:
+        throw new IllegalArgumentException("Sparks can not use KrakenX60 config");
+      default:
+    }
+    return new GenericRevBrushlessMotor(canId, config);
   }
 
-  public static MotorController5010 NEO(int port, int currentLimit) {
-    return new NEO(port, currentLimit);
+  public static GenericMotorController Thrifty(int canId, Motor config) {
+    switch (config) {
+      case KrakenX60:
+        throw new IllegalArgumentException("Thrifty Novas can not use KrakenX60 config");
+      default:
+    }
+    return new GenericThriftyNovaMotor(canId, config);
   }
 
-  public static MotorController5010 NEO550(int port) {
-    return new NEO550(port);
+  public static GenericMotorController TalonFX(int canId, Motor config) {
+    switch (config) {
+      case KrakenX60:
+        return new GenericTalonFXMotor(canId, config);
+      default:
+        throw new IllegalArgumentException("TalonFX can not use " + config + " config");
+    }
   }
 
-  public static MotorController5010 NEO550(int port, int currentLimit) {
-    return new NEO550(port, currentLimit);
-  }
-
-  public static MotorController5010 KrakenX60(int port) {
-    return new KrakenX60(port);
-  }
-
-  public static MotorController5010 DriveTrainMotor(MotorController5010 motor, String name) {
+  public static GenericMotorController DriveTrainMotor(GenericMotorController motor, String name) {
     return new DriveTrainMotor(motor, name);
   }
 
-  public static MotorController5010 FollowMotor(
-      MotorController5010 motor, MotorController5010 leader) {
+  public static GenericMotorController FollowMotor(
+      GenericMotorController motor, GenericMotorController leader) {
     return new FollowerMotor(motor, leader, "");
   }
 }

@@ -99,21 +99,30 @@ implements <a href="../arch/WpiHelperInterface.html" title="interface in org.frc
 <div class="col-first even-row-color"><code>protected int</code></div>
 <div class="col-second even-row-color"><code><a href="#column" class="member-name-link">column</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>protected boolean</code></div>
-<div class="col-second odd-row-color"><code><a href="#isDisplayed" class="member-name-link">isDisplayed</a></code></div>
+<div class="col-first odd-row-color"><code>protected final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="DisplayableValue.html" title="class in org.frc5010.common.telemetry">DisplayableValue</a>&gt;</code></div>
+<div class="col-second odd-row-color"><code><a href="#internals" class="member-name-link">internals</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>protected <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/shuffleboard/ShuffleboardLayout.html" title="class or interface in edu.wpi.first.wpilibj.shuffleboard" class="external-link">ShuffleboardLayout</a></code></div>
-<div class="col-second even-row-color"><code><a href="#layout" class="member-name-link">layout</a></code></div>
+<div class="col-first even-row-color"><code>protected boolean</code></div>
+<div class="col-second even-row-color"><code><a href="#isDisplayed" class="member-name-link">isDisplayed</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#layoutName" class="member-name-link">layoutName</a></code></div>
+<div class="col-first odd-row-color"><code>protected <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/shuffleboard/ShuffleboardLayout.html" title="class or interface in edu.wpi.first.wpilibj.shuffleboard" class="external-link">ShuffleboardLayout</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#layout" class="member-name-link">layout</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>protected <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/shuffleboard/ShuffleboardTab.html" title="class or interface in edu.wpi.first.wpilibj.shuffleboard" class="external-link">ShuffleboardTab</a></code></div>
-<div class="col-second even-row-color"><code><a href="#tab" class="member-name-link">tab</a></code></div>
+<div class="col-first even-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</code></div>
+<div class="col-second even-row-color"><code><a href="#layoutName" class="member-name-link">layoutName</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#tabName" class="member-name-link">tabName</a></code></div>
+<div class="col-first odd-row-color"><code>protected final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>&gt;</code></div>
+<div class="col-second odd-row-color"><code><a href="#listeners" class="member-name-link">listeners</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>protected <a href="../arch/GenericRobot.LogLevel.html" title="enum class in org.frc5010.common.arch">GenericRobot.LogLevel</a></code></div>
+<div class="col-second even-row-color"><code><a href="#logLevel" class="member-name-link">logLevel</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>protected <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/shuffleboard/ShuffleboardTab.html" title="class or interface in edu.wpi.first.wpilibj.shuffleboard" class="external-link">ShuffleboardTab</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#tab" class="member-name-link">tab</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second even-row-color"><code><a href="#tabName" class="member-name-link">tabName</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
 </li>
@@ -125,18 +134,31 @@ implements <a href="../arch/WpiHelperInterface.html" title="interface in org.frc
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String,java.lang.String)" class="member-name-link">DisplayValuesHelper</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tab,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String)" class="member-name-link">DisplayValuesHelper</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tab)</code></div>
+<div class="col-last even-row-color">
+<div class="block">Constructs a DisplayValuesHelper with the specified tab and table names, display state, and
+ starting column.</div>
+</div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.lang.String,java.lang.String)" class="member-name-link">DisplayValuesHelper</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tab,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;table)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.lang.String,java.lang.String,boolean)" class="member-name-link">DisplayValuesHelper</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tab,
+<div class="col-last odd-row-color">
+<div class="block">Constructs a DisplayValuesHelper with the specified tab and table names, display state, and
+ starting column.</div>
+</div>
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String,java.lang.String,boolean)" class="member-name-link">DisplayValuesHelper</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tab,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;table,
  boolean&nbsp;isDisplayed)</code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String,java.lang.String,boolean,int)" class="member-name-link">DisplayValuesHelper</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tab,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;table,
+<div class="col-last even-row-color">
+<div class="block">Constructs a DisplayValuesHelper with the specified tab and table names, and display state.</div>
+</div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.lang.String,java.util.Optional,boolean,int)" class="member-name-link">DisplayValuesHelper</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tab,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;table,
  boolean&nbsp;isDisplayed,
  int&nbsp;startingColumn)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Constructs a DisplayValuesHelper with the specified tab and table names, display state, and
+ starting column.</div>
+</div>
 </div>
 </section>
 </li>
@@ -151,6 +173,26 @@ implements <a href="../arch/WpiHelperInterface.html" title="interface in org.frc
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#display(java.lang.String,edu.wpi.first.util.sendable.Sendable)" class="member-name-link">display</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/util/sendable/Sendable.html" title="class or interface in edu.wpi.first.util.sendable" class="external-link">Sendable</a>&nbsp;value)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#display(java.lang.String,java.util.function.Supplier)" class="member-name-link">display</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Supplier.html" title="class or interface in java.util.function" class="external-link">Supplier</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;value)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Registers a value to be displayed on the dashboard.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../arch/GenericRobot.LogLevel.html" title="enum class in org.frc5010.common.arch">GenericRobot.LogLevel</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getLoggingLevel()" class="member-name-link">getLoggingLevel</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets the current logging level of the display.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static boolean</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#isAtLogLevel(org.frc5010.common.arch.GenericRobot.LogLevel)" class="member-name-link">isAtLogLevel</a><wbr>(<a href="../arch/GenericRobot.LogLevel.html" title="enum class in org.frc5010.common.arch">GenericRobot.LogLevel</a>&nbsp;logLevel)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
+<div class="block">Checks if the robot's current logging level is at or above the specified log level.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DisplayAngle.html" title="class in org.frc5010.common.telemetry">DisplayAngle</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#makeConfigAngle(java.lang.String)" class="member-name-link">makeConfigAngle</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -234,7 +276,10 @@ implements <a href="../arch/WpiHelperInterface.html" title="interface in org.frc
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#makeDisplayed()" class="member-name-link">makeDisplayed</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the display state to active, initializes the Shuffleboard tab and layout for displaying
+ values.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DisplayFloat.html" title="class in org.frc5010.common.telemetry">DisplayFloat</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#makeDisplayFloat(java.lang.String)" class="member-name-link">makeDisplayFloat</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -333,10 +378,25 @@ implements <a href="../arch/WpiHelperInterface.html" title="interface in org.frc
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Advances the column number for the next value to be placed in.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code>static boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4"><code><a href="#robotIsAtLogLevel(org.frc5010.common.arch.GenericRobot.LogLevel)" class="member-name-link">robotIsAtLogLevel</a><wbr>(<a href="../arch/GenericRobot.LogLevel.html" title="enum class in org.frc5010.common.arch">GenericRobot.LogLevel</a>&nbsp;logLevel)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab1 method-summary-table-tab4">
-<div class="block">Checks if the robot's current logging level is at or above the specified log level.</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#notifyListeners()" class="member-name-link">notifyListeners</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Calls all registered listeners.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#registerListener(java.lang.Runnable)" class="member-name-link">registerListener</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>&nbsp;listener)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Registers a listener to the display values helper.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setLoggingLevel(org.frc5010.common.arch.GenericRobot.LogLevel)" class="member-name-link">setLoggingLevel</a><wbr>(<a href="../arch/GenericRobot.LogLevel.html" title="enum class in org.frc5010.common.arch">GenericRobot.LogLevel</a>&nbsp;level)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the logging level for the display.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#unregisterListener(java.lang.Runnable)" class="member-name-link">unregisterListener</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>&nbsp;listener)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Removes a listener from the display values helper.</div>
 </div>
 </div>
 </div>
@@ -379,7 +439,7 @@ implements <a href="../arch/WpiHelperInterface.html" title="interface in org.frc
 <li>
 <section class="detail" id="layoutName">
 <h3>layoutName</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">layoutName</span></div>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;</span>&nbsp;<span class="element-name">layoutName</span></div>
 </section>
 </li>
 <li>
@@ -394,6 +454,24 @@ implements <a href="../arch/WpiHelperInterface.html" title="interface in org.frc
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isDisplayed</span></div>
 </section>
 </li>
+<li>
+<section class="detail" id="logLevel">
+<h3>logLevel</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="../arch/GenericRobot.LogLevel.html" title="enum class in org.frc5010.common.arch">GenericRobot.LogLevel</a></span>&nbsp;<span class="element-name">logLevel</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="listeners">
+<h3>listeners</h3>
+<div class="member-signature"><span class="modifiers">protected final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>&gt;</span>&nbsp;<span class="element-name">listeners</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="internals">
+<h3>internals</h3>
+<div class="member-signature"><span class="modifiers">protected final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="DisplayableValue.html" title="class in org.frc5010.common.telemetry">DisplayableValue</a>&gt;</span>&nbsp;<span class="element-name">internals</span></div>
+</section>
+</li>
 </ul>
 </section>
 </li>
@@ -403,10 +481,28 @@ implements <a href="../arch/WpiHelperInterface.html" title="interface in org.frc
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
+<section class="detail" id="&lt;init&gt;(java.lang.String)">
+<h3>DisplayValuesHelper</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">DisplayValuesHelper</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tab)</span></div>
+<div class="block">Constructs a DisplayValuesHelper with the specified tab and table names, display state, and
+ starting column.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>tab</code> - the name of the Shuffleboard tab</dd>
+</dl>
+</section>
+</li>
+<li>
 <section class="detail" id="&lt;init&gt;(java.lang.String,java.lang.String)">
 <h3>DisplayValuesHelper</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">DisplayValuesHelper</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tab,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;table)</span></div>
+<div class="block">Constructs a DisplayValuesHelper with the specified tab and table names, display state, and
+ starting column.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>tab</code> - the name of the Shuffleboard tab</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -415,15 +511,32 @@ implements <a href="../arch/WpiHelperInterface.html" title="interface in org.frc
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">DisplayValuesHelper</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tab,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;table,
  boolean&nbsp;isDisplayed)</span></div>
+<div class="block">Constructs a DisplayValuesHelper with the specified tab and table names, and display state. The
+ starting column defaults to 0.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>tab</code> - the name of the Shuffleboard tab</dd>
+<dd><code>table</code> - the name of the Shuffleboard layout</dd>
+<dd><code>isDisplayed</code> - whether the values should be displayed on the dashboard</dd>
+</dl>
 </section>
 </li>
 <li>
-<section class="detail" id="&lt;init&gt;(java.lang.String,java.lang.String,boolean,int)">
+<section class="detail" id="&lt;init&gt;(java.lang.String,java.util.Optional,boolean,int)">
 <h3>DisplayValuesHelper</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">DisplayValuesHelper</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tab,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;table,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;table,
  boolean&nbsp;isDisplayed,
  int&nbsp;startingColumn)</span></div>
+<div class="block">Constructs a DisplayValuesHelper with the specified tab and table names, display state, and
+ starting column.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>tab</code> - the name of the Shuffleboard tab</dd>
+<dd><code>table</code> - the name of the Shuffleboard layout</dd>
+<dd><code>isDisplayed</code> - whether the values should be displayed on the dashboard</dd>
+<dd><code>startingColumn</code> - the starting column for the layout</dd>
+</dl>
 </section>
 </li>
 </ul>
@@ -438,6 +551,86 @@ implements <a href="../arch/WpiHelperInterface.html" title="interface in org.frc
 <section class="detail" id="makeDisplayed()">
 <h3>makeDisplayed</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">makeDisplayed</span>()</div>
+<div class="block">Sets the display state to active, initializes the Shuffleboard tab and layout for displaying
+ values. Configures the layout size and position based on the provided column.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="registerListener(java.lang.Runnable)">
+<h3>registerListener</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">registerListener</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>&nbsp;listener)</span></div>
+<div class="block">Registers a listener to the display values helper. Listeners will be called when the
+ notifyListeners function is called. This function is used to update the display values on the
+ dashboard.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>listener</code> - - Runnable to be called when notifyListeners is called</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="unregisterListener(java.lang.Runnable)">
+<h3>unregisterListener</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">unregisterListener</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Runnable.html" title="class or interface in java.lang" class="external-link">Runnable</a>&nbsp;listener)</span></div>
+<div class="block">Removes a listener from the display values helper. This listener will not be called when
+ notifyListeners is called.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>listener</code> - - Runnable to be removed from the list of listeners</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="notifyListeners()">
+<h3>notifyListeners</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">notifyListeners</span>()</div>
+<div class="block">Calls all registered listeners. This should be called when a value is updated so that all
+ dashboard values are updated.</div>
+</section>
+</li>
+<li>
+<section class="detail" id="display(java.lang.String,java.util.function.Supplier)">
+<h3>display</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">display</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Supplier.html" title="class or interface in java.util.function" class="external-link">Supplier</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&gt;&nbsp;value)</span></div>
+<div class="block">Registers a value to be displayed on the dashboard. The value will be retrieved by calling the
+ provided Supplier, and the result will be displayed on the dashboard when the notifyListeners
+ function is called.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>key</code> - the name of the value to be displayed</dd>
+<dd><code>value</code> - a Supplier that returns the value to be displayed</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="display(java.lang.String,edu.wpi.first.util.sendable.Sendable)">
+<h3>display</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">display</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key,
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/util/sendable/Sendable.html" title="class or interface in edu.wpi.first.util.sendable" class="external-link">Sendable</a>&nbsp;value)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="setLoggingLevel(org.frc5010.common.arch.GenericRobot.LogLevel)">
+<h3>setLoggingLevel</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setLoggingLevel</span><wbr><span class="parameters">(<a href="../arch/GenericRobot.LogLevel.html" title="enum class in org.frc5010.common.arch">GenericRobot.LogLevel</a>&nbsp;level)</span></div>
+<div class="block">Sets the logging level for the display. Values that are at a higher or equal level to the
+ specified level will be displayed on the dashboard.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>level</code> - the level to set the display to</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getLoggingLevel()">
+<h3>getLoggingLevel</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../arch/GenericRobot.LogLevel.html" title="enum class in org.frc5010.common.arch">GenericRobot.LogLevel</a></span>&nbsp;<span class="element-name">getLoggingLevel</span>()</div>
+<div class="block">Gets the current logging level of the display.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the LogLevel that the display is currently set to</dd>
+</dl>
 </section>
 </li>
 <li>
@@ -452,9 +645,9 @@ implements <a href="../arch/WpiHelperInterface.html" title="interface in org.frc
 </section>
 </li>
 <li>
-<section class="detail" id="robotIsAtLogLevel(org.frc5010.common.arch.GenericRobot.LogLevel)">
-<h3>robotIsAtLogLevel</h3>
-<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">robotIsAtLogLevel</span><wbr><span class="parameters">(<a href="../arch/GenericRobot.LogLevel.html" title="enum class in org.frc5010.common.arch">GenericRobot.LogLevel</a>&nbsp;logLevel)</span></div>
+<section class="detail" id="isAtLogLevel(org.frc5010.common.arch.GenericRobot.LogLevel)">
+<h3>isAtLogLevel</h3>
+<div class="member-signature"><span class="modifiers">public static</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isAtLogLevel</span><wbr><span class="parameters">(<a href="../arch/GenericRobot.LogLevel.html" title="enum class in org.frc5010.common.arch">GenericRobot.LogLevel</a>&nbsp;logLevel)</span></div>
 <div class="block">Checks if the robot's current logging level is at or above the specified log level.</div>
 <dl class="notes">
 <dt>Parameters:</dt>

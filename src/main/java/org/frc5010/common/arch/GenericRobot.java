@@ -7,33 +7,44 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.smartdashboard.Mechanism2d;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import edu.wpi.first.wpilibj2.command.Commands;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
+import org.frc5010.common.config.ConfigConstants;
 import org.frc5010.common.config.RobotParser;
 import org.frc5010.common.config.SubsystemParser;
 import org.frc5010.common.constants.GenericDrivetrainConstants;
+import org.frc5010.common.drive.GenericDrivetrain;
 import org.frc5010.common.sensors.Controller;
 import org.frc5010.common.subsystems.Color;
+import org.frc5010.common.subsystems.LEDStrip;
 import org.frc5010.common.telemetry.DisplayString;
 import org.frc5010.common.telemetry.DisplayValuesHelper;
 import org.frc5010.common.telemetry.WpiDataLogging;
+import org.littletonrobotics.junction.mechanism.LoggedMechanism2d;
+import org.littletonrobotics.junction.networktables.LoggedDashboardChooser;
 
 /** Robots should extend this class as the entry point into using the library */
 public abstract class GenericRobot extends GenericMechanism implements GenericDeviceHandler {
   /** Selector for autonomous modes */
-  protected SendableChooser<Command> selectableCommand;
+  protected LoggedDashboardChooser<Command> selectableCommand;
   /** The driver controller */
   protected Optional<Controller> driver;
   /** The operator controller */
   protected Optional<Controller> operator;
-  /** The current alliance color */
+  /** The static reference to the alliance of the team */
   protected static Alliance alliance;
+  /** The alliance of the team */
+  protected DisplayString allianceDisplay;
+  /** The alliance of the team as a 5010 color */
+  protected Color allianceColor5010;
+  /** The alliance of the team as a WPI color */
+  protected edu.wpi.first.wpilibj.util.Color allianceWpiColor;
   /** The map of subsystems created by the configuration system */
   protected Map<String, GenericSubsystem> subsystems = new HashMap<>();
   /** The map of sensors created by the configuration system */
@@ -44,18 +55,21 @@ public abstract class GenericRobot extends GenericMechanism implements GenericDe
   protected RobotParser parser;
   /** Constants that are used to configure the drivetrain */
   protected GenericDrivetrainConstants drivetrainConstants = new GenericDrivetrainConstants();
-  /** The internal pose supplier that is used by the drivetrain */
+  /** The internal pose supplier that is supplied by the drivetrain to avoid CAE issues */
   protected Supplier<Pose2d> internalPoseSupplier = () -> new Pose2d();
-  /** The pose supplier */
+  /** The pose supplier that is supplied to consumers with a redirection to the internal supplier */
   protected Supplier<Pose2d> poseSupplier = () -> internalPoseSupplier.get();
-  /** The internal pose supplier that is used by the drivetrain */
+  /** The internal pose supplier that is supplied by the drivetrain */
   protected Supplier<Pose2d> internalSimulatedPoseSupplier = () -> new Pose2d();
-  /** The pose supplier */
+  /**
+   * The pose supplier that is supplied to consumers with a redirection to the internal simulated
+   * supplier
+   */
   protected Supplier<Pose2d> simulatedPoseSupplier = () -> internalSimulatedPoseSupplier.get();
   /** The subsystem parser */
   public static SubsystemParser subsystemParser;
-  /** Values that can be displayed on the dashboard */
-  protected DisplayValuesHelper displayValues;
+
+  public static boolean everEnabled = false;
 
   /** The log level enums */
   public enum LogLevel {
@@ -68,9 +82,6 @@ public abstract class GenericRobot extends GenericMechanism implements GenericDe
     /** The competition log level */
     COMPETITION
   }
-
-  /** The current log level */
-  public static LogLevel logLevel = LogLevel.COMPETITION;
 
   /**
    * Creates a new robot using the provided configuration directory
@@ -92,6 +103,7 @@ public abstract class GenericRobot extends GenericMechanism implements GenericDe
       e.printStackTrace();
       return;
     }
+    initRealOrSim();
   }
 
   /** Creates a new robot using a programmatic configuration */
@@ -104,10 +116,10 @@ public abstract class GenericRobot extends GenericMechanism implements GenericDe
     operator = Optional.of(new Controller(Controller.JoystickPorts.ONE.ordinal()));
     controllers.put("operator", operator.get());
     initializeDisplay();
+    initRealOrSim();
   }
 
   protected void initializeDisplay() {
-    displayValues = new DisplayValuesHelper(shuffleTab.getTitle(), logPrefix, true, 2);
     operator.ifPresent(
         op -> {
           if (!op.isPluggedIn()) {
@@ -118,9 +130,21 @@ public abstract class GenericRobot extends GenericMechanism implements GenericDe
     SmartDashboard.putData("Robot Visual", mechVisual);
 
     DriverStation.silenceJoystickConnectionWarning(true);
-    alliance = determineAllianceColor();
-    DisplayString allianceDisplay = displayValues.makeDisplayString("Alliance");
-    allianceDisplay.setValue(alliance.toString());
+    allianceDisplay = DashBoard.makeDisplayString("Alliance");
+    CommandScheduler.getInstance()
+        .schedule(
+            Commands.run(
+                    () -> {
+                      allianceDisplay.setValue(determineAlliance());
+                      LEDStrip.changeSegmentPattern(
+                          ConfigConstants.ALL_LEDS, LEDStrip.getSolidPattern(allianceWpiColor));
+                    })
+                .ignoringDisable(true)
+                .until(
+                    () ->
+                        DriverStation.getAlliance().isPresent()
+                            && !allianceDisplay.getValue().equalsIgnoreCase("N/A")));
+    LEDStrip.setSegmentActive(ConfigConstants.ALL_LEDS, true);
   }
 
   /**
@@ -134,29 +158,11 @@ public abstract class GenericRobot extends GenericMechanism implements GenericDe
   }
 
   /**
-   * Get the current log level
-   *
-   * @return the current log level
-   */
-  public static LogLevel getLoggingLevel() {
-    return logLevel;
-  }
-
-  /**
-   * Set the current log level
-   *
-   * @param level the new log level
-   */
-  public static void setLoggingLevel(LogLevel level) {
-    logLevel = level;
-  }
-
-  /**
    * Return the Robot simulation visual
    *
    * @return the Mechanism 2d
    */
-  public Mechanism2d getMechVisual() {
+  public LoggedMechanism2d getMechVisual() {
     return mechVisual;
   }
 
@@ -202,9 +208,10 @@ public abstract class GenericRobot extends GenericMechanism implements GenericDe
 
     // TODO: Figure out Pathplanner Warmup Command
     if (AutoBuilder.isConfigured()) {
-      selectableCommand = AutoBuilder.buildAutoChooser();
+      selectableCommand =
+          new LoggedDashboardChooser<>("Auto Modes", AutoBuilder.buildAutoChooser());
       if (null != selectableCommand) {
-        shuffleTab.add("Auto Modes", selectableCommand).withSize(2, 1);
+        DashBoard.display("Auto Modes", selectableCommand.getSendableChooser());
       }
     }
   }
@@ -230,7 +237,14 @@ public abstract class GenericRobot extends GenericMechanism implements GenericDe
    * @return the selected auto command
    */
   public Command getAutonomousCommand() {
-    return generateAutoCommand(selectableCommand.getSelected());
+    everEnabled = true;
+    return generateAutoCommand(selectableCommand.get().asProxy());
+  }
+
+  /** Executes periodic behavior when the robot is disabled. */
+  @Override
+  public void disabledBehavior() {
+    selectableCommand.periodic();
   }
 
   /**
@@ -244,6 +258,28 @@ public abstract class GenericRobot extends GenericMechanism implements GenericDe
   }
 
   /**
+   * Determine the alliance color, returning NA by default if undeterminable. Sets other alliance
+   * variables as well.
+   *
+   * @return the alliance color as a string, or "N/A" if undeterminable
+   */
+  public String determineAlliance() {
+    Optional<Alliance> color = DriverStation.getAlliance();
+    alliance = color.orElse(Alliance.Blue);
+    allianceColor5010 =
+        color.map(it -> it == Alliance.Red ? Color.RED : Color.BLUE).orElse(Color.ORANGE);
+    allianceWpiColor =
+        color
+            .map(
+                it ->
+                    it == Alliance.Red
+                        ? edu.wpi.first.wpilibj.util.Color.kRed
+                        : edu.wpi.first.wpilibj.util.Color.kBlue)
+            .orElse(edu.wpi.first.wpilibj.util.Color.kOrange);
+    return color.map(it -> it.name()).orElse("N/A");
+  }
+
+  /**
    * Choose the alliance color, returning Orange by default if undeterminable
    *
    * @return the alliance color
@@ -254,6 +290,21 @@ public abstract class GenericRobot extends GenericMechanism implements GenericDe
       return allianceColor.get() == Alliance.Red ? Color.RED : Color.BLUE;
     }
     return Color.ORANGE;
+  }
+
+  /**
+   * Choose the alliance color, returning Orange by default if undeterminable
+   *
+   * @return the alliance color
+   */
+  public static edu.wpi.first.wpilibj.util.Color chooseAllianceWpiColor() {
+    Optional<Alliance> allianceColor = DriverStation.getAlliance();
+    if (allianceColor.isPresent()) {
+      return allianceColor.get() == Alliance.Red
+          ? edu.wpi.first.wpilibj.util.Color.kRed
+          : edu.wpi.first.wpilibj.util.Color.kBlue;
+    }
+    return edu.wpi.first.wpilibj.util.Color.kOrangeRed;
   }
 
   /**
@@ -367,6 +418,11 @@ public abstract class GenericRobot extends GenericMechanism implements GenericDe
     return drivetrainConstants;
   }
 
+  public void resetDrivePose() {
+    GenericDrivetrain drivetrain = (GenericDrivetrain) subsystems.get(ConfigConstants.DRIVETRAIN);
+    drivetrain.resetPose(new Pose2d());
+  }
+
   /**
    * Set the drivetrain constants
    *
@@ -383,6 +439,6 @@ public abstract class GenericRobot extends GenericMechanism implements GenericDe
    */
   @Override
   public DisplayValuesHelper getDisplayValuesHelper() {
-    return displayValues;
+    return DashBoard;
   }
 }

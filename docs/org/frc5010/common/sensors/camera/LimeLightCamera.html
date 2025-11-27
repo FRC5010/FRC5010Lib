@@ -44,7 +44,7 @@ loadScripts(document, 'script');</script>
 <div>
 <ul class="sub-nav-list">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested-class-summary">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field-summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor-summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method-summary">Method</a></li>
@@ -88,6 +88,15 @@ loadScripts(document, 'script');</script>
 </section>
 <section class="summary">
 <ul class="summary-list">
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<li>
+<section class="nested-class-summary" id="nested-class-summary">
+<h2>Nested Class Summary</h2>
+<div class="inherited-list">
+<h2 id="nested-classes-inherited-from-class-org.frc5010.common.drive.pose.PoseProvider">Nested classes/interfaces inherited from interface&nbsp;org.frc5010.common.drive.pose.<a href="../../drive/pose/PoseProvider.html" title="interface in org.frc5010.common.drive.pose">PoseProvider</a></h2>
+<code><a href="../../drive/pose/PoseProvider.PoseObservation.html" title="class in org.frc5010.common.drive.pose">PoseProvider.PoseObservation</a>, <a href="../../drive/pose/PoseProvider.PoseObservationType.html" title="enum class in org.frc5010.common.drive.pose">PoseProvider.PoseObservationType</a>, <a href="../../drive/pose/PoseProvider.ProviderType.html" title="enum class in org.frc5010.common.drive.pose">PoseProvider.ProviderType</a>, <a href="../../drive/pose/PoseProvider.TargetRotation.html" title="class in org.frc5010.common.drive.pose">PoseProvider.TargetRotation</a>, <a href="../../drive/pose/PoseProvider.VisionIOInputs.html" title="class in org.frc5010.common.drive.pose">PoseProvider.VisionIOInputs</a></code></div>
+</section>
+</li>
 <!-- =========== FIELD SUMMARY =========== -->
 <li>
 <section class="field-summary" id="field-summary">
@@ -95,6 +104,9 @@ loadScripts(document, 'script');</script>
 <div class="inherited-list">
 <h3 id="fields-inherited-from-class-org.frc5010.common.sensors.camera.GenericCamera">Fields inherited from class&nbsp;org.frc5010.common.sensors.camera.<a href="GenericCamera.html" title="class in org.frc5010.common.sensors.camera">GenericCamera</a></h3>
 <code><a href="GenericCamera.html#colIndex">colIndex</a>, <a href="GenericCamera.html#name">name</a>, <a href="GenericCamera.html#robotToCamera">robotToCamera</a>, <a href="GenericCamera.html#updaters">updaters</a>, <a href="GenericCamera.html#updateValues">updateValues</a>, <a href="GenericCamera.html#visionLayout">visionLayout</a>, <a href="GenericCamera.html#visionTab">visionTab</a></code></div>
+<div class="inherited-list">
+<h3 id="fields-inherited-from-class-org.frc5010.common.drive.pose.PoseProvider">Fields inherited from interface&nbsp;org.frc5010.common.drive.pose.<a href="../../drive/pose/PoseProvider.html" title="interface in org.frc5010.common.drive.pose">PoseProvider</a></h3>
+<code><a href="../../drive/pose/PoseProvider.html#cameraIndex">cameraIndex</a>, <a href="../../drive/pose/PoseProvider.html#disconnectedAlert">disconnectedAlert</a>, <a href="../../drive/pose/PoseProvider.html#input">input</a></code></div>
 </section>
 </li>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
@@ -144,24 +156,8 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getCaptureTime()" class="member-name-link">getCaptureTime</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#determineConfidence(org.frc5010.common.vision.LimelightHelpers.PoseEstimate)" class="member-name-link">determineConfidence</a><wbr>(<a href="../../vision/LimelightHelpers.PoseEstimate.html" title="class in org.frc5010.common.vision">LimelightHelpers.PoseEstimate</a>&nbsp;estimate)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getConfidence()" class="member-name-link">getConfidence</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getLatency()" class="member-name-link">getLatency</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Get the latency in seconds between the camera image and when the data was received</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Translation3d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Translation3d</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPosition()" class="member-name-link">getPosition</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose3d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose3d</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRobotPose()" class="member-name-link">getRobotPose</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Get the current pose estimate of the robot</div>
-</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="../../vision/LimelightHelpers.PoseEstimate.html" title="class in org.frc5010.common.vision">LimelightHelpers.PoseEstimate</a>&gt;</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRobotPoseEstimateM1()" class="member-name-link">getRobotPoseEstimateM1</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -172,36 +168,16 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get the robot's estimated pose using the Megatag 2 algorithm</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose3d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose3d</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRobotToTargetPose()" class="member-name-link">getRobotToTargetPose</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Get the target pose estimate relative to the robot</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Rotation3d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Rotation3d</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRotation()" class="member-name-link">getRotation</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTargetArea()" class="member-name-link">getTargetArea</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get the area of the target in percentage of the image</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTargetPitch()" class="member-name-link">getTargetPitch</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Get the pitch of the target in degrees along the vertical Y axis of the camera</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getTargetYaw()" class="member-name-link">getTargetYaw</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Get the yaw of the target in degrees along the horizontal X axis of the camera</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#hasValidTarget()" class="member-name-link">hasValidTarget</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Get the validity of the target information</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isActive()" class="member-name-link">isActive</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../drive/pose/PoseProvider.ProviderType.html" title="enum class in org.frc5010.common.drive.pose">PoseProvider.ProviderType</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getType()" class="member-name-link">getType</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="LimeLightCamera.html" title="class in org.frc5010.common.sensors.camera">LimeLightCamera</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setAngleSupplier(java.util.function.Supplier)" class="member-name-link">setAngleSupplier</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Supplier.html" title="class or interface in java.util.function" class="external-link">Supplier</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Rotation2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Rotation2d</a>&gt;&nbsp;rotationSupplier)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="LimeLightCamera.html" title="class in org.frc5010.common.sensors.camera">LimeLightCamera</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setGyroSupplier(java.util.function.Supplier)" class="member-name-link">setGyroSupplier</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Supplier.html" title="class or interface in java.util.function" class="external-link">Supplier</a>&lt;<a href="../gyro/GenericGyro.html" title="interface in org.frc5010.common.sensors.gyro">GenericGyro</a>&gt;&nbsp;gyroSupplier)</code></div>
@@ -209,16 +185,19 @@ loadScripts(document, 'script');</script>
 <div class="block">Set the supplier for the gyroscope</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPoseEstimationChooser(java.util.function.BooleanSupplier)" class="member-name-link">setPoseEstimationChooser</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BooleanSupplier.html" title="class or interface in java.util.function" class="external-link">BooleanSupplier</a>&nbsp;chooser)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setIMUMode(int)" class="member-name-link">setIMUMode</a><wbr>(int&nbsp;mode)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setPoseEstimationChooser(java.util.function.BooleanSupplier)" class="member-name-link">setPoseEstimationChooser</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BooleanSupplier.html" title="class or interface in java.util.function" class="external-link">BooleanSupplier</a>&nbsp;chooser)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the Megatag pose estimation chooser</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setRobotToCameraOnLL()" class="member-name-link">setRobotToCameraOnLL</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateCameraInfo()" class="member-name-link">updateCameraInfo</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setRobotToCameraOnLL()" class="member-name-link">setRobotToCameraOnLL</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateCameraInfo()" class="member-name-link">updateCameraInfo</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Update the camera</div>
 </div>
 </div>
@@ -226,10 +205,13 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-org.frc5010.common.sensors.camera.GenericCamera">Methods inherited from class&nbsp;org.frc5010.common.sensors.camera.<a href="GenericCamera.html" title="class in org.frc5010.common.sensors.camera">GenericCamera</a></h3>
-<code><a href="GenericCamera.html#getRobotToCamera()">getRobotToCamera</a>, <a href="GenericCamera.html#name()">name</a>, <a href="GenericCamera.html#registerUpdater(java.lang.Runnable)">registerUpdater</a>, <a href="GenericCamera.html#unregisterUpdater(java.lang.Runnable)">unregisterUpdater</a>, <a href="GenericCamera.html#update()">update</a></code></div>
+<code><a href="GenericCamera.html#getDistanceToTarget(double)">getDistanceToTarget</a>, <a href="GenericCamera.html#getRobotToCamera()">getRobotToCamera</a>, <a href="GenericCamera.html#getTargetPitch()">getTargetPitch</a>, <a href="GenericCamera.html#getTargetYaw()">getTargetYaw</a>, <a href="GenericCamera.html#hasValidTarget()">hasValidTarget</a>, <a href="GenericCamera.html#name()">name</a>, <a href="GenericCamera.html#registerUpdater(java.lang.Runnable)">registerUpdater</a>, <a href="GenericCamera.html#unregisterUpdater(java.lang.Runnable)">unregisterUpdater</a>, <a href="GenericCamera.html#update()">update</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
+<div class="inherited-list">
+<h3 id="methods-inherited-from-class-org.frc5010.common.drive.pose.PoseProvider">Methods inherited from interface&nbsp;org.frc5010.common.drive.pose.<a href="../../drive/pose/PoseProvider.html" title="interface in org.frc5010.common.drive.pose">PoseProvider</a></h3>
+<code><a href="../../drive/pose/PoseProvider.html#getCaptureTime()">getCaptureTime</a>, <a href="../../drive/pose/PoseProvider.html#getObservations()">getObservations</a>, <a href="../../drive/pose/PoseProvider.html#getStdDeviations(org.frc5010.common.drive.pose.PoseProvider.PoseObservation)">getStdDeviations</a>, <a href="../../drive/pose/PoseProvider.html#isConnected()">isConnected</a>, <a href="../../drive/pose/PoseProvider.html#logInput(java.lang.String)">logInput</a>, <a href="../../drive/pose/PoseProvider.html#resetPose(edu.wpi.first.math.geometry.Pose3d)">resetPose</a></code></div>
 </section>
 </li>
 </ul>
@@ -343,6 +325,12 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="setIMUMode(int)">
+<h3>setIMUMode</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setIMUMode</span><wbr><span class="parameters">(int&nbsp;mode)</span></div>
+</section>
+</li>
+<li>
 <section class="detail" id="updateCameraInfo()">
 <h3>updateCameraInfo</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">updateCameraInfo</span>()</div>
@@ -350,45 +338,6 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Overrides:</dt>
 <dd><code><a href="GenericCamera.html#updateCameraInfo()">updateCameraInfo</a></code>&nbsp;in class&nbsp;<code><a href="GenericCamera.html" title="class in org.frc5010.common.sensors.camera">GenericCamera</a></code></dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="hasValidTarget()">
-<h3>hasValidTarget</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">hasValidTarget</span>()</div>
-<div class="block">Get the validity of the target information</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="GenericCamera.html#hasValidTarget()">hasValidTarget</a></code>&nbsp;in class&nbsp;<code><a href="GenericCamera.html" title="class in org.frc5010.common.sensors.camera">GenericCamera</a></code></dd>
-<dt>Returns:</dt>
-<dd>whether or not the camera has a valid target</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getTargetYaw()">
-<h3>getTargetYaw</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getTargetYaw</span>()</div>
-<div class="block">Get the yaw of the target in degrees along the horizontal X axis of the camera</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="GenericCamera.html#getTargetYaw()">getTargetYaw</a></code>&nbsp;in class&nbsp;<code><a href="GenericCamera.html" title="class in org.frc5010.common.sensors.camera">GenericCamera</a></code></dd>
-<dt>Returns:</dt>
-<dd>the yaw of the target in degrees along the horizontal X axis of the camera</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getTargetPitch()">
-<h3>getTargetPitch</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getTargetPitch</span>()</div>
-<div class="block">Get the pitch of the target in degrees along the vertical Y axis of the camera</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="GenericCamera.html#getTargetPitch()">getTargetPitch</a></code>&nbsp;in class&nbsp;<code><a href="GenericCamera.html" title="class in org.frc5010.common.sensors.camera">GenericCamera</a></code></dd>
-<dt>Returns:</dt>
-<dd>the pitch of the target in degrees along the vertical Y axis of the camera</dd>
 </dl>
 </section>
 </li>
@@ -406,47 +355,6 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="getLatency()">
-<h3>getLatency</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getLatency</span>()</div>
-<div class="block">Get the latency in seconds between the camera image and when the data was received</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="GenericCamera.html#getLatency()">getLatency</a></code>&nbsp;in class&nbsp;<code><a href="GenericCamera.html" title="class in org.frc5010.common.sensors.camera">GenericCamera</a></code></dd>
-<dt>Returns:</dt>
-<dd>the latency of the camera image</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getRobotPose()">
-<h3>getRobotPose</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose3d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose3d</a>&gt;</span>&nbsp;<span class="element-name">getRobotPose</span>()</div>
-<div class="block">Get the current pose estimate of the robot</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="../../drive/pose/PoseProvider.html#getRobotPose()">getRobotPose</a></code>&nbsp;in interface&nbsp;<code><a href="../../drive/pose/PoseProvider.html" title="interface in org.frc5010.common.drive.pose">PoseProvider</a></code></dd>
-<dt>Specified by:</dt>
-<dd><code><a href="GenericCamera.html#getRobotPose()">getRobotPose</a></code>&nbsp;in class&nbsp;<code><a href="GenericCamera.html" title="class in org.frc5010.common.sensors.camera">GenericCamera</a></code></dd>
-<dt>Returns:</dt>
-<dd>the current pose estimate of the robot</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="getRobotToTargetPose()">
-<h3>getRobotToTargetPose</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose3d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose3d</a>&gt;</span>&nbsp;<span class="element-name">getRobotToTargetPose</span>()</div>
-<div class="block">Get the target pose estimate relative to the robot</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="GenericCamera.html#getRobotToTargetPose()">getRobotToTargetPose</a></code>&nbsp;in class&nbsp;<code><a href="GenericCamera.html" title="class in org.frc5010.common.sensors.camera">GenericCamera</a></code></dd>
-<dt>Returns:</dt>
-<dd>the target pose estimate relative to the robot</dd>
-</dl>
-</section>
-</li>
-<li>
 <section class="detail" id="setGyroSupplier(java.util.function.Supplier)">
 <h3>setGyroSupplier</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="LimeLightCamera.html" title="class in org.frc5010.common.sensors.camera">LimeLightCamera</a></span>&nbsp;<span class="element-name">setGyroSupplier</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Supplier.html" title="class or interface in java.util.function" class="external-link">Supplier</a>&lt;<a href="../gyro/GenericGyro.html" title="interface in org.frc5010.common.sensors.gyro">GenericGyro</a>&gt;&nbsp;gyroSupplier)</span></div>
@@ -460,39 +368,27 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
+<section class="detail" id="setAngleSupplier(java.util.function.Supplier)">
+<h3>setAngleSupplier</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="LimeLightCamera.html" title="class in org.frc5010.common.sensors.camera">LimeLightCamera</a></span>&nbsp;<span class="element-name">setAngleSupplier</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Supplier.html" title="class or interface in java.util.function" class="external-link">Supplier</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Rotation2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Rotation2d</a>&gt;&nbsp;rotationSupplier)</span></div>
+</section>
+</li>
+<li>
 <section class="detail" id="setRobotToCameraOnLL()">
 <h3>setRobotToCameraOnLL</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setRobotToCameraOnLL</span>()</div>
 </section>
 </li>
 <li>
-<section class="detail" id="getConfidence()">
-<h3>getConfidence</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getConfidence</span>()</div>
+<section class="detail" id="determineConfidence(org.frc5010.common.vision.LimelightHelpers.PoseEstimate)">
+<h3>determineConfidence</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">determineConfidence</span><wbr><span class="parameters">(<a href="../../vision/LimelightHelpers.PoseEstimate.html" title="class in org.frc5010.common.vision">LimelightHelpers.PoseEstimate</a>&nbsp;estimate)</span></div>
 </section>
 </li>
 <li>
-<section class="detail" id="isActive()">
-<h3>isActive</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isActive</span>()</div>
-</section>
-</li>
-<li>
-<section class="detail" id="getPosition()">
-<h3>getPosition</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Translation3d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Translation3d</a></span>&nbsp;<span class="element-name">getPosition</span>()</div>
-</section>
-</li>
-<li>
-<section class="detail" id="getRotation()">
-<h3>getRotation</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Rotation3d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Rotation3d</a></span>&nbsp;<span class="element-name">getRotation</span>()</div>
-</section>
-</li>
-<li>
-<section class="detail" id="getCaptureTime()">
-<h3>getCaptureTime</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getCaptureTime</span>()</div>
+<section class="detail" id="getType()">
+<h3>getType</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../drive/pose/PoseProvider.ProviderType.html" title="enum class in org.frc5010.common.drive.pose">PoseProvider.ProviderType</a></span>&nbsp;<span class="element-name">getType</span>()</div>
 </section>
 </li>
 </ul>

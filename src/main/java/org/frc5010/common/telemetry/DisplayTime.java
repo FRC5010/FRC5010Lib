@@ -11,28 +11,21 @@ import edu.wpi.first.units.TimeUnit;
 import edu.wpi.first.units.measure.MutTime;
 import edu.wpi.first.units.measure.Time;
 import java.util.EnumSet;
+import java.util.function.Supplier;
 import org.frc5010.common.arch.GenericRobot.LogLevel;
 
 /** Add a time to the dashboard */
-public class DisplayTime {
+public class DisplayTime extends DisplayableValue {
   /** The time value */
   final MutTime time_;
   /** The time unit */
   protected final TimeUnit unit_;
-  /** The name of the variable */
-  protected final String name_;
-  /** The table */
-  protected final String table_;
   /** The topic */
   protected DoubleTopic topic_;
   /** The publisher */
   protected DoublePublisher publisher_;
   /** The subscriber */
   protected DoubleSubscriber subscriber_;
-  /** The listener handle */
-  protected int listenerHandle_;
-  /** Display mode */
-  protected final boolean isDisplayed_;
 
   // Constructors
   /**
@@ -55,7 +48,7 @@ public class DisplayTime {
    * @param unitTime - time in that unit
    * @param name - name of the time
    * @param table - name of the table
-   * @param logLevel - log level
+   * @param logLevel - the log level
    */
   public DisplayTime(
       final double unitTime,
@@ -63,15 +56,13 @@ public class DisplayTime {
       final String name,
       final String table,
       final LogLevel logLevel) {
+    super(String.format("%s (%s)", name, unit.symbol()), table, logLevel);
     time_ = new MutTime(unitTime, unit.getBaseUnit().convertFrom(unitTime, unit), unit);
     unit_ = unit;
-    name_ = String.format("%s (%s)", name, unit_.symbol());
-    table_ = table;
-    isDisplayed_ = DisplayValuesHelper.robotIsAtLogLevel(logLevel);
     if (isDisplayed_) {
       topic_ = NetworkTableInstance.getDefault().getTable(table_).getDoubleTopic(name_);
       publisher_ = topic_.publish();
-      init();
+      init(logLevel);
     }
   }
 
@@ -89,37 +80,38 @@ public class DisplayTime {
   /**
    * Add a time to the dashboard
    *
-   * @param unitTime - time in that unit
-   * @param name - name of the time
-   * @param table - name of the table
-   * @param logLevel - log level
+   * @param unitTime
+   * @param name
+   * @param table
+   * @param logLevel
    */
   public DisplayTime(
       final Time unitTime, final String name, final String table, final LogLevel logLevel) {
+    super(String.format("%s (%s)", name, unitTime.unit().symbol()), table, logLevel);
     time_ = unitTime.mutableCopy();
     unit_ = unitTime.unit();
-    name_ = String.format("%s (%s)", name, unit_.symbol());
-    table_ = table;
-    isDisplayed_ = DisplayValuesHelper.robotIsAtLogLevel(logLevel);
     if (isDisplayed_) {
       topic_ = NetworkTableInstance.getDefault().getTable(table_).getDoubleTopic(name_);
       publisher_ = topic_.publish();
-      init();
+      init(logLevel);
     }
   }
 
-  protected void init() {
-    if (DisplayValuesHelper.robotIsAtLogLevel(LogLevel.CONFIG)) {
-      topic_.setPersistent(true);
-      subscriber_ = topic_.subscribe(time_.in(unit_));
-      listenerHandle_ =
-          NetworkTableInstance.getDefault()
-              .addListener(
-                  subscriber_,
-                  EnumSet.of(NetworkTableEvent.Kind.kValueAll),
-                  event -> {
-                    setTime(event.valueData.value.getDouble(), unit_, false);
-                  });
+  protected void init(LogLevel logLevel) {
+    if (LogLevel.CONFIG == logLevel) {
+      if (isDisplayed_) topic_.setPersistent(true);
+      if (DisplayValuesHelper.isAtLogLevel(LogLevel.CONFIG)) {
+        subscriber_ = topic_.subscribe(time_.in(unit_));
+        listenerHandle_ =
+            NetworkTableInstance.getDefault()
+                .addListener(
+                    subscriber_,
+                    EnumSet.of(NetworkTableEvent.Kind.kValueAll),
+                    event -> {
+                      setTime(event.valueData.value.getDouble(), unit_, false);
+                    });
+        setTime(subscriber_.get(), unit_, false);
+      }
     }
     publisher_.setDefault(time_.in(unit_));
   }
@@ -199,5 +191,18 @@ public class DisplayTime {
 
   public double getTimeInSeconds() {
     return time_.in(Seconds);
+  }
+
+  /**
+   * Registers a listener to update the DisplayTime with a supplier of times. The supplier is called
+   * every time the dashboard is updated. This is useful for updating a DisplayTime with a changing
+   * quantity, such as the time from the beginning of a match.
+   *
+   * @param supplier the supplier of times
+   * @return this
+   */
+  public DisplayTime updateWith(Supplier<Time> supplier) {
+    displayValuesHelper_.registerListener(() -> setTime(supplier.get()));
+    return this;
   }
 }

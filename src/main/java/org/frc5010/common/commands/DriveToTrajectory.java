@@ -13,7 +13,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import org.frc5010.common.constants.SwerveConstants;
-import org.frc5010.common.drive.swerve.SwerveDrivetrain;
+import org.frc5010.common.drive.swerve.GenericSwerveDrivetrain;
 import org.frc5010.common.vision.AprilTags;
 
 public class DriveToTrajectory extends Command {
@@ -24,7 +24,7 @@ public class DriveToTrajectory extends Command {
     right
   }
 
-  private SwerveDrivetrain swerveDrivetrain;
+  private GenericSwerveDrivetrain swerveDrivetrain;
 
   private PathPlannerTrajectory trajectory;
   //  private PathPlannerState currentSetpoint;
@@ -43,7 +43,7 @@ public class DriveToTrajectory extends Command {
   private Rotation2d desiredHeading;
 
   public DriveToTrajectory(
-      SwerveDrivetrain swerveDrivetrain,
+      GenericSwerveDrivetrain swerveDrivetrain,
       LCR relativePosition,
       SwerveConstants constants,
       double xOffset,

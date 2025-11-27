@@ -77,16 +77,12 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/motorcontrol/MotorController.html" title="class or interface in edu.wpi.first.wpilibj.motorcontrol" class="external-link">MotorController</a></code>, <code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></dd>
-</dl>
-<dl class="notes">
-<dt>Direct Known Subclasses:</dt>
-<dd><code><a href="KrakenX60.html" title="class in org.frc5010.common.motors.hardware">KrakenX60</a></code></dd>
+<dd><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/motorcontrol/MotorController.html" title="class or interface in edu.wpi.first.wpilibj.motorcontrol" class="external-link">MotorController</a></code>, <code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">GenericTalonFXMotor</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
-implements <a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></span></div>
+implements <a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></span></div>
 <div class="block">A class for a generic TalonFX motor</div>
 </section>
 <section class="summary">
@@ -100,19 +96,55 @@ implements <a href="../MotorController5010.html" title="interface in org.frc5010
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
+<div class="col-first even-row-color"><code>protected <a href="../MotorConstants.Motor.html" title="enum class in org.frc5010.common.motors">MotorConstants.Motor</a></code></div>
+<div class="col-second even-row-color"><code><a href="#config" class="member-name-link">config</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Configuration</div>
+</div>
+<div class="col-first odd-row-color"><code>protected <a href="../control/TalonFXController.html" title="class in org.frc5010.common.motors.control">TalonFXController</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#controller" class="member-name-link">controller</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">TalonFX controller</div>
+</div>
 <div class="col-first even-row-color"><code>protected int</code></div>
 <div class="col-second even-row-color"><code><a href="#controllerCurrentLimit" class="member-name-link">controllerCurrentLimit</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Current controller current limit</div>
+</div>
 <div class="col-first odd-row-color"><code>protected boolean</code></div>
 <div class="col-second odd-row-color"><code><a href="#enableFOC" class="member-name-link">enableFOC</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-last odd-row-color">
+<div class="block">Enable FOC</div>
+</div>
+<div class="col-first even-row-color"><code>protected <a href="../../sensors/encoder/TalonFXEncoder.html" title="class in org.frc5010.common.sensors.encoder">TalonFXEncoder</a></code></div>
+<div class="col-second even-row-color"><code><a href="#encoder" class="member-name-link">encoder</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">TalonFX encoder</div>
+</div>
+<div class="col-first odd-row-color"><code>protected <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/AngularVelocity.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">AngularVelocity</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#maxRPM" class="member-name-link">maxRPM</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Max RPM</div>
+</div>
 <div class="col-first even-row-color"><code>protected int</code></div>
 <div class="col-second even-row-color"><code><a href="#motorCurrentLimit" class="member-name-link">motorCurrentLimit</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>static double</code></div>
-<div class="col-second odd-row-color"><code><a href="#STATUS_TIMEOUT_SECONDS" class="member-name-link">STATUS_TIMEOUT_SECONDS</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">Current motor current limit</div>
+</div>
+<div class="col-first odd-row-color"><code>protected <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link">DCMotor</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#motorSim" class="member-name-link">motorSim</a></code></div>
 <div class="col-last odd-row-color">
+<div class="block">DCMotor simulation</div>
+</div>
+<div class="col-first even-row-color"><code>static double</code></div>
+<div class="col-second even-row-color"><code><a href="#STATUS_TIMEOUT_SECONDS" class="member-name-link">STATUS_TIMEOUT_SECONDS</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">Wait time for status frames to show up.</div>
+</div>
+<div class="col-first odd-row-color"><code>protected int</code></div>
+<div class="col-second odd-row-color"><code><a href="#supplyCurrentLimit" class="member-name-link">supplyCurrentLimit</a></code></div>
+<div class="col-last odd-row-color">
+<div class="block">Current motor supply current limit</div>
 </div>
 </div>
 </section>
@@ -125,18 +157,14 @@ implements <a href="../MotorController5010.html" title="interface in org.frc5010
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int)" class="member-name-link">GenericTalonFXMotor</a><wbr>(int&nbsp;id)</code></div>
-<div class="col-last even-row-color">
-<div class="block">Construct the TalonFX swerve motor given the ID and CANBus.</div>
-</div>
-<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(int,java.lang.String)" class="member-name-link">GenericTalonFXMotor</a><wbr>(int&nbsp;id,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(int,org.frc5010.common.motors.MotorConstants.Motor)" class="member-name-link">GenericTalonFXMotor</a><wbr>(int&nbsp;canId,
+ <a href="../MotorConstants.Motor.html" title="enum class in org.frc5010.common.motors">MotorConstants.Motor</a>&nbsp;config)</code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(int,org.frc5010.common.motors.MotorConstants.Motor,java.lang.String)" class="member-name-link">GenericTalonFXMotor</a><wbr>(int&nbsp;id,
+ <a href="../MotorConstants.Motor.html" title="enum class in org.frc5010.common.motors">MotorConstants.Motor</a>&nbsp;config,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;canbus)</code></div>
 <div class="col-last odd-row-color">
 <div class="block">Construct the TalonFX swerve motor given the ID and CANBus.</div>
-</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(com.ctre.phoenix6.hardware.TalonFX)" class="member-name-link">GenericTalonFXMotor</a><wbr>(<a href="https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/hardware/TalonFX.html" title="class or interface in com.ctre.phoenix6.hardware" class="external-link">TalonFX</a>&nbsp;motor)</code></div>
-<div class="col-last even-row-color">
-<div class="block">Constructor for TalonFX swerve motor.</div>
 </div>
 </div>
 </section>
@@ -162,87 +190,97 @@ implements <a href="../MotorController5010.html" title="interface in org.frc5010
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Clear the sticky faults on the motor controller.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#disable()" class="member-name-link">disable</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../sensors/encoder/GenericEncoder.html" title="interface in org.frc5010.common.sensors.encoder">GenericEncoder</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#createMotorEncoder(int)" class="member-name-link">createMotorEncoder</a><wbr>(int&nbsp;countsPerRev)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Disables the motor by calling the disable method on the underlying motor object.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#duplicate(int)" class="member-name-link">duplicate</a><wbr>(int&nbsp;port)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Creates a duplicate of the current motor controller with the specified port.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#enableFOC(boolean)" class="member-name-link">enableFOC</a><wbr>(boolean&nbsp;enableFOC)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Enable or disable Field-Oriented Control (FOC) for the motor.</div>
+<div class="block">Retrieves the motor encoder for the TalonFX motor, with the specified counts per revolution.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#factoryDefaults()" class="member-name-link">factoryDefaults</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#disable()" class="member-name-link">disable</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Disables the motor by calling the disable method on the underlying motor object.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#duplicate(int)" class="member-name-link">duplicate</a><wbr>(int&nbsp;port)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Creates a duplicate of the current motor controller with the specified port.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#enableFOC(boolean)" class="member-name-link">enableFOC</a><wbr>(boolean&nbsp;enableFOC)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Enable or disable Field-Oriented Control (FOC) for the motor.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#factoryDefaults()" class="member-name-link">factoryDefaults</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Configure the factory defaults.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#get()" class="member-name-link">get</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#get()" class="member-name-link">get</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get the current output of the motor controller.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAppliedOutput()" class="member-name-link">getAppliedOutput</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAppliedOutput()" class="member-name-link">getAppliedOutput</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Gets the applied output of the motor as a double in the range of -1.0 to 1.0.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/sysid/SysIdRoutine.html" title="class or interface in edu.wpi.first.wpilibj2.command.sysid" class="external-link">SysIdRoutine</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDefaultSysId(edu.wpi.first.wpilibj2.command.SubsystemBase)" class="member-name-link">getDefaultSysId</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/SubsystemBase.html" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link">SubsystemBase</a>&nbsp;subsystemBase)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/sysid/SysIdRoutine.html" title="class or interface in edu.wpi.first.wpilibj2.command.sysid" class="external-link">SysIdRoutine</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDefaultSysId(edu.wpi.first.wpilibj2.command.SubsystemBase)" class="member-name-link">getDefaultSysId</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/SubsystemBase.html" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link">SubsystemBase</a>&nbsp;subsystemBase)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the default system identification routine for the motor.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getInverted()" class="member-name-link">getInverted</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getInverted()" class="member-name-link">getInverted</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the inversion status of the motor.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/AngularVelocity.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">AngularVelocity</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMaxRPM()" class="member-name-link">getMaxRPM</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/AngularVelocity.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">AngularVelocity</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMaxRPM()" class="member-name-link">getMaxRPM</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Returns the maximum revolutions per minute (RPM) the motor can achieve.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMotor()" class="member-name-link">getMotor</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMotor()" class="member-name-link">getMotor</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Retrieves the motor controller itself.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../MotorConstants.Motor.html" title="enum class in org.frc5010.common.motors">MotorConstants.Motor</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMotorConfig()" class="member-name-link">getMotorConfig</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Returns the configuration of the motor as a Motor object.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../sensors/encoder/GenericEncoder.html" title="interface in org.frc5010.common.sensors.encoder">GenericEncoder</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMotorEncoder()" class="member-name-link">getMotorEncoder</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Retrieves the motor encoder for the TalonFX motor.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../../sensors/encoder/GenericEncoder.html" title="interface in org.frc5010.common.sensors.encoder">GenericEncoder</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMotorEncoder(int)" class="member-name-link">getMotorEncoder</a><wbr>(int&nbsp;countsPerRev)</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link">DCMotor</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMotorSimulationType()" class="member-name-link">getMotorSimulationType</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Retrieves the motor encoder for the TalonFX motor, with the specified counts per revolution.</div>
+<div class="block">Returns the type of motor that is being simulated.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link">DCMotor</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getMotorSimulationType()" class="member-name-link">getMotorSimulationType</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getOutputCurrent()" class="member-name-link">getOutputCurrent</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Returns the simulation type of the motor as a <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link"><code>DCMotor</code></a>.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getOutputCurrent()" class="member-name-link">getOutputCurrent</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get the current output of the motor controller.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPIDController5010()" class="member-name-link">getPIDController5010</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPIDController5010()" class="member-name-link">getPIDController5010</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Retrieves the PID controller specific to the TalonFX motor.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>yams.motorcontrollers.SmartMotorController</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getSmartMotorController(yams.motorcontrollers.SmartMotorControllerConfig)" class="member-name-link">getSmartMotorController</a><wbr>(yams.motorcontrollers.SmartMotorControllerConfig&nbsp;config)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Get the smart motor controller</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVoltage()" class="member-name-link">getVoltage</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Retrieves the voltage output of the motor controller.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#invert(boolean)" class="member-name-link">invert</a><wbr>(boolean&nbsp;inverted)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the motor to be inverted.</div>
@@ -253,55 +291,77 @@ implements <a href="../MotorController5010.html" title="interface in org.frc5010
 <div class="block">Checks if Field-Oriented Control (FOC) is enabled for the motor.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#set(double)" class="member-name-link">set</a><wbr>(double&nbsp;percentOutput)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#sendControlRequest(com.ctre.phoenix6.controls.ControlRequest)" class="member-name-link">sendControlRequest</a><wbr>(<a href="https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/controls/ControlRequest.html" title="class or interface in com.ctre.phoenix6.controls" class="external-link">ControlRequest</a>&nbsp;request)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#set(double)" class="member-name-link">set</a><wbr>(double&nbsp;percentOutput)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the percentage output.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCurrentLimit(int)" class="member-name-link">setCurrentLimit</a><wbr>(int&nbsp;limit)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setCurrentLimit(edu.wpi.first.units.measure.Current)" class="member-name-link">setCurrentLimit</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/Current.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">Current</a>&nbsp;limit)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the current limit for the swerve drive motor, remember this may cause jumping if used in
  conjunction with voltage compensation.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setFollow(org.frc5010.common.motors.MotorController5010)" class="member-name-link">setFollow</a><wbr>(<a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a>&nbsp;motor)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setFollow(org.frc5010.common.motors.GenericMotorController)" class="member-name-link">setFollow</a><wbr>(<a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a>&nbsp;motor)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the motor to follow another motor controller.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setFollow(org.frc5010.common.motors.MotorController5010,boolean)" class="member-name-link">setFollow</a><wbr>(<a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a>&nbsp;motor,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setFollow(org.frc5010.common.motors.GenericMotorController,boolean)" class="member-name-link">setFollow</a><wbr>(<a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a>&nbsp;motor,
  boolean&nbsp;inverted)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the motor to follow another motor controller with the option to invert the follower.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setInverted(boolean)" class="member-name-link">setInverted</a><wbr>(boolean&nbsp;inverted)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setInverted(boolean)" class="member-name-link">setInverted</a><wbr>(boolean&nbsp;inverted)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the motor to be inverted.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setMaxRPM(edu.wpi.first.units.measure.AngularVelocity)" class="member-name-link">setMaxRPM</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/AngularVelocity.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">AngularVelocity</a>&nbsp;rpm)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the maximum angular velocity of the motor in rotations per minute.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setMotorBrake(boolean)" class="member-name-link">setMotorBrake</a><wbr>(boolean&nbsp;isBrakeMode)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the idle mode of the motor to either brake or coast.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setSlewRate(double)" class="member-name-link">setSlewRate</a><wbr>(double&nbsp;rate)</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setMotorSimulationType(edu.wpi.first.math.system.plant.DCMotor)" class="member-name-link">setMotorSimulationType</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link">DCMotor</a>&nbsp;motorSimulationType)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the simulated instance of the motor for use in simulations.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setSlewRate(double)" class="member-name-link">setSlewRate</a><wbr>(double&nbsp;rate)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the maximum rate the open/closed loop output can change by.</div>
 </div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setSupplyCurrent(edu.wpi.first.units.measure.Current)" class="member-name-link">setSupplyCurrent</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/Current.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">Current</a>&nbsp;limit)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setVoltage(double)" class="member-name-link">setVoltage</a><wbr>(double&nbsp;voltage)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the voltage of the motor.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setVoltageCompensation(double)" class="member-name-link">setVoltageCompensation</a><wbr>(double&nbsp;nominalVoltage)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the voltage compensation of the motor to the given nominal voltage.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#stopMotor()" class="member-name-link">stopMotor</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#simulationUpdate(java.util.Optional,java.lang.Double)" class="member-name-link">simulationUpdate</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&nbsp;position,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&nbsp;velocity)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Update the motor simulation model with the current state of the motor.</div>
+</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#stopMotor()" class="member-name-link">stopMotor</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Stop the motor by setting the output to 0.</div>
 </div>
 </div>
@@ -332,21 +392,66 @@ implements <a href="../MotorController5010.html" title="interface in org.frc5010
 </section>
 </li>
 <li>
+<section class="detail" id="controller">
+<h3>controller</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="../control/TalonFXController.html" title="class in org.frc5010.common.motors.control">TalonFXController</a></span>&nbsp;<span class="element-name">controller</span></div>
+<div class="block">TalonFX controller</div>
+</section>
+</li>
+<li>
+<section class="detail" id="encoder">
+<h3>encoder</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="../../sensors/encoder/TalonFXEncoder.html" title="class in org.frc5010.common.sensors.encoder">TalonFXEncoder</a></span>&nbsp;<span class="element-name">encoder</span></div>
+<div class="block">TalonFX encoder</div>
+</section>
+</li>
+<li>
 <section class="detail" id="motorCurrentLimit">
 <h3>motorCurrentLimit</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">motorCurrentLimit</span></div>
+<div class="block">Current motor current limit</div>
+</section>
+</li>
+<li>
+<section class="detail" id="supplyCurrentLimit">
+<h3>supplyCurrentLimit</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">supplyCurrentLimit</span></div>
+<div class="block">Current motor supply current limit</div>
 </section>
 </li>
 <li>
 <section class="detail" id="controllerCurrentLimit">
 <h3>controllerCurrentLimit</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">controllerCurrentLimit</span></div>
+<div class="block">Current controller current limit</div>
 </section>
 </li>
 <li>
 <section class="detail" id="enableFOC">
 <h3>enableFOC</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">enableFOC</span></div>
+<div class="block">Enable FOC</div>
+</section>
+</li>
+<li>
+<section class="detail" id="motorSim">
+<h3>motorSim</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link">DCMotor</a></span>&nbsp;<span class="element-name">motorSim</span></div>
+<div class="block">DCMotor simulation</div>
+</section>
+</li>
+<li>
+<section class="detail" id="maxRPM">
+<h3>maxRPM</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/AngularVelocity.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">AngularVelocity</a></span>&nbsp;<span class="element-name">maxRPM</span></div>
+<div class="block">Max RPM</div>
+</section>
+</li>
+<li>
+<section class="detail" id="config">
+<h3>config</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="../MotorConstants.Motor.html" title="enum class in org.frc5010.common.motors">MotorConstants.Motor</a></span>&nbsp;<span class="element-name">config</span></div>
+<div class="block">Configuration</div>
 </section>
 </li>
 </ul>
@@ -358,38 +463,25 @@ implements <a href="../MotorController5010.html" title="interface in org.frc5010
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(com.ctre.phoenix6.hardware.TalonFX)">
-<h3>GenericTalonFXMotor</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">GenericTalonFXMotor</span><wbr><span class="parameters">(<a href="https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/hardware/TalonFX.html" title="class or interface in com.ctre.phoenix6.hardware" class="external-link">TalonFX</a>&nbsp;motor)</span></div>
-<div class="block">Constructor for TalonFX swerve motor.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>motor</code> - Motor to use.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="&lt;init&gt;(int,java.lang.String)">
+<section class="detail" id="&lt;init&gt;(int,org.frc5010.common.motors.MotorConstants.Motor,java.lang.String)">
 <h3>GenericTalonFXMotor</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">GenericTalonFXMotor</span><wbr><span class="parameters">(int&nbsp;id,
+ <a href="../MotorConstants.Motor.html" title="enum class in org.frc5010.common.motors">MotorConstants.Motor</a>&nbsp;config,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;canbus)</span></div>
 <div class="block">Construct the TalonFX swerve motor given the ID and CANBus.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>id</code> - ID of the TalonFX on the CANBus.</dd>
+<dd><code>config</code> - Motor configuration.</dd>
 <dd><code>canbus</code> - CANBus on which the TalonFX is on.</dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="&lt;init&gt;(int)">
+<section class="detail" id="&lt;init&gt;(int,org.frc5010.common.motors.MotorConstants.Motor)">
 <h3>GenericTalonFXMotor</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">GenericTalonFXMotor</span><wbr><span class="parameters">(int&nbsp;id)</span></div>
-<div class="block">Construct the TalonFX swerve motor given the ID and CANBus.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>id</code> - ID of the TalonFX on the CANBus.</dd>
-</dl>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">GenericTalonFXMotor</span><wbr><span class="parameters">(int&nbsp;canId,
+ <a href="../MotorConstants.Motor.html" title="enum class in org.frc5010.common.motors">MotorConstants.Motor</a>&nbsp;config)</span></div>
 </section>
 </li>
 </ul>
@@ -403,11 +495,11 @@ implements <a href="../MotorController5010.html" title="interface in org.frc5010
 <li>
 <section class="detail" id="duplicate(int)">
 <h3>duplicate</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></span>&nbsp;<span class="element-name">duplicate</span><wbr><span class="parameters">(int&nbsp;port)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></span>&nbsp;<span class="element-name">duplicate</span><wbr><span class="parameters">(int&nbsp;port)</span></div>
 <div class="block">Creates a duplicate of the current motor controller with the specified port.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../MotorController5010.html#duplicate(int)">duplicate</a></code>&nbsp;in interface&nbsp;<code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></dd>
+<dd><code><a href="../GenericMotorController.html#duplicate(int)">duplicate</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></dd>
 <dt>Parameters:</dt>
 <dd><code>port</code> - The port number for the new motor controller.</dd>
 <dt>Returns:</dt>
@@ -422,7 +514,7 @@ implements <a href="../MotorController5010.html" title="interface in org.frc5010
 <div class="block">Configure the factory defaults.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../MotorController5010.html#factoryDefaults()">factoryDefaults</a></code>&nbsp;in interface&nbsp;<code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></dd>
+<dd><code><a href="../GenericMotorController.html#factoryDefaults()">factoryDefaults</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></dd>
 </dl>
 </section>
 </li>
@@ -433,19 +525,19 @@ implements <a href="../MotorController5010.html" title="interface in org.frc5010
 <div class="block">Clear the sticky faults on the motor controller.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../MotorController5010.html#clearStickyFaults()">clearStickyFaults</a></code>&nbsp;in interface&nbsp;<code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></dd>
+<dd><code><a href="../GenericMotorController.html#clearStickyFaults()">clearStickyFaults</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="setCurrentLimit(int)">
+<section class="detail" id="setCurrentLimit(edu.wpi.first.units.measure.Current)">
 <h3>setCurrentLimit</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></span>&nbsp;<span class="element-name">setCurrentLimit</span><wbr><span class="parameters">(int&nbsp;limit)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></span>&nbsp;<span class="element-name">setCurrentLimit</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/Current.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">Current</a>&nbsp;limit)</span></div>
 <div class="block">Set the current limit for the swerve drive motor, remember this may cause jumping if used in
  conjunction with voltage compensation. This is useful to protect the motor from current spikes.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../MotorController5010.html#setCurrentLimit(int)">setCurrentLimit</a></code>&nbsp;in interface&nbsp;<code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></dd>
+<dd><code><a href="../GenericMotorController.html#setCurrentLimit(edu.wpi.first.units.measure.Current)">setCurrentLimit</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></dd>
 <dt>Parameters:</dt>
 <dd><code>limit</code> - Current limit in AMPS at free speed.</dd>
 <dt>Returns:</dt>
@@ -454,13 +546,19 @@ implements <a href="../MotorController5010.html" title="interface in org.frc5010
 </section>
 </li>
 <li>
+<section class="detail" id="setSupplyCurrent(edu.wpi.first.units.measure.Current)">
+<h3>setSupplyCurrent</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></span>&nbsp;<span class="element-name">setSupplyCurrent</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/Current.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">Current</a>&nbsp;limit)</span></div>
+</section>
+</li>
+<li>
 <section class="detail" id="setSlewRate(double)">
 <h3>setSlewRate</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></span>&nbsp;<span class="element-name">setSlewRate</span><wbr><span class="parameters">(double&nbsp;rate)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></span>&nbsp;<span class="element-name">setSlewRate</span><wbr><span class="parameters">(double&nbsp;rate)</span></div>
 <div class="block">Set the maximum rate the open/closed loop output can change by.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../MotorController5010.html#setSlewRate(double)">setSlewRate</a></code>&nbsp;in interface&nbsp;<code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></dd>
+<dd><code><a href="../GenericMotorController.html#setSlewRate(double)">setSlewRate</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></dd>
 <dt>Parameters:</dt>
 <dd><code>rate</code> - Time in seconds to go from 0 to full throttle.</dd>
 <dt>Returns:</dt>
@@ -469,14 +567,14 @@ implements <a href="../MotorController5010.html" title="interface in org.frc5010
 </section>
 </li>
 <li>
-<section class="detail" id="setFollow(org.frc5010.common.motors.MotorController5010)">
+<section class="detail" id="setFollow(org.frc5010.common.motors.GenericMotorController)">
 <h3>setFollow</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></span>&nbsp;<span class="element-name">setFollow</span><wbr><span class="parameters">(<a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a>&nbsp;motor)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></span>&nbsp;<span class="element-name">setFollow</span><wbr><span class="parameters">(<a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a>&nbsp;motor)</span></div>
 <div class="block">Set the motor to follow another motor controller. This is useful for master/slave
  configurations or for having a motor follow another motor without having to duplicate code.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../MotorController5010.html#setFollow(org.frc5010.common.motors.MotorController5010)">setFollow</a></code>&nbsp;in interface&nbsp;<code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></dd>
+<dd><code><a href="../GenericMotorController.html#setFollow(org.frc5010.common.motors.GenericMotorController)">setFollow</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></dd>
 <dt>Parameters:</dt>
 <dd><code>motor</code> - The motor controller to follow.</dd>
 <dt>Returns:</dt>
@@ -485,14 +583,14 @@ implements <a href="../MotorController5010.html" title="interface in org.frc5010
 </section>
 </li>
 <li>
-<section class="detail" id="setFollow(org.frc5010.common.motors.MotorController5010,boolean)">
+<section class="detail" id="setFollow(org.frc5010.common.motors.GenericMotorController,boolean)">
 <h3>setFollow</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></span>&nbsp;<span class="element-name">setFollow</span><wbr><span class="parameters">(<a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a>&nbsp;motor,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></span>&nbsp;<span class="element-name">setFollow</span><wbr><span class="parameters">(<a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a>&nbsp;motor,
  boolean&nbsp;inverted)</span></div>
 <div class="block">Set the motor to follow another motor controller with the option to invert the follower.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../MotorController5010.html#setFollow(org.frc5010.common.motors.MotorController5010,boolean)">setFollow</a></code>&nbsp;in interface&nbsp;<code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></dd>
+<dd><code><a href="../GenericMotorController.html#setFollow(org.frc5010.common.motors.GenericMotorController,boolean)">setFollow</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></dd>
 <dt>Parameters:</dt>
 <dd><code>motor</code> - The motor controller to follow.</dd>
 <dd><code>inverted</code> - Whether the follower should be inverted or not.</dd>
@@ -517,11 +615,11 @@ implements <a href="../MotorController5010.html" title="interface in org.frc5010
 <li>
 <section class="detail" id="invert(boolean)">
 <h3>invert</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></span>&nbsp;<span class="element-name">invert</span><wbr><span class="parameters">(boolean&nbsp;inverted)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></span>&nbsp;<span class="element-name">invert</span><wbr><span class="parameters">(boolean&nbsp;inverted)</span></div>
 <div class="block">Set the motor to be inverted.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../MotorController5010.html#invert(boolean)">invert</a></code>&nbsp;in interface&nbsp;<code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></dd>
+<dd><code><a href="../GenericMotorController.html#invert(boolean)">invert</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></dd>
 <dt>Parameters:</dt>
 <dd><code>inverted</code> - Whether the motor should be inverted.</dd>
 <dt>Returns:</dt>
@@ -536,7 +634,7 @@ implements <a href="../MotorController5010.html" title="interface in org.frc5010
 <div class="block">Retrieves the motor encoder for the TalonFX motor.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../MotorController5010.html#getMotorEncoder()">getMotorEncoder</a></code>&nbsp;in interface&nbsp;<code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></dd>
+<dd><code><a href="../GenericMotorController.html#getMotorEncoder()">getMotorEncoder</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></dd>
 <dt>Returns:</dt>
 <dd>an instance of GenericEncoder, specifically a TalonFXEncoder associated with this
      motor.</dd>
@@ -544,13 +642,13 @@ implements <a href="../MotorController5010.html" title="interface in org.frc5010
 </section>
 </li>
 <li>
-<section class="detail" id="getMotorEncoder(int)">
-<h3>getMotorEncoder</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../sensors/encoder/GenericEncoder.html" title="interface in org.frc5010.common.sensors.encoder">GenericEncoder</a></span>&nbsp;<span class="element-name">getMotorEncoder</span><wbr><span class="parameters">(int&nbsp;countsPerRev)</span></div>
+<section class="detail" id="createMotorEncoder(int)">
+<h3>createMotorEncoder</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../../sensors/encoder/GenericEncoder.html" title="interface in org.frc5010.common.sensors.encoder">GenericEncoder</a></span>&nbsp;<span class="element-name">createMotorEncoder</span><wbr><span class="parameters">(int&nbsp;countsPerRev)</span></div>
 <div class="block">Retrieves the motor encoder for the TalonFX motor, with the specified counts per revolution.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../MotorController5010.html#getMotorEncoder(int)">getMotorEncoder</a></code>&nbsp;in interface&nbsp;<code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></dd>
+<dd><code><a href="../GenericMotorController.html#createMotorEncoder(int)">createMotorEncoder</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></dd>
 <dt>Parameters:</dt>
 <dd><code>countsPerRev</code> - The number of counts per revolution of the motor</dd>
 <dt>Returns:</dt>
@@ -562,11 +660,11 @@ implements <a href="../MotorController5010.html" title="interface in org.frc5010
 <li>
 <section class="detail" id="getPIDController5010()">
 <h3>getPIDController5010</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></span>&nbsp;<span class="element-name">getPIDController5010</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></span>&nbsp;<span class="element-name">getPIDController5010</span>()</div>
 <div class="block">Retrieves the PID controller specific to the TalonFX motor.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../MotorController5010.html#getPIDController5010()">getPIDController5010</a></code>&nbsp;in interface&nbsp;<code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></dd>
+<dd><code><a href="../GenericMotorController.html#getPIDController5010()">getPIDController5010</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></dd>
 <dt>Returns:</dt>
 <dd>an instance of PIDController5010, specifically a TalonFXPID associated with this motor.</dd>
 </dl>
@@ -579,7 +677,7 @@ implements <a href="../MotorController5010.html" title="interface in org.frc5010
 <div class="block">Retrieves the motor controller itself.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../MotorController5010.html#getMotor()">getMotor</a></code>&nbsp;in interface&nbsp;<code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></dd>
+<dd><code><a href="../GenericMotorController.html#getMotor()">getMotor</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></dd>
 <dt>Returns:</dt>
 <dd>The motor controller (this object)</dd>
 </dl>
@@ -597,7 +695,7 @@ implements <a href="../MotorController5010.html" title="interface in org.frc5010
  and is associated with the given subsystem.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../MotorController5010.html#getDefaultSysId(edu.wpi.first.wpilibj2.command.SubsystemBase)">getDefaultSysId</a></code>&nbsp;in interface&nbsp;<code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></dd>
+<dd><code><a href="../GenericMotorController.html#getDefaultSysId(edu.wpi.first.wpilibj2.command.SubsystemBase)">getDefaultSysId</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></dd>
 <dt>Parameters:</dt>
 <dd><code>subsystemBase</code> - The subsystem that this routine is associated with</dd>
 <dt>Returns:</dt>
@@ -633,14 +731,13 @@ implements <a href="../MotorController5010.html" title="interface in org.frc5010
 <section class="detail" id="getMotorSimulationType()">
 <h3>getMotorSimulationType</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link">DCMotor</a></span>&nbsp;<span class="element-name">getMotorSimulationType</span>()</div>
-<div class="block">Returns the simulation type of the motor as a <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link"><code>DCMotor</code></a>.</div>
+<div class="block">Returns the type of motor that is being simulated. This is used for motor system identification
+ and simulation.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../MotorController5010.html#getMotorSimulationType()">getMotorSimulationType</a></code>&nbsp;in interface&nbsp;<code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></dd>
+<dd><code><a href="../GenericMotorController.html#getMotorSimulationType()">getMotorSimulationType</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></dd>
 <dt>Returns:</dt>
-<dd>A <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link"><code>DCMotor</code></a> that represents the simulation type of the motor.</dd>
-<dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/UnsupportedOperationException.html" title="class or interface in java.lang" class="external-link">UnsupportedOperationException</a></code> - if the method is not implemented.</dd>
+<dd>The type of motor being simulated.</dd>
 </dl>
 </section>
 </li>
@@ -651,7 +748,7 @@ implements <a href="../MotorController5010.html" title="interface in org.frc5010
 <div class="block">Returns the maximum revolutions per minute (RPM) the motor can achieve.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../MotorController5010.html#getMaxRPM()">getMaxRPM</a></code>&nbsp;in interface&nbsp;<code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></dd>
+<dd><code><a href="../GenericMotorController.html#getMaxRPM()">getMaxRPM</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></dd>
 <dt>Returns:</dt>
 <dd>The maximum RPM of the motor.</dd>
 <dt>Throws:</dt>
@@ -662,14 +759,14 @@ implements <a href="../MotorController5010.html" title="interface in org.frc5010
 <li>
 <section class="detail" id="setVoltageCompensation(double)">
 <h3>setVoltageCompensation</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></span>&nbsp;<span class="element-name">setVoltageCompensation</span><wbr><span class="parameters">(double&nbsp;nominalVoltage)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></span>&nbsp;<span class="element-name">setVoltageCompensation</span><wbr><span class="parameters">(double&nbsp;nominalVoltage)</span></div>
 <div class="block">Sets the voltage compensation of the motor to the given nominal voltage.
 
  <p>This method does not do anything for TalonFX motors, but is included to provide a consistent
  interface with other motor types.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../MotorController5010.html#setVoltageCompensation(double)">setVoltageCompensation</a></code>&nbsp;in interface&nbsp;<code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></dd>
+<dd><code><a href="../GenericMotorController.html#setVoltageCompensation(double)">setVoltageCompensation</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></dd>
 <dt>Parameters:</dt>
 <dd><code>nominalVoltage</code> - The nominal voltage to set for voltage compensation.</dd>
 <dt>Returns:</dt>
@@ -680,11 +777,11 @@ implements <a href="../MotorController5010.html" title="interface in org.frc5010
 <li>
 <section class="detail" id="setMotorBrake(boolean)">
 <h3>setMotorBrake</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></span>&nbsp;<span class="element-name">setMotorBrake</span><wbr><span class="parameters">(boolean&nbsp;isBrakeMode)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></span>&nbsp;<span class="element-name">setMotorBrake</span><wbr><span class="parameters">(boolean&nbsp;isBrakeMode)</span></div>
 <div class="block">Sets the idle mode of the motor to either brake or coast.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../MotorController5010.html#setMotorBrake(boolean)">setMotorBrake</a></code>&nbsp;in interface&nbsp;<code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></dd>
+<dd><code><a href="../GenericMotorController.html#setMotorBrake(boolean)">setMotorBrake</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></dd>
 <dt>Parameters:</dt>
 <dd><code>isBrakeMode</code> - If true, sets the motor to brake mode; otherwise, sets it to coast mode.</dd>
 <dt>Returns:</dt>
@@ -701,7 +798,7 @@ implements <a href="../MotorController5010.html" title="interface in org.frc5010
  restarted.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../MotorController5010.html#burnFlash()">burnFlash</a></code>&nbsp;in interface&nbsp;<code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></dd>
+<dd><code><a href="../GenericMotorController.html#burnFlash()">burnFlash</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></dd>
 </dl>
 </section>
 </li>
@@ -715,7 +812,7 @@ implements <a href="../MotorController5010.html" title="interface in org.frc5010
  voltage in volts.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../MotorController5010.html#getVoltage()">getVoltage</a></code>&nbsp;in interface&nbsp;<code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></dd>
+<dd><code><a href="../GenericMotorController.html#getVoltage()">getVoltage</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></dd>
 <dt>Returns:</dt>
 <dd>The voltage output of the motor in volts.</dd>
 </dl>
@@ -731,7 +828,7 @@ implements <a href="../MotorController5010.html" title="interface in org.frc5010
  motor's applied output as a double between -1 and 1.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../MotorController5010.html#getAppliedOutput()">getAppliedOutput</a></code>&nbsp;in interface&nbsp;<code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></dd>
+<dd><code><a href="../GenericMotorController.html#getAppliedOutput()">getAppliedOutput</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></dd>
 <dt>Returns:</dt>
 <dd>The motor's applied output as a double between -1 and 1.</dd>
 </dl>
@@ -823,9 +920,85 @@ implements <a href="../MotorController5010.html" title="interface in org.frc5010
 <div class="block">Get the current output of the motor controller.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../MotorController5010.html#getOutputCurrent()">getOutputCurrent</a></code>&nbsp;in interface&nbsp;<code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code></dd>
+<dd><code><a href="../GenericMotorController.html#getOutputCurrent()">getOutputCurrent</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></dd>
 <dt>Returns:</dt>
 <dd>Current output.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setMotorSimulationType(edu.wpi.first.math.system.plant.DCMotor)">
+<h3>setMotorSimulationType</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setMotorSimulationType</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/system/plant/DCMotor.html" title="class or interface in edu.wpi.first.math.system.plant" class="external-link">DCMotor</a>&nbsp;motorSimulationType)</span></div>
+<div class="block">Sets the simulated instance of the motor for use in simulations.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../GenericMotorController.html#setMotorSimulationType(edu.wpi.first.math.system.plant.DCMotor)">setMotorSimulationType</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>motorSimulationType</code> - The simulated instance of the motor.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="simulationUpdate(java.util.Optional,java.lang.Double)">
+<h3>simulationUpdate</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">simulationUpdate</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&nbsp;position,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&nbsp;velocity)</span></div>
+<div class="block">Update the motor simulation model with the current state of the motor.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../GenericMotorController.html#simulationUpdate(java.util.Optional,java.lang.Double)">simulationUpdate</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>position</code> - The current angle of the motor in radians.</dd>
+<dd><code>velocity</code> - The current angular velocity of the motor in radians per second.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setMaxRPM(edu.wpi.first.units.measure.AngularVelocity)">
+<h3>setMaxRPM</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setMaxRPM</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/AngularVelocity.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">AngularVelocity</a>&nbsp;rpm)</span></div>
+<div class="block">Sets the maximum angular velocity of the motor in rotations per minute.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../GenericMotorController.html#setMaxRPM(edu.wpi.first.units.measure.AngularVelocity)">setMaxRPM</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>rpm</code> - The maximum angular velocity to set, represented as an AngularVelocity unit.</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="sendControlRequest(com.ctre.phoenix6.controls.ControlRequest)">
+<h3>sendControlRequest</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">sendControlRequest</span><wbr><span class="parameters">(<a href="https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/controls/ControlRequest.html" title="class or interface in com.ctre.phoenix6.controls" class="external-link">ControlRequest</a>&nbsp;request)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="getMotorConfig()">
+<h3>getMotorConfig</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="../MotorConstants.Motor.html" title="enum class in org.frc5010.common.motors">MotorConstants.Motor</a></span>&nbsp;<span class="element-name">getMotorConfig</span>()</div>
+<div class="block">Returns the configuration of the motor as a Motor object.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../GenericMotorController.html#getMotorConfig()">getMotorConfig</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></dd>
+<dt>Returns:</dt>
+<dd>The motor configuration</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getSmartMotorController(yams.motorcontrollers.SmartMotorControllerConfig)">
+<h3>getSmartMotorController</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">yams.motorcontrollers.SmartMotorController</span>&nbsp;<span class="element-name">getSmartMotorController</span><wbr><span class="parameters">(yams.motorcontrollers.SmartMotorControllerConfig&nbsp;config)</span></div>
+<div class="block"><span class="descfrm-type-label">Description copied from interface:&nbsp;<code><a href="../GenericMotorController.html#getSmartMotorController(yams.motorcontrollers.SmartMotorControllerConfig)">GenericMotorController</a></code></span></div>
+<div class="block">Get the smart motor controller</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../GenericMotorController.html#getSmartMotorController(yams.motorcontrollers.SmartMotorControllerConfig)">getSmartMotorController</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>config</code> - The smart motor controller config</dd>
+<dt>Returns:</dt>
+<dd>The smart motor controller</dd>
 </dl>
 </section>
 </li>

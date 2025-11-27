@@ -45,13 +45,13 @@ loadScripts(document, 'script');</script>
 <ul class="sub-nav-list">
 <li>Summary:&nbsp;</li>
 <li>Nested&nbsp;|&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field-summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor-summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method-summary">Method</a></li>
 </ul>
 <ul class="sub-nav-list">
 <li>Detail:&nbsp;</li>
-<li>Field&nbsp;|&nbsp;</li>
+<li><a href="#field-detail">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor-detail">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method-detail">Method</a></li>
 </ul>
@@ -87,6 +87,23 @@ implements <a href="GenericEncoder.html" title="interface in org.frc5010.common.
 </section>
 <section class="summary">
 <ul class="summary-list">
+<!-- =========== FIELD SUMMARY =========== -->
+<li>
+<section class="field-summary" id="field-summary">
+<h2>Field Summary</h2>
+<div class="caption"><span>Fields</span></div>
+<div class="summary-table three-column-summary">
+<div class="table-header col-first">Modifier and Type</div>
+<div class="table-header col-second">Field</div>
+<div class="table-header col-last">Description</div>
+<div class="col-first even-row-color"><code>protected <a href="https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/sim/TalonFXSimState.html" title="class or interface in com.ctre.phoenix6.sim" class="external-link">TalonFXSimState</a></code></div>
+<div class="col-second even-row-color"><code><a href="#talonFXSim" class="member-name-link">talonFXSim</a></code></div>
+<div class="col-last even-row-color">
+<div class="block">TalonFX simulation</div>
+</div>
+</div>
+</section>
+</li>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
 <li>
 <section class="constructor-summary" id="constructor-summary">
@@ -112,20 +129,38 @@ implements <a href="GenericEncoder.html" title="interface in org.frc5010.common.
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPosition()" class="member-name-link">getPosition</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#distanceToRotations(double)" class="member-name-link">distanceToRotations</a><wbr>(double&nbsp;position)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPosition()" class="member-name-link">getPosition</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get the current position of the encoder</div>
 </div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPositionConversion()" class="member-name-link">getPositionConversion</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVelocity()" class="member-name-link">getVelocity</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Get the current velocity of the encoder</div>
 </div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVelocityConversion()" class="member-name-link">getVelocityConversion</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVoltage()" class="member-name-link">getVoltage</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#reset()" class="member-name-link">reset</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Reset the encoder</div>
 </div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#rotationsPerMinToVelocity(double)" class="member-name-link">rotationsPerMinToVelocity</a><wbr>(double&nbsp;velocity)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#rotationsToDistance(double)" class="member-name-link">rotationsToDistance</a><wbr>(double&nbsp;position)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setInverted(boolean)" class="member-name-link">setInverted</a><wbr>(boolean&nbsp;inverted)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
@@ -151,6 +186,13 @@ implements <a href="GenericEncoder.html" title="interface in org.frc5010.common.
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the velocity conversion factor of the encoder</div>
 </div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#simulationUpdate(java.util.Optional,java.lang.Double)" class="member-name-link">simulationUpdate</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&nbsp;position,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&nbsp;velocity)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#velocityToRotationsPerMin(double)" class="member-name-link">velocityToRotationsPerMin</a><wbr>(double&nbsp;velocity)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -163,6 +205,21 @@ implements <a href="GenericEncoder.html" title="interface in org.frc5010.common.
 </section>
 <section class="details">
 <ul class="details-list">
+<!-- ============ FIELD DETAIL =========== -->
+<li>
+<section class="field-details" id="field-detail">
+<h2>Field Details</h2>
+<ul class="member-list">
+<li>
+<section class="detail" id="talonFXSim">
+<h3>talonFXSim</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://api.ctr-electronics.com/phoenix6/release/java/com/ctre/phoenix6/sim/TalonFXSimState.html" title="class or interface in com.ctre.phoenix6.sim" class="external-link">TalonFXSimState</a></span>&nbsp;<span class="element-name">talonFXSim</span></div>
+<div class="block">TalonFX simulation</div>
+</section>
+</li>
+</ul>
+</section>
+</li>
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <li>
 <section class="constructor-details" id="constructor-detail">
@@ -182,6 +239,30 @@ implements <a href="GenericEncoder.html" title="interface in org.frc5010.common.
 <section class="method-details" id="method-detail">
 <h2>Method Details</h2>
 <ul class="member-list">
+<li>
+<section class="detail" id="rotationsToDistance(double)">
+<h3>rotationsToDistance</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">rotationsToDistance</span><wbr><span class="parameters">(double&nbsp;position)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="distanceToRotations(double)">
+<h3>distanceToRotations</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">distanceToRotations</span><wbr><span class="parameters">(double&nbsp;position)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="rotationsPerMinToVelocity(double)">
+<h3>rotationsPerMinToVelocity</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">rotationsPerMinToVelocity</span><wbr><span class="parameters">(double&nbsp;velocity)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="velocityToRotationsPerMin(double)">
+<h3>velocityToRotationsPerMin</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">velocityToRotationsPerMin</span><wbr><span class="parameters">(double&nbsp;velocity)</span></div>
+</section>
+</li>
 <li>
 <section class="detail" id="getPosition()">
 <h3>getPosition</h3>
@@ -208,6 +289,12 @@ implements <a href="GenericEncoder.html" title="interface in org.frc5010.common.
 <dt>Returns:</dt>
 <dd>double</dd>
 </dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getVoltage()">
+<h3>getVoltage</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getVoltage</span>()</div>
 </section>
 </li>
 <li>
@@ -289,6 +376,37 @@ implements <a href="GenericEncoder.html" title="interface in org.frc5010.common.
 <dd><code><a href="GenericEncoder.html#setInverted(boolean)">setInverted</a></code>&nbsp;in interface&nbsp;<code><a href="GenericEncoder.html" title="interface in org.frc5010.common.sensors.encoder">GenericEncoder</a></code></dd>
 <dt>Parameters:</dt>
 <dd><code>inverted</code> - - true if encoder should be inverted</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getPositionConversion()">
+<h3>getPositionConversion</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getPositionConversion</span>()</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="GenericEncoder.html#getPositionConversion()">getPositionConversion</a></code>&nbsp;in interface&nbsp;<code><a href="GenericEncoder.html" title="interface in org.frc5010.common.sensors.encoder">GenericEncoder</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getVelocityConversion()">
+<h3>getVelocityConversion</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getVelocityConversion</span>()</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="GenericEncoder.html#getVelocityConversion()">getVelocityConversion</a></code>&nbsp;in interface&nbsp;<code><a href="GenericEncoder.html" title="interface in org.frc5010.common.sensors.encoder">GenericEncoder</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="simulationUpdate(java.util.Optional,java.lang.Double)">
+<h3>simulationUpdate</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">simulationUpdate</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&gt;&nbsp;position,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Double.html" title="class or interface in java.lang" class="external-link">Double</a>&nbsp;velocity)</span></div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="GenericEncoder.html#simulationUpdate(java.util.Optional,java.lang.Double)">simulationUpdate</a></code>&nbsp;in interface&nbsp;<code><a href="GenericEncoder.html" title="interface in org.frc5010.common.sensors.encoder">GenericEncoder</a></code></dd>
 </dl>
 </section>
 </li>

@@ -14,34 +14,26 @@ import java.util.EnumSet;
 import org.frc5010.common.arch.GenericRobot.LogLevel;
 
 /** Add a voltage to the dashboard */
-public class DisplayVoltage {
+public class DisplayVoltage extends DisplayableValue {
   /** Length value */
   MutVoltage voltage_;
   /** Length unit */
   protected final VoltageUnit unit_;
-  /** The name of the variable */
-  protected final String name_;
-  /** The name of the table */
-  protected final String table_;
   /** The topic */
   protected DoubleTopic topic_;
   /** The publisher */
   protected DoublePublisher publisher_;
   /** The subscriber */
   protected DoubleSubscriber subscriber_;
-  /** The listener handle */
-  protected int listenerHandle_;
-  /** Display mode */
-  protected final boolean isDisplayed_;
 
   // Constructor
   /**
    * Add a voltage to the dashboard
    *
-   * @param voltage - voltage unit
-   * @param unit - voltage in that unit
-   * @param name - name of the variable
-   * @param table - name of the table
+   * @param voltage
+   * @param unit
+   * @param name
+   * @param table
    */
   public DisplayVoltage(
       final double voltage, final VoltageUnit unit, final String name, final String table) {
@@ -51,11 +43,11 @@ public class DisplayVoltage {
   /**
    * Add a voltage to the dashboard
    *
-   * @param voltage - voltage
-   * @param unit - voltage in that unit
-   * @param name - name of the variable
-   * @param table - name of the table
-   * @param logLevel - debug mode
+   * @param voltage
+   * @param unit
+   * @param name
+   * @param table
+   * @param logLevel
    */
   public DisplayVoltage(
       final double voltage,
@@ -63,15 +55,13 @@ public class DisplayVoltage {
       final String name,
       final String table,
       LogLevel logLevel) {
+    super(String.format("%s (%s)", name, unit.symbol()), table, logLevel);
     voltage_ = new MutVoltage(voltage, unit.getBaseUnit().convertFrom(voltage, unit), unit);
     unit_ = unit;
-    name_ = String.format("%s (%s)", name, unit_.symbol());
-    table_ = table;
-    isDisplayed_ = DisplayValuesHelper.robotIsAtLogLevel(logLevel);
     if (isDisplayed_) {
       topic_ = NetworkTableInstance.getDefault().getTable(table_).getDoubleTopic(name_);
       publisher_ = topic_.publish();
-      init();
+      init(logLevel);
     }
   }
 
@@ -79,9 +69,9 @@ public class DisplayVoltage {
   /**
    * Add a voltage to the dashboard
    *
-   * @param voltage - voltage with units
-   * @param name - name of the variable
-   * @param table - name of the table
+   * @param voltage
+   * @param name
+   * @param table
    */
   public DisplayVoltage(final Voltage voltage, final String name, final String table) {
     this(voltage, name, table, LogLevel.COMPETITION);
@@ -90,37 +80,38 @@ public class DisplayVoltage {
   /**
    * Add a voltage to the dashboard
    *
-   * @param voltage - voltage with units
-   * @param name - name of the variable
-   * @param table - name of the table
-   * @param logLevel - the log level
+   * @param voltage
+   * @param name
+   * @param table
+   * @param logLevel
    */
   public DisplayVoltage(
       final Voltage voltage, final String name, final String table, LogLevel logLevel) {
+    super(String.format("%s (%s)", name, voltage.unit().symbol()), table, logLevel);
     voltage_ = voltage.mutableCopy();
     unit_ = voltage.unit();
-    name_ = String.format("%s (%s)", name, unit_.symbol());
-    table_ = table;
-    isDisplayed_ = DisplayValuesHelper.robotIsAtLogLevel(logLevel);
     if (isDisplayed_) {
       topic_ = NetworkTableInstance.getDefault().getTable(table_).getDoubleTopic(name_);
       publisher_ = topic_.publish();
-      init();
+      init(logLevel);
     }
   }
 
-  protected void init() {
-    if (DisplayValuesHelper.robotIsAtLogLevel(LogLevel.CONFIG)) {
-      topic_.setPersistent(true);
-      subscriber_ = topic_.subscribe(voltage_.in(unit_));
-      listenerHandle_ =
-          NetworkTableInstance.getDefault()
-              .addListener(
-                  subscriber_,
-                  EnumSet.of(NetworkTableEvent.Kind.kValueAll),
-                  event -> {
-                    setVoltage(event.valueData.value.getDouble(), unit_, false);
-                  });
+  protected void init(LogLevel logLevel) {
+    if (LogLevel.CONFIG == logLevel) {
+      if (isDisplayed_) topic_.setPersistent(true);
+      if (DisplayValuesHelper.isAtLogLevel(LogLevel.CONFIG)) {
+        subscriber_ = topic_.subscribe(voltage_.in(unit_));
+        listenerHandle_ =
+            NetworkTableInstance.getDefault()
+                .addListener(
+                    subscriber_,
+                    EnumSet.of(NetworkTableEvent.Kind.kValueAll),
+                    event -> {
+                      setVoltage(event.valueData.value.getDouble(), unit_, false);
+                    });
+        setVoltage(subscriber_.get(), unit_, false);
+      }
     }
     publisher_.setDefault(voltage_.in(unit_));
   }
@@ -128,21 +119,21 @@ public class DisplayVoltage {
   // Setters
 
   /**
-   * Sets the voltage using a specified voltage value and unit, and publishes the value.
+   * Sets the voltage using a value and a unit, and publishes the value to the dashboard.
    *
-   * @param voltage - the voltage value to set
-   * @param unit - the unit of the voltage
+   * @param voltage the value of the voltage to set
+   * @param unit the unit of the voltage to set
    */
   public void setVoltage(final double voltage, final VoltageUnit unit) {
     setVoltage(voltage, unit, true);
   }
 
   /**
-   * Sets the voltage using a specified voltage value and unit, with an option to publish the value.
+   * Sets the voltage using a value and a unit, and optionally publishes the value
    *
-   * @param voltage - the voltage value to set
-   * @param unit - the unit of the voltage
-   * @param publish - flag indicating whether to publish the voltage
+   * @param voltage the value of the voltage to set
+   * @param unit the unit of the voltage to set
+   * @param publish whether to publish the value after setting it
    */
   public void setVoltage(final double voltage, final VoltageUnit unit, final boolean publish) {
     setVoltage(unit.of(voltage), publish);

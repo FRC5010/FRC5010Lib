@@ -44,7 +44,7 @@ loadScripts(document, 'script');</script>
 <div>
 <ul class="sub-nav-list">
 <li>Summary:&nbsp;</li>
-<li>Nested&nbsp;|&nbsp;</li>
+<li><a href="#nested-class-summary">Nested</a>&nbsp;|&nbsp;</li>
 <li><a href="#field-summary">Field</a>&nbsp;|&nbsp;</li>
 <li><a href="#constructor-summary">Constr</a>&nbsp;|&nbsp;</li>
 <li><a href="#method-summary">Method</a></li>
@@ -81,19 +81,29 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code><a href="../../drive/pose/PoseProvider.html" title="interface in org.frc5010.common.drive.pose">PoseProvider</a></code></dd>
+<dd><code><a href="../../drive/pose/PoseProvider.html" title="interface in org.frc5010.common.drive.pose">PoseProvider</a></code>, <code><a href="FiducialTargetCamera.html" title="interface in org.frc5010.common.sensors.camera">FiducialTargetCamera</a></code></dd>
 </dl>
 <dl class="notes">
 <dt>Direct Known Subclasses:</dt>
-<dd><code><a href="SimulatedCamera.html" title="class in org.frc5010.common.sensors.camera">SimulatedCamera</a></code></dd>
+<dd><code><a href="PhotonVisionFiducialTargetCamera.html" title="class in org.frc5010.common.sensors.camera">PhotonVisionFiducialTargetCamera</a></code>, <code><a href="SimulatedCamera.html" title="class in org.frc5010.common.sensors.camera">SimulatedCamera</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">PhotonVisionPoseCamera</span>
-<span class="extends-implements">extends <a href="PhotonVisionCamera.html" title="class in org.frc5010.common.sensors.camera">PhotonVisionCamera</a></span></div>
+<span class="extends-implements">extends <a href="PhotonVisionCamera.html" title="class in org.frc5010.common.sensors.camera">PhotonVisionCamera</a>
+implements <a href="FiducialTargetCamera.html" title="interface in org.frc5010.common.sensors.camera">FiducialTargetCamera</a></span></div>
 <div class="block">A camera using the PhotonVision library.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<li>
+<section class="nested-class-summary" id="nested-class-summary">
+<h2>Nested Class Summary</h2>
+<div class="inherited-list">
+<h2 id="nested-classes-inherited-from-class-org.frc5010.common.drive.pose.PoseProvider">Nested classes/interfaces inherited from interface&nbsp;org.frc5010.common.drive.pose.<a href="../../drive/pose/PoseProvider.html" title="interface in org.frc5010.common.drive.pose">PoseProvider</a></h2>
+<code><a href="../../drive/pose/PoseProvider.PoseObservation.html" title="class in org.frc5010.common.drive.pose">PoseProvider.PoseObservation</a>, <a href="../../drive/pose/PoseProvider.PoseObservationType.html" title="enum class in org.frc5010.common.drive.pose">PoseProvider.PoseObservationType</a>, <a href="../../drive/pose/PoseProvider.ProviderType.html" title="enum class in org.frc5010.common.drive.pose">PoseProvider.ProviderType</a>, <a href="../../drive/pose/PoseProvider.TargetRotation.html" title="class in org.frc5010.common.drive.pose">PoseProvider.TargetRotation</a>, <a href="../../drive/pose/PoseProvider.VisionIOInputs.html" title="class in org.frc5010.common.drive.pose">PoseProvider.VisionIOInputs</a></code></div>
+</section>
+</li>
 <!-- =========== FIELD SUMMARY =========== -->
 <li>
 <section class="field-summary" id="field-summary">
@@ -103,19 +113,24 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>protected org.photonvision.PhotonPoseEstimator</code></div>
-<div class="col-second even-row-color"><code><a href="#poseEstimator" class="member-name-link">poseEstimator</a></code></div>
+<div class="col-first even-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</code></div>
+<div class="col-second even-row-color"><code><a href="#fiducialIds" class="member-name-link">fiducialIds</a></code></div>
 <div class="col-last even-row-color">
+<div class="block">The current list of fiducial IDs</div>
+</div>
+<div class="col-first odd-row-color"><code>protected org.photonvision.PhotonPoseEstimator</code></div>
+<div class="col-second odd-row-color"><code><a href="#poseEstimator" class="member-name-link">poseEstimator</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">The pose estimator</div>
 </div>
-<div class="col-first odd-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Supplier.html" title="class or interface in java.util.function" class="external-link">Supplier</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a>&gt;</code></div>
-<div class="col-second odd-row-color"><code><a href="#poseSupplier" class="member-name-link">poseSupplier</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first even-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Supplier.html" title="class or interface in java.util.function" class="external-link">Supplier</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a>&gt;</code></div>
+<div class="col-second even-row-color"><code><a href="#poseSupplier" class="member-name-link">poseSupplier</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">The pose supplier</div>
 </div>
-<div class="col-first even-row-color"><code>protected org.photonvision.PhotonPoseEstimator.PoseStrategy</code></div>
-<div class="col-second even-row-color"><code><a href="#strategy" class="member-name-link">strategy</a></code></div>
-<div class="col-last even-row-color">
+<div class="col-first odd-row-color"><code>protected org.photonvision.PhotonPoseEstimator.PoseStrategy</code></div>
+<div class="col-second odd-row-color"><code><a href="#strategy" class="member-name-link">strategy</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">The pose strategy</div>
 </div>
 </div>
@@ -125,6 +140,9 @@ loadScripts(document, 'script');</script>
 <div class="inherited-list">
 <h3 id="fields-inherited-from-class-org.frc5010.common.sensors.camera.GenericCamera">Fields inherited from class&nbsp;org.frc5010.common.sensors.camera.<a href="GenericCamera.html" title="class in org.frc5010.common.sensors.camera">GenericCamera</a></h3>
 <code><a href="GenericCamera.html#colIndex">colIndex</a>, <a href="GenericCamera.html#name">name</a>, <a href="GenericCamera.html#robotToCamera">robotToCamera</a>, <a href="GenericCamera.html#updaters">updaters</a>, <a href="GenericCamera.html#updateValues">updateValues</a>, <a href="GenericCamera.html#visionLayout">visionLayout</a>, <a href="GenericCamera.html#visionTab">visionTab</a></code></div>
+<div class="inherited-list">
+<h3 id="fields-inherited-from-class-org.frc5010.common.drive.pose.PoseProvider">Fields inherited from interface&nbsp;org.frc5010.common.drive.pose.<a href="../../drive/pose/PoseProvider.html" title="interface in org.frc5010.common.drive.pose">PoseProvider</a></h3>
+<code><a href="../../drive/pose/PoseProvider.html#cameraIndex">cameraIndex</a>, <a href="../../drive/pose/PoseProvider.html#disconnectedAlert">disconnectedAlert</a>, <a href="../../drive/pose/PoseProvider.html#input">input</a></code></div>
 </section>
 </li>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
@@ -144,6 +162,14 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color">
 <div class="block">Constructor</div>
 </div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.lang.String,int,edu.wpi.first.apriltag.AprilTagFieldLayout,org.photonvision.PhotonPoseEstimator.PoseStrategy,edu.wpi.first.math.geometry.Transform3d,java.util.function.Supplier,java.util.List)" class="member-name-link">PhotonVisionPoseCamera</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
+ int&nbsp;colIndex,
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/apriltag/AprilTagFieldLayout.html" title="class or interface in edu.wpi.first.apriltag" class="external-link">AprilTagFieldLayout</a>&nbsp;fieldLayout,
+ org.photonvision.PhotonPoseEstimator.PoseStrategy&nbsp;strategy,
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Transform3d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Transform3d</a>&nbsp;cameraToRobot,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Supplier.html" title="class or interface in java.util.function" class="external-link">Supplier</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a>&gt;&nbsp;poseSupplier,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;&nbsp;fiducialIds)</code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
 </div>
 </section>
 </li>
@@ -158,19 +184,22 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose3d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose3d</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRobotPose()" class="member-name-link">getRobotPose</a>()</code></div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getFiducialIds()" class="member-name-link">getFiducialIds</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Get the target pose estimate relative to the robot.</div>
+<div class="block">Gets the current list of fiducial IDs for this camera.</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose3d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose3d</a>&gt;</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getRobotToTargetPose()" class="member-name-link">getRobotToTargetPose</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Get the target pose estimate relative to the robot.</div>
-</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/Matrix.html" title="class or interface in edu.wpi.first.math" class="external-link">Matrix</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/numbers/N3.html" title="class or interface in edu.wpi.first.math.numbers" class="external-link">N3</a>,<wbr><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/numbers/N1.html" title="class or interface in edu.wpi.first.math.numbers" class="external-link">N1</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getStdDeviations(org.frc5010.common.drive.pose.PoseProvider.PoseObservation)" class="member-name-link">getStdDeviations</a><wbr>(<a href="../../drive/pose/PoseProvider.PoseObservation.html" title="class in org.frc5010.common.drive.pose">PoseProvider.PoseObservation</a>&nbsp;observation)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateCameraInfo()" class="member-name-link">updateCameraInfo</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setFiducialIds(java.util.List)" class="member-name-link">setFiducialIds</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;&nbsp;fiducialIds)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Sets the list of fiducial IDs for this camera.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateCameraInfo()" class="member-name-link">updateCameraInfo</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Update the camera and target with the latest result</div>
 </div>
 </div>
@@ -178,13 +207,16 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-org.frc5010.common.sensors.camera.PhotonVisionCamera">Methods inherited from class&nbsp;org.frc5010.common.sensors.camera.<a href="PhotonVisionCamera.html" title="class in org.frc5010.common.sensors.camera">PhotonVisionCamera</a></h3>
-<code><a href="PhotonVisionCamera.html#getCaptureTime()">getCaptureTime</a>, <a href="PhotonVisionCamera.html#getConfidence()">getConfidence</a>, <a href="PhotonVisionCamera.html#getLatency()">getLatency</a>, <a href="PhotonVisionCamera.html#getPosition()">getPosition</a>, <a href="PhotonVisionCamera.html#getRotation()">getRotation</a>, <a href="PhotonVisionCamera.html#getTargetArea()">getTargetArea</a>, <a href="PhotonVisionCamera.html#getTargetPitch()">getTargetPitch</a>, <a href="PhotonVisionCamera.html#getTargetYaw()">getTargetYaw</a>, <a href="PhotonVisionCamera.html#hasValidTarget()">hasValidTarget</a>, <a href="PhotonVisionCamera.html#isActive()">isActive</a></code></div>
+<code><a href="PhotonVisionCamera.html#getTargetArea()">getTargetArea</a>, <a href="PhotonVisionCamera.html#getType()">getType</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-org.frc5010.common.sensors.camera.GenericCamera">Methods inherited from class&nbsp;org.frc5010.common.sensors.camera.<a href="GenericCamera.html" title="class in org.frc5010.common.sensors.camera">GenericCamera</a></h3>
-<code><a href="GenericCamera.html#getRobotToCamera()">getRobotToCamera</a>, <a href="GenericCamera.html#name()">name</a>, <a href="GenericCamera.html#registerUpdater(java.lang.Runnable)">registerUpdater</a>, <a href="GenericCamera.html#unregisterUpdater(java.lang.Runnable)">unregisterUpdater</a>, <a href="GenericCamera.html#update()">update</a></code></div>
+<code><a href="GenericCamera.html#getDistanceToTarget(double)">getDistanceToTarget</a>, <a href="GenericCamera.html#getRobotToCamera()">getRobotToCamera</a>, <a href="GenericCamera.html#getTargetPitch()">getTargetPitch</a>, <a href="GenericCamera.html#getTargetYaw()">getTargetYaw</a>, <a href="GenericCamera.html#hasValidTarget()">hasValidTarget</a>, <a href="GenericCamera.html#name()">name</a>, <a href="GenericCamera.html#registerUpdater(java.lang.Runnable)">registerUpdater</a>, <a href="GenericCamera.html#unregisterUpdater(java.lang.Runnable)">unregisterUpdater</a>, <a href="GenericCamera.html#update()">update</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
+<div class="inherited-list">
+<h3 id="methods-inherited-from-class-org.frc5010.common.drive.pose.PoseProvider">Methods inherited from interface&nbsp;org.frc5010.common.drive.pose.<a href="../../drive/pose/PoseProvider.html" title="interface in org.frc5010.common.drive.pose">PoseProvider</a></h3>
+<code><a href="../../drive/pose/PoseProvider.html#getCaptureTime()">getCaptureTime</a>, <a href="../../drive/pose/PoseProvider.html#getObservations()">getObservations</a>, <a href="../../drive/pose/PoseProvider.html#isConnected()">isConnected</a>, <a href="../../drive/pose/PoseProvider.html#logInput(java.lang.String)">logInput</a>, <a href="../../drive/pose/PoseProvider.html#resetPose(edu.wpi.first.math.geometry.Pose3d)">resetPose</a></code></div>
 </section>
 </li>
 </ul>
@@ -217,6 +249,13 @@ loadScripts(document, 'script');</script>
 <div class="block">The pose supplier</div>
 </section>
 </li>
+<li>
+<section class="detail" id="fiducialIds">
+<h3>fiducialIds</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</span>&nbsp;<span class="element-name">fiducialIds</span></div>
+<div class="block">The current list of fiducial IDs</div>
+</section>
+</li>
 </ul>
 </section>
 </li>
@@ -246,6 +285,18 @@ loadScripts(document, 'script');</script>
 </dl>
 </section>
 </li>
+<li>
+<section class="detail" id="&lt;init&gt;(java.lang.String,int,edu.wpi.first.apriltag.AprilTagFieldLayout,org.photonvision.PhotonPoseEstimator.PoseStrategy,edu.wpi.first.math.geometry.Transform3d,java.util.function.Supplier,java.util.List)">
+<h3>PhotonVisionPoseCamera</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PhotonVisionPoseCamera</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;name,
+ int&nbsp;colIndex,
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/apriltag/AprilTagFieldLayout.html" title="class or interface in edu.wpi.first.apriltag" class="external-link">AprilTagFieldLayout</a>&nbsp;fieldLayout,
+ org.photonvision.PhotonPoseEstimator.PoseStrategy&nbsp;strategy,
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Transform3d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Transform3d</a>&nbsp;cameraToRobot,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Supplier.html" title="class or interface in java.util.function" class="external-link">Supplier</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a>&gt;&nbsp;poseSupplier,
+ <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;&nbsp;fiducialIds)</span></div>
+</section>
+</li>
 </ul>
 </section>
 </li>
@@ -266,30 +317,40 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="getRobotPose()">
-<h3>getRobotPose</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose3d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose3d</a>&gt;</span>&nbsp;<span class="element-name">getRobotPose</span>()</div>
-<div class="block">Get the target pose estimate relative to the robot.</div>
+<section class="detail" id="getStdDeviations(org.frc5010.common.drive.pose.PoseProvider.PoseObservation)">
+<h3>getStdDeviations</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/Matrix.html" title="class or interface in edu.wpi.first.math" class="external-link">Matrix</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/numbers/N3.html" title="class or interface in edu.wpi.first.math.numbers" class="external-link">N3</a>,<wbr><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/numbers/N1.html" title="class or interface in edu.wpi.first.math.numbers" class="external-link">N1</a>&gt;</span>&nbsp;<span class="element-name">getStdDeviations</span><wbr><span class="parameters">(<a href="../../drive/pose/PoseProvider.PoseObservation.html" title="class in org.frc5010.common.drive.pose">PoseProvider.PoseObservation</a>&nbsp;observation)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../../drive/pose/PoseProvider.html#getRobotPose()">getRobotPose</a></code>&nbsp;in interface&nbsp;<code><a href="../../drive/pose/PoseProvider.html" title="interface in org.frc5010.common.drive.pose">PoseProvider</a></code></dd>
-<dt>Overrides:</dt>
-<dd><code><a href="PhotonVisionCamera.html#getRobotPose()">getRobotPose</a></code>&nbsp;in class&nbsp;<code><a href="PhotonVisionCamera.html" title="class in org.frc5010.common.sensors.camera">PhotonVisionCamera</a></code></dd>
-<dt>Returns:</dt>
-<dd>the target pose estimate relative to the robot</dd>
+<dd><code><a href="../../drive/pose/PoseProvider.html#getStdDeviations(org.frc5010.common.drive.pose.PoseProvider.PoseObservation)">getStdDeviations</a></code>&nbsp;in interface&nbsp;<code><a href="../../drive/pose/PoseProvider.html" title="interface in org.frc5010.common.drive.pose">PoseProvider</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="getRobotToTargetPose()">
-<h3>getRobotToTargetPose</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html" title="class or interface in java.util" class="external-link">Optional</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose3d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose3d</a>&gt;</span>&nbsp;<span class="element-name">getRobotToTargetPose</span>()</div>
-<div class="block">Get the target pose estimate relative to the robot.</div>
+<section class="detail" id="getFiducialIds()">
+<h3>getFiducialIds</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;</span>&nbsp;<span class="element-name">getFiducialIds</span>()</div>
+<div class="block">Gets the current list of fiducial IDs for this camera.</div>
 <dl class="notes">
-<dt>Overrides:</dt>
-<dd><code><a href="PhotonVisionCamera.html#getRobotToTargetPose()">getRobotToTargetPose</a></code>&nbsp;in class&nbsp;<code><a href="PhotonVisionCamera.html" title="class in org.frc5010.common.sensors.camera">PhotonVisionCamera</a></code></dd>
+<dt>Specified by:</dt>
+<dd><code><a href="FiducialTargetCamera.html#getFiducialIds()">getFiducialIds</a></code>&nbsp;in interface&nbsp;<code><a href="FiducialTargetCamera.html" title="interface in org.frc5010.common.sensors.camera">FiducialTargetCamera</a></code></dd>
 <dt>Returns:</dt>
-<dd>the target pose estimate relative to the robot</dd>
+<dd>the current list of fiducial IDs</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="setFiducialIds(java.util.List)">
+<h3>setFiducialIds</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setFiducialIds</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Integer.html" title="class or interface in java.lang" class="external-link">Integer</a>&gt;&nbsp;fiducialIds)</span></div>
+<div class="block">Sets the list of fiducial IDs for this camera. The camera will only consider targets with IDs
+ in this list when locating targets. This does not change the list spefified at construction
+ time to the pose camera so that the camera can be both a pose and target camera.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="FiducialTargetCamera.html#setFiducialIds(java.util.List)">setFiducialIds</a></code>&nbsp;in interface&nbsp;<code><a href="FiducialTargetCamera.html" title="interface in org.frc5010.common.sensors.camera">FiducialTargetCamera</a></code></dd>
+<dt>Parameters:</dt>
+<dd><code>fiducialIds</code> - the list of fiducial IDs to consider</dd>
 </dl>
 </section>
 </li>

@@ -5,41 +5,48 @@
 package org.frc5010.common.arch;
 
 import edu.wpi.first.util.sendable.SendableBuilder;
-import edu.wpi.first.wpilibj.smartdashboard.Mechanism2d;
+import edu.wpi.first.wpilibj.Alert;
+import edu.wpi.first.wpilibj.Alert.AlertType;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import java.util.HashMap;
 import java.util.Map;
+import org.frc5010.common.arch.GenericRobot.LogLevel;
 import org.frc5010.common.motors.function.GenericFunctionalMotor;
 import org.frc5010.common.telemetry.DisplayValuesHelper;
+import org.littletonrobotics.junction.mechanism.LoggedMechanism2d;
+import yams.mechanisms.SmartMechanism;
 
 /** Base class for subsystems that provides default logging and network table support */
 public class GenericSubsystem extends SubsystemBase
     implements WpiHelperInterface, GenericDeviceHandler {
+  /** The display values helper */
+  protected final DisplayValuesHelper DashBoard;
   /** The network table values */
-  protected final WpiNetworkTableValuesHelper values = new WpiNetworkTableValuesHelper();
-
-  protected final DisplayValuesHelper displayValues;
+  protected final WpiNetworkTableValuesHelper networkValues = new WpiNetworkTableValuesHelper();
   /** The log prefix */
   protected String logPrefix = getClass().getSimpleName();
   /** The mechanism simulation */
-  protected Mechanism2d mechanismSimulation;
+  protected LoggedMechanism2d mechanismSimulation;
   /** The map of devices created by the configuration system */
   protected Map<String, Object> devices = new HashMap<>();
 
+  protected Alert loggingAlert =
+      new Alert(logPrefix + " Logging Mode is not COMPETITION!", AlertType.kWarning);
+
   /** Creates a new LoggedSubsystem. */
-  public GenericSubsystem(Mechanism2d mechanismSimulation) {
+  protected GenericSubsystem(LoggedMechanism2d mechanismSimulation) {
     this.mechanismSimulation = mechanismSimulation;
-    displayValues = new DisplayValuesHelper(logPrefix, logPrefix);
+    DashBoard = new DisplayValuesHelper(logPrefix);
     WpiNetworkTableValuesHelper.register(this);
   }
 
-  public GenericSubsystem() {
-    displayValues = new DisplayValuesHelper(logPrefix, logPrefix);
+  protected GenericSubsystem() {
+    DashBoard = new DisplayValuesHelper(logPrefix);
     WpiNetworkTableValuesHelper.register(this);
   }
 
-  public GenericSubsystem(String configFile) {
-    displayValues = new DisplayValuesHelper(logPrefix, logPrefix);
+  protected GenericSubsystem(String configFile) {
+    DashBoard = new DisplayValuesHelper(logPrefix);
     try {
       GenericRobot.subsystemParser.parseSubsystem(this, configFile);
     } catch (Exception e) {
@@ -54,7 +61,7 @@ public class GenericSubsystem extends SubsystemBase
    *
    * @return the mechanism visual
    */
-  public Mechanism2d getMechVisual() {
+  public LoggedMechanism2d getMechVisual() {
     return mechanismSimulation;
   }
 
@@ -63,7 +70,7 @@ public class GenericSubsystem extends SubsystemBase
    *
    * @param mechSim the mechanism visual
    */
-  public void setMechSimulation(Mechanism2d mechSim) {
+  public void setMechSimulation(LoggedMechanism2d mechSim) {
     mechanismSimulation = mechSim;
   }
 
@@ -76,6 +83,16 @@ public class GenericSubsystem extends SubsystemBase
   @Override
   public void addDevice(String name, Object device) {
     devices.put(name, device);
+  }
+
+  public void setLoggingLevel(LogLevel logLevel) {
+    DashBoard.setLoggingLevel(logLevel);
+    if (logLevel == LogLevel.COMPETITION) {
+      loggingAlert.set(false);
+      ;
+    } else {
+      loggingAlert.set(true);
+    }
   }
 
   /**
@@ -97,7 +114,7 @@ public class GenericSubsystem extends SubsystemBase
   @Override
   public void initSendable(SendableBuilder builder) {
     log(logPrefix + ": Initializing sendables.");
-    values.initSendables(builder, this.getClass().getSimpleName());
+    networkValues.initSendables(builder, this.getClass().getSimpleName());
   }
 
   /**
@@ -106,11 +123,15 @@ public class GenericSubsystem extends SubsystemBase
    */
   @Override
   public void periodic() {
+    DashBoard.notifyListeners();
     devices.values().stream()
         .forEach(
             it -> {
               if (it instanceof GenericFunctionalMotor) {
-                ((GenericFunctionalMotor) it).draw();
+                ((GenericFunctionalMotor) it).periodicUpdate();
+              }
+              if (it instanceof SmartMechanism) {
+                ((SmartMechanism) it).updateTelemetry();
               }
             });
   }
@@ -127,6 +148,9 @@ public class GenericSubsystem extends SubsystemBase
               if (it instanceof GenericFunctionalMotor) {
                 ((GenericFunctionalMotor) it).simulationUpdate();
               }
+              if (it instanceof SmartMechanism) {
+                ((SmartMechanism) it).simIterate();
+              }
             });
   }
 
@@ -137,7 +161,7 @@ public class GenericSubsystem extends SubsystemBase
    */
   @Override
   public DisplayValuesHelper getDisplayValuesHelper() {
-    return displayValues;
+    return DashBoard;
   }
 
   /**
@@ -146,6 +170,6 @@ public class GenericSubsystem extends SubsystemBase
    * @param display a boolean indicating whether to enable or disable the display
    */
   public void setDisplay(boolean display) {
-    if (display) displayValues.makeDisplayed();
+    if (display) DashBoard.makeDisplayed();
   }
 }

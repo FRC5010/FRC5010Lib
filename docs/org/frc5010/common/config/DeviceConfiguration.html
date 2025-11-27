@@ -74,7 +74,7 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Known Implementing Classes:</dt>
-<dd><code><a href="json/GyroSettingsConfigurationJson.html" title="class in org.frc5010.common.config.json">GyroSettingsConfigurationJson</a></code>, <code><a href="json/PercentMotorConfigurationJson.html" title="class in org.frc5010.common.config.json">PercentMotorConfigurationJson</a></code>, <code><a href="json/VelocityMotorConfigurationJson.html" title="class in org.frc5010.common.config.json">VelocityMotorConfigurationJson</a></code></dd>
+<dd><code><a href="json/devices/GyroSettingsConfigurationJson.html" title="class in org.frc5010.common.config.json.devices">GyroSettingsConfigurationJson</a></code>, <code><a href="json/devices/PercentMotorConfigurationJson.html" title="class in org.frc5010.common.config.json.devices">PercentMotorConfigurationJson</a></code>, <code><a href="json/devices/VelocityMotorConfigurationJson.html" title="class in org.frc5010.common.config.json.devices">VelocityMotorConfigurationJson</a></code>, <code><a href="json/devices/YamsArmConfigurationJson.html" title="class in org.frc5010.common.config.json.devices">YamsArmConfigurationJson</a></code>, <code><a href="json/devices/YamsElevatorConfigurationJson.html" title="class in org.frc5010.common.config.json.devices">YamsElevatorConfigurationJson</a></code>, <code><a href="json/devices/YamsPivotConfigurationJson.html" title="class in org.frc5010.common.config.json.devices">YamsPivotConfigurationJson</a></code>, <code><a href="json/devices/YamsShooterConfigurationJson.html" title="class in org.frc5010.common.config.json.devices">YamsShooterConfigurationJson</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public interface </span><span class="element-name type-name-label">DeviceConfiguration</span></div>
@@ -86,15 +86,18 @@ loadScripts(document, 'script');</script>
 <section class="method-summary" id="method-summary">
 <h2>Method Summary</h2>
 <div id="method-summary-table">
-<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab3" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab3', 3)" class="table-tab">Abstract Methods</button></div>
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="method-summary-table-tab0" role="tab" aria-selected="true" aria-controls="method-summary-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table', 3)" class="active-table-tab">All Methods</button><button id="method-summary-table-tab2" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab2', 3)" class="table-tab">Instance Methods</button><button id="method-summary-table-tab5" role="tab" aria-selected="false" aria-controls="method-summary-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('method-summary-table', 'method-summary-table-tab5', 3)" class="table-tab">Default Methods</button></div>
 <div id="method-summary-table.tabpanel" role="tabpanel" aria-labelledby="method-summary-table-tab0">
 <div class="summary-table three-column-summary">
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#configure(org.frc5010.common.arch.GenericDeviceHandler)" class="member-name-link">configure</a><wbr>(<a href="../arch/GenericDeviceHandler.html" title="interface in org.frc5010.common.arch">GenericDeviceHandler</a>&nbsp;deviceHandler)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#configure(edu.wpi.first.wpilibj2.command.SubsystemBase)" class="member-name-link">configure</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/SubsystemBase.html" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link">SubsystemBase</a>&nbsp;deviceHandler)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code>default <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5"><code><a href="#configure(org.frc5010.common.arch.GenericSubsystem)" class="member-name-link">configure</a><wbr>(<a href="../arch/GenericSubsystem.html" title="class in org.frc5010.common.arch">GenericSubsystem</a>&nbsp;deviceHandler)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab5">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -110,9 +113,15 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="configure(org.frc5010.common.arch.GenericDeviceHandler)">
+<section class="detail" id="configure(edu.wpi.first.wpilibj2.command.SubsystemBase)">
 <h3>configure</h3>
-<div class="member-signature"><span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span>&nbsp;<span class="element-name">configure</span><wbr><span class="parameters">(<a href="../arch/GenericDeviceHandler.html" title="interface in org.frc5010.common.arch">GenericDeviceHandler</a>&nbsp;deviceHandler)</span></div>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span>&nbsp;<span class="element-name">configure</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj2/command/SubsystemBase.html" title="class or interface in edu.wpi.first.wpilibj2.command" class="external-link">SubsystemBase</a>&nbsp;deviceHandler)</span></div>
+</section>
+</li>
+<li>
+<section class="detail" id="configure(org.frc5010.common.arch.GenericSubsystem)">
+<h3>configure</h3>
+<div class="member-signature"><span class="modifiers">default</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span>&nbsp;<span class="element-name">configure</span><wbr><span class="parameters">(<a href="../arch/GenericSubsystem.html" title="class in org.frc5010.common.arch">GenericSubsystem</a>&nbsp;deviceHandler)</span></div>
 </section>
 </li>
 </ul>

@@ -6,6 +6,7 @@ package org.frc5010.common.sensors.encoder;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.simulation.EncoderSim;
+import java.util.Optional;
 
 /** Add your docs here. */
 public class SimulatedEncoder implements GenericEncoder {
@@ -70,4 +71,17 @@ public class SimulatedEncoder implements GenericEncoder {
     encoderSim.setDirection(inverted);
     this.inverted = inverted;
   }
+
+  @Override
+  public double getPositionConversion() {
+    return encoder.getDistancePerPulse();
+  }
+
+  @Override
+  public double getVelocityConversion() {
+    return encoder.getDistancePerPulse();
+  }
+
+  @Override
+  public void simulationUpdate(Optional<Double> position, Double velocity) {}
 }

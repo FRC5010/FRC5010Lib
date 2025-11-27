@@ -5,28 +5,21 @@ import edu.wpi.first.networktables.FloatSubscriber;
 import edu.wpi.first.networktables.FloatTopic;
 import edu.wpi.first.networktables.NetworkTableEvent;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.util.function.FloatSupplier;
 import java.util.EnumSet;
 import org.frc5010.common.arch.GenericRobot.LogLevel;
 
 /** Add a float to the dashboard */
-public class DisplayFloat {
+public class DisplayFloat extends DisplayableValue {
   // Variables
   /** The value */
   protected float value_;
-  /** The name */
-  protected final String name_;
-  /** The table */
-  protected final String table_;
   /** The topic */
   protected FloatTopic topic_;
   /** The publisher */
   protected FloatPublisher publisher_;
   /** The subscriber */
   protected FloatSubscriber subscriber_;
-  /** The listener handle */
-  protected int listenerHandle_;
-  /** Display mode */
-  protected final boolean isDisplayed_;
 
   // Constructor
   /**
@@ -50,26 +43,27 @@ public class DisplayFloat {
    */
   public DisplayFloat(
       final float defaultValue, final String name, final String table, final LogLevel logLevel) {
+    super(name, table, logLevel);
     value_ = defaultValue;
-    name_ = name;
-    table_ = table;
-    isDisplayed_ = DisplayValuesHelper.robotIsAtLogLevel(logLevel);
     if (isDisplayed_) {
       topic_ = NetworkTableInstance.getDefault().getTable(table_).getFloatTopic(name_);
       publisher_ = topic_.publish();
       publisher_.setDefault(value_);
     }
-    if (DisplayValuesHelper.robotIsAtLogLevel(LogLevel.CONFIG)) {
-      topic_.setPersistent(true);
-      subscriber_ = topic_.subscribe(value_);
-      listenerHandle_ =
-          NetworkTableInstance.getDefault()
-              .addListener(
-                  subscriber_,
-                  EnumSet.of(NetworkTableEvent.Kind.kValueAll),
-                  event -> {
-                    setValue(event.valueData.value.getFloat(), false);
-                  });
+    if (LogLevel.CONFIG == logLevel) {
+      if (isDisplayed_) topic_.setPersistent(true);
+      if (DisplayValuesHelper.isAtLogLevel(LogLevel.CONFIG)) {
+        subscriber_ = topic_.subscribe(value_);
+        listenerHandle_ =
+            NetworkTableInstance.getDefault()
+                .addListener(
+                    subscriber_,
+                    EnumSet.of(NetworkTableEvent.Kind.kValueAll),
+                    event -> {
+                      setValue(event.valueData.value.getFloat(), false);
+                    });
+        setValue(subscriber_.get(), false);
+      }
     }
   }
 
@@ -104,5 +98,17 @@ public class DisplayFloat {
     if (publish && isDisplayed_) {
       publisher_.set(value_);
     }
+  }
+
+  /**
+   * Registers a listener to the display values helper to update this float with the result of the
+   * given supplier when the listener is called.
+   *
+   * @param supplier - supplier of the float to update this with
+   * @return this object
+   */
+  public DisplayFloat updateWith(FloatSupplier supplier) {
+    displayValuesHelper_.registerListener(() -> setValue(supplier.getAsFloat()));
+    return this;
   }
 }

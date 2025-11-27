@@ -11,28 +11,21 @@ import edu.wpi.first.units.DistanceUnit;
 import edu.wpi.first.units.measure.Distance;
 import edu.wpi.first.units.measure.MutDistance;
 import java.util.EnumSet;
+import java.util.function.Supplier;
 import org.frc5010.common.arch.GenericRobot.LogLevel;
 
 /** Add a length to the dashboard */
-public class DisplayLength {
+public class DisplayLength extends DisplayableValue {
   /** Length value */
   MutDistance length_;
   /** Length unit */
   protected final DistanceUnit unit_;
-  /** The name of the variable */
-  protected final String name_;
-  /** The name of the table */
-  protected final String table_;
   /** The topic */
   protected DoubleTopic topic_;
   /** The publisher */
   protected DoublePublisher publisher_;
   /** The subscriber */
   protected DoubleSubscriber subscriber_;
-  /** The listener handle */
-  protected int listenerHandle_;
-  /** Display mode */
-  protected final boolean isDisplayed_;
 
   // Constructor
   /**
@@ -51,11 +44,11 @@ public class DisplayLength {
   /**
    * Add a length to the dashboard
    *
-   * @param length - length
+   * @param length - length unit in the unit
    * @param unit - unit
    * @param name - name of the variable
    * @param table - name of the table
-   * @param logLevel - log level
+   * @param logLevel - the log level
    */
   public DisplayLength(
       final double length,
@@ -63,15 +56,13 @@ public class DisplayLength {
       final String name,
       final String table,
       LogLevel logLevel) {
+    super(String.format("%s (%s)", name, unit.symbol()), table, logLevel);
     length_ = new MutDistance(length, unit.getBaseUnit().convertFrom(length, unit), unit);
     unit_ = unit;
-    name_ = String.format("%s (%s)", name, unit_.symbol());
-    table_ = table;
-    isDisplayed_ = DisplayValuesHelper.robotIsAtLogLevel(logLevel);
     if (isDisplayed_) {
       topic_ = NetworkTableInstance.getDefault().getTable(table_).getDoubleTopic(name_);
       publisher_ = topic_.publish();
-      init();
+      init(logLevel);
     }
   }
 
@@ -93,59 +84,57 @@ public class DisplayLength {
    * @param length - length with units
    * @param name - name of the variable
    * @param table - name of the table
-   * @param logLevel - log level
+   * @param logLevel - the log level
    */
   public DisplayLength(
       final Distance length, final String name, final String table, LogLevel logLevel) {
+    super(String.format("%s (%s)", name, length.unit().symbol()), table, logLevel);
     length_ = length.mutableCopy();
     unit_ = length.unit();
-    name_ = String.format("%s (%s)", name, unit_.symbol());
-    table_ = table;
-    isDisplayed_ = DisplayValuesHelper.robotIsAtLogLevel(logLevel);
     if (isDisplayed_) {
       topic_ = NetworkTableInstance.getDefault().getTable(table_).getDoubleTopic(name_);
       publisher_ = topic_.publish();
-      init();
+      init(logLevel);
     }
   }
 
-  /**
-   * Initializes the display by adding a listener to the subscriber and setting the default value of
-   * the publisher
-   */
-  protected void init() {
+  protected void init(LogLevel logLevel) {
     publisher_.setDefault(length_.in(unit_));
-    if (DisplayValuesHelper.robotIsAtLogLevel(LogLevel.CONFIG)) {
-      topic_.setPersistent(true);
-      subscriber_ = topic_.subscribe(length_.in(unit_));
-      listenerHandle_ =
-          NetworkTableInstance.getDefault()
-              .addListener(
-                  subscriber_,
-                  EnumSet.of(NetworkTableEvent.Kind.kValueAll),
-                  event -> {
-                    setLength(event.valueData.value.getDouble(), unit_, false);
-                  });
+    if (LogLevel.CONFIG == logLevel) {
+      if (isDisplayed_) topic_.setPersistent(true);
+      if (DisplayValuesHelper.isAtLogLevel(LogLevel.CONFIG)) {
+        subscriber_ = topic_.subscribe(length_.in(unit_));
+        listenerHandle_ =
+            NetworkTableInstance.getDefault()
+                .addListener(
+                    subscriber_,
+                    EnumSet.of(NetworkTableEvent.Kind.kValueAll),
+                    event -> {
+                      setLength(event.valueData.value.getDouble(), unit_, false);
+                    });
+        setLength(subscriber_.get(), unit_, false);
+      }
     }
   }
 
   // Setters
+
   /**
-   * Sets the length
+   * Sets the length using a value and a unit, and publishes the value
    *
-   * @param length - length
-   * @param unit - unit
+   * @param length the value of the length to set
+   * @param unit the unit of the length to set
    */
   public void setLength(final double length, final DistanceUnit unit) {
     setLength(length, unit, true);
   }
 
   /**
-   * Sets the length
+   * Sets the length using a value and a unit, and optionally publishes the value
    *
-   * @param length - length
-   * @param unit - unit
-   * @param publish - publish the value
+   * @param length the value of the length to set
+   * @param unit the unit of the length to set
+   * @param publish whether or not to publish the value
    */
   public void setLength(final double length, final DistanceUnit unit, final boolean publish) {
     setLength(unit.of(length), publish);
@@ -202,5 +191,18 @@ public class DisplayLength {
 
   public double getLengthInMeters() {
     return length_.in(Meters);
+  }
+
+  /**
+   * Registers a listener to update the DisplayLength with a supplier of distances. The supplier is
+   * called every time the dashboard is updated. This is useful for updating a DisplayLength with a
+   * changing quantity, such as the distance from the robot to the goal.
+   *
+   * @param supplier the supplier of distances
+   * @return this
+   */
+  public DisplayLength updateWith(Supplier<Distance> supplier) {
+    displayValuesHelper_.registerListener(() -> setLength(supplier.get()));
+    return this;
   }
 }

@@ -72,12 +72,14 @@ loadScripts(document, 'script');</script>
 <h1 title="Class DisplayAngle" class="title">Class DisplayAngle</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
+<div class="inheritance"><a href="DisplayableValue.html" title="class in org.frc5010.common.telemetry">org.frc5010.common.telemetry.DisplayableValue</a>
 <div class="inheritance">org.frc5010.common.telemetry.DisplayAngle</div>
+</div>
 </div>
 <section class="class-description" id="class-description">
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">DisplayAngle</span>
-<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<span class="extends-implements">extends <a href="DisplayableValue.html" title="class in org.frc5010.common.telemetry">DisplayableValue</a></span></div>
 <div class="block">Add an angle to the dashboard</div>
 </section>
 <section class="summary">
@@ -96,35 +98,15 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color">
 <div class="block">Widget for the angle</div>
 </div>
-<div class="col-first odd-row-color"><code>protected final boolean</code></div>
-<div class="col-second odd-row-color"><code><a href="#isDisplayed_" class="member-name-link">isDisplayed_</a></code></div>
+<div class="col-first odd-row-color"><code>protected <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/networktables/DoublePublisher.html" title="class or interface in edu.wpi.first.networktables" class="external-link">DoublePublisher</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#publisher_" class="member-name-link">publisher_</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">Display mode</div>
-</div>
-<div class="col-first even-row-color"><code>protected int</code></div>
-<div class="col-second even-row-color"><code><a href="#listenerHandle_" class="member-name-link">listenerHandle_</a></code></div>
-<div class="col-last even-row-color">
-<div class="block">Listener handle</div>
-</div>
-<div class="col-first odd-row-color"><code>protected final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#name_" class="member-name-link">name_</a></code></div>
-<div class="col-last odd-row-color">
-<div class="block">Name of the angle value</div>
-</div>
-<div class="col-first even-row-color"><code>protected <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/networktables/DoublePublisher.html" title="class or interface in edu.wpi.first.networktables" class="external-link">DoublePublisher</a></code></div>
-<div class="col-second even-row-color"><code><a href="#publisher_" class="member-name-link">publisher_</a></code></div>
-<div class="col-last even-row-color">
 <div class="block">Publisher for the angle</div>
 </div>
-<div class="col-first odd-row-color"><code>protected <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/networktables/DoubleSubscriber.html" title="class or interface in edu.wpi.first.networktables" class="external-link">DoubleSubscriber</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#subscriber_" class="member-name-link">subscriber_</a></code></div>
-<div class="col-last odd-row-color">
-<div class="block">Subscriber for the angle</div>
-</div>
-<div class="col-first even-row-color"><code>protected final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="#table_" class="member-name-link">table_</a></code></div>
+<div class="col-first even-row-color"><code>protected <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/networktables/DoubleSubscriber.html" title="class or interface in edu.wpi.first.networktables" class="external-link">DoubleSubscriber</a></code></div>
+<div class="col-second even-row-color"><code><a href="#subscriber_" class="member-name-link">subscriber_</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">Name of the table to display the value</div>
+<div class="block">Subscriber for the angle</div>
 </div>
 <div class="col-first odd-row-color"><code>protected <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/networktables/DoubleTopic.html" title="class or interface in edu.wpi.first.networktables" class="external-link">DoubleTopic</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#topic_" class="member-name-link">topic_</a></code></div>
@@ -137,6 +119,9 @@ loadScripts(document, 'script');</script>
 <div class="block">Angle unit</div>
 </div>
 </div>
+<div class="inherited-list">
+<h3 id="fields-inherited-from-class-org.frc5010.common.telemetry.DisplayableValue">Fields inherited from class&nbsp;org.frc5010.common.telemetry.<a href="DisplayableValue.html" title="class in org.frc5010.common.telemetry">DisplayableValue</a></h3>
+<code><a href="DisplayableValue.html#displayValuesHelper_">displayValuesHelper_</a>, <a href="DisplayableValue.html#isDisplayed_">isDisplayed_</a>, <a href="DisplayableValue.html#listenerHandle_">listenerHandle_</a>, <a href="DisplayableValue.html#name_">name_</a>, <a href="DisplayableValue.html#table_">table_</a></code></div>
 </section>
 </li>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
@@ -196,9 +181,11 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getAngleInDegrees()" class="member-name-link">getAngleInDegrees</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Retrieves the current angle in degrees.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>protected void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#init()" class="member-name-link">init</a>()</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#init(org.frc5010.common.arch.GenericRobot.LogLevel)" class="member-name-link">init</a><wbr>(<a href="../arch/GenericRobot.LogLevel.html" title="enum class in org.frc5010.common.arch">GenericRobot.LogLevel</a>&nbsp;logLevel)</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Initializes the display by adding a listener to the subscriber and setting the default value of
  the publisher</div>
@@ -237,9 +224,18 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Sets the angle from another <a href="DisplayAngle.html" title="class in org.frc5010.common.telemetry"><code>DisplayAngle</code></a> object</div>
 </div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DisplayAngle.html" title="class in org.frc5010.common.telemetry">DisplayAngle</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateWith(java.util.function.Supplier)" class="member-name-link">updateWith</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Supplier.html" title="class or interface in java.util.function" class="external-link">Supplier</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/Angle.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">Angle</a>&gt;&nbsp;supplier)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Registers a listener to the display values helper to update this angle with the result of the
+ given supplier when the listener is called.</div>
 </div>
 </div>
 </div>
+</div>
+<div class="inherited-list">
+<h3 id="methods-inherited-from-class-org.frc5010.common.telemetry.DisplayableValue">Methods inherited from class&nbsp;org.frc5010.common.telemetry.<a href="DisplayableValue.html" title="class in org.frc5010.common.telemetry">DisplayableValue</a></h3>
+<code><a href="DisplayableValue.html#setDisplayValuesHelper(org.frc5010.common.telemetry.DisplayValuesHelper)">setDisplayValuesHelper</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
@@ -259,20 +255,6 @@ loadScripts(document, 'script');</script>
 <h3>unit_</h3>
 <div class="member-signature"><span class="modifiers">protected final</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/AngleUnit.html" title="class or interface in edu.wpi.first.units" class="external-link">AngleUnit</a></span>&nbsp;<span class="element-name">unit_</span></div>
 <div class="block">Angle unit</div>
-</section>
-</li>
-<li>
-<section class="detail" id="name_">
-<h3>name_</h3>
-<div class="member-signature"><span class="modifiers">protected final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">name_</span></div>
-<div class="block">Name of the angle value</div>
-</section>
-</li>
-<li>
-<section class="detail" id="table_">
-<h3>table_</h3>
-<div class="member-signature"><span class="modifiers">protected final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">table_</span></div>
-<div class="block">Name of the table to display the value</div>
 </section>
 </li>
 <li>
@@ -301,20 +283,6 @@ loadScripts(document, 'script');</script>
 <h3>subscriber_</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/networktables/DoubleSubscriber.html" title="class or interface in edu.wpi.first.networktables" class="external-link">DoubleSubscriber</a></span>&nbsp;<span class="element-name">subscriber_</span></div>
 <div class="block">Subscriber for the angle</div>
-</section>
-</li>
-<li>
-<section class="detail" id="listenerHandle_">
-<h3>listenerHandle_</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">listenerHandle_</span></div>
-<div class="block">Listener handle</div>
-</section>
-</li>
-<li>
-<section class="detail" id="isDisplayed_">
-<h3>isDisplayed_</h3>
-<div class="member-signature"><span class="modifiers">protected final</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isDisplayed_</span></div>
-<div class="block">Display mode</div>
 </section>
 </li>
 </ul>
@@ -401,9 +369,9 @@ loadScripts(document, 'script');</script>
 <h2>Method Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="init()">
+<section class="detail" id="init(org.frc5010.common.arch.GenericRobot.LogLevel)">
 <h3>init</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">init</span>()</div>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">init</span><wbr><span class="parameters">(<a href="../arch/GenericRobot.LogLevel.html" title="enum class in org.frc5010.common.arch">GenericRobot.LogLevel</a>&nbsp;logLevel)</span></div>
 <div class="block">Initializes the display by adding a listener to the subscriber and setting the default value of
  the publisher</div>
 </section>
@@ -497,6 +465,25 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getAngleInDegrees()">
 <h3>getAngleInDegrees</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getAngleInDegrees</span>()</div>
+<div class="block">Retrieves the current angle in degrees.</div>
+<dl class="notes">
+<dt>Returns:</dt>
+<dd>the current angle in degrees</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="updateWith(java.util.function.Supplier)">
+<h3>updateWith</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="DisplayAngle.html" title="class in org.frc5010.common.telemetry">DisplayAngle</a></span>&nbsp;<span class="element-name">updateWith</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Supplier.html" title="class or interface in java.util.function" class="external-link">Supplier</a>&lt;<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/Angle.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">Angle</a>&gt;&nbsp;supplier)</span></div>
+<div class="block">Registers a listener to the display values helper to update this angle with the result of the
+ given supplier when the listener is called.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>supplier</code> - - supplier of the angle to update this with</dd>
+<dt>Returns:</dt>
+<dd>this object</dd>
+</dl>
 </section>
 </li>
 </ul>

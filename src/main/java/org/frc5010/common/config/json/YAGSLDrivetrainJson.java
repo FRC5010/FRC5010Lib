@@ -4,18 +4,25 @@
 
 package org.frc5010.common.config.json;
 
+import static edu.wpi.first.units.Units.Degrees;
+import static edu.wpi.first.units.Units.Meters;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.RobotBase;
-import edu.wpi.first.wpilibj.smartdashboard.Mechanism2d;
 import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
 import org.frc5010.common.arch.GenericRobot;
 import org.frc5010.common.config.ConfigConstants;
+import org.frc5010.common.config.UnitsParser;
 import org.frc5010.common.constants.MotorFeedFwdConstants;
 import org.frc5010.common.constants.RobotConstantsDef;
 import org.frc5010.common.constants.SwerveConstants;
+import org.frc5010.common.drive.swerve.GenericSwerveDrivetrain;
 import org.frc5010.common.drive.swerve.YAGSLSwerveDrivetrain;
+import org.littletonrobotics.junction.mechanism.LoggedMechanism2d;
 
 /** Parameters for a YAGSLSwerveDrivetrain */
 public class YAGSLDrivetrainJson implements DrivetrainPropertiesJson {
@@ -32,12 +39,16 @@ public class YAGSLDrivetrainJson implements DrivetrainPropertiesJson {
    */
   public String[] driveModules;
 
+  /** Starting pose of the robot */
+  public Pose2dJson startingPose = new Pose2dJson();
+
+  @Override
   public void readDrivetrainConfiguration(GenericRobot robot, File baseDirectory)
       throws IOException {
     SwerveConstants swerveConstants = new SwerveConstants(robot.getDrivetrainConstants());
-    for (int i = 0; i < driveModules.length; i++) {
-      File moduleFile = new File(baseDirectory, "drive_modules/" + driveModules[i]);
-      String moduleName = driveModules[i].substring(0, driveModules[i].indexOf(".json"));
+    for (String driveModule : driveModules) {
+      File moduleFile = new File(baseDirectory, "drive_modules/" + driveModule);
+      String moduleName = driveModule.substring(0, driveModule.indexOf(".json"));
       assert moduleFile.exists();
       YAGSLDriveModuleJson module =
           new ObjectMapper().readValue(moduleFile, YAGSLDriveModuleJson.class);
@@ -58,21 +69,27 @@ public class YAGSLDrivetrainJson implements DrivetrainPropertiesJson {
         }
       }
     }
-    return;
   }
   ;
 
   @Override
   public void createDriveTrain(GenericRobot robot) {
-    YAGSLSwerveDrivetrain drivetrain =
+    Pose2d startingPoseFromJson =
+        new Pose2d(
+            UnitsParser.parseDistance(startingPose.x).in(Meters),
+            UnitsParser.parseDistance(startingPose.y).in(Meters),
+            new Rotation2d(UnitsParser.parseAngle(startingPose.rotation).in(Degrees)));
+    YAGSLSwerveDrivetrain yagsl =
         new YAGSLSwerveDrivetrain(
-            new Mechanism2d(RobotConstantsDef.robotVisualH, RobotConstantsDef.robotVisualV),
+            robot.getDrivetrainConstants(), turningMotorGearRatio, directory, startingPoseFromJson);
+    GenericSwerveDrivetrain drivetrain =
+        new GenericSwerveDrivetrain(
+            new LoggedMechanism2d(RobotConstantsDef.robotVisualH, RobotConstantsDef.robotVisualV),
             robot.getDrivetrainConstants(),
-            turningMotorGearRatio,
-            directory);
+            yagsl);
     robot.addSubsystem(ConfigConstants.DRIVETRAIN, drivetrain);
     robot.setPoseSupplier(() -> drivetrain.getPoseEstimator().getCurrentPose());
-    robot.setSimulatedPoseSupplier(() -> drivetrain.getMapleSimPose());
+    robot.setSimulatedPoseSupplier(() -> yagsl.getMapleSimPose());
     gamePiecesJson.ifPresent(it -> it.createGamePieces(drivetrain));
   }
 }

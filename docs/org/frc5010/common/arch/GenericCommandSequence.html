@@ -116,9 +116,12 @@ implements <a href="WpiHelperInterface.html" title="interface in org.frc5010.com
 <div class="col-last even-row-color">
 <div class="block">Prefix for logging, usually the class name</div>
 </div>
-<div class="col-first odd-row-color"><code>protected final <a href="WpiNetworkTableValuesHelper.html" title="class in org.frc5010.common.arch">WpiNetworkTableValuesHelper</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#values" class="member-name-link">values</a></code></div>
-<div class="col-last odd-row-color">
+<div class="col-first odd-row-color"><code>protected int</code></div>
+<div class="col-second odd-row-color"><code><a href="#m_currentCommandIndex" class="member-name-link">m_currentCommandIndex</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>protected final <a href="WpiNetworkTableValuesHelper.html" title="class in org.frc5010.common.arch">WpiNetworkTableValuesHelper</a></code></div>
+<div class="col-second even-row-color"><code><a href="#values" class="member-name-link">values</a></code></div>
+<div class="col-last even-row-color">
 <div class="block">Network table values</div>
 </div>
 </div>
@@ -178,9 +181,12 @@ implements <a href="WpiHelperInterface.html" title="interface in org.frc5010.com
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isFinished()" class="member-name-link">isFinished</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#runsWhenDisabled()" class="member-name-link">runsWhenDisabled</a>()</code></div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#logCurrentAction(java.lang.String)" class="member-name-link">logCurrentAction</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;text)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#runsWhenDisabled()" class="member-name-link">runsWhenDisabled</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
@@ -216,6 +222,12 @@ implements <a href="WpiHelperInterface.html" title="interface in org.frc5010.com
 <h3>values</h3>
 <div class="member-signature"><span class="modifiers">protected final</span>&nbsp;<span class="return-type"><a href="WpiNetworkTableValuesHelper.html" title="class in org.frc5010.common.arch">WpiNetworkTableValuesHelper</a></span>&nbsp;<span class="element-name">values</span></div>
 <div class="block">Network table values</div>
+</section>
+</li>
+<li>
+<section class="detail" id="m_currentCommandIndex">
+<h3>m_currentCommandIndex</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">m_currentCommandIndex</span></div>
 </section>
 </li>
 </ul>
@@ -259,6 +271,12 @@ implements <a href="WpiHelperInterface.html" title="interface in org.frc5010.com
 <section class="method-details" id="method-detail">
 <h2>Method Details</h2>
 <ul class="member-list">
+<li>
+<section class="detail" id="logCurrentAction(java.lang.String)">
+<h3>logCurrentAction</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">logCurrentAction</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;text)</span></div>
+</section>
+</li>
 <li>
 <section class="detail" id="addCommands(edu.wpi.first.wpilibj2.command.Command...)">
 <h3>addCommands</h3>

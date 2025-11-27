@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 import java.util.Optional;
 import java.util.function.BooleanSupplier;
+import java.util.function.Function;
 
 /** A class that represents a path that the robot can follow */
 public class AutoPath {
@@ -82,6 +83,12 @@ public class AutoPath {
    */
   public Command follow() {
     Command followingCommand = AutoBuilder.followPath(pathplannerPath);
+    followingCommand.setName("Follow Path " + pathplannerPath.name);
+    return followingCommand;
+  }
+
+  public Command follow(Function<PathPlannerPath, Command> pathFollowingCommandBuilder) {
+    Command followingCommand = pathFollowingCommandBuilder.apply(pathplannerPath);
     followingCommand.setName("Follow Path " + pathplannerPath.name);
     return followingCommand;
   }

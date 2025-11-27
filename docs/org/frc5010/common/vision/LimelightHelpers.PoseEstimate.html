@@ -78,6 +78,7 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public static class </span><span class="element-name type-name-label">LimelightHelpers.PoseEstimate</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<div class="block">Represents a 3D Pose Estimate.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -96,24 +97,27 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color"><code>double</code></div>
 <div class="col-second odd-row-color"><code><a href="#avgTagDist" class="member-name-link">avgTagDist</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>double</code></div>
-<div class="col-second even-row-color"><code><a href="#latency" class="member-name-link">latency</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#pose" class="member-name-link">pose</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code><a href="LimelightHelpers.RawFiducial.html" title="class in org.frc5010.common.vision">LimelightHelpers.RawFiducial</a>[]</code></div>
-<div class="col-second even-row-color"><code><a href="#rawFiducials" class="member-name-link">rawFiducials</a></code></div>
-<div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>int</code></div>
-<div class="col-second odd-row-color"><code><a href="#tagCount" class="member-name-link">tagCount</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>double</code></div>
-<div class="col-second even-row-color"><code><a href="#tagSpan" class="member-name-link">tagSpan</a></code></div>
+<div class="col-first even-row-color"><code>boolean</code></div>
+<div class="col-second even-row-color"><code><a href="#isMegaTag2" class="member-name-link">isMegaTag2</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
 <div class="col-first odd-row-color"><code>double</code></div>
-<div class="col-second odd-row-color"><code><a href="#timestampSeconds" class="member-name-link">timestampSeconds</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#latency" class="member-name-link">latency</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a></code></div>
+<div class="col-second even-row-color"><code><a href="#pose" class="member-name-link">pose</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code><a href="LimelightHelpers.RawFiducial.html" title="class in org.frc5010.common.vision">LimelightHelpers.RawFiducial</a>[]</code></div>
+<div class="col-second odd-row-color"><code><a href="#rawFiducials" class="member-name-link">rawFiducials</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>int</code></div>
+<div class="col-second even-row-color"><code><a href="#tagCount" class="member-name-link">tagCount</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-first odd-row-color"><code>double</code></div>
+<div class="col-second odd-row-color"><code><a href="#tagSpan" class="member-name-link">tagSpan</a></code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
+<div class="col-first even-row-color"><code>double</code></div>
+<div class="col-second even-row-color"><code><a href="#timestampSeconds" class="member-name-link">timestampSeconds</a></code></div>
+<div class="col-last even-row-color">&nbsp;</div>
 </div>
 </section>
 </li>
@@ -125,15 +129,20 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(edu.wpi.first.math.geometry.Pose2d,double,double,int,double,double,double,org.frc5010.common.vision.LimelightHelpers.RawFiducial%5B%5D)" class="member-name-link">PoseEstimate</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a>&nbsp;pose,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">PoseEstimate</a>()</code></div>
+<div class="col-last even-row-color">
+<div class="block">Instantiates a PoseEstimate object with default values</div>
+</div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(edu.wpi.first.math.geometry.Pose2d,double,double,int,double,double,double,org.frc5010.common.vision.LimelightHelpers.RawFiducial%5B%5D,boolean)" class="member-name-link">PoseEstimate</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a>&nbsp;pose,
  double&nbsp;timestampSeconds,
  double&nbsp;latency,
  int&nbsp;tagCount,
  double&nbsp;tagSpan,
  double&nbsp;avgTagDist,
  double&nbsp;avgTagArea,
- <a href="LimelightHelpers.RawFiducial.html" title="class in org.frc5010.common.vision">LimelightHelpers.RawFiducial</a>[]&nbsp;rawFiducials)</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+ <a href="LimelightHelpers.RawFiducial.html" title="class in org.frc5010.common.vision">LimelightHelpers.RawFiducial</a>[]&nbsp;rawFiducials,
+ boolean&nbsp;isMegaTag2)</code></div>
+<div class="col-last odd-row-color">&nbsp;</div>
 </div>
 </section>
 </li>
@@ -203,6 +212,12 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="LimelightHelpers.RawFiducial.html" title="class in org.frc5010.common.vision">LimelightHelpers.RawFiducial</a>[]</span>&nbsp;<span class="element-name">rawFiducials</span></div>
 </section>
 </li>
+<li>
+<section class="detail" id="isMegaTag2">
+<h3>isMegaTag2</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isMegaTag2</span></div>
+</section>
+</li>
 </ul>
 </section>
 </li>
@@ -212,7 +227,14 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(edu.wpi.first.math.geometry.Pose2d,double,double,int,double,double,double,org.frc5010.common.vision.LimelightHelpers.RawFiducial[])">
+<section class="detail" id="&lt;init&gt;()">
+<h3>PoseEstimate</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PoseEstimate</span>()</div>
+<div class="block">Instantiates a PoseEstimate object with default values</div>
+</section>
+</li>
+<li>
+<section class="detail" id="&lt;init&gt;(edu.wpi.first.math.geometry.Pose2d,double,double,int,double,double,double,org.frc5010.common.vision.LimelightHelpers.RawFiducial[],boolean)">
 <h3>PoseEstimate</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">PoseEstimate</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose2d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose2d</a>&nbsp;pose,
  double&nbsp;timestampSeconds,
@@ -221,7 +243,8 @@ loadScripts(document, 'script');</script>
  double&nbsp;tagSpan,
  double&nbsp;avgTagDist,
  double&nbsp;avgTagArea,
- <a href="LimelightHelpers.RawFiducial.html" title="class in org.frc5010.common.vision">LimelightHelpers.RawFiducial</a>[]&nbsp;rawFiducials)</span></div>
+ <a href="LimelightHelpers.RawFiducial.html" title="class in org.frc5010.common.vision">LimelightHelpers.RawFiducial</a>[]&nbsp;rawFiducials,
+ boolean&nbsp;isMegaTag2)</span></div>
 </section>
 </li>
 </ul>

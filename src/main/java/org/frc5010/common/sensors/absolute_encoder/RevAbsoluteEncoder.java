@@ -6,6 +6,7 @@ import com.revrobotics.spark.SparkBase;
 import com.revrobotics.spark.SparkMax;
 import com.revrobotics.spark.config.AbsoluteEncoderConfig;
 import edu.wpi.first.wpilibj.Alert;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 /**
@@ -158,4 +159,17 @@ public class RevAbsoluteEncoder extends GenericAbsoluteEncoder {
   public void setInverted(boolean inverted) {
     config.inverted(inverted);
   }
+
+  @Override
+  public double getPositionConversion() {
+    return 1;
+  }
+
+  @Override
+  public double getVelocityConversion() {
+    return 1;
+  }
+
+  @Override
+  public void simulationUpdate(Optional<Double> position, Double velocity) {}
 }

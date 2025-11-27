@@ -4,7 +4,7 @@
 
 package org.frc5010.common.motors.function;
 
-import org.frc5010.common.motors.MotorController5010;
+import org.frc5010.common.motors.GenericMotorController;
 
 /** A class for handling drive train motors */
 public class DriveTrainMotor extends GenericFunctionalMotor {
@@ -12,9 +12,8 @@ public class DriveTrainMotor extends GenericFunctionalMotor {
    * Creates a new DriveTrainMotor
    *
    * @param motor The motor to use
-   * @param visualName The visual name
    */
-  public DriveTrainMotor(MotorController5010 motor, String visualName) {
+  public DriveTrainMotor(GenericMotorController motor, String visualName) {
     super(motor, visualName);
   }
 
@@ -24,7 +23,7 @@ public class DriveTrainMotor extends GenericFunctionalMotor {
    * @param motor The motor to use
    * @param slewRate The slew rate
    */
-  public DriveTrainMotor(MotorController5010 motor, String visualName, double slewRate) {
+  public DriveTrainMotor(GenericMotorController motor, String visualName, double slewRate) {
     super(motor, visualName);
     _motor.setSlewRate(slewRate);
   }

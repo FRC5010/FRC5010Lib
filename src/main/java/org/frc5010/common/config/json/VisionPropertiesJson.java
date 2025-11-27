@@ -4,19 +4,27 @@
 
 package org.frc5010.common.config.json;
 
-import com.fasterxml.jackson.core.exc.StreamReadException;
-import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.wpi.first.apriltag.AprilTagFieldLayout;
+import edu.wpi.first.apriltag.AprilTagFields;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 import org.frc5010.common.arch.GenericRobot;
+import org.frc5010.common.vision.AprilTags;
+import org.ironmaple.simulation.SimulatedArena;
+import org.ironmaple.simulation.gamepieces.GamePieceOnFieldSimulation;
 
 /** JSON class with an array of cameras to configure */
 public class VisionPropertiesJson {
   /** An array of camera names */
   public String[] cameras;
+
+  public String aprilTagLayout = "default";
+  public String simulatedField = "default";
+  public Map<String, String[]> gamePieces = new HashMap<>();
 
   /**
    * Creates cameras for a given robot using the provided map of camera configurations.
@@ -39,11 +47,59 @@ public class VisionPropertiesJson {
    * @param directory the directory to read from
    * @return the map of camera configurations
    */
-  public Map<String, CameraConfigurationJson> readCameraSystem(File directory)
-      throws IOException, StreamReadException, DatabindException {
+  public Map<String, CameraConfigurationJson> readCameraSystem(File directory) throws IOException {
+    if (!simulatedField.equalsIgnoreCase("default")) {
+      try {
+        SimulatedArena arena =
+            Class.forName(simulatedField)
+                .asSubclass(SimulatedArena.class)
+                .getDeclaredConstructor()
+                .newInstance();
+        if (!gamePieces.isEmpty()) {
+          arena.clearGamePieces();
+          for (String key : gamePieces.keySet()) {
+            arena.addGamePiece(
+                Class.forName(gamePieces.get(key)[0])
+                    .asSubclass(GamePieceOnFieldSimulation.class)
+                    .getDeclaredConstructor()
+                    .newInstance());
+          }
+        }
+        SimulatedArena.overrideInstance(arena);
+      } catch (ClassNotFoundException
+          | NoSuchMethodException
+          | InstantiationException
+          | IllegalAccessException
+          | InvocationTargetException e) {
+        System.err.println("Error creating arena instance: " + e.getMessage());
+        e.printStackTrace();
+        throw new RuntimeException(e);
+      }
+    }
+    switch (aprilTagLayout) {
+      case "5010" -> AprilTags.setAprilTagFieldLayout(AprilTags.aprilTagRoomLayout);
+      case "default" -> {
+        AprilTagFieldLayout layout =
+            AprilTagFieldLayout.loadFromResource(AprilTagFields.kDefaultField.m_resourceFile);
+        AprilTags.setAprilTagFieldLayout(layout);
+      }
+      default -> {
+        AprilTagFieldLayout layout;
+        try {
+          layout =
+              AprilTagFieldLayout.loadFromResource(
+                  AprilTagFields.valueOf(aprilTagLayout).m_resourceFile);
+          AprilTags.setAprilTagFieldLayout(layout);
+        } catch (IllegalArgumentException e) {
+          layout = AprilTagFieldLayout.loadFromResource(aprilTagLayout);
+          AprilTags.setAprilTagFieldLayout(layout);
+        }
+      }
+    }
+
     Map<String, CameraConfigurationJson> camerasMap = new HashMap<>();
-    for (int i = 0; i < cameras.length; i++) {
-      File cameraFile = new File(directory, "cameras/" + cameras[i]);
+    for (String cameraString : cameras) {
+      File cameraFile = new File(directory, "cameras/" + cameraString);
       assert cameraFile.exists();
       CameraConfigurationJson camera =
           new ObjectMapper().readValue(cameraFile, CameraConfigurationJson.class);

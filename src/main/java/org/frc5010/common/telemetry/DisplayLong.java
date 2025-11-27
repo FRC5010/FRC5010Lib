@@ -6,27 +6,20 @@ import edu.wpi.first.networktables.IntegerTopic;
 import edu.wpi.first.networktables.NetworkTableEvent;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import java.util.EnumSet;
+import java.util.function.LongSupplier;
 import org.frc5010.common.arch.GenericRobot.LogLevel;
 
 /** Add a long to the dashboard */
-public class DisplayLong {
+public class DisplayLong extends DisplayableValue {
   // Variables
   /** The value */
   protected long value_;
-  /** The name */
-  protected final String name_;
-  /** The table */
-  protected final String table_;
   /** The topic */
   protected IntegerTopic topic_;
   /** The publisher */
   protected IntegerPublisher publisher_;
   /** The subscriber */
   protected IntegerSubscriber subscriber_;
-  /** The listener handle */
-  protected int listenerHandle_;
-  /** Display mode */
-  protected final boolean isDisplayed_;
 
   // Constructor
   /**
@@ -50,26 +43,27 @@ public class DisplayLong {
    */
   public DisplayLong(
       final long defaultValue, final String name, final String table, final LogLevel logLevel) {
+    super(name, table, logLevel);
     value_ = defaultValue;
-    name_ = name;
-    table_ = table;
-    isDisplayed_ = DisplayValuesHelper.robotIsAtLogLevel(logLevel);
     if (isDisplayed_) {
       topic_ = NetworkTableInstance.getDefault().getTable(table_).getIntegerTopic(name_);
       publisher_ = topic_.publish();
-      if (DisplayValuesHelper.robotIsAtLogLevel(LogLevel.CONFIG)) {
-        topic_.setPersistent(true);
-        subscriber_ = topic_.subscribe(value_);
-        listenerHandle_ =
-            NetworkTableInstance.getDefault()
-                .addListener(
-                    subscriber_,
-                    EnumSet.of(NetworkTableEvent.Kind.kValueAll),
-                    event -> {
-                      setValue(event.valueData.value.getInteger(), false);
-                    });
+      if (LogLevel.CONFIG == logLevel) {
+        if (isDisplayed_) topic_.setPersistent(true);
+        if (DisplayValuesHelper.isAtLogLevel(LogLevel.CONFIG)) {
+          subscriber_ = topic_.subscribe(value_);
+          listenerHandle_ =
+              NetworkTableInstance.getDefault()
+                  .addListener(
+                      subscriber_,
+                      EnumSet.of(NetworkTableEvent.Kind.kValueAll),
+                      event -> {
+                        setValue(event.valueData.value.getInteger(), false);
+                      });
+          setValue(subscriber_.get(), false);
+        }
+        publisher_.setDefault(value_);
       }
-      publisher_.setDefault(value_);
     }
   }
 
@@ -104,5 +98,17 @@ public class DisplayLong {
     if (publish && isDisplayed_) {
       publisher_.set(value_);
     }
+  }
+
+  /**
+   * Registers a listener to the display values helper to update this long with the result of the
+   * given supplier when the listener is called.
+   *
+   * @param supplier - supplier of the long to update this with
+   * @return this object
+   */
+  public DisplayLong updateWith(LongSupplier supplier) {
+    displayValuesHelper_.registerListener(() -> setValue(supplier.getAsLong()));
+    return this;
   }
 }

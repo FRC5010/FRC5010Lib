@@ -72,12 +72,14 @@ loadScripts(document, 'script');</script>
 <h1 title="Class DisplayBoolean" class="title">Class DisplayBoolean</h1>
 </div>
 <div class="inheritance" title="Inheritance Tree"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">java.lang.Object</a>
+<div class="inheritance"><a href="DisplayableValue.html" title="class in org.frc5010.common.telemetry">org.frc5010.common.telemetry.DisplayableValue</a>
 <div class="inheritance">org.frc5010.common.telemetry.DisplayBoolean</div>
+</div>
 </div>
 <section class="class-description" id="class-description">
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">DisplayBoolean</span>
-<span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></span></div>
+<span class="extends-implements">extends <a href="DisplayableValue.html" title="class in org.frc5010.common.telemetry">DisplayableValue</a></span></div>
 <div class="block">Add a boolean to the dashboard</div>
 </section>
 <section class="summary">
@@ -91,35 +93,15 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>protected final boolean</code></div>
-<div class="col-second even-row-color"><code><a href="#isDisplayed_" class="member-name-link">isDisplayed_</a></code></div>
+<div class="col-first even-row-color"><code>protected <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/networktables/BooleanPublisher.html" title="class or interface in edu.wpi.first.networktables" class="external-link">BooleanPublisher</a></code></div>
+<div class="col-second even-row-color"><code><a href="#publisher_" class="member-name-link">publisher_</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">Display mode</div>
-</div>
-<div class="col-first odd-row-color"><code>protected int</code></div>
-<div class="col-second odd-row-color"><code><a href="#listenerHandle_" class="member-name-link">listenerHandle_</a></code></div>
-<div class="col-last odd-row-color">
-<div class="block">The listener handle</div>
-</div>
-<div class="col-first even-row-color"><code>protected final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="#name_" class="member-name-link">name_</a></code></div>
-<div class="col-last even-row-color">
-<div class="block">The name of the variable</div>
-</div>
-<div class="col-first odd-row-color"><code>protected <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/networktables/BooleanPublisher.html" title="class or interface in edu.wpi.first.networktables" class="external-link">BooleanPublisher</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#publisher_" class="member-name-link">publisher_</a></code></div>
-<div class="col-last odd-row-color">
 <div class="block">The publisher</div>
 </div>
-<div class="col-first even-row-color"><code>protected <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/networktables/BooleanSubscriber.html" title="class or interface in edu.wpi.first.networktables" class="external-link">BooleanSubscriber</a></code></div>
-<div class="col-second even-row-color"><code><a href="#subscriber_" class="member-name-link">subscriber_</a></code></div>
-<div class="col-last even-row-color">
-<div class="block">The subscriber</div>
-</div>
-<div class="col-first odd-row-color"><code>protected final <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#table_" class="member-name-link">table_</a></code></div>
+<div class="col-first odd-row-color"><code>protected <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/networktables/BooleanSubscriber.html" title="class or interface in edu.wpi.first.networktables" class="external-link">BooleanSubscriber</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#subscriber_" class="member-name-link">subscriber_</a></code></div>
 <div class="col-last odd-row-color">
-<div class="block">The table being stored in</div>
+<div class="block">The subscriber</div>
 </div>
 <div class="col-first even-row-color"><code>protected <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/networktables/BooleanTopic.html" title="class or interface in edu.wpi.first.networktables" class="external-link">BooleanTopic</a></code></div>
 <div class="col-second even-row-color"><code><a href="#topic_" class="member-name-link">topic_</a></code></div>
@@ -132,6 +114,9 @@ loadScripts(document, 'script');</script>
 <div class="block">The value being displayed</div>
 </div>
 </div>
+<div class="inherited-list">
+<h3 id="fields-inherited-from-class-org.frc5010.common.telemetry.DisplayableValue">Fields inherited from class&nbsp;org.frc5010.common.telemetry.<a href="DisplayableValue.html" title="class in org.frc5010.common.telemetry">DisplayableValue</a></h3>
+<code><a href="DisplayableValue.html#displayValuesHelper_">displayValuesHelper_</a>, <a href="DisplayableValue.html#isDisplayed_">isDisplayed_</a>, <a href="DisplayableValue.html#listenerHandle_">listenerHandle_</a>, <a href="DisplayableValue.html#name_">name_</a>, <a href="DisplayableValue.html#table_">table_</a></code></div>
 </section>
 </li>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
@@ -185,9 +170,18 @@ loadScripts(document, 'script');</script>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Set the value</div>
 </div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="DisplayBoolean.html" title="class in org.frc5010.common.telemetry">DisplayBoolean</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateWith(java.util.function.BooleanSupplier)" class="member-name-link">updateWith</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BooleanSupplier.html" title="class or interface in java.util.function" class="external-link">BooleanSupplier</a>&nbsp;supplier)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Registers a listener to the display values helper to update this boolean with the result of the
+ given supplier when the listener is called.</div>
 </div>
 </div>
 </div>
+</div>
+<div class="inherited-list">
+<h3 id="methods-inherited-from-class-org.frc5010.common.telemetry.DisplayableValue">Methods inherited from class&nbsp;org.frc5010.common.telemetry.<a href="DisplayableValue.html" title="class in org.frc5010.common.telemetry">DisplayableValue</a></h3>
+<code><a href="DisplayableValue.html#setDisplayValuesHelper(org.frc5010.common.telemetry.DisplayValuesHelper)">setDisplayValuesHelper</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
@@ -210,20 +204,6 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="name_">
-<h3>name_</h3>
-<div class="member-signature"><span class="modifiers">protected final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">name_</span></div>
-<div class="block">The name of the variable</div>
-</section>
-</li>
-<li>
-<section class="detail" id="table_">
-<h3>table_</h3>
-<div class="member-signature"><span class="modifiers">protected final</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">table_</span></div>
-<div class="block">The table being stored in</div>
-</section>
-</li>
-<li>
 <section class="detail" id="topic_">
 <h3>topic_</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/networktables/BooleanTopic.html" title="class or interface in edu.wpi.first.networktables" class="external-link">BooleanTopic</a></span>&nbsp;<span class="element-name">topic_</span></div>
@@ -242,20 +222,6 @@ loadScripts(document, 'script');</script>
 <h3>subscriber_</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/networktables/BooleanSubscriber.html" title="class or interface in edu.wpi.first.networktables" class="external-link">BooleanSubscriber</a></span>&nbsp;<span class="element-name">subscriber_</span></div>
 <div class="block">The subscriber</div>
-</section>
-</li>
-<li>
-<section class="detail" id="listenerHandle_">
-<h3>listenerHandle_</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">int</span>&nbsp;<span class="element-name">listenerHandle_</span></div>
-<div class="block">The listener handle</div>
-</section>
-</li>
-<li>
-<section class="detail" id="isDisplayed_">
-<h3>isDisplayed_</h3>
-<div class="member-signature"><span class="modifiers">protected final</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isDisplayed_</span></div>
-<div class="block">Display mode</div>
 </section>
 </li>
 </ul>
@@ -337,6 +303,20 @@ loadScripts(document, 'script');</script>
 <dt>Parameters:</dt>
 <dd><code>value</code> - the value to set</dd>
 <dd><code>publish</code> - whether or not to publish the value</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="updateWith(java.util.function.BooleanSupplier)">
+<h3>updateWith</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="DisplayBoolean.html" title="class in org.frc5010.common.telemetry">DisplayBoolean</a></span>&nbsp;<span class="element-name">updateWith</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BooleanSupplier.html" title="class or interface in java.util.function" class="external-link">BooleanSupplier</a>&nbsp;supplier)</span></div>
+<div class="block">Registers a listener to the display values helper to update this boolean with the result of the
+ given supplier when the listener is called.</div>
+<dl class="notes">
+<dt>Parameters:</dt>
+<dd><code>supplier</code> - - supplier of the boolean to update this with</dd>
+<dt>Returns:</dt>
+<dd>this object</dd>
 </dl>
 </section>
 </li>

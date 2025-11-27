@@ -81,7 +81,7 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/motorcontrol/MotorController.html" title="class or interface in edu.wpi.first.wpilibj.motorcontrol" class="external-link">MotorController</a></code>, <code><a href="../../arch/WpiHelperInterface.html" title="interface in org.frc5010.common.arch">WpiHelperInterface</a></code>, <code><a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a></code>, <code><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></code></dd>
+<dd><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/motorcontrol/MotorController.html" title="class or interface in edu.wpi.first.wpilibj.motorcontrol" class="external-link">MotorController</a></code>, <code><a href="../../arch/WpiHelperInterface.html" title="interface in org.frc5010.common.arch">WpiHelperInterface</a></code>, <code><a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a></code>, <code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">AngularControlMotor</span>
@@ -95,8 +95,8 @@ loadScripts(document, 'script');</script>
 <section class="nested-class-summary" id="nested-class-summary">
 <h2>Nested Class Summary</h2>
 <div class="inherited-list">
-<h2 id="nested-classes-inherited-from-class-org.frc5010.common.motors.PIDController5010">Nested classes/interfaces inherited from interface&nbsp;org.frc5010.common.motors.<a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></h2>
-<code><a href="../PIDController5010.PIDControlType.html" title="enum class in org.frc5010.common.motors">PIDController5010.PIDControlType</a></code></div>
+<h2 id="nested-classes-inherited-from-class-org.frc5010.common.motors.GenericPIDController">Nested classes/interfaces inherited from interface&nbsp;org.frc5010.common.motors.<a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></h2>
+<code><a href="../GenericPIDController.PIDControlType.html" title="enum class in org.frc5010.common.motors">GenericPIDController.PIDControlType</a></code></div>
 </section>
 </li>
 <!-- =========== FIELD SUMMARY =========== -->
@@ -126,31 +126,28 @@ loadScripts(document, 'script');</script>
 <div class="col-first odd-row-color"><code>protected <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/Angle.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">Angle</a></code></div>
 <div class="col-second odd-row-color"><code><a href="#minAngle" class="member-name-link">minAngle</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>protected <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/smartdashboard/MechanismRoot2d.html" title="class or interface in edu.wpi.first.wpilibj.smartdashboard" class="external-link">MechanismRoot2d</a></code></div>
+<div class="col-first even-row-color"><code>protected org.littletonrobotics.junction.mechanism.LoggedMechanismRoot2d</code></div>
 <div class="col-second even-row-color"><code><a href="#root" class="member-name-link">root</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>protected <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/smartdashboard/MechanismLigament2d.html" title="class or interface in edu.wpi.first.wpilibj.smartdashboard" class="external-link">MechanismLigament2d</a></code></div>
+<div class="col-first odd-row-color"><code>protected org.littletonrobotics.junction.mechanism.LoggedMechanismLigament2d</code></div>
 <div class="col-second odd-row-color"><code><a href="#setpoint" class="member-name-link">setpoint</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>protected <a href="../../sensors/encoder/SimulatedEncoder.html" title="class in org.frc5010.common.sensors.encoder">SimulatedEncoder</a></code></div>
-<div class="col-second even-row-color"><code><a href="#simEncoder" class="member-name-link">simEncoder</a></code></div>
+<div class="col-first even-row-color"><code>protected <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/simulation/SingleJointedArmSim.html" title="class or interface in edu.wpi.first.wpilibj.simulation" class="external-link">SingleJointedArmSim</a></code></div>
+<div class="col-second even-row-color"><code><a href="#simMechanism" class="member-name-link">simMechanism</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>protected <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/simulation/SingleJointedArmSim.html" title="class or interface in edu.wpi.first.wpilibj.simulation" class="external-link">SingleJointedArmSim</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#simMotor" class="member-name-link">simMotor</a></code></div>
+<div class="col-first odd-row-color"><code>protected org.littletonrobotics.junction.mechanism.LoggedMechanismLigament2d</code></div>
+<div class="col-second odd-row-color"><code><a href="#simulatedArm" class="member-name-link">simulatedArm</a></code></div>
 <div class="col-last odd-row-color">&nbsp;</div>
-<div class="col-first even-row-color"><code>protected <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/smartdashboard/MechanismLigament2d.html" title="class or interface in edu.wpi.first.wpilibj.smartdashboard" class="external-link">MechanismLigament2d</a></code></div>
-<div class="col-second even-row-color"><code><a href="#simulatedArm" class="member-name-link">simulatedArm</a></code></div>
+<div class="col-first even-row-color"><code>protected <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/Angle.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">Angle</a></code></div>
+<div class="col-second even-row-color"><code><a href="#startingAngle" class="member-name-link">startingAngle</a></code></div>
 <div class="col-last even-row-color">&nbsp;</div>
-<div class="col-first odd-row-color"><code>protected <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/Angle.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">Angle</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#startingAngle" class="member-name-link">startingAngle</a></code></div>
-<div class="col-last odd-row-color">&nbsp;</div>
 </div>
 <div class="inherited-list">
 <h3 id="fields-inherited-from-class-org.frc5010.common.motors.function.GenericControlledMotor">Fields inherited from class&nbsp;org.frc5010.common.motors.function.<a href="GenericControlledMotor.html" title="class in org.frc5010.common.motors.function">GenericControlledMotor</a></h3>
-<code><a href="GenericControlledMotor.html#CONFIG_MODE">CONFIG_MODE</a>, <a href="GenericControlledMotor.html#CONTROL_TYPE">CONTROL_TYPE</a>, <a href="GenericControlledMotor.html#controlType">controlType</a>, <a href="GenericControlledMotor.html#effort">effort</a>, <a href="GenericControlledMotor.html#EFFORT">EFFORT</a>, <a href="GenericControlledMotor.html#feedForward">feedForward</a>, <a href="GenericControlledMotor.html#FEEDFORWARD">FEEDFORWARD</a>, <a href="GenericControlledMotor.html#feedFwd">feedFwd</a>, <a href="GenericControlledMotor.html#I_ZONE">I_ZONE</a>, <a href="GenericControlledMotor.html#iZone">iZone</a>, <a href="GenericControlledMotor.html#K_A">K_A</a>, <a href="GenericControlledMotor.html#K_D">K_D</a>, <a href="GenericControlledMotor.html#K_F">K_F</a>, <a href="GenericControlledMotor.html#K_I">K_I</a>, <a href="GenericControlledMotor.html#K_P">K_P</a>, <a href="GenericControlledMotor.html#K_S">K_S</a>, <a href="GenericControlledMotor.html#K_V">K_V</a>, <a href="GenericControlledMotor.html#kA">kA</a>, <a href="GenericControlledMotor.html#kD">kD</a>, <a href="GenericControlledMotor.html#kF">kF</a>, <a href="GenericControlledMotor.html#kI">kI</a>, <a href="GenericControlledMotor.html#kP">kP</a>, <a href="GenericControlledMotor.html#kS">kS</a>, <a href="GenericControlledMotor.html#kV">kV</a>, <a href="GenericControlledMotor.html#MAX_OUTPUT">MAX_OUTPUT</a>, <a href="GenericControlledMotor.html#maxOutput">maxOutput</a>, <a href="GenericControlledMotor.html#MIN_OUTPUT">MIN_OUTPUT</a>, <a href="GenericControlledMotor.html#minOutput">minOutput</a>, <a href="GenericControlledMotor.html#pid">pid</a>, <a href="GenericControlledMotor.html#position">position</a>, <a href="GenericControlledMotor.html#POSITION">POSITION</a>, <a href="GenericControlledMotor.html#reference">reference</a>, <a href="GenericControlledMotor.html#REFERENCE">REFERENCE</a>, <a href="GenericControlledMotor.html#tolerance">tolerance</a>, <a href="GenericControlledMotor.html#TOLERANCE">TOLERANCE</a>, <a href="GenericControlledMotor.html#velocity">velocity</a>, <a href="GenericControlledMotor.html#VELOCITY">VELOCITY</a></code></div>
+<code><a href="GenericControlledMotor.html#actualEffort">actualEffort</a>, <a href="GenericControlledMotor.html#calculatedEffort">calculatedEffort</a>, <a href="GenericControlledMotor.html#CONFIG_MODE">CONFIG_MODE</a>, <a href="GenericControlledMotor.html#CONTROL_TYPE">CONTROL_TYPE</a>, <a href="GenericControlledMotor.html#controller">controller</a>, <a href="GenericControlledMotor.html#controlType">controlType</a>, <a href="GenericControlledMotor.html#EFFORT">EFFORT</a>, <a href="GenericControlledMotor.html#encoderFeedback">encoderFeedback</a>, <a href="GenericControlledMotor.html#feedForward">feedForward</a>, <a href="GenericControlledMotor.html#FEEDFORWARD">FEEDFORWARD</a>, <a href="GenericControlledMotor.html#feedFwd">feedFwd</a>, <a href="GenericControlledMotor.html#I_ZONE">I_ZONE</a>, <a href="GenericControlledMotor.html#iZone">iZone</a>, <a href="GenericControlledMotor.html#K_A">K_A</a>, <a href="GenericControlledMotor.html#K_D">K_D</a>, <a href="GenericControlledMotor.html#K_F">K_F</a>, <a href="GenericControlledMotor.html#K_I">K_I</a>, <a href="GenericControlledMotor.html#K_P">K_P</a>, <a href="GenericControlledMotor.html#K_S">K_S</a>, <a href="GenericControlledMotor.html#K_V">K_V</a>, <a href="GenericControlledMotor.html#kA">kA</a>, <a href="GenericControlledMotor.html#kD">kD</a>, <a href="GenericControlledMotor.html#kF">kF</a>, <a href="GenericControlledMotor.html#kI">kI</a>, <a href="GenericControlledMotor.html#kP">kP</a>, <a href="GenericControlledMotor.html#kS">kS</a>, <a href="GenericControlledMotor.html#kV">kV</a>, <a href="GenericControlledMotor.html#MAX_OUTPUT">MAX_OUTPUT</a>, <a href="GenericControlledMotor.html#maxOutput">maxOutput</a>, <a href="GenericControlledMotor.html#MIN_OUTPUT">MIN_OUTPUT</a>, <a href="GenericControlledMotor.html#minOutput">minOutput</a>, <a href="GenericControlledMotor.html#outputEffort">outputEffort</a>, <a href="GenericControlledMotor.html#outputFactor">outputFactor</a>, <a href="GenericControlledMotor.html#position">position</a>, <a href="GenericControlledMotor.html#POSITION">POSITION</a>, <a href="GenericControlledMotor.html#PROFILED_MAX_ACCEL">PROFILED_MAX_ACCEL</a>, <a href="GenericControlledMotor.html#PROFILED_MAX_VEL">PROFILED_MAX_VEL</a>, <a href="GenericControlledMotor.html#profiledMaxAccel">profiledMaxAccel</a>, <a href="GenericControlledMotor.html#profiledMaxVel">profiledMaxVel</a>, <a href="GenericControlledMotor.html#reference">reference</a>, <a href="GenericControlledMotor.html#REFERENCE">REFERENCE</a>, <a href="GenericControlledMotor.html#referenceVelocity">referenceVelocity</a>, <a href="GenericControlledMotor.html#tolerance">tolerance</a>, <a href="GenericControlledMotor.html#TOLERANCE">TOLERANCE</a>, <a href="GenericControlledMotor.html#velocity">velocity</a>, <a href="GenericControlledMotor.html#VELOCITY">VELOCITY</a></code></div>
 <div class="inherited-list">
 <h3 id="fields-inherited-from-class-org.frc5010.common.motors.function.GenericFunctionalMotor">Fields inherited from class&nbsp;org.frc5010.common.motors.function.<a href="GenericFunctionalMotor.html" title="class in org.frc5010.common.motors.function">GenericFunctionalMotor</a></h3>
-<code><a href="GenericFunctionalMotor.html#_displayValuesHelper">_displayValuesHelper</a>, <a href="GenericFunctionalMotor.html#_motor">_motor</a>, <a href="GenericFunctionalMotor.html#_robotToMotor">_robotToMotor</a>, <a href="GenericFunctionalMotor.html#_visualizer">_visualizer</a>, <a href="GenericFunctionalMotor.html#_visualName">_visualName</a></code></div>
+<code><a href="GenericFunctionalMotor.html#_displayValuesHelper">_displayValuesHelper</a>, <a href="GenericFunctionalMotor.html#_motor">_motor</a>, <a href="GenericFunctionalMotor.html#_robotToMotor">_robotToMotor</a>, <a href="GenericFunctionalMotor.html#_visualizer">_visualizer</a>, <a href="GenericFunctionalMotor.html#_visualName">_visualName</a>, <a href="GenericFunctionalMotor.html#loggingAlert">loggingAlert</a></code></div>
 </section>
 </li>
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
@@ -161,7 +158,7 @@ loadScripts(document, 'script');</script>
 <div class="summary-table two-column-summary">
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(org.frc5010.common.motors.MotorController5010,java.lang.String,org.frc5010.common.telemetry.DisplayValuesHelper)" class="member-name-link">AngularControlMotor</a><wbr>(<a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a>&nbsp;motor,
+<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(org.frc5010.common.motors.GenericMotorController,java.lang.String,org.frc5010.common.telemetry.DisplayValuesHelper)" class="member-name-link">AngularControlMotor</a><wbr>(<a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a>&nbsp;motor,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;visualName,
  <a href="../../telemetry/DisplayValuesHelper.html" title="class in org.frc5010.common.telemetry">DisplayValuesHelper</a>&nbsp;tab)</code></div>
 <div class="col-last even-row-color">&nbsp;</div>
@@ -179,13 +176,11 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#draw()" class="member-name-link">draw</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Needs to be overridden by subclasses to draw the motor behavior on the visualizer</div>
-</div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getEncoderFeedback()" class="member-name-link">getEncoderFeedback</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/Voltage.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">Voltage</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getFeedForward()" class="member-name-link">getFeedForward</a>()</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getFeedForward(double)" class="member-name-link">getFeedForward</a><wbr>(double&nbsp;velocity)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>double</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getPivotPosition()" class="member-name-link">getPivotPosition</a>()</code></div>
@@ -206,13 +201,18 @@ loadScripts(document, 'script');</script>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#isAtTarget()" class="member-name-link">isAtTarget</a>()</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setEncoder(org.frc5010.common.sensors.encoder.GenericEncoder)" class="member-name-link">setEncoder</a><wbr>(<a href="../../sensors/encoder/GenericEncoder.html" title="interface in org.frc5010.common.sensors.encoder">GenericEncoder</a>&nbsp;encoder)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#periodicUpdate()" class="member-name-link">periodicUpdate</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Needs to be overridden by subclasses to draw the motor behavior on the visualizer</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setReference(double)" class="member-name-link">setReference</a><wbr>(double&nbsp;reference)</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setEncoder(org.frc5010.common.sensors.encoder.GenericEncoder)" class="member-name-link">setEncoder</a><wbr>(<a href="../../sensors/encoder/GenericEncoder.html" title="interface in org.frc5010.common.sensors.encoder">GenericEncoder</a>&nbsp;encoder)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="AngularControlMotor.html" title="class in org.frc5010.common.motors.function">AngularControlMotor</a></code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setupSimulatedMotor(double,double,edu.wpi.first.units.measure.Distance,edu.wpi.first.units.measure.Angle,edu.wpi.first.units.measure.Angle,boolean,double,edu.wpi.first.units.measure.Angle,boolean,double)" class="member-name-link">setupSimulatedMotor</a><wbr>(double&nbsp;gearing,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setReference(double)" class="member-name-link">setReference</a><wbr>(double&nbsp;reference)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="AngularControlMotor.html" title="class in org.frc5010.common.motors.function">AngularControlMotor</a></code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setupSimulatedMotor(double,double,edu.wpi.first.units.measure.Distance,edu.wpi.first.units.measure.Angle,edu.wpi.first.units.measure.Angle,boolean,double,edu.wpi.first.units.measure.Angle,boolean,double)" class="member-name-link">setupSimulatedMotor</a><wbr>(double&nbsp;gearing,
  double&nbsp;mass,
  <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/Distance.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">Distance</a>&nbsp;armLength,
  <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/Angle.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">Angle</a>&nbsp;minAngle,
@@ -222,25 +222,28 @@ loadScripts(document, 'script');</script>
  <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/Angle.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">Angle</a>&nbsp;startingAngle,
  boolean&nbsp;inverted,
  double&nbsp;conversion)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="AngularControlMotor.html" title="class in org.frc5010.common.motors.function">AngularControlMotor</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setVisualizer(edu.wpi.first.wpilibj.smartdashboard.Mechanism2d,edu.wpi.first.math.geometry.Pose3d)" class="member-name-link">setVisualizer</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/smartdashboard/Mechanism2d.html" title="class or interface in edu.wpi.first.wpilibj.smartdashboard" class="external-link">Mechanism2d</a>&nbsp;visualizer,
- <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose3d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose3d</a>&nbsp;robotToMotor)</code></div>
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#simulationUpdate()" class="member-name-link">simulationUpdate</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="AngularControlMotor.html" title="class in org.frc5010.common.motors.function">AngularControlMotor</a></code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#setVisualizer(org.littletonrobotics.junction.mechanism.LoggedMechanism2d,edu.wpi.first.math.geometry.Pose3d)" class="member-name-link">setVisualizer</a><wbr>(org.littletonrobotics.junction.mechanism.LoggedMechanism2d&nbsp;visualizer,
+ <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose3d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose3d</a>&nbsp;robotToMotor)</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#simulationUpdate()" class="member-name-link">simulationUpdate</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Needs to be overridden by subclasses to update the motor behavior during simulation</div>
 </div>
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#updateReference()" class="member-name-link">updateReference</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
 </div>
 </div>
 </div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-org.frc5010.common.motors.function.GenericControlledMotor">Methods inherited from class&nbsp;org.frc5010.common.motors.function.<a href="GenericControlledMotor.html" title="class in org.frc5010.common.motors.function">GenericControlledMotor</a></h3>
-<code><a href="GenericControlledMotor.html#calculateControlEffort(double)">calculateControlEffort</a>, <a href="GenericControlledMotor.html#configureAbsoluteControl(double,boolean,double,double)">configureAbsoluteControl</a>, <a href="GenericControlledMotor.html#getControlType()">getControlType</a>, <a href="GenericControlledMotor.html#getD()">getD</a>, <a href="GenericControlledMotor.html#getF()">getF</a>, <a href="GenericControlledMotor.html#getI()">getI</a>, <a href="GenericControlledMotor.html#getIZone()">getIZone</a>, <a href="GenericControlledMotor.html#getMotorFeedFwd()">getMotorFeedFwd</a>, <a href="GenericControlledMotor.html#getP()">getP</a>, <a href="GenericControlledMotor.html#getPIDController5010()">getPIDController5010</a>, <a href="GenericControlledMotor.html#getReference()">getReference</a>, <a href="GenericControlledMotor.html#getTolerance()">getTolerance</a>, <a href="GenericControlledMotor.html#getValues()">getValues</a>, <a href="GenericControlledMotor.html#initiateDisplayValues()">initiateDisplayValues</a>, <a href="GenericControlledMotor.html#setControlType(org.frc5010.common.motors.PIDController5010.PIDControlType)">setControlType</a>, <a href="GenericControlledMotor.html#setD(double)">setD</a>, <a href="GenericControlledMotor.html#setF(double)">setF</a>, <a href="GenericControlledMotor.html#setI(double)">setI</a>, <a href="GenericControlledMotor.html#setIZone(double)">setIZone</a>, <a href="GenericControlledMotor.html#setMotorFeedFwd(org.frc5010.common.constants.MotorFeedFwdConstants)">setMotorFeedFwd</a>, <a href="GenericControlledMotor.html#setOutputRange(double,double)">setOutputRange</a>, <a href="GenericControlledMotor.html#setP(double)">setP</a>, <a href="GenericControlledMotor.html#setReference(double,org.frc5010.common.motors.PIDController5010.PIDControlType,double)">setReference</a>, <a href="GenericControlledMotor.html#setTolerance(double)">setTolerance</a>, <a href="GenericControlledMotor.html#setValues(org.frc5010.common.constants.GenericPID)">setValues</a></code></div>
+<code><a href="GenericControlledMotor.html#calculateControlEffort(double)">calculateControlEffort</a>, <a href="GenericControlledMotor.html#configureAbsoluteControl(double,boolean,double,double)">configureAbsoluteControl</a>, <a href="GenericControlledMotor.html#getControlType()">getControlType</a>, <a href="GenericControlledMotor.html#getD()">getD</a>, <a href="GenericControlledMotor.html#getF()">getF</a>, <a href="GenericControlledMotor.html#getI()">getI</a>, <a href="GenericControlledMotor.html#getIZone()">getIZone</a>, <a href="GenericControlledMotor.html#getMotorFeedFwd()">getMotorFeedFwd</a>, <a href="GenericControlledMotor.html#getP()">getP</a>, <a href="GenericControlledMotor.html#getPIDController5010()">getPIDController5010</a>, <a href="GenericControlledMotor.html#getProfiledMaxAcceleration()">getProfiledMaxAcceleration</a>, <a href="GenericControlledMotor.html#getProfiledMaxVelocity()">getProfiledMaxVelocity</a>, <a href="GenericControlledMotor.html#getReference()">getReference</a>, <a href="GenericControlledMotor.html#getReferenceVelocity()">getReferenceVelocity</a>, <a href="GenericControlledMotor.html#getTolerance()">getTolerance</a>, <a href="GenericControlledMotor.html#getValues()">getValues</a>, <a href="GenericControlledMotor.html#getVelocity()">getVelocity</a>, <a href="GenericControlledMotor.html#initiateDisplayValues()">initiateDisplayValues</a>, <a href="GenericControlledMotor.html#resetController(double,double)">resetController</a>, <a href="GenericControlledMotor.html#runControllerToSetpoint()">runControllerToSetpoint</a>, <a href="GenericControlledMotor.html#setControlType(org.frc5010.common.motors.GenericPIDController.PIDControlType)">setControlType</a>, <a href="GenericControlledMotor.html#setD(double)">setD</a>, <a href="GenericControlledMotor.html#setF(double)">setF</a>, <a href="GenericControlledMotor.html#setI(double)">setI</a>, <a href="GenericControlledMotor.html#setIZone(double)">setIZone</a>, <a href="GenericControlledMotor.html#setMotorFeedFwd(org.frc5010.common.constants.MotorFeedFwdConstants)">setMotorFeedFwd</a>, <a href="GenericControlledMotor.html#setOutputRange(double,double)">setOutputRange</a>, <a href="GenericControlledMotor.html#setOutputWithFF(double,double)">setOutputWithFF</a>, <a href="GenericControlledMotor.html#setP(double)">setP</a>, <a href="GenericControlledMotor.html#setPIDController5010(org.frc5010.common.motors.GenericPIDController)">setPIDController5010</a>, <a href="GenericControlledMotor.html#setProfiledMaxAcceleration(double)">setProfiledMaxAcceleration</a>, <a href="GenericControlledMotor.html#setProfiledMaxVelocity(double)">setProfiledMaxVelocity</a>, <a href="GenericControlledMotor.html#setReference(double,org.frc5010.common.motors.GenericPIDController.PIDControlType,double)">setReference</a>, <a href="GenericControlledMotor.html#setTolerance(double)">setTolerance</a>, <a href="GenericControlledMotor.html#setValues(org.frc5010.common.constants.GenericPID)">setValues</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-org.frc5010.common.motors.function.GenericFunctionalMotor">Methods inherited from class&nbsp;org.frc5010.common.motors.function.<a href="GenericFunctionalMotor.html" title="class in org.frc5010.common.motors.function">GenericFunctionalMotor</a></h3>
-<code><a href="GenericFunctionalMotor.html#burnFlash()">burnFlash</a>, <a href="GenericFunctionalMotor.html#clearStickyFaults()">clearStickyFaults</a>, <a href="GenericFunctionalMotor.html#disable()">disable</a>, <a href="GenericFunctionalMotor.html#duplicate(int)">duplicate</a>, <a href="GenericFunctionalMotor.html#factoryDefaults()">factoryDefaults</a>, <a href="GenericFunctionalMotor.html#get()">get</a>, <a href="GenericFunctionalMotor.html#getAppliedOutput()">getAppliedOutput</a>, <a href="GenericFunctionalMotor.html#getDefaultSysId(edu.wpi.first.wpilibj2.command.SubsystemBase)">getDefaultSysId</a>, <a href="GenericFunctionalMotor.html#getInverted()">getInverted</a>, <a href="GenericFunctionalMotor.html#getMaxRPM()">getMaxRPM</a>, <a href="GenericFunctionalMotor.html#getMotor()">getMotor</a>, <a href="GenericFunctionalMotor.html#getMotorEncoder()">getMotorEncoder</a>, <a href="GenericFunctionalMotor.html#getMotorEncoder(int)">getMotorEncoder</a>, <a href="GenericFunctionalMotor.html#getMotorSimulationType()">getMotorSimulationType</a>, <a href="GenericFunctionalMotor.html#getOutputCurrent()">getOutputCurrent</a>, <a href="GenericFunctionalMotor.html#getRobotToMotor()">getRobotToMotor</a>, <a href="GenericFunctionalMotor.html#getSimX(edu.wpi.first.units.measure.Distance)">getSimX</a>, <a href="GenericFunctionalMotor.html#getSimY(edu.wpi.first.units.measure.Distance)">getSimY</a>, <a href="GenericFunctionalMotor.html#getVisualizer()">getVisualizer</a>, <a href="GenericFunctionalMotor.html#getVoltage()">getVoltage</a>, <a href="GenericFunctionalMotor.html#invert(boolean)">invert</a>, <a href="GenericFunctionalMotor.html#set(double)">set</a>, <a href="GenericFunctionalMotor.html#setCurrentLimit(int)">setCurrentLimit</a>, <a href="GenericFunctionalMotor.html#setDisplayValuesHelper(org.frc5010.common.telemetry.DisplayValuesHelper)">setDisplayValuesHelper</a>, <a href="GenericFunctionalMotor.html#setFollow(org.frc5010.common.motors.MotorController5010)">setFollow</a>, <a href="GenericFunctionalMotor.html#setFollow(org.frc5010.common.motors.MotorController5010,boolean)">setFollow</a>, <a href="GenericFunctionalMotor.html#setInverted(boolean)">setInverted</a>, <a href="GenericFunctionalMotor.html#setMotorBrake(boolean)">setMotorBrake</a>, <a href="GenericFunctionalMotor.html#setSlewRate(double)">setSlewRate</a>, <a href="GenericFunctionalMotor.html#setVoltageCompensation(double)">setVoltageCompensation</a>, <a href="GenericFunctionalMotor.html#stopMotor()">stopMotor</a></code></div>
+<code><a href="GenericFunctionalMotor.html#burnFlash()">burnFlash</a>, <a href="GenericFunctionalMotor.html#clearStickyFaults()">clearStickyFaults</a>, <a href="GenericFunctionalMotor.html#createMotorEncoder(int)">createMotorEncoder</a>, <a href="GenericFunctionalMotor.html#disable()">disable</a>, <a href="GenericFunctionalMotor.html#duplicate(int)">duplicate</a>, <a href="GenericFunctionalMotor.html#factoryDefaults()">factoryDefaults</a>, <a href="GenericFunctionalMotor.html#get()">get</a>, <a href="GenericFunctionalMotor.html#getAppliedOutput()">getAppliedOutput</a>, <a href="GenericFunctionalMotor.html#getDefaultSysId(edu.wpi.first.wpilibj2.command.SubsystemBase)">getDefaultSysId</a>, <a href="GenericFunctionalMotor.html#getInverted()">getInverted</a>, <a href="GenericFunctionalMotor.html#getLogLevel()">getLogLevel</a>, <a href="GenericFunctionalMotor.html#getMaxRPM()">getMaxRPM</a>, <a href="GenericFunctionalMotor.html#getMotor()">getMotor</a>, <a href="GenericFunctionalMotor.html#getMotorConfig()">getMotorConfig</a>, <a href="GenericFunctionalMotor.html#getMotorController()">getMotorController</a>, <a href="GenericFunctionalMotor.html#getMotorEncoder()">getMotorEncoder</a>, <a href="GenericFunctionalMotor.html#getMotorSimulationType()">getMotorSimulationType</a>, <a href="GenericFunctionalMotor.html#getOutputCurrent()">getOutputCurrent</a>, <a href="GenericFunctionalMotor.html#getRobotToMotor()">getRobotToMotor</a>, <a href="GenericFunctionalMotor.html#getSimX(edu.wpi.first.units.measure.Distance)">getSimX</a>, <a href="GenericFunctionalMotor.html#getSimY(edu.wpi.first.units.measure.Distance)">getSimY</a>, <a href="GenericFunctionalMotor.html#getSmartMotorController(yams.motorcontrollers.SmartMotorControllerConfig)">getSmartMotorController</a>, <a href="GenericFunctionalMotor.html#getVisualizer()">getVisualizer</a>, <a href="GenericFunctionalMotor.html#getVoltage()">getVoltage</a>, <a href="GenericFunctionalMotor.html#invert(boolean)">invert</a>, <a href="GenericFunctionalMotor.html#set(double)">set</a>, <a href="GenericFunctionalMotor.html#setCurrentLimit(edu.wpi.first.units.measure.Current)">setCurrentLimit</a>, <a href="GenericFunctionalMotor.html#setDisplayValuesHelper(org.frc5010.common.telemetry.DisplayValuesHelper)">setDisplayValuesHelper</a>, <a href="GenericFunctionalMotor.html#setFollow(org.frc5010.common.motors.GenericMotorController)">setFollow</a>, <a href="GenericFunctionalMotor.html#setFollow(org.frc5010.common.motors.GenericMotorController,boolean)">setFollow</a>, <a href="GenericFunctionalMotor.html#setInverted(boolean)">setInverted</a>, <a href="GenericFunctionalMotor.html#setLogLevel(org.frc5010.common.arch.GenericRobot.LogLevel)">setLogLevel</a>, <a href="GenericFunctionalMotor.html#setMaxRPM(edu.wpi.first.units.measure.AngularVelocity)">setMaxRPM</a>, <a href="GenericFunctionalMotor.html#setMotorBrake(boolean)">setMotorBrake</a>, <a href="GenericFunctionalMotor.html#setMotorSimulationType(edu.wpi.first.math.system.plant.DCMotor)">setMotorSimulationType</a>, <a href="GenericFunctionalMotor.html#setSlewRate(double)">setSlewRate</a>, <a href="GenericFunctionalMotor.html#setVoltageCompensation(double)">setVoltageCompensation</a>, <a href="GenericFunctionalMotor.html#simulationUpdate(java.util.Optional,java.lang.Double)">simulationUpdate</a>, <a href="GenericFunctionalMotor.html#stopMotor()">stopMotor</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
 <code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
@@ -264,31 +267,25 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="simulatedArm">
 <h3>simulatedArm</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/smartdashboard/MechanismLigament2d.html" title="class or interface in edu.wpi.first.wpilibj.smartdashboard" class="external-link">MechanismLigament2d</a></span>&nbsp;<span class="element-name">simulatedArm</span></div>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">org.littletonrobotics.junction.mechanism.LoggedMechanismLigament2d</span>&nbsp;<span class="element-name">simulatedArm</span></div>
 </section>
 </li>
 <li>
 <section class="detail" id="setpoint">
 <h3>setpoint</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/smartdashboard/MechanismLigament2d.html" title="class or interface in edu.wpi.first.wpilibj.smartdashboard" class="external-link">MechanismLigament2d</a></span>&nbsp;<span class="element-name">setpoint</span></div>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">org.littletonrobotics.junction.mechanism.LoggedMechanismLigament2d</span>&nbsp;<span class="element-name">setpoint</span></div>
 </section>
 </li>
 <li>
 <section class="detail" id="root">
 <h3>root</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/smartdashboard/MechanismRoot2d.html" title="class or interface in edu.wpi.first.wpilibj.smartdashboard" class="external-link">MechanismRoot2d</a></span>&nbsp;<span class="element-name">root</span></div>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">org.littletonrobotics.junction.mechanism.LoggedMechanismRoot2d</span>&nbsp;<span class="element-name">root</span></div>
 </section>
 </li>
 <li>
-<section class="detail" id="simMotor">
-<h3>simMotor</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/simulation/SingleJointedArmSim.html" title="class or interface in edu.wpi.first.wpilibj.simulation" class="external-link">SingleJointedArmSim</a></span>&nbsp;<span class="element-name">simMotor</span></div>
-</section>
-</li>
-<li>
-<section class="detail" id="simEncoder">
-<h3>simEncoder</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="../../sensors/encoder/SimulatedEncoder.html" title="class in org.frc5010.common.sensors.encoder">SimulatedEncoder</a></span>&nbsp;<span class="element-name">simEncoder</span></div>
+<section class="detail" id="simMechanism">
+<h3>simMechanism</h3>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/simulation/SingleJointedArmSim.html" title="class or interface in edu.wpi.first.wpilibj.simulation" class="external-link">SingleJointedArmSim</a></span>&nbsp;<span class="element-name">simMechanism</span></div>
 </section>
 </li>
 <li>
@@ -350,9 +347,9 @@ loadScripts(document, 'script');</script>
 <h2>Constructor Details</h2>
 <ul class="member-list">
 <li>
-<section class="detail" id="&lt;init&gt;(org.frc5010.common.motors.MotorController5010,java.lang.String,org.frc5010.common.telemetry.DisplayValuesHelper)">
+<section class="detail" id="&lt;init&gt;(org.frc5010.common.motors.GenericMotorController,java.lang.String,org.frc5010.common.telemetry.DisplayValuesHelper)">
 <h3>AngularControlMotor</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">AngularControlMotor</span><wbr><span class="parameters">(<a href="../MotorController5010.html" title="interface in org.frc5010.common.motors">MotorController5010</a>&nbsp;motor,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">AngularControlMotor</span><wbr><span class="parameters">(<a href="../GenericMotorController.html" title="interface in org.frc5010.common.motors">GenericMotorController</a>&nbsp;motor,
  <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;visualName,
  <a href="../../telemetry/DisplayValuesHelper.html" title="class in org.frc5010.common.telemetry">DisplayValuesHelper</a>&nbsp;tab)</span></div>
 </section>
@@ -381,13 +378,13 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="setVisualizer(edu.wpi.first.wpilibj.smartdashboard.Mechanism2d,edu.wpi.first.math.geometry.Pose3d)">
+<section class="detail" id="setVisualizer(org.littletonrobotics.junction.mechanism.LoggedMechanism2d,edu.wpi.first.math.geometry.Pose3d)">
 <h3>setVisualizer</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="AngularControlMotor.html" title="class in org.frc5010.common.motors.function">AngularControlMotor</a></span>&nbsp;<span class="element-name">setVisualizer</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/smartdashboard/Mechanism2d.html" title="class or interface in edu.wpi.first.wpilibj.smartdashboard" class="external-link">Mechanism2d</a>&nbsp;visualizer,
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="AngularControlMotor.html" title="class in org.frc5010.common.motors.function">AngularControlMotor</a></span>&nbsp;<span class="element-name">setVisualizer</span><wbr><span class="parameters">(org.littletonrobotics.junction.mechanism.LoggedMechanism2d&nbsp;visualizer,
  <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/math/geometry/Pose3d.html" title="class or interface in edu.wpi.first.math.geometry" class="external-link">Pose3d</a>&nbsp;robotToMotor)</span></div>
 <dl class="notes">
 <dt>Overrides:</dt>
-<dd><code><a href="GenericFunctionalMotor.html#setVisualizer(edu.wpi.first.wpilibj.smartdashboard.Mechanism2d,edu.wpi.first.math.geometry.Pose3d)">setVisualizer</a></code>&nbsp;in class&nbsp;<code><a href="GenericFunctionalMotor.html" title="class in org.frc5010.common.motors.function">GenericFunctionalMotor</a></code></dd>
+<dd><code><a href="GenericFunctionalMotor.html#setVisualizer(org.littletonrobotics.junction.mechanism.LoggedMechanism2d,edu.wpi.first.math.geometry.Pose3d)">setVisualizer</a></code>&nbsp;in class&nbsp;<code><a href="GenericFunctionalMotor.html" title="class in org.frc5010.common.motors.function">GenericFunctionalMotor</a></code></dd>
 </dl>
 </section>
 </li>
@@ -397,10 +394,16 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">setReference</span><wbr><span class="parameters">(double&nbsp;reference)</span></div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../PIDController5010.html#setReference(double)">setReference</a></code>&nbsp;in interface&nbsp;<code><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></code></dd>
+<dd><code><a href="../GenericPIDController.html#setReference(double)">setReference</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
 <dt>Overrides:</dt>
 <dd><code><a href="GenericControlledMotor.html#setReference(double)">setReference</a></code>&nbsp;in class&nbsp;<code><a href="GenericControlledMotor.html" title="class in org.frc5010.common.motors.function">GenericControlledMotor</a></code></dd>
 </dl>
+</section>
+</li>
+<li>
+<section class="detail" id="updateReference()">
+<h3>updateReference</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">updateReference</span>()</div>
 </section>
 </li>
 <li>
@@ -410,24 +413,24 @@ loadScripts(document, 'script');</script>
 </section>
 </li>
 <li>
-<section class="detail" id="getFeedForward()">
+<section class="detail" id="getFeedForward(double)">
 <h3>getFeedForward</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/Voltage.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">Voltage</a></span>&nbsp;<span class="element-name">getFeedForward</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/units/measure/Voltage.html" title="class or interface in edu.wpi.first.units.measure" class="external-link">Voltage</a></span>&nbsp;<span class="element-name">getFeedForward</span><wbr><span class="parameters">(double&nbsp;velocity)</span></div>
 <dl class="notes">
 <dt>Overrides:</dt>
-<dd><code><a href="GenericControlledMotor.html#getFeedForward()">getFeedForward</a></code>&nbsp;in class&nbsp;<code><a href="GenericControlledMotor.html" title="class in org.frc5010.common.motors.function">GenericControlledMotor</a></code></dd>
+<dd><code><a href="GenericControlledMotor.html#getFeedForward(double)">getFeedForward</a></code>&nbsp;in class&nbsp;<code><a href="GenericControlledMotor.html" title="class in org.frc5010.common.motors.function">GenericControlledMotor</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
-<section class="detail" id="draw()">
-<h3>draw</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">draw</span>()</div>
-<div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="GenericFunctionalMotor.html#draw()">GenericFunctionalMotor</a></code></span></div>
+<section class="detail" id="periodicUpdate()">
+<h3>periodicUpdate</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">periodicUpdate</span>()</div>
+<div class="block"><span class="descfrm-type-label">Description copied from class:&nbsp;<code><a href="GenericFunctionalMotor.html#periodicUpdate()">GenericFunctionalMotor</a></code></span></div>
 <div class="block">Needs to be overridden by subclasses to draw the motor behavior on the visualizer</div>
 <dl class="notes">
 <dt>Overrides:</dt>
-<dd><code><a href="GenericFunctionalMotor.html#draw()">draw</a></code>&nbsp;in class&nbsp;<code><a href="GenericFunctionalMotor.html" title="class in org.frc5010.common.motors.function">GenericFunctionalMotor</a></code></dd>
+<dd><code><a href="GenericFunctionalMotor.html#periodicUpdate()">periodicUpdate</a></code>&nbsp;in class&nbsp;<code><a href="GenericFunctionalMotor.html" title="class in org.frc5010.common.motors.function">GenericFunctionalMotor</a></code></dd>
 </dl>
 </section>
 </li>
@@ -467,7 +470,7 @@ loadScripts(document, 'script');</script>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">isAtTarget</span>()</div>
 <dl class="notes">
 <dt>Specified by:</dt>
-<dd><code><a href="../PIDController5010.html#isAtTarget()">isAtTarget</a></code>&nbsp;in interface&nbsp;<code><a href="../PIDController5010.html" title="interface in org.frc5010.common.motors">PIDController5010</a></code></dd>
+<dd><code><a href="../GenericPIDController.html#isAtTarget()">isAtTarget</a></code>&nbsp;in interface&nbsp;<code><a href="../GenericPIDController.html" title="interface in org.frc5010.common.motors">GenericPIDController</a></code></dd>
 <dt>Overrides:</dt>
 <dd><code><a href="GenericControlledMotor.html#isAtTarget()">isAtTarget</a></code>&nbsp;in class&nbsp;<code><a href="GenericControlledMotor.html" title="class in org.frc5010.common.motors.function">GenericControlledMotor</a></code></dd>
 </dl>
@@ -486,6 +489,16 @@ loadScripts(document, 'script');</script>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="GenericControlledMotor.html#getSysIdCommand(edu.wpi.first.wpilibj2.command.SubsystemBase)">getSysIdCommand</a></code>&nbsp;in class&nbsp;<code><a href="GenericControlledMotor.html" title="class in org.frc5010.common.motors.function">GenericControlledMotor</a></code></dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getEncoderFeedback()">
+<h3>getEncoderFeedback</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">double</span>&nbsp;<span class="element-name">getEncoderFeedback</span>()</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="GenericControlledMotor.html#getEncoderFeedback()">getEncoderFeedback</a></code>&nbsp;in class&nbsp;<code><a href="GenericControlledMotor.html" title="class in org.frc5010.common.motors.function">GenericControlledMotor</a></code></dd>
 </dl>
 </section>
 </li>

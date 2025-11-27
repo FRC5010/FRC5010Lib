@@ -7,7 +7,7 @@ ext.licenseFile = files("$rootDir/LICENSE.txt")
 
 def templateVendorFile = "frc5010lib.json"
 
-def pubVersion = "2025.0.1"
+def pubVersion = "2025.0.2"
 
 def outputsFolder = file("$buildDir/outputs")
 

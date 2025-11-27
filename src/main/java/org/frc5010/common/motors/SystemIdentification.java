@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Config;
 import org.frc5010.common.sensors.encoder.GenericEncoder;
+import yams.motorcontrollers.SmartMotorController;
 
 /** Add your docs here. */
 public class SystemIdentification {
@@ -39,7 +40,7 @@ public class SystemIdentification {
       new MutAngularVelocity(0, 0, DegreesPerSecond);
 
   public static SysIdRoutine rpmSysIdRoutine(
-      MotorController5010 motor,
+      GenericMotorController motor,
       GenericEncoder encoder,
       String motorName,
       SubsystemBase subsystemBase) {
@@ -60,8 +61,29 @@ public class SystemIdentification {
             subsystemBase));
   }
 
+  public static SysIdRoutine rpmSysIdRoutine(
+      SmartMotorController motor, String motorName, SubsystemBase subsystemBase) {
+
+    return new SysIdRoutine(
+        new Config(Volts.of(1).div(Seconds.of(1)), Volts.of(1), Seconds.of(10)),
+        new SysIdRoutine.Mechanism(
+            (Voltage voltage) ->
+                motor.setDutyCycle(voltage.in(Volts) / RobotController.getBatteryVoltage()),
+            log -> {
+              motor.updateTelemetry();
+              motor.simIterate();
+              log.motor(motorName)
+                  .voltage(
+                      m_appliedVoltage.mut_replace(
+                          motor.getDutyCycle() * RobotController.getBatteryVoltage(), Volts))
+                  .angularPosition(m_distance.mut_replace(motor.getMechanismPosition()))
+                  .angularVelocity(m_velocity.mut_replace(motor.getMechanismVelocity()));
+            },
+            subsystemBase));
+  }
+
   public static SysIdRoutine angleSysIdRoutine(
-      MotorController5010 motor,
+      GenericMotorController motor,
       GenericEncoder encoder,
       String motorName,
       SubsystemBase subsystemBase) {

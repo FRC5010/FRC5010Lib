@@ -5,23 +5,38 @@
 package org.frc5010.common.sensors.camera;
 
 import edu.wpi.first.apriltag.AprilTagFieldLayout;
+import edu.wpi.first.math.Matrix;
+import edu.wpi.first.math.VecBuilder;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Pose3d;
 import edu.wpi.first.math.geometry.Transform3d;
+import edu.wpi.first.math.numbers.N1;
+import edu.wpi.first.math.numbers.N3;
+import edu.wpi.first.wpilibj.RobotState;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.function.Supplier;
+import org.frc5010.common.vision.VisionConstants;
 import org.photonvision.EstimatedRobotPose;
 import org.photonvision.PhotonPoseEstimator;
 import org.photonvision.PhotonPoseEstimator.PoseStrategy;
+import org.photonvision.targeting.PhotonPipelineResult;
 
 /** A camera using the PhotonVision library. */
-public class PhotonVisionPoseCamera extends PhotonVisionCamera {
+public class PhotonVisionPoseCamera extends PhotonVisionCamera implements FiducialTargetCamera {
   /** The pose estimator */
   protected PhotonPoseEstimator poseEstimator;
   /** The pose strategy */
   protected PoseStrategy strategy;
   /** The pose supplier */
   protected Supplier<Pose2d> poseSupplier;
+  /** The current list of fiducial IDs */
+  protected List<Integer> fiducialIds = new ArrayList<>();
 
   /**
    * Constructor
@@ -45,51 +60,142 @@ public class PhotonVisionPoseCamera extends PhotonVisionCamera {
     this.poseSupplier = poseSupplier;
     this.fieldLayout = fieldLayout;
     poseEstimator = new PhotonPoseEstimator(fieldLayout, strategy, cameraToRobot);
+    poseEstimator.setMultiTagFallbackStrategy(PoseStrategy.PNP_DISTANCE_TRIG_SOLVE);
+    visionLayout.addString(
+        "Primary Strategy " + name, () -> poseEstimator.getPrimaryStrategy().name());
+  }
+
+  public PhotonVisionPoseCamera(
+      String name,
+      int colIndex,
+      AprilTagFieldLayout fieldLayout,
+      PoseStrategy strategy,
+      Transform3d cameraToRobot,
+      Supplier<Pose2d> poseSupplier,
+      List<Integer> fiducialIds) {
+    super(name, colIndex, cameraToRobot);
+    this.strategy = strategy;
+    this.poseSupplier = poseSupplier;
+    this.fieldLayout = fieldLayout;
+    this.fiducialIds = fiducialIds;
+    visionLayout.addDouble("Observations", () -> input.poseObservations.length);
+    poseEstimator = new PhotonPoseEstimator(fieldLayout, strategy, cameraToRobot);
+    poseEstimator.setMultiTagFallbackStrategy(PoseStrategy.PNP_DISTANCE_TRIG_SOLVE);
+    visionLayout.addString(
+        "Primary Strategy " + name, () -> poseEstimator.getPrimaryStrategy().name());
   }
 
   /** Update the camera and target with the latest result */
   @Override
   public void updateCameraInfo() {
+    poseEstimator.addHeadingData(Timer.getFPGATimestamp(), poseSupplier.get().getRotation());
+
+    List<PoseObservation> observations = new ArrayList<>();
+
     super.updateCameraInfo();
-    if (camResult.hasTargets()) {
-      target = Optional.ofNullable(camResult.getBestTarget());
+    Set<Short> tagIds = new HashSet<>();
+
+    for (PhotonPipelineResult iCamResult : camResults) {
+      Optional<EstimatedRobotPose> estimate = poseEstimator.update(iCamResult);
+      if (estimate.isPresent()) {
+        EstimatedRobotPose estimatedRobotPose = estimate.get();
+        Pose3d robotPose = estimatedRobotPose.estimatedPose;
+
+        double totalTagDistance = 0.0;
+        for (var iTarget : iCamResult.targets) {
+          totalTagDistance += iTarget.bestCameraToTarget.getTranslation().getNorm();
+        }
+        // Compute the average tag distance
+        int tagCount = estimatedRobotPose.targetsUsed.size();
+        double averageDistance = 0.0;
+        if (!iCamResult.targets.isEmpty()) {
+          averageDistance = totalTagDistance / iCamResult.targets.size();
+        }
+
+        // Add tag IDs
+        iCamResult.multitagResult.map(it -> tagIds.addAll(it.fiducialIDsUsed));
+
+        SmartDashboard.putNumber(
+            "Camera/" + name() + "/Total Distance To Tag " + name, totalTagDistance);
+        SmartDashboard.putNumber(
+            "Camera/" + name() + "/Photon Ambiguity " + name,
+            iCamResult.getBestTarget().poseAmbiguity);
+        SmartDashboard.putNumberArray(
+            "Camera/" + name() + "/Photon Camera " + name + " POSE",
+            new double[] {
+              robotPose.getX(),
+              robotPose.getY(),
+              robotPose.getRotation().toRotation2d().getDegrees()
+            });
+
+        observations.add(
+            new PoseObservation(
+                iCamResult.getTimestampSeconds(), // Timestamp
+                // 3D pose estimate
+                robotPose,
+                iCamResult.getBestTarget().poseAmbiguity,
+                tagCount,
+                averageDistance,
+                PoseObservationType.PHOTONVISION,
+                ProviderType.FIELD_BASED));
+      }
+
+      // Save pose observations to inputs object
+      input.poseObservations = new PoseObservation[observations.size()];
+      for (int i = 0; i < observations.size(); i++) {
+        input.poseObservations[i] = observations.get(i);
+      }
+      // Save tag IDs to inputs objects
+      input.tagIds = new int[tagIds.size()];
+      int i = 0;
+      for (int id : tagIds) {
+        input.tagIds[i++] = id;
+      }
     }
   }
 
-  /**
-   * Get the target pose estimate relative to the robot.
-   *
-   * @return the target pose estimate relative to the robot
-   */
   @Override
-  public Optional<Pose3d> getRobotPose() {
-    Pose3d robotPoseEst = null;
-    if (target.isPresent()) {
-      Optional<EstimatedRobotPose> result = poseEstimator.update(camResult);
+  public Matrix<N3, N1> getStdDeviations(PoseObservation observation) {
+    double stdDevFactor = Math.pow(observation.averageTagDistance(), 4.0) / observation.tagCount();
+    double linearStdDev = VisionConstants.linearStdDevBaseline * stdDevFactor;
 
-      if (result.isPresent()
-          && result.get().estimatedPose != null
-          && target.get().getPoseAmbiguity() < 0.5) {
-        robotPoseEst = result.get().estimatedPose;
-      }
+    double angularStdDev = VisionConstants.angularStdDevBaseline * stdDevFactor;
+    if (camResult.multitagResult.isEmpty()) {
+      angularStdDev = 1.0;
     }
-    return Optional.ofNullable(robotPoseEst);
+    // double rotStdDev = 0.3;
+
+    // If really close, disregard angle measurement
+    if (observation.averageTagDistance() < 0.3
+        || (observation.averageTagDistance() > 2 && RobotState.isEnabled())) {
+      angularStdDev = 1000.0;
+    }
+
+    if ((observation.averageTagDistance() > 2.5
+        && RobotState.isEnabled()
+        && observation.tagCount() < 2)) {
+      linearStdDev = 100.0;
+    }
+    return VecBuilder.fill(linearStdDev, linearStdDev, angularStdDev);
   }
 
   /**
-   * Get the target pose estimate relative to the robot.
+   * Gets the current list of fiducial IDs for this camera.
    *
-   * @return the target pose estimate relative to the robot
+   * @return the current list of fiducial IDs
    */
-  @Override
-  public Optional<Pose3d> getRobotToTargetPose() {
-    Pose3d targetPoseEst = null;
-    if (target.isPresent()) {
-      if (target.get().getFiducialId() != 0) {
-        Transform3d robotToTarget = robotToCamera.plus(target.get().getBestCameraToTarget());
-        targetPoseEst = new Pose3d(robotToTarget.getTranslation(), robotToTarget.getRotation());
-      }
-    }
-    return Optional.ofNullable(targetPoseEst);
+  public List<Integer> getFiducialIds() {
+    return fiducialIds;
+  }
+
+  /**
+   * Sets the list of fiducial IDs for this camera. The camera will only consider targets with IDs
+   * in this list when locating targets. This does not change the list spefified at construction
+   * time to the pose camera so that the camera can be both a pose and target camera.
+   *
+   * @param fiducialIds the list of fiducial IDs to consider
+   */
+  public void setFiducialIds(List<Integer> fiducialIds) {
+    this.fiducialIds = fiducialIds;
   }
 }

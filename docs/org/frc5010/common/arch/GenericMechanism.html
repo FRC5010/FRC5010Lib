@@ -77,16 +77,16 @@ loadScripts(document, 'script');</script>
 <section class="class-description" id="class-description">
 <dl class="notes">
 <dt>All Implemented Interfaces:</dt>
-<dd><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/util/sendable/Sendable.html" title="class or interface in edu.wpi.first.util.sendable" class="external-link">Sendable</a></code>, <code><a href="WpiHelperInterface.html" title="interface in org.frc5010.common.arch">WpiHelperInterface</a></code></dd>
+<dd><code><a href="WpiHelperInterface.html" title="interface in org.frc5010.common.arch">WpiHelperInterface</a></code></dd>
 </dl>
 <dl class="notes">
 <dt>Direct Known Subclasses:</dt>
-<dd><code><a href="../mechanisms/Drive.html" title="class in org.frc5010.common.mechanisms">Drive</a></code>, <code><a href="GenericRobot.html" title="class in org.frc5010.common.arch">GenericRobot</a></code></dd>
+<dd><code><a href="GenericRobot.html" title="class in org.frc5010.common.arch">GenericRobot</a></code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public abstract class </span><span class="element-name type-name-label">GenericMechanism</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a>
-implements <a href="WpiHelperInterface.html" title="interface in org.frc5010.common.arch">WpiHelperInterface</a>, <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/util/sendable/Sendable.html" title="class or interface in edu.wpi.first.util.sendable" class="external-link">Sendable</a></span></div>
+implements <a href="WpiHelperInterface.html" title="interface in org.frc5010.common.arch">WpiHelperInterface</a></span></div>
 <div class="block">GenericMechanism should be used as the parent class of any mechanism It enforces the use of the
  functions:</div>
 </section>
@@ -101,25 +101,20 @@ implements <a href="WpiHelperInterface.html" title="interface in org.frc5010.com
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Field</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
-<div class="col-second even-row-color"><code><a href="#logPrefix" class="member-name-link">logPrefix</a></code></div>
+<div class="col-first even-row-color"><code>protected final <a href="../telemetry/DisplayValuesHelper.html" title="class in org.frc5010.common.telemetry">DisplayValuesHelper</a></code></div>
+<div class="col-second even-row-color"><code><a href="#DashBoard" class="member-name-link">DashBoard</a></code></div>
 <div class="col-last even-row-color">
+<div class="block">The display values helper</div>
+</div>
+<div class="col-first odd-row-color"><code>protected <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
+<div class="col-second odd-row-color"><code><a href="#logPrefix" class="member-name-link">logPrefix</a></code></div>
+<div class="col-last odd-row-color">
 <div class="block">The log prefix</div>
 </div>
-<div class="col-first odd-row-color"><code>protected <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/smartdashboard/Mechanism2d.html" title="class or interface in edu.wpi.first.wpilibj.smartdashboard" class="external-link">Mechanism2d</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#mechVisual" class="member-name-link">mechVisual</a></code></div>
-<div class="col-last odd-row-color">
-<div class="block">The visual representation of the mechanism</div>
-</div>
-<div class="col-first even-row-color"><code>protected <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/shuffleboard/ShuffleboardTab.html" title="class or interface in edu.wpi.first.wpilibj.shuffleboard" class="external-link">ShuffleboardTab</a></code></div>
-<div class="col-second even-row-color"><code><a href="#shuffleTab" class="member-name-link">shuffleTab</a></code></div>
+<div class="col-first even-row-color"><code>protected org.littletonrobotics.junction.mechanism.LoggedMechanism2d</code></div>
+<div class="col-second even-row-color"><code><a href="#mechVisual" class="member-name-link">mechVisual</a></code></div>
 <div class="col-last even-row-color">
-<div class="block">The tab for the mechanism</div>
-</div>
-<div class="col-first odd-row-color"><code>protected final <a href="WpiNetworkTableValuesHelper.html" title="class in org.frc5010.common.arch">WpiNetworkTableValuesHelper</a></code></div>
-<div class="col-second odd-row-color"><code><a href="#values" class="member-name-link">values</a></code></div>
-<div class="col-last odd-row-color">
-<div class="block">The network table values</div>
+<div class="block">The visual representation of the mechanism</div>
 </div>
 </div>
 </section>
@@ -136,13 +131,8 @@ implements <a href="WpiHelperInterface.html" title="interface in org.frc5010.com
 <div class="col-last even-row-color">
 <div class="block">Constructor for GenericMechanism</div>
 </div>
-<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(edu.wpi.first.wpilibj.smartdashboard.Mechanism2d,edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab)" class="member-name-link">GenericMechanism</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/smartdashboard/Mechanism2d.html" title="class or interface in edu.wpi.first.wpilibj.smartdashboard" class="external-link">Mechanism2d</a>&nbsp;robotMechVisual,
- <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/shuffleboard/ShuffleboardTab.html" title="class or interface in edu.wpi.first.wpilibj.shuffleboard" class="external-link">ShuffleboardTab</a>&nbsp;shuffleTab)</code></div>
+<div class="col-constructor-name odd-row-color"><code><a href="#%3Cinit%3E(java.lang.String)" class="member-name-link">GenericMechanism</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tabName)</code></div>
 <div class="col-last odd-row-color">
-<div class="block">Constructor for GenericMechanism with specified visual</div>
-</div>
-<div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E(java.lang.String)" class="member-name-link">GenericMechanism</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;tabName)</code></div>
-<div class="col-last even-row-color">
 <div class="block">Constructor for GenericMechanism</div>
 </div>
 </div>
@@ -159,17 +149,6 @@ implements <a href="WpiHelperInterface.html" title="interface in org.frc5010.com
 <div class="table-header col-first">Modifier and Type</div>
 <div class="table-header col-second">Method</div>
 <div class="table-header col-last">Description</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addToTab(java.lang.String)" class="member-name-link">addToTab</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Adds a variable to the Display in a list</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addToTabList(java.lang.String,java.lang.String)" class="member-name-link">addToTabList</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;list,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Adds a variable to the Display in a list.</div>
-</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract void</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#configureButtonBindings(org.frc5010.common.sensors.Controller,org.frc5010.common.sensors.Controller)" class="member-name-link">configureButtonBindings</a><wbr>(<a href="../sensors/Controller.html" title="class in org.frc5010.common.sensors">Controller</a>&nbsp;driver,
  <a href="../sensors/Controller.html" title="class in org.frc5010.common.sensors">Controller</a>&nbsp;operator)</code></div>
@@ -186,26 +165,16 @@ implements <a href="WpiHelperInterface.html" title="interface in org.frc5010.com
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Used to wrap the selected auto command in additional behavior</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/shuffleboard/ShuffleboardTab.html" title="class or interface in edu.wpi.first.wpilibj.shuffleboard" class="external-link">ShuffleboardTab</a></code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getDisplayTab()" class="member-name-link">getDisplayTab</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Retrieves the ShuffleboardTab associated with this GenericMechanism.</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#initAutoCommands()" class="member-name-link">initAutoCommands</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract void</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#initAutoCommands()" class="member-name-link">initAutoCommands</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Used to initialize auto commands for the robot</div>
 </div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>protected abstract void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#initRealOrSim()" class="member-name-link">initRealOrSim</a>()</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>protected abstract void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#initRealOrSim()" class="member-name-link">initRealOrSim</a>()</code></div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">initRealOrSim should check the real or simulation state of the robot and initialize its code
  accordingly</div>
-</div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#initSendable(edu.wpi.first.util.sendable.SendableBuilder)" class="member-name-link">initSendable</a><wbr>(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/util/sendable/SendableBuilder.html" title="class or interface in edu.wpi.first.util.sendable" class="external-link">SendableBuilder</a>&nbsp;builder)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Initializes the sendable builder with the necessary components for this class.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract void</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#setupDefaultCommands(org.frc5010.common.sensors.Controller,org.frc5010.common.sensors.Controller)" class="member-name-link">setupDefaultCommands</a><wbr>(<a href="../sensors/Controller.html" title="class in org.frc5010.common.sensors">Controller</a>&nbsp;driver,
@@ -248,22 +217,8 @@ implements <a href="WpiHelperInterface.html" title="interface in org.frc5010.com
 <li>
 <section class="detail" id="mechVisual">
 <h3>mechVisual</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/smartdashboard/Mechanism2d.html" title="class or interface in edu.wpi.first.wpilibj.smartdashboard" class="external-link">Mechanism2d</a></span>&nbsp;<span class="element-name">mechVisual</span></div>
+<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type">org.littletonrobotics.junction.mechanism.LoggedMechanism2d</span>&nbsp;<span class="element-name">mechVisual</span></div>
 <div class="block">The visual representation of the mechanism</div>
-</section>
-</li>
-<li>
-<section class="detail" id="shuffleTab">
-<h3>shuffleTab</h3>
-<div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/shuffleboard/ShuffleboardTab.html" title="class or interface in edu.wpi.first.wpilibj.shuffleboard" class="external-link">ShuffleboardTab</a></span>&nbsp;<span class="element-name">shuffleTab</span></div>
-<div class="block">The tab for the mechanism</div>
-</section>
-</li>
-<li>
-<section class="detail" id="values">
-<h3>values</h3>
-<div class="member-signature"><span class="modifiers">protected final</span>&nbsp;<span class="return-type"><a href="WpiNetworkTableValuesHelper.html" title="class in org.frc5010.common.arch">WpiNetworkTableValuesHelper</a></span>&nbsp;<span class="element-name">values</span></div>
-<div class="block">The network table values</div>
 </section>
 </li>
 <li>
@@ -271,6 +226,13 @@ implements <a href="WpiHelperInterface.html" title="interface in org.frc5010.com
 <h3>logPrefix</h3>
 <div class="member-signature"><span class="modifiers">protected</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></span>&nbsp;<span class="element-name">logPrefix</span></div>
 <div class="block">The log prefix</div>
+</section>
+</li>
+<li>
+<section class="detail" id="DashBoard">
+<h3>DashBoard</h3>
+<div class="member-signature"><span class="modifiers">protected final</span>&nbsp;<span class="return-type"><a href="../telemetry/DisplayValuesHelper.html" title="class in org.frc5010.common.telemetry">DisplayValuesHelper</a></span>&nbsp;<span class="element-name">DashBoard</span></div>
+<div class="block">The display values helper</div>
 </section>
 </li>
 </ul>
@@ -299,19 +261,6 @@ implements <a href="WpiHelperInterface.html" title="interface in org.frc5010.com
 </dl>
 </section>
 </li>
-<li>
-<section class="detail" id="&lt;init&gt;(edu.wpi.first.wpilibj.smartdashboard.Mechanism2d,edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab)">
-<h3>GenericMechanism</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">GenericMechanism</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/smartdashboard/Mechanism2d.html" title="class or interface in edu.wpi.first.wpilibj.smartdashboard" class="external-link">Mechanism2d</a>&nbsp;robotMechVisual,
- <a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/shuffleboard/ShuffleboardTab.html" title="class or interface in edu.wpi.first.wpilibj.shuffleboard" class="external-link">ShuffleboardTab</a>&nbsp;shuffleTab)</span></div>
-<div class="block">Constructor for GenericMechanism with specified visual</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>robotMechVisual</code> - - the visual representation of the mechanism</dd>
-<dd><code>shuffleTab</code> - - the tab for the mechanism</dd>
-</dl>
-</section>
-</li>
 </ul>
 </section>
 </li>
@@ -320,41 +269,6 @@ implements <a href="WpiHelperInterface.html" title="interface in org.frc5010.com
 <section class="method-details" id="method-detail">
 <h2>Method Details</h2>
 <ul class="member-list">
-<li>
-<section class="detail" id="getDisplayTab()">
-<h3>getDisplayTab</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/wpilibj/shuffleboard/ShuffleboardTab.html" title="class or interface in edu.wpi.first.wpilibj.shuffleboard" class="external-link">ShuffleboardTab</a></span>&nbsp;<span class="element-name">getDisplayTab</span>()</div>
-<div class="block">Retrieves the ShuffleboardTab associated with this GenericMechanism.</div>
-<dl class="notes">
-<dt>Returns:</dt>
-<dd>the ShuffleboardTab for this GenericMechanism</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="addToTab(java.lang.String)">
-<h3>addToTab</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addToTab</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</span></div>
-<div class="block">Adds a variable to the Display in a list</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>key</code> - - String name of the variable being stored.</dd>
-</dl>
-</section>
-</li>
-<li>
-<section class="detail" id="addToTabList(java.lang.String,java.lang.String)">
-<h3>addToTabList</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">addToTabList</span><wbr><span class="parameters">(<a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;list,
- <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;key)</span></div>
-<div class="block">Adds a variable to the Display in a list.</div>
-<dl class="notes">
-<dt>Parameters:</dt>
-<dd><code>list</code> - the name of the list to add the variable to</dd>
-<dd><code>key</code> - the name of the variable being stored</dd>
-</dl>
-</section>
-</li>
 <li>
 <section class="detail" id="configureButtonBindings(org.frc5010.common.sensors.Controller,org.frc5010.common.sensors.Controller)">
 <h3>configureButtonBindings</h3>
@@ -435,19 +349,6 @@ implements <a href="WpiHelperInterface.html" title="interface in org.frc5010.com
 <h3>disabledBehavior</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">disabledBehavior</span>()</div>
 <div class="block">Executed periodically when robot is disabled</div>
-</section>
-</li>
-<li>
-<section class="detail" id="initSendable(edu.wpi.first.util.sendable.SendableBuilder)">
-<h3>initSendable</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">initSendable</span><wbr><span class="parameters">(<a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/util/sendable/SendableBuilder.html" title="class or interface in edu.wpi.first.util.sendable" class="external-link">SendableBuilder</a>&nbsp;builder)</span></div>
-<div class="block">Initializes the sendable builder with the necessary components for this class.</div>
-<dl class="notes">
-<dt>Specified by:</dt>
-<dd><code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/util/sendable/Sendable.html#initSendable(edu.wpi.first.util.sendable.SendableBuilder)" title="class or interface in edu.wpi.first.util.sendable" class="external-link">initSendable</a></code>&nbsp;in interface&nbsp;<code><a href="https://github.wpilib.org/allwpilib/docs/release/java/edu/wpi/first/util/sendable/Sendable.html" title="class or interface in edu.wpi.first.util.sendable" class="external-link">Sendable</a></code></dd>
-<dt>Parameters:</dt>
-<dd><code>builder</code> - the sendable builder to initialize</dd>
-</dl>
 </section>
 </li>
 </ul>

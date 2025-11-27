@@ -11,35 +11,28 @@ import edu.wpi.first.units.CurrentUnit;
 import edu.wpi.first.units.measure.Current;
 import edu.wpi.first.units.measure.MutCurrent;
 import java.util.EnumSet;
+import java.util.function.Supplier;
 import org.frc5010.common.arch.GenericRobot.LogLevel;
 
 /** Add a current to the dashboard */
-public class DisplayCurrent {
+public class DisplayCurrent extends DisplayableValue {
   /** Length value */
   MutCurrent current_;
   /** Length unit */
   protected final CurrentUnit unit_;
-  /** The name of the variable */
-  protected final String name_;
-  /** The name of the table */
-  protected final String table_;
   /** The topic */
   protected DoubleTopic topic_;
   /** The publisher */
   protected DoublePublisher publisher_;
   /** The subscriber */
   protected DoubleSubscriber subscriber_;
-  /** The listener handle */
-  protected int listenerHandle_;
-  /** Display mode */
-  protected final boolean isDisplayed_;
 
   // Constructor
   /**
    * Add a current to the dashboard
    *
-   * @param current - current
-   * @param unit - unit
+   * @param current - current unit
+   * @param unit - the current unit
    * @param name - name of the variable
    * @param table - name of the table
    */
@@ -51,8 +44,8 @@ public class DisplayCurrent {
   /**
    * Add a current to the dashboard
    *
-   * @param current - current
-   * @param unit - unit
+   * @param current - current unit
+   * @param unit - the current unit
    * @param name - name of the variable
    * @param table - name of the table
    * @param logLevel - log level
@@ -63,15 +56,13 @@ public class DisplayCurrent {
       final String name,
       final String table,
       LogLevel logLevel) {
+    super(String.format("%s (%s)", name, unit.symbol()), table, logLevel);
     current_ = new MutCurrent(current, unit.getBaseUnit().convertFrom(current, unit), unit);
     unit_ = unit;
-    name_ = String.format("%s (%s)", name, unit_.symbol());
-    table_ = table;
-    isDisplayed_ = DisplayValuesHelper.robotIsAtLogLevel(logLevel);
     if (isDisplayed_) {
       topic_ = NetworkTableInstance.getDefault().getTable(table_).getDoubleTopic(name_);
       publisher_ = topic_.publish();
-      init();
+      init(logLevel);
     }
   }
 
@@ -97,40 +88,42 @@ public class DisplayCurrent {
    */
   public DisplayCurrent(
       final Current current, final String name, final String table, LogLevel logLevel) {
+    super(String.format("%s (%s)", name, current.unit().symbol()), table, logLevel);
     current_ = current.mutableCopy();
     unit_ = current.unit();
-    name_ = String.format("%s (%s)", name, unit_.symbol());
-    table_ = table;
-    isDisplayed_ = DisplayValuesHelper.robotIsAtLogLevel(logLevel);
     if (isDisplayed_) {
       topic_ = NetworkTableInstance.getDefault().getTable(table_).getDoubleTopic(name_);
       publisher_ = topic_.publish();
-      init();
+      init(logLevel);
     }
   }
 
-  protected void init() {
-    if (DisplayValuesHelper.robotIsAtLogLevel(LogLevel.CONFIG)) {
-      topic_.setPersistent(true);
-      subscriber_ = topic_.subscribe(current_.in(unit_));
-      listenerHandle_ =
-          NetworkTableInstance.getDefault()
-              .addListener(
-                  subscriber_,
-                  EnumSet.of(NetworkTableEvent.Kind.kValueAll),
-                  event -> {
-                    setCurrent(event.valueData.value.getDouble(), unit_, false);
-                  });
+  protected void init(LogLevel logLevel) {
+    if (LogLevel.CONFIG == logLevel) {
+      if (isDisplayed_) topic_.setPersistent(true);
+      if (DisplayValuesHelper.isAtLogLevel(LogLevel.CONFIG)) {
+        subscriber_ = topic_.subscribe(current_.in(unit_));
+        listenerHandle_ =
+            NetworkTableInstance.getDefault()
+                .addListener(
+                    subscriber_,
+                    EnumSet.of(NetworkTableEvent.Kind.kValueAll),
+                    event -> {
+                      setCurrent(event.valueData.value.getDouble(), unit_, false);
+                    });
+        setCurrent(subscriber_.get(), unit_, false);
+      }
     }
     publisher_.setDefault(current_.in(unit_));
   }
 
   // Setters
+
   /**
-   * Sets the current
+   * Sets the current to the dashboard
    *
-   * @param current - current
-   * @param unit - unit
+   * @param current - current in that unit
+   * @param unit - current unit
    */
   public void setCurrent(final double current, final CurrentUnit unit) {
     setCurrent(current, unit, true);
@@ -203,5 +196,17 @@ public class DisplayCurrent {
    */
   public double getCurrentInAmps() {
     return current_.in(Amps);
+  }
+
+  /**
+   * Registers a listener to the display values helper to update this current with the result of the
+   * given supplier when the listener is called.
+   *
+   * @param supplier - supplier of the current to update this with
+   * @return this object
+   */
+  public DisplayCurrent updateWith(Supplier<Current> supplier) {
+    displayValuesHelper_.registerListener(() -> setCurrent(supplier.get()));
+    return this;
   }
 }
